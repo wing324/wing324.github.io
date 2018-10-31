@@ -1,0 +1,1108 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="flask-sqlalchemy,MySQL," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wing's Tech Space" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="每个项目都离不开数据库，所以要是打算用Flask写一个程序，自然也离不开flask-sqlalchemy。作为一个MySQL DBA，当然会首选MySQL作为程序的数据库，毕竟我擅长于此。那么就来总结下，怎么用flask-sqlalchemy来玩转MySQL吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用flask-sqlalchemy玩转MySQL">
+<meta property="og:url" content="https://wing324.github.io/2017/02/25/使用flask-sqlalchemy玩转MySQL/index.html">
+<meta property="og:site_name" content="Wing's Tech Space">
+<meta property="og:description" content="每个项目都离不开数据库，所以要是打算用Flask写一个程序，自然也离不开flask-sqlalchemy。作为一个MySQL DBA，当然会首选MySQL作为程序的数据库，毕竟我擅长于此。那么就来总结下，怎么用flask-sqlalchemy来玩转MySQL吧。">
+<meta property="og:updated_time" content="2017-04-06T12:31:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用flask-sqlalchemy玩转MySQL">
+<meta name="twitter:description" content="每个项目都离不开数据库，所以要是打算用Flask写一个程序，自然也离不开flask-sqlalchemy。作为一个MySQL DBA，当然会首选MySQL作为程序的数据库，毕竟我擅长于此。那么就来总结下，怎么用flask-sqlalchemy来玩转MySQL吧。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 11154520,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://wing324.github.io/2017/02/25/使用flask-sqlalchemy玩转MySQL/"/>
+
+  <title> 使用flask-sqlalchemy玩转MySQL | Wing's Tech Space </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?49b16c9d482511603ad262b1dcf7bb45";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Wing's Tech Space</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+
+      <!-- 自定义High一下的功能 -->
+      <li class="menu-item"> <a title="把这个链接拖到你的工具栏中,任何网页都可以High" href='javascript:(
+    function go() {
+
+
+    var songs = [
+    	"http://p2.music.126.net/B0HhRLh0h2NBdlcGTcTrEA==/2076977464881622.mp3",
+	"http://p2.music.126.net/RMJR7wDullRqppBk8dhLow==/3435973841155597.mp3",
+	"http://p2.music.126.net/sLKP3na0M4mdXocWFcVHlA==/3236962235602026.mp3",
+	"http://p2.music.126.net/JHuQLKSs47g-jTAASut-2g==/7714173581565477.mp3",
+	"http://p2.music.126.net/dGpxzld-XaokuOdbMKzGrA==/2533274792968816.mp3",
+	"http://p2.music.126.net/O1-e4JylX2IhqQTV6ZLZkg==/3235862723975492.mp3"
+	];
+
+    
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+ 
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+ 
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+ 
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+ 
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+ 
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+ 
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+ 
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+ 
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.getElementById("audio_element_id");
+        if(e != null){
+            var index = parseInt(e.getAttribute("curSongIndex"));
+            if(index > songs.length - 2) {
+                index = 0;
+            } else {
+                index++;
+            }
+            e.setAttribute("curSongIndex", index);
+            N();
+        }
+
+        e.src = i;
+        e.play()
+    }
+ 
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+ 
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+ 
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    function initAudioEle() {
+        var e = document.getElementById("audio_element_id");
+        if(e === null){
+            e = document.createElement("audio");
+            e.setAttribute("class", l);
+            e.setAttribute("curSongIndex", 0);
+            e.id = "audio_element_id";
+            e.loop = false;
+            e.bgcolor = 0;
+            e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h();
+            go();
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        }
+    }
+    
+    initAudioEle();
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+
+    var curSongIndex = parseInt(document.getElementById("audio_element_id").getAttribute("curSongIndex"));
+    var i = songs[curSongIndex];
+    
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+
+    /* harlem-shake-style.css，替换成你的位置，也可以直接使用：//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css */
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()'><i class="menu-item-icon fa fa-music fa-fw"></i>High一下</a> </li>
+          <!-- end High一下 -->
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search fa-lg"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用flask-sqlalchemy玩转MySQL
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-25T19:33:59-08:00" content="2017-02-25">
+              2017-02-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Flask/" itemprop="url" rel="index">
+                    <span itemprop="name">Flask</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/25/使用flask-sqlalchemy玩转MySQL/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/25/使用flask-sqlalchemy玩转MySQL/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">热度
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>℃
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>每个项目都离不开数据库，所以要是打算用Flask写一个程序，自然也离不开flask-sqlalchemy。作为一个MySQL DBA，当然会首选MySQL作为程序的数据库，毕竟我擅长于此。那么就来总结下，怎么用flask-sqlalchemy来玩转MySQL吧。<br><a id="more"></a></p>
+<p><strong>安装命令</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line">pip install mysql-python</div><div class="line">pip install flask-sqlalchemy</div></pre></td></tr></table></figure>
+<p><strong>相关示例Python代码</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 文件名hello.py</span></div><div class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</div><div class="line"><span class="keyword">from</span> flask_sqlalchemy <span class="keyword">import</span> SQLAlchemy</div><div class="line">app = Flask(__name__)</div><div class="line">app.config[<span class="string">'SECRET_KEY'</span>] = <span class="string">'Fianna'</span></div><div class="line">app.config[<span class="string">'SQLALCHEMY_DATABASE_URI'</span>] = <span class="string">'mysql://user:password@host:port/dbname'</span></div><div class="line">app.config[<span class="string">'SQLALCHEMY_TRACK_MODIFICATIONS'</span>] = <span class="keyword">True</span></div><div class="line">db = SQLAlchemy(app)</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Role</span><span class="params">(db.Model)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'roles'</span></div><div class="line">    id = db.Column(db.Integer, nullable=<span class="keyword">False</span>, primary_key=<span class="keyword">True</span>, autoincrement=<span class="keyword">True</span>)</div><div class="line">    name = db.Column(db.String(<span class="number">16</span>), nullable=<span class="keyword">False</span>, server_default=<span class="string">''</span>, unique=<span class="keyword">True</span>)</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">'&lt;Role %r&gt;'</span> % self.name</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(db.Model)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'users'</span></div><div class="line">    id = db.Column(db.Integer, nullable=<span class="keyword">False</span>, primary_key=<span class="keyword">True</span>, autoincrement=<span class="keyword">True</span>)</div><div class="line">    username = db.Column(db.String(<span class="number">32</span>), nullable=<span class="keyword">False</span>, unique=<span class="keyword">True</span>, server_default=<span class="string">''</span>, index=<span class="keyword">True</span>)</div><div class="line">    role_id = db.Column(db.Integer, nullable=<span class="keyword">False</span>, server_default=<span class="string">'0'</span>)</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">'&lt;User %r,Role id %r&gt;'</span> %(self.username,self.role_id)</div></pre></td></tr></table></figure>
+<h4 id="一、连接数据库">一、连接数据库</h4><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">app.config[<span class="string">'SQLALCHEMY_DATABASE_URI'</span>] = <span class="string">'mysql://user:password@host:port/dbname'</span></div></pre></td></tr></table></figure>
+<h4 id="二、创建所有表">二、创建所有表</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">python</div><div class="line">&gt;&gt;&gt; from hello import db,Role,User</div><div class="line">&gt;&gt;&gt; db.create_all()</div></pre></td></tr></table></figure>
+<h4 id="三、删除所有表">三、删除所有表</h4><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">python</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> hello <span class="keyword">import</span> db,Role,User</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>db.drop_all()</div></pre></td></tr></table></figure>
+<h4 id="四、插入行">四、插入行</h4><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 插入单行</span></div><div class="line">python</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> hello <span class="keyword">import</span> db,Role,User</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>db.session.add(Role(name=<span class="string">'Admin'</span>))</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>db.session.commit()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>db.session.add(Role(name=<span class="string">'Moderator'</span>))</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>db.session.add(Role(name=<span class="string">'User'</span>))</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>db.session.commit()</div><div class="line"></div><div class="line"><span class="comment"># 插入多行</span></div><div class="line">python</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> hello <span class="keyword">import</span> db,Role,User</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>db.session.add_all([User(username=<span class="string">'john'</span>,role_id=<span class="number">1</span>),User(username=<span class="string">'susan'</span>,role_id=<span class="number">3</span>),User(username=<span class="string">'david'</span>,role_id=<span class="number">3</span>)])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>db.session.commit()</div></pre></td></tr></table></figure>
+<h4 id="五、更新行">五、更新行</h4><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">python</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> hello <span class="keyword">import</span> db,Role,User</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>admin = Role.query.filter_by(name=<span class="string">'Admin'</span>).first()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>admin.name=<span class="string">'Administrator'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>db.session.commit()</div></pre></td></tr></table></figure>
+<h4 id="六、删除行">六、删除行</h4><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">python hello.py shell</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> hello <span class="keyword">import</span> db,Role,User</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mod = Role.query.filter_by(name=<span class="string">'Moderator'</span>).first()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>db.session.delete(mod)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>db.session.commit()</div></pre></td></tr></table></figure>
+<h4 id="七、查询表">七、查询表</h4><ul>
+<li><p>查询表中全部数据</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 注意，此处的查询结果完全取决于代码示例中的</span></div><div class="line"><span class="comment"># def __repr__(self)</span></div><div class="line"><span class="comment"># 这段函数，请各位小主们，好好斟酌下～</span></div><div class="line">python</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> hello <span class="keyword">import</span> db,Role,User</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>Role.query.all()</div><div class="line">[&lt;Role <span class="string">u'Administrator'</span>&gt;, &lt;Role <span class="string">u'User'</span>&gt;]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.all()</div><div class="line">[&lt;User <span class="string">u'john'</span>,Role id <span class="number">1L</span>&gt;, &lt;User <span class="string">u'susan'</span>,Role id <span class="number">3L</span>&gt;, &lt;User <span class="string">u'david'</span>,Role id <span class="number">3L</span>&gt;]</div></pre></td></tr></table></figure>
+</li>
+<li><p>按照一个条件过滤数据记录(where)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line">python</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> hello <span class="keyword">import</span> db,Role,User</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>Role.query.filter_by(name=<span class="string">'Administrator'</span>).first()</div><div class="line">&lt;Role <span class="string">u'Administrator'</span>&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.filter_by(role_id=<span class="number">3</span>).all()</div><div class="line">[&lt;User <span class="string">u'susan'</span>,Role id <span class="number">3L</span>&gt;, &lt;User <span class="string">u'david'</span>,Role id <span class="number">3L</span>&gt;]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.filter_by(role_id=<span class="number">3</span>).first()</div><div class="line">&lt;User <span class="string">u'susan'</span>,Role id <span class="number">3L</span>&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>按照两个条件过滤数据记录(where and)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line">python</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> hello <span class="keyword">import</span> db,Role,User</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.filter_by(role_id=<span class="number">3</span>,username=<span class="string">'susan'</span>).first()</div><div class="line">&lt;User <span class="string">u'susan'</span>,Role id <span class="number">3L</span>&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.filter_by(role_id=<span class="number">3</span>,username=<span class="string">'susan'</span>).all()</div><div class="line">[&lt;User <span class="string">u'susan'</span>,Role id <span class="number">3L</span>&gt;]</div></pre></td></tr></table></figure>
+</li>
+<li><p>聚合(count)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line">python hello.py shell</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> hello <span class="keyword">import</span> db,Role,User</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.filter_by(role_id=<span class="number">3</span>,username=<span class="string">'susan'</span>).count()</div><div class="line"><span class="number">1L</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.filter_by(role_id=<span class="number">3</span>).count()</div><div class="line"><span class="number">2L</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.count()</div><div class="line"><span class="number">3L</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>求和(sum)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line">python hello.py shell</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> hello <span class="keyword">import</span> db,Role,User</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sqlalchemy.sql <span class="keyword">import</span> func</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.with_entities(func.sum(User.id)).all()</div><div class="line">[(Decimal(<span class="string">'6'</span>),)]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.with_entities(func.sum(User.role_id)).all()</div><div class="line">[(Decimal(<span class="string">'7'</span>),)]</div></pre></td></tr></table></figure>
+</li>
+<li><p>平均数(avg)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line">python</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> hello <span class="keyword">import</span> db,Role,User</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sqlalchemy.sql <span class="keyword">import</span> func</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.with_entities(func.avg(User.role_id)).all()</div><div class="line">[(Decimal(<span class="string">'2.3333'</span>),)]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.with_entities(func.avg(User.id)).all()</div><div class="line">[(Decimal(<span class="string">'2.0000'</span>),)]</div></pre></td></tr></table></figure>
+</li>
+<li><p>排序(order by)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line">python</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> hello <span class="keyword">import</span> db,Role,User</div><div class="line"><span class="comment"># 升序(asc)</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.order_by(User.role_id).all()</div><div class="line">[&lt;User <span class="string">u'john'</span>,Role id <span class="number">1L</span>&gt;, &lt;User <span class="string">u'susan'</span>,Role id <span class="number">3L</span>&gt;, &lt;User <span class="string">u'david'</span>,Role id <span class="number">3L</span>&gt;]</div><div class="line"><span class="comment"># 降序(desc)</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.order_by(User.role_id.desc()).all()</div><div class="line">[&lt;User <span class="string">u'susan'</span>,Role id <span class="number">3L</span>&gt;, &lt;User <span class="string">u'david'</span>,Role id <span class="number">3L</span>&gt;, &lt;User <span class="string">u'john'</span>,Role id <span class="number">1L</span>&gt;]</div></pre></td></tr></table></figure>
+</li>
+<li><p>分组(group by)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line">python hello.py shell</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> hello <span class="keyword">import</span> db,Role,User</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.group_by(User.role_id).all()</div><div class="line">[&lt;User <span class="string">u'john'</span>,Role id <span class="number">1L</span>&gt;, &lt;User <span class="string">u'susan'</span>,Role id <span class="number">3L</span>&gt;]</div></pre></td></tr></table></figure>
+</li>
+<li><p>限制(limit)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line">python</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> hello <span class="keyword">import</span> db,Role,User</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.all()</div><div class="line">[&lt;User <span class="string">u'john'</span>,Role id <span class="number">1L</span>&gt;, &lt;User <span class="string">u'susan'</span>,Role id <span class="number">3L</span>&gt;, &lt;User <span class="string">u'david'</span>,Role id <span class="number">3L</span>&gt;]</div><div class="line"><span class="comment"># limit 1</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.limit(<span class="number">1</span>).all()</div><div class="line">[&lt;User <span class="string">u'john'</span>,Role id <span class="number">1L</span>&gt;]</div><div class="line"><span class="comment"># limit 2,1</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.limit(<span class="number">1</span>).offset(<span class="number">2</span>).all()</div><div class="line">[&lt;User <span class="string">u'david'</span>,Role id <span class="number">3L</span>&gt;]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.filter_by(role_id=<span class="number">3</span>).all()</div><div class="line">[&lt;User <span class="string">u'susan'</span>,Role id <span class="number">3L</span>&gt;, &lt;User <span class="string">u'david'</span>,Role id <span class="number">3L</span>&gt;]</div><div class="line"><span class="comment"># limit 1</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.filter_by(role_id=<span class="number">3</span>).limit(<span class="number">1</span>).all()</div><div class="line">[&lt;User <span class="string">u'susan'</span>,Role id <span class="number">3L</span>&gt;]</div><div class="line"><span class="comment"># limit 1,1</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.filter_by(role_id=<span class="number">3</span>).limit(<span class="number">1</span>).offset(<span class="number">1</span>).all()</div><div class="line">[&lt;User <span class="string">u'david'</span>,Role id <span class="number">3L</span>&gt;]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="八、将Flask-SQLAlchemy的查询语句转换为SQL">八、将Flask-SQLAlchemy的查询语句转换为SQL</h4><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">python</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> hello <span class="keyword">import</span> db,Role,User</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.all()</div><div class="line">[&lt;User <span class="string">u'john'</span>,Role id <span class="number">1L</span>&gt;, &lt;User <span class="string">u'susan'</span>,Role id <span class="number">3L</span>&gt;, &lt;User <span class="string">u'david'</span>,Role id <span class="number">3L</span>&gt;]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>str(User.query)</div><div class="line"><span class="string">'SELECT users.id AS users_id, users.username AS users_username, users.role_id AS users_role_id \nFROM users'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.limit(<span class="number">1</span>).all()</div><div class="line">[&lt;User <span class="string">u'john'</span>,Role id <span class="number">1L</span>&gt;]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>str(User.query.limit(<span class="number">1</span>))</div><div class="line"><span class="string">'SELECT users.id AS users_id, users.username AS users_username, users.role_id AS users_role_id \nFROM users \n LIMIT %s'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>User.query.limit(<span class="number">1</span>).offset(<span class="number">2</span>).all()</div><div class="line">[&lt;User <span class="string">u'david'</span>,Role id <span class="number">3L</span>&gt;]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>str(User.query.limit(<span class="number">1</span>).offset(<span class="number">2</span>))</div><div class="line"><span class="string">'SELECT users.id AS users_id, users.username AS users_username, users.role_id AS users_role_id \nFROM users \n LIMIT %s, %s'</span></div></pre></td></tr></table></figure>
+<p><em>本文示例参考文档：《Flask web开发》</em></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/flask-sqlalchemy/" rel="tag">#flask-sqlalchemy</a>
+          
+            <a href="/tags/MySQL/" rel="tag">#MySQL</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/22/python的requirements-txt文件生成与安装/" rel="next" title="python的requirements.txt文件生成与安装">
+                <i class="fa fa-chevron-left"></i> python的requirements.txt文件生成与安装
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/26/Flask-Migrate的使用/" rel="prev" title="Flask-Migrate的使用">
+                Flask-Migrate的使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/02/25/使用flask-sqlalchemy玩转MySQL/"
+     data-title="使用flask-sqlalchemy玩转MySQL"
+     data-content=""
+     data-url="https://wing324.github.io/2017/02/25/使用flask-sqlalchemy玩转MySQL/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><span class="ds-more">分享到：</span></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      <li><a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+      <li><a class="ds-google" href="javascript:void(0);" data-service="google">Google</a></li>
+    </ul>
+    <!--
+      <div class="ds-share-icons-more">
+      </div>
+    -->
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/25/使用flask-sqlalchemy玩转MySQL/"
+           data-title="使用flask-sqlalchemy玩转MySQL" data-url="https://wing324.github.io/2017/02/25/使用flask-sqlalchemy玩转MySQL/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wing.jpg"
+               alt="Wing" />
+          <p class="site-author-name" itemprop="name">Wing</p>
+          <p class="site-description motion-element" itemprop="description">热在分享，衷在开源。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">131</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/">
+                <span class="site-state-item-count">113</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wing324" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、连接数据库"><span class="nav-number">1.</span> <span class="nav-text">一、连接数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、创建所有表"><span class="nav-number">2.</span> <span class="nav-text">二、创建所有表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、删除所有表"><span class="nav-number">3.</span> <span class="nav-text">三、删除所有表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、插入行"><span class="nav-number">4.</span> <span class="nav-text">四、插入行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、更新行"><span class="nav-number">5.</span> <span class="nav-text">五、更新行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六、删除行"><span class="nav-number">6.</span> <span class="nav-text">六、删除行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#七、查询表"><span class="nav-number">7.</span> <span class="nav-text">七、查询表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#八、将Flask-SQLAlchemy的查询语句转换为SQL"><span class="nav-number">8.</span> <span class="nav-text">八、将Flask-SQLAlchemy的查询语句转换为SQL</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">您是第<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>个小伙伴</span>
+  
+
+  
+    <span class="site-pv">本站总浏览<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wing</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"Wing"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementById('footer')
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+  <!-- 背景动画 -->
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+  <!-- 页面点击小红心 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>

@@ -1,0 +1,1158 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="charset," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wing's Tech Space" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="啊啊啊啊啊啊啊，乱码真的是个太恼人的东西了，而且一乱码就心慌……好吧，好好学习下字符集吧。。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL字符集">
+<meta property="og:url" content="https://wing324.github.io/2015/10/06/MySQL字符集/index.html">
+<meta property="og:site_name" content="Wing's Tech Space">
+<meta property="og:description" content="啊啊啊啊啊啊啊，乱码真的是个太恼人的东西了，而且一乱码就心慌……好吧，好好学习下字符集吧。。">
+<meta property="og:image" content="https://wing324.github.io/img/MySQL_Character_Set.png">
+<meta property="og:updated_time" content="2017-01-31T10:36:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL字符集">
+<meta name="twitter:description" content="啊啊啊啊啊啊啊，乱码真的是个太恼人的东西了，而且一乱码就心慌……好吧，好好学习下字符集吧。。">
+<meta name="twitter:image" content="https://wing324.github.io/img/MySQL_Character_Set.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 11154520,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://wing324.github.io/2015/10/06/MySQL字符集/"/>
+
+  <title> MySQL字符集 | Wing's Tech Space </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?49b16c9d482511603ad262b1dcf7bb45";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Wing's Tech Space</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+
+      <!-- 自定义High一下的功能 -->
+      <li class="menu-item"> <a title="把这个链接拖到你的工具栏中,任何网页都可以High" href='javascript:(
+    function go() {
+
+
+    var songs = [
+    	"http://p2.music.126.net/B0HhRLh0h2NBdlcGTcTrEA==/2076977464881622.mp3",
+	"http://p2.music.126.net/RMJR7wDullRqppBk8dhLow==/3435973841155597.mp3",
+	"http://p2.music.126.net/sLKP3na0M4mdXocWFcVHlA==/3236962235602026.mp3",
+	"http://p2.music.126.net/JHuQLKSs47g-jTAASut-2g==/7714173581565477.mp3",
+	"http://p2.music.126.net/dGpxzld-XaokuOdbMKzGrA==/2533274792968816.mp3",
+	"http://p2.music.126.net/O1-e4JylX2IhqQTV6ZLZkg==/3235862723975492.mp3"
+	];
+
+    
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+ 
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+ 
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+ 
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+ 
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+ 
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+ 
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+ 
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+ 
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.getElementById("audio_element_id");
+        if(e != null){
+            var index = parseInt(e.getAttribute("curSongIndex"));
+            if(index > songs.length - 2) {
+                index = 0;
+            } else {
+                index++;
+            }
+            e.setAttribute("curSongIndex", index);
+            N();
+        }
+
+        e.src = i;
+        e.play()
+    }
+ 
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+ 
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+ 
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    function initAudioEle() {
+        var e = document.getElementById("audio_element_id");
+        if(e === null){
+            e = document.createElement("audio");
+            e.setAttribute("class", l);
+            e.setAttribute("curSongIndex", 0);
+            e.id = "audio_element_id";
+            e.loop = false;
+            e.bgcolor = 0;
+            e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h();
+            go();
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        }
+    }
+    
+    initAudioEle();
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+
+    var curSongIndex = parseInt(document.getElementById("audio_element_id").getAttribute("curSongIndex"));
+    var i = songs[curSongIndex];
+    
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+
+    /* harlem-shake-style.css，替换成你的位置，也可以直接使用：//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css */
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()'><i class="menu-item-icon fa fa-music fa-fw"></i>High一下</a> </li>
+          <!-- end High一下 -->
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search fa-lg"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                MySQL字符集
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-10-06T22:09:24-07:00" content="2015-10-06">
+              2015-10-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/06/MySQL字符集/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/06/MySQL字符集/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">热度
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>℃
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>啊啊啊啊啊啊啊，乱码真的是个太恼人的东西了，而且一乱码就心慌……好吧，好好学习下字符集吧。。<br><a id="more"></a></p>
+<h2 id="字符集简介">字符集简介</h2><ol>
+<li>字符集不仅影响到数据的存储,也影响到客户端和MySQL服务器之间的通信,如果你需要客户端和服务器之间通信不同于默认的字符集,则需要指定字符集通过以下的方式：<br>set names charset_name;<br><strong>特别说明</strong><br>set names修改字符集,修改的参数如下：<br>character_set_client<br>character_set_connection<br>character_set_results<br>collation_connection  </li>
+<li>通过SHOW CHARACTER SET查看MySQL支持的字符集(SHOW CHARACTER SET LIKE ‘utf8’);<br>通过SHOW COLLATION查看MySQL支持的排序规则(SHOW COLLATION LIKE ‘utf8%’)。</li>
+<li>排序规则的特点</li>
+</ol>
+<ul>
+<li>不同的字符集有不同的排序规则</li>
+<li>每一个字符集都有一个默认的排序规则</li>
+<li>排序规则中,_ci(case insensitive)大小写不敏感,_cs(case sensitive)大小写敏感,_bin(binary)二进制<figure class="highlight"><table><tr><td class="code"><pre><div class="line"># _ci</div><div class="line"></div><div class="line">root@localhost : character_set_test 01:36:24&gt; show create table t1;</div><div class="line">+-------+-------------------------------------------------------------------------------------------------------------------------------------------+</div><div class="line">| Table | Create Table                                                                                                                              |</div><div class="line">+-------+-------------------------------------------------------------------------------------------------------------------------------------------+</div><div class="line">| t1    | CREATE TABLE `t1` (</div><div class="line">  `id` int(11) DEFAULT NULL,</div><div class="line">  `name` varchar(16) CHARACTER SET gbk DEFAULT NULL</div><div class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8 |</div><div class="line">+-------+-------------------------------------------------------------------------------------------------------------------------------------------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line"></div><div class="line">root@localhost : character_set_test 01:37:04&gt; select * from t1;</div><div class="line">+------+------+</div><div class="line">| id   | name |</div><div class="line">+------+------+</div><div class="line">|    1 | ABd  |</div><div class="line">+------+------+</div><div class="line">1 row in set (0.01 sec)</div><div class="line"></div><div class="line">root@localhost : character_set_test 01:37:10&gt; select * from t1 where name like 'A%';</div><div class="line">+------+------+</div><div class="line">| id   | name |</div><div class="line">+------+------+</div><div class="line">|    1 | ABd  |</div><div class="line">+------+------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line"></div><div class="line">root@localhost : character_set_test 01:37:21&gt; select * from t1 where name like 'a%';</div><div class="line">+------+------+</div><div class="line">| id   | name |</div><div class="line">+------+------+</div><div class="line">|    1 | ABd  |</div><div class="line">+------+------+</div><div class="line">1 row in set (0.01 sec)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line"># _cs</div><div class="line"></div><div class="line">root@localhost : character_set_test 01:37:24&gt; show create table t2;</div><div class="line">+-------+-------------------------------------------------------------------------------------------------------------------------------------------+</div><div class="line">| Table | Create Table                                                                                                                              |</div><div class="line">+-------+-------------------------------------------------------------------------------------------------------------------------------------------+</div><div class="line">| t2    | CREATE TABLE `t2` (</div><div class="line">  `name` varchar(16) CHARACTER SET latin1 COLLATE latin1_general_cs DEFAULT NULL</div><div class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8 |</div><div class="line">+-------+-------------------------------------------------------------------------------------------------------------------------------------------+</div><div class="line">1 row in set (0.01 sec)</div><div class="line"></div><div class="line">root@localhost : character_set_test 01:37:56&gt; select * from t2;</div><div class="line">+------+</div><div class="line">| name |</div><div class="line">+------+</div><div class="line">| ABd  |</div><div class="line">+------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line"></div><div class="line">root@localhost : character_set_test 01:38:06&gt; select * from t2 where name like 'A%';</div><div class="line">+------+</div><div class="line">| name |</div><div class="line">+------+</div><div class="line">| ABd  |</div><div class="line">+------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line"></div><div class="line">root@localhost : character_set_test 01:38:14&gt; select * from t2 where name like 'a%';</div><div class="line">Empty set (0.00 sec)</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line"># _bin</div><div class="line">root@localhost : character_set_test 01:40:09&gt; show create table t3;</div><div class="line">+-------+------------------------------------------------------------------------------------------------------------------------------------+</div><div class="line">| Table | Create Table                                                                                                                       |</div><div class="line">+-------+------------------------------------------------------------------------------------------------------------------------------------+</div><div class="line">| t3    | CREATE TABLE `t3` (</div><div class="line">  `name` varchar(16) CHARACTER SET latin1 COLLATE latin1_bin DEFAULT NULL</div><div class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8 |</div><div class="line">+-------+------------------------------------------------------------------------------------------------------------------------------------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line"></div><div class="line">root@localhost : character_set_test 01:40:17&gt; select * from t3 ;</div><div class="line">+------+</div><div class="line">| name |</div><div class="line">+------+</div><div class="line">| ABd  |</div><div class="line">+------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line"></div><div class="line">root@localhost : character_set_test 01:40:37&gt; select * from t3 where name like 'A%';</div><div class="line">+------+</div><div class="line">| name |</div><div class="line">+------+</div><div class="line">| ABd  |</div><div class="line">+------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line"></div><div class="line">root@localhost : character_set_test 01:40:47&gt; select * from t3 where name like 'a%';</div><div class="line">Empty set (0.00 sec)</div></pre></td></tr></table></figure>
+<ul>
+<li>一个字符集会有多个排序规则,具体如何排序,请参照 <a href="http://www.collation-charts.org/" target="_blank" rel="external">http://www.collation-charts.org/</a></li>
+</ul>
+<h2 id="字符集&amp;排序规则">字符集&amp;排序规则</h2><ol>
+<li>字符集和排序规则可以设置4个级别：server,database,table,column</li>
+<li>CHARACTRE SET=CHARSET</li>
+</ol>
+<h4 id="Server_character_set_&amp;_collation">Server character set &amp; collation</h4><p>MySQL服务器的字符集和排序规则<br>character_set_server<br>collation_server<br>可在线修改参数</p>
+<h5 id="Database_character_set_&amp;_collation">Database character set &amp; collation</h5><ol>
+<li>数据库的字符集和排序规则<br>character_set_database<br>collation_database<br>可在线修改<br>用于默认的数据库字符集和排序规则</li>
+<li><p>所有的数据库选项被保存在数据库目录下的db.opt文件里</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">[root@wing character_set_test]# cat db.opt </div><div class="line">default-character-set=utf8</div><div class="line">default-collation=utf8_general_ci</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果没有指定表的字符集和排序规则,那么表的字符集和排序规则默认使用character_set_database和collation_database。</p>
+</li>
+<li>对于LOAD DATA语句,如果没有指定character set,默认使用character_set_database。</li>
+<li>对于存储过程和函数来说,如果没有指定character set和collation,默认使用character_set_database和collation_database。</li>
+</ol>
+<h5 id="Table_character_set_&amp;_collation">Table character set &amp; collation</h5><ol>
+<li>在CREATE TABLE 和 ALTER TABLE中指定character set &amp; collation。</li>
+<li>表的字符集和排序规则被使用在列上,当列没有指定的字符集和排序规则。</li>
+</ol>
+<h5 id="Column_character_set_&amp;_collation">Column character set &amp; collation</h5><ol>
+<li>在CREATE TABLE和ALTER TABLE中指定character set &amp; collation。</li>
+<li>如果列没有指定的字符集和排序规则,那么将使用表的字符集和排序规则。</li>
+<li>如果列指定了字符集,那么排序规则将使用字符集默认的排序规则,而不是表的字符集。</li>
+</ol>
+<h5 id="字符串的character_set_&amp;_collation">字符串的character set &amp; collation</h5><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line">[_charset_name]'string' [COLLATE collation_name]</div></pre></td></tr></table></figure>
+<p>EXAMPLE<br><figure class="highlight"><table><tr><td class="code"><pre><div class="line">root@localhost : character_set_test 01:59:42&gt; select '中文';</div><div class="line">+--------+</div><div class="line">| 中文   |</div><div class="line">+--------+</div><div class="line">| 中文   |</div><div class="line">+--------+</div><div class="line">1 row in set (0.01 sec)</div><div class="line"></div><div class="line">root@localhost : character_set_test 02:01:29&gt; select _gbk'中文';</div><div class="line">+---------+</div><div class="line">| 涓?枃   |</div><div class="line">+---------+</div><div class="line">| 涓?枃   |</div><div class="line">+---------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line"></div><div class="line">root@localhost : character_set_test 02:01:34&gt; select _gbk'中文' collate gbk_bin;</div><div class="line">+------------------------------+</div><div class="line">| _gbk'中文' collate gbk_bin   |</div><div class="line">+------------------------------+</div><div class="line">| 涓?枃                        |</div><div class="line">+------------------------------+</div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure></p>
+<p><strong>特别说明</strong></p>
+<ol>
+<li>相关参数<br>character_set_connection<br>collation_connection</li>
+<li>_<em>charset_name</em>表达式旨在告诉解析器：该字符串使用指定的charset</li>
+</ol>
+<h5 id="Connection_character_set_&amp;_collation">Connection character set &amp; collation</h5><ol>
+<li>相关参数<br>character_set_client：客户端发来的字符集,如client端发来的语句使用该字符集到server端<br>character_set_connection collation_connection：server端接收该语句后使用的字符集和排序规则,server端将语句从character_set_client转换到character_set_connection(除了使用_charset_name指定的字符串)<br>character_set_database collation_database：指定数据库的字符集和排序规则<br>character_set_filesystem<br>character_set_results：服务器返回结果给客户端的字符集<br>character_set_server collation_server：server端默认的内部操作字符集<br>character_set_system</li>
+<li>设置字符集语句<br>1)set names ‘<em>charset_name</em>‘ collate ‘<em>collate_name</em>‘<br>指明了客户端发来语句时使用的字符集以及客户端收到语句时使用的字符集<br>set names修改字符集,修改的参数如下:<br>character_set_client = <em>character_name</em><br>character_set_connection = <em>character_name</em><br>character_set_results = <em>character_name</em><br>collation_connection = <em>collation_name</em><br>2)set character name ‘<em>charset_name</em>‘<br>修改的参数如下:<br>character_set_client = <em>character_name</em><br>character_set_results = <em>character_name</em><br>collation_connection = collation_database<br>由于collation_connection的改变会引起character_set_connection的改变<br>3)使用mysql客户端时,可以直接使用charset ‘<em>charset_name</em>‘,与set names一样<figure class="highlight"><table><tr><td class="code"><pre><div class="line">root@localhost : (none) 04:13:54&gt; charset latin1</div><div class="line">Charset changed</div><div class="line">root@localhost : (none) 04:14:02&gt; show variables like 'character%';</div><div class="line">+--------------------------+----------------------------+</div><div class="line">| Variable_name            | Value                      |</div><div class="line">+--------------------------+----------------------------+</div><div class="line">| character_set_client     | latin1                     |</div><div class="line">| character_set_connection | latin1                     |</div><div class="line">| character_set_database   | utf8                       |</div><div class="line">| character_set_filesystem | binary                     |</div><div class="line">| character_set_results    | latin1                     |</div><div class="line">| character_set_server     | utf8                       |</div><div class="line">| character_set_system     | utf8                       |</div><div class="line">| character_sets_dir       | /usr/share/mysql/charsets/ |</div><div class="line">+--------------------------+----------------------------+</div><div class="line">8 rows in set (0.00 sec)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="应用程序的character_set_&amp;_collection">应用程序的character set &amp; collection</h5><ol>
+<li>应用程序使用的MySQL默认charset&amp;collation(latin1,latin1_swedish_ci),如果需要不同的charset&amp;collection,可使用如下几种方式<br>1) 为每个数据库指定一个charset&amp;collation<br>2) 服务器启动时指定charset&amp;collation<br>3) 在配置文件中指定charset&amp;collation</li>
+</ol>
+<h5 id="错误信息的charset_&amp;_collation">错误信息的charset &amp; collation</h5><p>描述服务器如何使用字符集构建错误日志以及返回客户端</p>
+<ol>
+<li>MySQL使用utf8构建错误信息,以character_set_results返回到客户端</li>
+<li>错误信息的模板为utf8<br>错误信息模板中参数被特定值取代时：<br>标识值如表名/列名在内部使用utf8;<br>字符串值(非二进制形式)则将它们从charset转换成utf8;<br>二进制字符串在 (0x20,0x7E)范围内使用十六进制,其他的使用十进制</li>
+<li>返回错误信息时,MySQL服务器会将错误信息从utf8转换到character_set_results设置的字符集中。</li>
+</ol>
+<h5 id="字符集排序规则(collation)">字符集排序规则(collation)</h5><p>_ci：大小写不敏感<br>_cs：大小写敏感<br>_bin：字符基于二进制编码,大小写敏感</p>
+<h5 id="MySQL元数据的字符集">MySQL元数据的字符集</h5><ol>
+<li>MySQL默认元数据的字符集为UTF-8。</li>
+<li>参数character_set_system设置的便是MySQL元数据字符集。</li>
+<li>字符集转换<br>1) 元数据与数据之间字符集转换<figure class="highlight"><table><tr><td class="code"><pre><div class="line">SELECT * FROM t1 WHERE USER() = latin1_column;</div><div class="line"># latin1_column自动转换成utf8字符集</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">INSERT INTO t1 (latin1_column) SELECT USER();</div><div class="line"># user()自动转换成latin1字符集</div></pre></td></tr></table></figure>
+<p>2) 列的字符集转换</p>
+<ul>
+<li>如果列为二进制的数据类型(BINARY,VARBINARY,BLOB),所有的值必须使用同一个字符集,如果使用多个字符集,MySQL没法知道哪些值使用了那些字符集导致MySQL不能正确转换数据。</li>
+<li>如果列为非二进制的数据类型(CHAR,VARCHAR,TEXT),列值将会被列的字符集编码,如果列值在不同的字符集里,可先将列值转换成二进制,然后将二进制列转换成需要的列。</li>
+</ul>
+<ol>
+<li><p>如果某列由于字符集原因导致乱码,可将该列转换为二进制模式(binary/varbinary/blob)</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line"># 一个乱码小实验</div><div class="line">root@localhost : ym 02:14:53&gt; show variables like 'character%';</div><div class="line">+--------------------------+----------------------------+</div><div class="line">| Variable_name            | Value                      |</div><div class="line">+--------------------------+----------------------------+</div><div class="line">| character_set_client     | utf8                       |</div><div class="line">| character_set_connection | utf8                       |</div><div class="line">| character_set_database   | utf8                       |</div><div class="line">| character_set_filesystem | binary                     |</div><div class="line">| character_set_results    | utf8                       |</div><div class="line">| character_set_server     | utf8                       |</div><div class="line">| character_set_system     | utf8                       |</div><div class="line">| character_sets_dir       | /usr/share/mysql/charsets/ |</div><div class="line">+--------------------------+----------------------------+</div><div class="line">8 rows in set (0.00 sec)</div><div class="line"></div><div class="line">root@localhost : ym 02:15:01&gt; show create table t;</div><div class="line">+-------+------------------------------------------------------------------------------------------------------------------------+</div><div class="line">| Table | Create Table                                                                                                           |</div><div class="line">+-------+------------------------------------------------------------------------------------------------------------------------+</div><div class="line">| t     | CREATE TABLE `t` (</div><div class="line">  `id` int(11) DEFAULT NULL,</div><div class="line">  `name` varchar(16) DEFAULT NULL</div><div class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8 |</div><div class="line">+-------+------------------------------------------------------------------------------------------------------------------------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line"></div><div class="line">root@localhost : ym 02:15:16&gt; select * from t;</div><div class="line">+------+--------+</div><div class="line">| id   | name   |</div><div class="line">+------+--------+</div><div class="line">|    1 | 中国   |</div><div class="line">+------+--------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line"></div><div class="line">root@localhost : ym 02:15:21&gt; set names gbk;</div><div class="line">Query OK, 0 rows affected (0.00 sec)</div><div class="line"></div><div class="line">root@localhost : ym 02:15:26&gt; show variables like 'character%';</div><div class="line">+--------------------------+----------------------------+</div><div class="line">| Variable_name            | Value                      |</div><div class="line">+--------------------------+----------------------------+</div><div class="line">| character_set_client     | gbk                        |</div><div class="line">| character_set_connection | gbk                        |</div><div class="line">| character_set_database   | utf8                       |</div><div class="line">| character_set_filesystem | binary                     |</div><div class="line">| character_set_results    | gbk                        |</div><div class="line">| character_set_server     | utf8                       |</div><div class="line">| character_set_system     | utf8                       |</div><div class="line">| character_sets_dir       | /usr/share/mysql/charsets/ |</div><div class="line">+--------------------------+----------------------------+</div><div class="line">8 rows in set (0.00 sec)</div><div class="line"></div><div class="line">root@localhost : ym 02:15:30&gt; show create table t;</div><div class="line">+-------+------------------------------------------------------------------------------------------------------------------------+</div><div class="line">| Table | Create Table                                                                                                           |</div><div class="line">+-------+------------------------------------------------------------------------------------------------------------------------+</div><div class="line">| t     | CREATE TABLE `t` (</div><div class="line">  `id` int(11) DEFAULT NULL,</div><div class="line">  `name` varchar(16) DEFAULT NULL</div><div class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8 |</div><div class="line">+-------+------------------------------------------------------------------------------------------------------------------------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line"></div><div class="line">root@localhost : ym 02:15:36&gt; select * from t;</div><div class="line">+------+------+</div><div class="line">| id   | name |</div><div class="line">+------+------+</div><div class="line">|    1 |     |</div><div class="line">+------+------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line"></div><div class="line">root@localhost : ym 02:15:41&gt; alter table t modify name varbinary(16);</div><div class="line">Query OK, 1 row affected (0.02 sec)</div><div class="line">Records: 1  Duplicates: 0  Warnings: 0</div><div class="line"></div><div class="line">root@localhost : ym 02:16:00&gt; select * from t;</div><div class="line">+------+--------+</div><div class="line">| id   | name   |</div><div class="line">+------+--------+</div><div class="line">|    1 | 中国   |</div><div class="line">+------+--------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line"></div><div class="line">root@localhost : ym 02:16:04&gt; show create table t;</div><div class="line">+-------+--------------------------------------------------------------------------------------------------------------------------+</div><div class="line">| Table | Create Table                                                                                                             |</div><div class="line">+-------+--------------------------------------------------------------------------------------------------------------------------+</div><div class="line">| t     | CREATE TABLE `t` (</div><div class="line">  `id` int(11) DEFAULT NULL,</div><div class="line">  `name` varbinary(16) DEFAULT NULL</div><div class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8 |</div><div class="line">+-------+--------------------------------------------------------------------------------------------------------------------------+</div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure>
+</li>
+<li><p>对于binary类型转换为char类型,末尾会有0x00结尾符,体现在结果集中为异常的空格,可使用TRIM()函数去除<br>EXAMPLE</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">root@localhost : ym 02:21:40&gt; create table t(id int,name binary(50));</div><div class="line">Query OK, 0 rows affected (0.01 sec)</div><div class="line"></div><div class="line">root@localhost : ym 02:22:04&gt; insert into t values(1,'中国');</div><div class="line">Query OK, 1 row affected (0.00 sec)</div><div class="line"></div><div class="line">root@localhost : ym 02:22:15&gt; select * from t;</div><div class="line">+------+----------------------------------------------------+</div><div class="line">| id   | name                                               |</div><div class="line">+------+----------------------------------------------------+</div><div class="line">|    1 | 中国                                               |</div><div class="line">+------+----------------------------------------------------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line"></div><div class="line">root@localhost : ym 02:22:19&gt; alter table t modify name char(50);</div><div class="line">Query OK, 1 row affected (0.02 sec)</div><div class="line">Records: 1  Duplicates: 0  Warnings: 0</div><div class="line"></div><div class="line">root@localhost : ym 02:22:45&gt; select * from t;</div><div class="line">+------+----------------------------------------------------+</div><div class="line">| id   | name                                               |</div><div class="line">+------+----------------------------------------------------+</div><div class="line">|    1 | 中国                                               |</div><div class="line">+------+----------------------------------------------------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line"># 中国后面有异常的空格</div><div class="line"># 正常非转换过的结果集如下</div><div class="line"># root@localhost : ym 02:24:02&gt; create table t1 (id int,name char(50));</div><div class="line"># Query OK, 0 rows affected (0.01 sec)</div><div class="line"></div><div class="line"># root@localhost : ym 02:22:46&gt; update t set name =trim(trailing 0x00 from name);</div><div class="line"># Query OK, 1 row affected (0.00 sec)</div><div class="line"># Rows matched: 1  Changed: 1  Warnings: 0</div><div class="line"></div><div class="line"># root@localhost : ym 02:24:16&gt; insert into t1 values(1,'中国');</div><div class="line"># Query OK, 1 row affected (0.00 sec)</div><div class="line"></div><div class="line"># root@localhost : ym 02:24:35&gt; select * from t1;</div><div class="line"># +------+--------+</div><div class="line"># | id   | name   |</div><div class="line"># +------+--------+</div><div class="line"># |    1 | 中国   |</div><div class="line"># +------+--------+</div><div class="line"># 1 row in set (0.00 sec)</div><div class="line"></div><div class="line"># root@localhost : ym 02:23:25&gt; select * from t;</div><div class="line"># +------+--------+</div><div class="line"># | id   | name   |</div><div class="line"># +------+--------+</div><div class="line"># |    1 | 中国   |</div><div class="line"># +------+--------+</div><div class="line"># 1 row in set (0.00 sec)</div><div class="line"></div><div class="line"># 使用trim()函数解决该情况</div><div class="line">root@localhost : ym 02:22:46&gt; update t set name =trim(trailing 0x00 from name);</div><div class="line">Query OK, 1 row affected (0.00 sec)</div><div class="line">Rows matched: 1  Changed: 1  Warnings: 0</div><div class="line"></div><div class="line">root@localhost : ym 02:23:25&gt; select * from t;</div><div class="line">+------+--------+</div><div class="line">| id   | name   |</div><div class="line">+------+--------+</div><div class="line">|    1 | 中国   |</div><div class="line">+------+--------+</div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure>
+</li>
+<li><p>两个字符集的切换,保险起见,还是应该先将字符集切换为二进制类型(binary/varbinary/blob),而后转换成自己想要的字符集。</p>
+</li>
+<li>如果需要将表中所有列的字符集转换成另外的字符集,可以使用语句<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name <span class="keyword">CONVERT</span> <span class="keyword">TO</span> <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> charset_name;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="总结">总结</h2><p><strong>一个完整的用户请求的字符集转换过程</strong><br><img src="/img/MySQL_Character_Set.png" alt=""></p>
+<p><strong>特别说明</strong></p>
+<ol>
+<li>相关变量<br>character_set_client：client端发出请求使用的字符集<br>character_set_connection：Server端接受到Client端的请求后,使用的字符集<br>character_set_database：数据库默认字符集,如果没有默认数据库,那就使用character_set_server指定的字符集<br>character_set_filesystem：文件系统的字符集，把操作系统上文件名转化成此字符集,即把character_set_client转换character_set_filesystem,该参数默认字符集为binary则不需做任何转换<br>character_set_results：返回结果集的字符集<br>character_set_server：数据库服务器的默认字符集<br>character_set_system：MySQL服务器的元数据字符集,默认为utf8</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/charset/" rel="tag">#charset</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/06/Docker的快速使用/" rel="next" title="Docker的快速使用">
+                <i class="fa fa-chevron-left"></i> Docker的快速使用
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/07/Liunx系统命令之tar命令/" rel="prev" title="Liunx系统命令之tar命令">
+                Liunx系统命令之tar命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/10/06/MySQL字符集/"
+     data-title="MySQL字符集"
+     data-content=""
+     data-url="https://wing324.github.io/2015/10/06/MySQL字符集/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><span class="ds-more">分享到：</span></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      <li><a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+      <li><a class="ds-google" href="javascript:void(0);" data-service="google">Google</a></li>
+    </ul>
+    <!--
+      <div class="ds-share-icons-more">
+      </div>
+    -->
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/10/06/MySQL字符集/"
+           data-title="MySQL字符集" data-url="https://wing324.github.io/2015/10/06/MySQL字符集/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wing.jpg"
+               alt="Wing" />
+          <p class="site-author-name" itemprop="name">Wing</p>
+          <p class="site-description motion-element" itemprop="description">热在分享，衷在开源。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">131</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/">
+                <span class="site-state-item-count">113</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wing324" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符集简介"><span class="nav-number">1.</span> <span class="nav-text">字符集简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符集&排序规则"><span class="nav-number">2.</span> <span class="nav-text">字符集&排序规则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Server_character_set_&_collation"><span class="nav-number">2.0.1.</span> <span class="nav-text">Server character set & collation</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Database_character_set_&_collation"><span class="nav-number">2.0.1.1.</span> <span class="nav-text">Database character set & collation</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Table_character_set_&_collation"><span class="nav-number">2.0.1.2.</span> <span class="nav-text">Table character set & collation</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Column_character_set_&_collation"><span class="nav-number">2.0.1.3.</span> <span class="nav-text">Column character set & collation</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字符串的character_set_&_collation"><span class="nav-number">2.0.1.4.</span> <span class="nav-text">字符串的character set & collation</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Connection_character_set_&_collation"><span class="nav-number">2.0.1.5.</span> <span class="nav-text">Connection character set & collation</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#应用程序的character_set_&_collection"><span class="nav-number">2.0.1.6.</span> <span class="nav-text">应用程序的character set & collection</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#错误信息的charset_&_collation"><span class="nav-number">2.0.1.7.</span> <span class="nav-text">错误信息的charset & collation</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字符集排序规则(collation)"><span class="nav-number">2.0.1.8.</span> <span class="nav-text">字符集排序规则(collation)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MySQL元数据的字符集"><span class="nav-number">2.0.1.9.</span> <span class="nav-text">MySQL元数据的字符集</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">您是第<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>个小伙伴</span>
+  
+
+  
+    <span class="site-pv">本站总浏览<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wing</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"Wing"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementById('footer')
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+  <!-- 背景动画 -->
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+  <!-- 页面点击小红心 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>

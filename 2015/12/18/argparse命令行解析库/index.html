@@ -1,0 +1,1125 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="argparse," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wing's Tech Space" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="argparse为命令行解析库，可以轻松的写出交互友好式的命令行。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="argparse命令行解析库">
+<meta property="og:url" content="https://wing324.github.io/2015/12/18/argparse命令行解析库/index.html">
+<meta property="og:site_name" content="Wing's Tech Space">
+<meta property="og:description" content="argparse为命令行解析库，可以轻松的写出交互友好式的命令行。">
+<meta property="og:updated_time" content="2017-01-31T10:35:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="argparse命令行解析库">
+<meta name="twitter:description" content="argparse为命令行解析库，可以轻松的写出交互友好式的命令行。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 11154520,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://wing324.github.io/2015/12/18/argparse命令行解析库/"/>
+
+  <title> argparse命令行解析库 | Wing's Tech Space </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?49b16c9d482511603ad262b1dcf7bb45";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Wing's Tech Space</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+
+      <!-- 自定义High一下的功能 -->
+      <li class="menu-item"> <a title="把这个链接拖到你的工具栏中,任何网页都可以High" href='javascript:(
+    function go() {
+
+
+    var songs = [
+    	"http://p2.music.126.net/B0HhRLh0h2NBdlcGTcTrEA==/2076977464881622.mp3",
+	"http://p2.music.126.net/RMJR7wDullRqppBk8dhLow==/3435973841155597.mp3",
+	"http://p2.music.126.net/sLKP3na0M4mdXocWFcVHlA==/3236962235602026.mp3",
+	"http://p2.music.126.net/JHuQLKSs47g-jTAASut-2g==/7714173581565477.mp3",
+	"http://p2.music.126.net/dGpxzld-XaokuOdbMKzGrA==/2533274792968816.mp3",
+	"http://p2.music.126.net/O1-e4JylX2IhqQTV6ZLZkg==/3235862723975492.mp3"
+	];
+
+    
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+ 
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+ 
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+ 
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+ 
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+ 
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+ 
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+ 
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+ 
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.getElementById("audio_element_id");
+        if(e != null){
+            var index = parseInt(e.getAttribute("curSongIndex"));
+            if(index > songs.length - 2) {
+                index = 0;
+            } else {
+                index++;
+            }
+            e.setAttribute("curSongIndex", index);
+            N();
+        }
+
+        e.src = i;
+        e.play()
+    }
+ 
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+ 
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+ 
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    function initAudioEle() {
+        var e = document.getElementById("audio_element_id");
+        if(e === null){
+            e = document.createElement("audio");
+            e.setAttribute("class", l);
+            e.setAttribute("curSongIndex", 0);
+            e.id = "audio_element_id";
+            e.loop = false;
+            e.bgcolor = 0;
+            e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h();
+            go();
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        }
+    }
+    
+    initAudioEle();
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+
+    var curSongIndex = parseInt(document.getElementById("audio_element_id").getAttribute("curSongIndex"));
+    var i = songs[curSongIndex];
+    
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+
+    /* harlem-shake-style.css，替换成你的位置，也可以直接使用：//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css */
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()'><i class="menu-item-icon fa fa-music fa-fw"></i>High一下</a> </li>
+          <!-- end High一下 -->
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search fa-lg"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                argparse命令行解析库
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-18T22:13:05-08:00" content="2015-12-18">
+              2015-12-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python-Library/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-Library</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/18/argparse命令行解析库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/18/argparse命令行解析库/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">热度
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>℃
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>argparse为命令行解析库，可以轻松的写出交互友好式的命令行。<br><a id="more"></a></p>
+<h2 id="开胃菜">开胃菜</h2><p>以官方一个简单例子展示argparse模块的用处：<br><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment">#coding:utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> argparse</div><div class="line"></div><div class="line">parser = argparse.ArgumentParser(description=<span class="string">'Process some integers.'</span>)</div><div class="line">parser.add_argument(<span class="string">'integers'</span>, metavar=<span class="string">'N'</span>, type=int, nargs=<span class="string">'+'</span>,</div><div class="line">                   help=<span class="string">'an integer for the accumulator'</span>)</div><div class="line">parser.add_argument(<span class="string">'--sum'</span>, dest=<span class="string">'accumulate'</span>, action=<span class="string">'store_const'</span>,</div><div class="line">                   const=sum, default=max,</div><div class="line">                   help=<span class="string">'sum the integers'</span>)</div><div class="line"></div><div class="line">args = parser.parse_args()</div><div class="line"><span class="keyword">print</span> args.accumulate(args.integers)</div></pre></td></tr></table></figure></p>
+<p>运行结果如下：<br><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">[root@ip<span class="number">-172</span><span class="number">-31</span><span class="number">-1</span><span class="number">-8</span> python]<span class="comment"># python argparse_demo.py -h</span></div><div class="line">usage: argparse_test.py [-h] [--sum] N [N ...]</div><div class="line"></div><div class="line">Process some integers.</div><div class="line"></div><div class="line">positional arguments:</div><div class="line">  N           an integer <span class="keyword">for</span> the accumulator</div><div class="line"></div><div class="line">optional arguments:</div><div class="line">  -h, --help  show this help message <span class="keyword">and</span> exit</div><div class="line">  --sum       sum the integers</div></pre></td></tr></table></figure></p>
+<h2 id="创建解析">创建解析</h2><p>通过argparse.ArgumentParser()创建解析。<br><figure class="highlight"><table><tr><td class="code"><pre><div class="line">ArgumentParser(prog='', usage=None, description='Process some integers.', version=None, formatter_class=&lt;class 'argparse.HelpFormatter'&gt;, conflict_handler='error', add_help=True)</div><div class="line"></div><div class="line"># 例如</div><div class="line">parser = argparse.ArgumentParser(description='Process some integers.')</div></pre></td></tr></table></figure></p>
+<h5 id="解释">解释</h5><ul>
+<li><p>prog<br>程序名称(默认sys.argv[0])  </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 变更参数</span></div><div class="line">parser = argparse.ArgumentParser(prog=<span class="string">'sum or max'</span>,description=<span class="string">'Process some integers.'</span>)</div><div class="line"></div><div class="line"><span class="comment">#运行结果</span></div><div class="line"><span class="comment">#原始</span></div><div class="line">[root@ip<span class="number">-172</span><span class="number">-31</span><span class="number">-1</span><span class="number">-8</span> python]<span class="comment"># python argparse_test.py -h</span></div><div class="line">usage: argparse_test.py [-h] [--sum] N [N ...]</div><div class="line"></div><div class="line"><span class="comment">#变更后</span></div><div class="line">[root@ip<span class="number">-172</span><span class="number">-31</span><span class="number">-1</span><span class="number">-8</span> python]<span class="comment"># python argparse_test.py -h</span></div><div class="line">usage: sum <span class="keyword">or</span> max [-h] [--sum] N [N ...]</div></pre></td></tr></table></figure>
+</li>
+<li><p>usage<br>用于描述程序的使用用法（默认为添加到解析器中的参数）    </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 变更参数</span></div><div class="line">parser = argparse.ArgumentParser(usage=<span class="string">'python argparse_demo.py arguments'</span>,description=<span class="string">'Process some integers.'</span>)</div><div class="line"></div><div class="line"><span class="comment">#运行结果</span></div><div class="line"><span class="comment">#原始</span></div><div class="line">[root@ip<span class="number">-172</span><span class="number">-31</span><span class="number">-1</span><span class="number">-8</span> python]<span class="comment"># python argparse_demo.py -h</span></div><div class="line">usage: argparse_demo.py [-h] [--sum] N [N ...]</div><div class="line"></div><div class="line"><span class="comment">#变更后</span></div><div class="line">[root@ip<span class="number">-172</span><span class="number">-31</span><span class="number">-1</span><span class="number">-8</span> python]<span class="comment"># python argparse_demo.py -h</span></div><div class="line">usage: python argparse_demo.py arguments</div></pre></td></tr></table></figure>
+</li>
+<li><p>description<br>参数帮助前的显示文本，可以通过该参数来描述该程序的功能  </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 变更参数</span></div><div class="line">parser = argparse.ArgumentParser(description=<span class="string">'Process some integers.'</span>)</div><div class="line"></div><div class="line"><span class="comment"># 运行结果</span></div><div class="line">[root@ip<span class="number">-172</span><span class="number">-31</span><span class="number">-1</span><span class="number">-8</span> python]<span class="comment"># python argparse_demo.py -h</span></div><div class="line">usage: python argparse_demo.py argument</div><div class="line"></div><div class="line">Process some integers.</div></pre></td></tr></table></figure>
+</li>
+<li><p>epilog<br>参数选项帮助后的显示文本  </p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line"># 变更参数</div><div class="line">epilog='And What can I help U?'</div><div class="line"></div><div class="line"># 运行结果</div><div class="line">optional arguments:</div><div class="line">  -h, --help  show this help message and exit</div><div class="line">  --sum       sum the intergers</div><div class="line"></div><div class="line">And What can I help U?</div></pre></td></tr></table></figure>
+</li>
+<li><p>parents<br>共享同一个父类解析器，由ArgumentParser对象组成的列表，它们的arguments选项会被包含到新ArgumentParser对象中。</p>
+</li>
+<li><p>formatter_class<br>help信息输出格式<br>共有三种形式：argparse.RawDescriptionHelpFormatter、argparse.RawTextHelpFormatter、argparse.ArgumentDefaultsHelpFormatter<br>argparse.RawDescriptionHelpFormatter:description以输入格式输出，并不将其合并为一行<br>argparse.RawTextHelpFormatter:所有信息以输入格式输出，并不将其合并为一行<br>argparse.ArgumentDefaultsHelpFormatter:输出参数的defalut值  </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 变更参数</span></div><div class="line">formatter_class=argparse.ArgumentDefaultsHelpFormatter</div><div class="line"></div><div class="line"><span class="comment"># 运行结果</span></div><div class="line">optional arguments:</div><div class="line">  -h, --help  show this help message <span class="keyword">and</span> exit</div><div class="line">  --sum       sum the intergers (default: max)</div></pre></td></tr></table></figure>
+</li>
+<li><p>prefix_chars<br>参数前缀，默认为’-‘  </p>
+</li>
+<li>fromfile_prefix_chars<br>前缀字符，放在文件名之前<br>当参数过多时，可以将参数放在文件中读取。  </li>
+<li>argument_default<br>参数的全局默认值  </li>
+<li><p>conflict_handler<br>解决冲突的策略  </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 没有conflict_handler冲突策略</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser=argparse.ArgumentParser(prog=<span class="string">'TEST'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser.add_argument(<span class="string">'-f'</span>,<span class="string">'--foo'</span>,help=<span class="string">'old foo help'</span>)</div><div class="line">_StoreAction(option_strings=[<span class="string">'-f'</span>, <span class="string">'--foo'</span>], dest=<span class="string">'foo'</span>, nargs=<span class="keyword">None</span>, const=<span class="keyword">None</span>, default=<span class="keyword">None</span>, type=<span class="keyword">None</span>, choices=<span class="keyword">None</span>, help=<span class="string">'old foo help'</span>, metavar=<span class="keyword">None</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser.add_argument(<span class="string">'-f'</span>,<span class="string">'--foo'</span>,help=<span class="string">'new foo help'</span>)   </div><div class="line">Traceback (most recent call last):</div><div class="line">......</div><div class="line">argparse.ArgumentError: argument -f/--foo: conflicting option string(s): -f, --foo</div><div class="line"></div><div class="line"><span class="comment">#有conflict_handler策略</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser=argparse.ArgumentParser(prog=<span class="string">'TEST'</span>,conflict_handler=<span class="string">'resolve'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser.add_argument(<span class="string">'-f'</span>,<span class="string">'--foo'</span>,help=<span class="string">'old foo help'</span>)</div><div class="line">_StoreAction(option_strings=[<span class="string">'-f'</span>, <span class="string">'--foo'</span>], dest=<span class="string">'foo'</span>, nargs=<span class="keyword">None</span>, const=<span class="keyword">None</span>, default=<span class="keyword">None</span>, type=<span class="keyword">None</span>, choices=<span class="keyword">None</span>, help=<span class="string">'old foo help'</span>, metavar=<span class="keyword">None</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser.add_argument(<span class="string">'-f'</span>,<span class="string">'--foo'</span>,help=<span class="string">'new foo help'</span>)   </div><div class="line">_StoreAction(option_strings=[<span class="string">'-f'</span>, <span class="string">'--foo'</span>], dest=<span class="string">'foo'</span>, nargs=<span class="keyword">None</span>, const=<span class="keyword">None</span>, default=<span class="keyword">None</span>, type=<span class="keyword">None</span>, choices=<span class="keyword">None</span>, help=<span class="string">'new foo help'</span>, metavar=<span class="keyword">None</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser.print_help()</div><div class="line">usage: TEST [-h] [-f FOO]</div><div class="line"></div><div class="line">optional arguments:</div><div class="line">  -h, --help         show this help message <span class="keyword">and</span> exit</div><div class="line">  -f FOO, --foo FOO  new foo help</div></pre></td></tr></table></figure>
+</li>
+<li><p>add_help<br>设为False时，不再显示-h,–help信息，建议使用True  </p>
+</li>
+</ul>
+<h2 id="添加参数">添加参数</h2><p>通过argparse.ArgumentParser.add_argument()添加参数<br><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 例如</span></div><div class="line">parser.add_argument(<span class="string">'intergers'</span>,metavar=<span class="string">'N'</span>,type=int,nargs=<span class="string">'+'</span>,help=<span class="string">'an interger for the accumulator'</span>)</div><div class="line">parser.add_argument(<span class="string">'--sum'</span>,dest=<span class="string">'accumulate'</span>,action=<span class="string">'store_const'</span>,const=sum,default=max,help=<span class="string">'sum the intergers (default:find the max)'</span>)</div><div class="line">args = parser.parse_args()</div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>name or flag<br>optional arguments以’-‘为前缀的参数,其他的为positional arguments  </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 添加optional argument</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser = argparse.ArgumentParser()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser.add_argument(<span class="string">'-t'</span>,<span class="string">'--test'</span>)</div><div class="line">_StoreAction(option_strings=[<span class="string">'-t'</span>, <span class="string">'--test'</span>], dest=<span class="string">'test'</span>, nargs=<span class="keyword">None</span>, const=<span class="keyword">None</span>, default=<span class="keyword">None</span>, type=<span class="keyword">None</span>, choices=<span class="keyword">None</span>, help=<span class="keyword">None</span>, metavar=<span class="keyword">None</span>)</div><div class="line"><span class="comment"># 添加position argument</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser = argparse.ArgumentParser()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser.add_argument(<span class="string">'test'</span>)</div><div class="line">_StoreAction(option_strings=[], dest=<span class="string">'test'</span>, nargs=<span class="keyword">None</span>, const=<span class="keyword">None</span>, default=<span class="keyword">None</span>, type=<span class="keyword">None</span>, choices=<span class="keyword">None</span>, help=<span class="keyword">None</span>, metavar=<span class="keyword">None</span>)</div></pre></td></tr></table></figure>
+</li>
+<li><p>action<br>命令行参数的操作<br>store:仅仅存储参数的值（默认）  </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser=argparse.ArgumentParser(conflict_handler=<span class="string">'resolve'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser.add_argument(<span class="string">'-t'</span>)</div><div class="line">_StoreAction(option_strings=[<span class="string">'-t'</span>], dest=<span class="string">'t'</span>, nargs=<span class="keyword">None</span>, const=<span class="keyword">None</span>, default=<span class="keyword">None</span>, type=<span class="keyword">None</span>, choices=<span class="keyword">None</span>, help=<span class="keyword">None</span>, metavar=<span class="keyword">None</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser.parse_args(<span class="string">'-t 1'</span>.split())  </div><div class="line">Namespace(t=<span class="string">'1'</span>)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>store_const:存储const关键字指定的值<br><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> argparse</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser=argparse.ArgumentParser(conflict_handler=<span class="string">'resolve'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser.add_argument(<span class="string">'-t'</span>,action=<span class="string">'store_const'</span>,const=<span class="number">7</span>)</div><div class="line">_StoreConstAction(option_strings=[<span class="string">'-t'</span>], dest=<span class="string">'t'</span>, nargs=<span class="number">0</span>, const=<span class="number">7</span>, default=<span class="keyword">None</span>, type=<span class="keyword">None</span>, choices=<span class="keyword">None</span>, help=<span class="keyword">None</span>, metavar=<span class="keyword">None</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser.parse_args(<span class="string">'-t'</span>.split())</div><div class="line">Namespace(t=<span class="number">7</span>)</div></pre></td></tr></table></figure></p>
+<p>store_true/store_false:值为True/False<br>append:值追加到list中<br>append_const:将const的值追加到list中<br>count:统计参数出现的次数<br>help:显示help信息<br>version:显示version信息  </p>
+<ul>
+<li>nrgs<br>参数的数量<br>N：N个参数<br>?:首先从命令行中获取，若没有则从const中获取，仍然没有则从default中获取<br>*/+:任意多个参数  </li>
+<li>const<br>保存为一个常量  </li>
+<li>default<br>默认值  </li>
+<li>type<br>参数类型  </li>
+<li>choices<br>可供选择的值，该值适合于所有类型，如list、set等  </li>
+<li>required<br>是否为必选参数  </li>
+<li>desk<br>参数别名  </li>
+<li><p>help<br>参数的帮助信息，即解释信息  </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 添加help参数</span></div><div class="line">parser.add_argument(<span class="string">'intergers'</span>,metavar=<span class="string">'N'</span>,type=int,nargs=<span class="string">'+'</span>,help=<span class="string">'an interger for the accumulator'</span>)</div><div class="line">parser.add_argument(<span class="string">'--sum'</span>,dest=<span class="string">'accumulate'</span>,action=<span class="string">'store_const'</span>,const=sum,default=max,help=<span class="string">'sum the intergers'</span>)</div><div class="line"></div><div class="line"><span class="comment"># 运行结果</span></div><div class="line">[root@ip<span class="number">-172</span><span class="number">-31</span><span class="number">-1</span><span class="number">-8</span> python]<span class="comment"># python argparse_demo.py -h</span></div><div class="line">usage: python argparse_demo.py arguments</div><div class="line"></div><div class="line">Process some integers.</div><div class="line"></div><div class="line">positional arguments:</div><div class="line">  N           an interger <span class="keyword">for</span> the accumulator</div><div class="line"></div><div class="line">optional arguments:</div><div class="line">  -h, --help  show this help message <span class="keyword">and</span> exit</div><div class="line">  --sum       sum the intergers (default: max)</div></pre></td></tr></table></figure>
+</li>
+<li><p>metavar<br>相当于参数别名  </p>
+</li>
+</ul>
+<h2 id="解析参数">解析参数</h2><p>通过argparse.ArgumentParser.parse_args()解析参数。<br><strong>注意</strong><br>argparse.ArgumentParser.parse_args()中的参数可以模糊匹配，如下：<br><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser = argparse.ArgumentParser(prog=<span class="string">'PROG'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser.add_argument(<span class="string">'-bacon'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser.add_argument(<span class="string">'-badger'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser.parse_args(<span class="string">'-bac MMM'</span>.split())</div><div class="line">Namespace(bacon=<span class="string">'MMM'</span>, badger=<span class="keyword">None</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser.parse_args(<span class="string">'-bad WOOD'</span>.split())</div><div class="line">Namespace(bacon=<span class="keyword">None</span>, badger=<span class="string">'WOOD'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser.parse_args(<span class="string">'-ba BA'</span>.split())</div><div class="line">usage: PROG [-h] [-bacon BACON] [-badger BADGER]</div><div class="line">PROG: error: ambiguous option: -ba could match -badger, -bacon</div></pre></td></tr></table></figure></p>
+<h2 id="参数组">参数组</h2><p>使用ArgumentParser.add_argument_group(title=None, description=None)添加参数组<br><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 执行脚本</span></div><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment">#coding:utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> argparse</div><div class="line"><span class="comment"># 参数解析器重命名</span></div><div class="line">parser = argparse.ArgumentParser(usage=<span class="string">'python argparse_demo.py arguments'</span>,description=<span class="string">'Process some integers.'</span>)</div><div class="line"><span class="comment"># 添加参数</span></div><div class="line">parser.add_argument(<span class="string">'--sum'</span>,dest=<span class="string">'accumulate'</span>,action=<span class="string">'store_const'</span>,const=sum,default=max,help=<span class="string">'sum the intergers (default:find the max)'</span>)</div><div class="line"><span class="comment"># 添加参数组1</span></div><div class="line">group1 = parser.add_argument_group(<span class="string">'group1'</span>,<span class="string">'group test 1'</span>)</div><div class="line"><span class="comment">#为参数组添加参数</span></div><div class="line">group1.add_argument(<span class="string">'intergers'</span>,metavar=<span class="string">'N'</span>,type=int,nargs=<span class="string">'+'</span>,help=<span class="string">'an interger for the accumulator'</span>)</div><div class="line">group1.add_argument(<span class="string">'lists'</span>,metavar=<span class="string">'L'</span>,type=list,nargs=<span class="string">'+'</span>,help=<span class="string">'a list for the accumulator'</span>)</div><div class="line">args = parser.parse_args()</div><div class="line"><span class="keyword">print</span> args.accumulate(args,intergers)</div><div class="line"></div><div class="line"><span class="comment"># 运行结果</span></div><div class="line">[root@ip<span class="number">-172</span><span class="number">-31</span><span class="number">-1</span><span class="number">-8</span> python]<span class="comment"># python argparse_demo.py --help</span></div><div class="line">usage: python argparse_demo.py arguments</div><div class="line"></div><div class="line">Process some integers.</div><div class="line"></div><div class="line">optional arguments:</div><div class="line">  -h, --help  show this help message <span class="keyword">and</span> exit</div><div class="line">  --sum       sum the intergers (default:find the max)</div><div class="line"></div><div class="line">group1:</div><div class="line">  group test <span class="number">1</span></div><div class="line"></div><div class="line">  N           an interger <span class="keyword">for</span> the accumulator</div><div class="line">  L           a list <span class="keyword">for</span> the accumulator</div></pre></td></tr></table></figure></p>
+<h2 id="设置默认值">设置默认值</h2><p>使用ArgumentParser.set_defaults(<strong>kwargs)设置参数默认值,ArgumentParser.get_default(dest)获取参数默认值。  
+</strong>注意**<br>解释器级别的默认值会覆盖参数级别的默认值。<br><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> argparse</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>prser=argparse.ArgumentParser()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser=argparse.ArgumentParser()</div><div class="line"><span class="comment"># 参数级别默认值</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser.add_argument(<span class="string">'--foo'</span>,default=<span class="string">'7'</span>)   </div><div class="line">_StoreAction(option_strings=[<span class="string">'--foo'</span>], dest=<span class="string">'foo'</span>, nargs=<span class="keyword">None</span>, const=<span class="keyword">None</span>, default=<span class="string">'7'</span>, type=<span class="keyword">None</span>, choices=<span class="keyword">None</span>, help=<span class="keyword">None</span>, metavar=<span class="keyword">None</span>)</div><div class="line"><span class="comment"># 解析器级别默认值</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser.set_defaults(foo=<span class="string">'77'</span>)</div><div class="line"><span class="comment"># 解析器级别的默认值覆盖参数级别的默认值</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser.parse_args([])</div><div class="line">Namespace(foo=<span class="string">'77'</span>)</div><div class="line"><span class="comment"># 获取参数默认值</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>parser.get_default(<span class="string">'foo'</span>)</div><div class="line"><span class="string">'77'</span></div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/argparse/" rel="tag">#argparse</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/14/keepalived的安装/" rel="next" title="keepalived的安装">
+                <i class="fa fa-chevron-left"></i> keepalived的安装
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/25/yum安装MySQLdb模块/" rel="prev" title="yum安装MySQLdb模块">
+                yum安装MySQLdb模块 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/12/18/argparse命令行解析库/"
+     data-title="argparse命令行解析库"
+     data-content=""
+     data-url="https://wing324.github.io/2015/12/18/argparse命令行解析库/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><span class="ds-more">分享到：</span></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      <li><a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+      <li><a class="ds-google" href="javascript:void(0);" data-service="google">Google</a></li>
+    </ul>
+    <!--
+      <div class="ds-share-icons-more">
+      </div>
+    -->
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/12/18/argparse命令行解析库/"
+           data-title="argparse命令行解析库" data-url="https://wing324.github.io/2015/12/18/argparse命令行解析库/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wing.jpg"
+               alt="Wing" />
+          <p class="site-author-name" itemprop="name">Wing</p>
+          <p class="site-description motion-element" itemprop="description">热在分享，衷在开源。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">131</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/">
+                <span class="site-state-item-count">113</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wing324" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开胃菜"><span class="nav-number">1.</span> <span class="nav-text">开胃菜</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建解析"><span class="nav-number">2.</span> <span class="nav-text">创建解析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解释"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">解释</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加参数"><span class="nav-number">3.</span> <span class="nav-text">添加参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析参数"><span class="nav-number">4.</span> <span class="nav-text">解析参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数组"><span class="nav-number">5.</span> <span class="nav-text">参数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置默认值"><span class="nav-number">6.</span> <span class="nav-text">设置默认值</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">您是第<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>个小伙伴</span>
+  
+
+  
+    <span class="site-pv">本站总浏览<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wing</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"Wing"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementById('footer')
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+  <!-- 背景动画 -->
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+  <!-- 页面点击小红心 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>

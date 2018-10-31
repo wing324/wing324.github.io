@@ -1,0 +1,1141 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hive," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wing's Tech Space" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="由于Hive运行在HDFS上，所以部署Hive之前需要先部署Hadoop,Hadoop部署的三种方式可参考《Hadoop的三种模式部署-上篇》和《Hadoop的三种模式部署-下篇》，本文将不在重复Hadoop的部署方式，本次Hive的部署基于Hadoop完全分布式部署环境的前提下。
+Hive共有三种部署模式，分别为：内置模式，本地模式，远程模式。此处仅介绍生产环境常用的“远程模式”部署。
+远程模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hive数据库远程模式部署">
+<meta property="og:url" content="https://wing324.github.io/2017/09/14/Hive数据库远程模式部署/index.html">
+<meta property="og:site_name" content="Wing's Tech Space">
+<meta property="og:description" content="由于Hive运行在HDFS上，所以部署Hive之前需要先部署Hadoop,Hadoop部署的三种方式可参考《Hadoop的三种模式部署-上篇》和《Hadoop的三种模式部署-下篇》，本文将不在重复Hadoop的部署方式，本次Hive的部署基于Hadoop完全分布式部署环境的前提下。
+Hive共有三种部署模式，分别为：内置模式，本地模式，远程模式。此处仅介绍生产环境常用的“远程模式”部署。
+远程模式">
+<meta property="og:updated_time" content="2017-10-12T09:33:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hive数据库远程模式部署">
+<meta name="twitter:description" content="由于Hive运行在HDFS上，所以部署Hive之前需要先部署Hadoop,Hadoop部署的三种方式可参考《Hadoop的三种模式部署-上篇》和《Hadoop的三种模式部署-下篇》，本文将不在重复Hadoop的部署方式，本次Hive的部署基于Hadoop完全分布式部署环境的前提下。
+Hive共有三种部署模式，分别为：内置模式，本地模式，远程模式。此处仅介绍生产环境常用的“远程模式”部署。
+远程模式">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 11154520,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://wing324.github.io/2017/09/14/Hive数据库远程模式部署/"/>
+
+  <title> Hive数据库远程模式部署 | Wing's Tech Space </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?49b16c9d482511603ad262b1dcf7bb45";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Wing's Tech Space</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+
+      <!-- 自定义High一下的功能 -->
+      <li class="menu-item"> <a title="把这个链接拖到你的工具栏中,任何网页都可以High" href='javascript:(
+    function go() {
+
+
+    var songs = [
+    	"http://p2.music.126.net/B0HhRLh0h2NBdlcGTcTrEA==/2076977464881622.mp3",
+	"http://p2.music.126.net/RMJR7wDullRqppBk8dhLow==/3435973841155597.mp3",
+	"http://p2.music.126.net/sLKP3na0M4mdXocWFcVHlA==/3236962235602026.mp3",
+	"http://p2.music.126.net/JHuQLKSs47g-jTAASut-2g==/7714173581565477.mp3",
+	"http://p2.music.126.net/dGpxzld-XaokuOdbMKzGrA==/2533274792968816.mp3",
+	"http://p2.music.126.net/O1-e4JylX2IhqQTV6ZLZkg==/3235862723975492.mp3"
+	];
+
+    
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+ 
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+ 
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+ 
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+ 
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+ 
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+ 
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+ 
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+ 
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.getElementById("audio_element_id");
+        if(e != null){
+            var index = parseInt(e.getAttribute("curSongIndex"));
+            if(index > songs.length - 2) {
+                index = 0;
+            } else {
+                index++;
+            }
+            e.setAttribute("curSongIndex", index);
+            N();
+        }
+
+        e.src = i;
+        e.play()
+    }
+ 
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+ 
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+ 
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    function initAudioEle() {
+        var e = document.getElementById("audio_element_id");
+        if(e === null){
+            e = document.createElement("audio");
+            e.setAttribute("class", l);
+            e.setAttribute("curSongIndex", 0);
+            e.id = "audio_element_id";
+            e.loop = false;
+            e.bgcolor = 0;
+            e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h();
+            go();
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        }
+    }
+    
+    initAudioEle();
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+
+    var curSongIndex = parseInt(document.getElementById("audio_element_id").getAttribute("curSongIndex"));
+    var i = songs[curSongIndex];
+    
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+
+    /* harlem-shake-style.css，替换成你的位置，也可以直接使用：//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css */
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()'><i class="menu-item-icon fa fa-music fa-fw"></i>High一下</a> </li>
+          <!-- end High一下 -->
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search fa-lg"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Hive数据库远程模式部署
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-14T16:47:41-07:00" content="2017-09-14">
+              2017-09-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Bigdata/" itemprop="url" rel="index">
+                    <span itemprop="name">Bigdata</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/09/14/Hive数据库远程模式部署/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/14/Hive数据库远程模式部署/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">热度
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>℃
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>由于Hive运行在HDFS上，所以部署Hive之前需要先部署Hadoop,Hadoop部署的三种方式可参考<a href="https://github.com/wing324/helloworld_zh/blob/master/Bigdata/Hadoop%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2-%E4%B8%8A%E7%AF%87.md" target="_blank" rel="external">《Hadoop的三种模式部署-上篇》</a>和<a href="https://github.com/wing324/helloworld_zh/blob/master/Bigdata/Hadoop%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2-%E4%B8%8B%E7%AF%87.md" target="_blank" rel="external">《Hadoop的三种模式部署-下篇》</a>，本文将不在重复Hadoop的部署方式，本次Hive的部署基于Hadoop完全分布式部署环境的前提下。</p>
+<p>Hive共有三种部署模式，分别为：内置模式，本地模式，远程模式。此处仅介绍生产环境常用的“远程模式”部署。</p>
+<p>远程模式需要部署数据库，此处选择MariaDB,MariaDB的部署请参考<a href="https://github.com/wing324/helloworld_zh/blob/master/MySQL/Debian8%E4%B8%8A%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85MySQL5-6-xx.md" target="_blank" rel="external">Debian8上源码安装MySQL5-6-xx</a>。<br><a id="more"></a></p>
+<h4 id="一、基础环境">一、基础环境</h4><ul>
+<li><p>主机信息</p>
+<p>hadoopmaster    192.168.1.1</p>
+<p>hadoopslave1    192.168.1.2</p>
+<p>hadoopslave2    192.168.1.3</p>
+<p>MySQL和Hive server段将部署在hadoopmaster上。</p>
+</li>
+<li><p>软件信息</p>
+<p>Linux: Debian8.2</p>
+<p>MariaDB: 10.1.22</p>
+<p>Java: 1.8.0_144</p>
+<p>Hadoop: 2.8.1</p>
+<p>Hive 2.3.0</p>
+</li>
+<li><p>目录信息</p>
+<p>Hive安装目录： /usr/local/hive</p>
+</li>
+<li><p>HDFS目录信息</p>
+<p>由于Hive表创建之前需要在HDFS上存在相应的目录，所以目录规划如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">hdfs dfs -mkdir -p /user/hive/warehouse	#Hive的数据目录</div><div class="line">hdfs dfs -mkdir -p /user/hive/tmp	#Hive的临时目录</div><div class="line">hdfs dfs -mkdir -p /user/hive/log	#Hive的日志目录</div><div class="line">hdfs dfs -chmod g+w /user/hive/warehouse</div><div class="line">hdfs dfs -chmod a+w /usr/hive/tmp</div><div class="line">hdfs dfs -chmod g+w /usr/hive/log</div></pre></td></tr></table></figure>
+</li>
+<li><p>三台机器上分别添加环境变量</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim ~/.bashrc</div><div class="line"># 添加如下环境变量</div><div class="line">export HIVE_HOME=/usr/local/hive</div><div class="line">export PATH=$PATH:$HIVE_HOME/bin</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="二、Hive远程模式部署">二、Hive远程模式部署</h4><ul>
+<li><p>在MySQL中创建hive数据库以及hive用户</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">mysql&gt; create database hive;</div><div class="line">mysql&gt; grant select,insert,update,delete,create,drop,index on hive.* to 'hive'@'%' identified by 'hive';</div></pre></td></tr></table></figure>
+</li>
+<li><p>解压hive二进制安装包到/usr/local目录下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">tar apache-hive-2.3.0-bin.tar.gz -C /usr/local</div><div class="line">cd /usr/local</div><div class="line">mv apache-hive-2.3.0 hive</div><div class="line">chown -R hadoop:hadoop /usr/local/hive</div></pre></td></tr></table></figure>
+</li>
+<li><p>重命名hive几个配置文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd /usr/local/hive</div><div class="line">cp conf/hive-default.xml.template conf/hive-default.xml</div><div class="line">cp conf/hive-env.sh.template conf/hive-env.sh</div><div class="line">cp conf/hive-log4j2.properties.template conf/hive-log4j2.properties</div></pre></td></tr></table></figure>
+</li>
+<li><p>在conf目录下新增hive-site.xml文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim conf/hive-site.xml</div><div class="line">添加如下配置：</div><div class="line">&lt;configuration&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;</div><div class="line">        &lt;value&gt;jdbc:mysql://192.168.1.1:3306/hive?createDatabaseIfNotExist=true&lt;/value&gt;</div><div class="line">        &lt;description&gt;JDBC connect string for a JDBC metastore&lt;/description&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt;</div><div class="line">        &lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt;</div><div class="line">        &lt;description&gt;Driver class name for a JDBC metastore&lt;/description&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line"></div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt;</div><div class="line">        &lt;value&gt;hive&lt;/value&gt;</div><div class="line">        &lt;description&gt;username to use against metastore database&lt;/description&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt;</div><div class="line">        &lt;value&gt;hive&lt;/value&gt;</div><div class="line">        &lt;description&gt;password to use against metastore database&lt;/description&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;hive.exec.scratchdir&lt;/name&gt;</div><div class="line">        &lt;value&gt;/user/hive/tmp&lt;/value&gt;</div><div class="line">        &lt;description&gt;HDFS root scratch dir for Hive jobs which gets created with write all (733) permission. For each connecting user, an HDFS scratch dir: $&#123;hive.exec.scratchdir&#125;/&amp;lt;username&amp;gt; is created, with $&#123;hive.scratch.dir.permission&#125;.&lt;/description&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;hive.metastore.warehouse.dir&lt;/name&gt;</div><div class="line">        &lt;value&gt;/user/hive/warehouse&lt;/value&gt;</div><div class="line">        &lt;description&gt;location of default database for the warehouse&lt;/description&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;hive.querylog.location&lt;/name&gt;</div><div class="line">        &lt;value&gt;/user/hive/log&lt;/value&gt;</div><div class="line">        &lt;description&gt;Location of Hive run time structured log file&lt;/description&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>从网上下载MySQL驱动(mysql-connector-java-5.1.44-bin.jar)放置在/usr/local/hive/lib文件夹下。</p>
+<p>驱动下载地址：<a href="https://dev.mysql.com/downloads/connector/j/" target="_blank" rel="external">https://dev.mysql.com/downloads/connector/j/</a></p>
+</li>
+<li><p>从 Hive 2.1 版本开始, 我们需要先运行 schematool 命令来执行初始化操作。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">schematool -dbType mysql -initSchema</div><div class="line"># 初始化成功之后，可以从MySQL数据库的hive库里面看到初始化的数据表</div></pre></td></tr></table></figure>
+</li>
+<li><p>Hive启动metastore服务</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">hive --service metastore &amp;</div><div class="line"># 此时通过jps命令，可以发现&quot;RunJar&quot;进程</div><div class="line"># 该进程的关闭，可以通过jps获取&quot;RunJar&quot;进程号，然后kill %jobid即可</div></pre></td></tr></table></figure>
+</li>
+<li><p>访问Hive</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">linux:/usr/local/hive $ hive</div><div class="line">SLF4J: Class path contains multiple SLF4J bindings.</div><div class="line">SLF4J: Found binding in [jar:file:/usr/local/hive/lib/log4j-slf4j-impl-2.6.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]</div><div class="line">SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]</div><div class="line">SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.</div><div class="line">SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]</div><div class="line"></div><div class="line">Logging initialized using configuration in file:/usr/local/hive/conf/hive-log4j2.properties Async: true</div><div class="line">Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.</div><div class="line">hive&gt; show databases;</div><div class="line">OK</div><div class="line">default</div><div class="line">test1</div><div class="line">Time taken: 4.267 seconds, Fetched: 2 row(s)</div><div class="line">hive&gt; use test1;</div><div class="line">OK</div><div class="line">Time taken: 0.024 seconds</div><div class="line">hive&gt; show tables;</div><div class="line">OK</div><div class="line">t</div><div class="line">Time taken: 0.026 seconds, Fetched: 1 row(s)</div><div class="line">hive&gt; show create table t;</div><div class="line">OK</div><div class="line">CREATE TABLE `t`(</div><div class="line">  `id` int,</div><div class="line">  `name` string)</div><div class="line">ROW FORMAT SERDE</div><div class="line">  &apos;org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe&apos;</div><div class="line">STORED AS INPUTFORMAT</div><div class="line">  &apos;org.apache.hadoop.mapred.TextInputFormat&apos;</div><div class="line">OUTPUTFORMAT</div><div class="line">  &apos;org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat&apos;</div><div class="line">LOCATION</div><div class="line">  &apos;hdfs://172.16.0.220:9000/user/hive/warehouse/test1.db/t&apos;</div><div class="line">TBLPROPERTIES (</div><div class="line">  &apos;transient_lastDdlTime&apos;=&apos;1505356773&apos;)</div><div class="line">Time taken: 0.193 seconds, Fetched: 13 row(s)</div><div class="line">hive&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>hiveserver2的启动和登录    </p>
+<p>  hiveserver2的作用是：支持嵌入模式和远程模式，需要用beeline配合使用，此时，我们将演示一下。    </p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 启动hiveserver2的命令行模式</div><div class="line">linux&gt;  hive --service hiveserver2 --hiveconf hive.server2.thrift.port=9999 &amp;</div><div class="line">或者</div><div class="line">linux&gt;  /usr/loal/hive/bin/hiveserver2 --hiveconf hive.server2.thrift.port=9999 &amp;</div><div class="line"></div><div class="line"># 使用beeline登录hive</div><div class="line">linux&gt;  /usr/loal/hive/bin/beeline</div><div class="line">SLF4J: Class path contains multiple SLF4J bindings.</div><div class="line">SLF4J: Found binding in [jar:file:/usr/local/hive/lib/log4j-slf4j-impl-2.6.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]</div><div class="line">SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]</div><div class="line">SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.</div><div class="line">SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]</div><div class="line">Beeline version 2.3.0 by Apache Hive</div><div class="line">beeline&gt; !connect jdbc:hive2://192.168.1.1:9999</div><div class="line">Connecting to jdbc:hive2://192.168.1.1:9999</div><div class="line">Enter username for jdbc:hive2://192.168.1.1:9999: hadoop</div><div class="line">Enter password for jdbc:hive2://192.168.1.1:9999: ******</div><div class="line">Connected to: Apache Hive (version 2.3.0)</div><div class="line">Driver: Hive JDBC (version 2.3.0)</div><div class="line">Transaction isolation: TRANSACTION_REPEATABLE_READ</div><div class="line">0: jdbc:hive2://192.168.1.1:9999&gt;show databases;</div><div class="line">OK</div><div class="line">+----------------+</div><div class="line">| database_name  |</div><div class="line">+----------------+</div><div class="line">| default        |</div><div class="line">| test1          |</div><div class="line">+----------------+</div><div class="line">2 rows selected (1.233 seconds)</div><div class="line">0: jdbc:hive2://192.168.1.1:9999&gt; use test1;</div><div class="line">OK</div><div class="line">No rows affected (0.101 seconds)</div><div class="line">0: jdbc:hive2://192.168.1.1:9999&gt; show tables;</div><div class="line">OK</div><div class="line">+-----------+</div><div class="line">| tab_name  |</div><div class="line">+-----------+</div><div class="line">| invites   |</div><div class="line">| pokes     |</div><div class="line">| t         |</div><div class="line">| t3        |</div><div class="line">| tt        |</div><div class="line">| ttt       |</div><div class="line">+-----------+</div><div class="line">6 rows selected (0.115 seconds)</div><div class="line">0: jdbc:hive2://192.168.1.1:9999&gt;</div></pre></td></tr></table></figure>
+<p>  ​</p>
+<h4 id="三、FAQ">三、FAQ</h4><ol>
+<li><p>beeline登录的时候可能会遇到“User: hadoop is not allowed to impersonate hadoop (state=08S01,code=0)”这个错误。  </p>
+<p>原因：指的是访问权限的问题。  </p>
+<p>解决方法：  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 在hadoop的core-site.xml文件中添加如下配置项</div><div class="line">linux&gt;  vim /usr/lcoal/hadoop/etc/hadoop/core-site.xml    </div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;hadoop.proxyuser.hadoop.hosts&lt;/name&gt;</div><div class="line">        &lt;value&gt;*&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;hadoop.proxyuser.hadoop.groups&lt;/name&gt;</div><div class="line">        &lt;value&gt;hadoop&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line"></div><div class="line"># 然后重启HDFS之后，即可解决</div><div class="line">sbin/stop-dfs.sh</div><div class="line">sbin/start-dfs.sh</div></pre></td></tr></table></figure>
+</li>
+<li><p>在hdfs重启之后很短的时间内登录hive可能会遇到“Error: Could not open client transport with JDBC Uri: jdbc:hive2://192.168.1.1:9999: Failed to open new session: java.lang.RuntimeException: org.apache.hadoop.hdfs.server.namenode.SafeModeException: Cannot create directory /user/hive/tmp/hadoop/acde78a1-baea-4eb3-834b-fb4a177313cb. Name node is in safe mode.”  </p>
+<p>原因：Name node is in safe mode，说明Hadoop的Namenode在安全模式下。在分布式文件系统启动的时候，开始的时候会有安全模式，当分布式文件系统处于安全模式的情况下，文件系统中的内容不允许修改也不允许删除，直到安全模式结束。安全模式主要是为了系统启动的时候检查各个DataNode上数据块的有效性，同时根据策略必要的复制或者删除部分数据块。运行期通过命令也可以进入安全模式。在实践过程中，系统启动的时候去修改和删除文件也会有安全模式不允许修改的出错提示，只需要等待一会儿即可。  </p>
+<p>解决方式：  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 方法一： 耐心等待一会即可。</div><div class="line"># 方法二：不想耐心等待，那么久老老实实敲入命令</div><div class="line">在Hadoop的安装目录下执行`bin/hadoop dfsadmin -safemode leave`即可</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hive/" rel="tag">#Hive</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/13/Hadoop的三种模式部署-下篇/" rel="next" title="Hadoop的三种模式部署-下篇">
+                <i class="fa fa-chevron-left"></i> Hadoop的三种模式部署-下篇
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/12/Hive常见的数据导入方式/" rel="prev" title="Hive常见的数据导入方式">
+                Hive常见的数据导入方式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/09/14/Hive数据库远程模式部署/"
+     data-title="Hive数据库远程模式部署"
+     data-content=""
+     data-url="https://wing324.github.io/2017/09/14/Hive数据库远程模式部署/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><span class="ds-more">分享到：</span></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      <li><a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+      <li><a class="ds-google" href="javascript:void(0);" data-service="google">Google</a></li>
+    </ul>
+    <!--
+      <div class="ds-share-icons-more">
+      </div>
+    -->
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/09/14/Hive数据库远程模式部署/"
+           data-title="Hive数据库远程模式部署" data-url="https://wing324.github.io/2017/09/14/Hive数据库远程模式部署/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wing.jpg"
+               alt="Wing" />
+          <p class="site-author-name" itemprop="name">Wing</p>
+          <p class="site-description motion-element" itemprop="description">热在分享，衷在开源。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">131</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/">
+                <span class="site-state-item-count">113</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wing324" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、基础环境"><span class="nav-number">1.</span> <span class="nav-text">一、基础环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、Hive远程模式部署"><span class="nav-number">2.</span> <span class="nav-text">二、Hive远程模式部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、FAQ"><span class="nav-number">3.</span> <span class="nav-text">三、FAQ</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">您是第<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>个小伙伴</span>
+  
+
+  
+    <span class="site-pv">本站总浏览<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wing</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"Wing"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementById('footer')
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+  <!-- 背景动画 -->
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+  <!-- 页面点击小红心 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>

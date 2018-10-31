@@ -1,0 +1,1091 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT, Neveryu, Never_yu, Blog, Node.js, Git, PHP, JAVA, JAVASCRIPT, HTML, CSS, jQuery" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wing's Tech Space" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="最近看微博发现一片在Linux圈很流行的文章叫”10条命令检查Linux性能”，于是我对这10条命令相当感兴趣，顺便对各个命令做下详细的介绍好了。文章链接：http://wkee.net/post/linux-performance.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10条命令检查Linux性能">
+<meta property="og:url" content="https://wing324.github.io/2015/12/29/10条命令检查Linux性能/index.html">
+<meta property="og:site_name" content="Wing's Tech Space">
+<meta property="og:description" content="最近看微博发现一片在Linux圈很流行的文章叫”10条命令检查Linux性能”，于是我对这10条命令相当感兴趣，顺便对各个命令做下详细的介绍好了。文章链接：http://wkee.net/post/linux-performance.html">
+<meta property="og:updated_time" content="2017-10-12T09:33:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="10条命令检查Linux性能">
+<meta name="twitter:description" content="最近看微博发现一片在Linux圈很流行的文章叫”10条命令检查Linux性能”，于是我对这10条命令相当感兴趣，顺便对各个命令做下详细的介绍好了。文章链接：http://wkee.net/post/linux-performance.html">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 11154520,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://wing324.github.io/2015/12/29/10条命令检查Linux性能/"/>
+
+  <title> 10条命令检查Linux性能 | Wing's Tech Space </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?49b16c9d482511603ad262b1dcf7bb45";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Wing's Tech Space</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+
+      <!-- 自定义High一下的功能 -->
+      <li class="menu-item"> <a title="把这个链接拖到你的工具栏中,任何网页都可以High" href='javascript:(
+    function go() {
+
+
+    var songs = [
+    	"http://p2.music.126.net/B0HhRLh0h2NBdlcGTcTrEA==/2076977464881622.mp3",
+	"http://p2.music.126.net/RMJR7wDullRqppBk8dhLow==/3435973841155597.mp3",
+	"http://p2.music.126.net/sLKP3na0M4mdXocWFcVHlA==/3236962235602026.mp3",
+	"http://p2.music.126.net/JHuQLKSs47g-jTAASut-2g==/7714173581565477.mp3",
+	"http://p2.music.126.net/dGpxzld-XaokuOdbMKzGrA==/2533274792968816.mp3",
+	"http://p2.music.126.net/O1-e4JylX2IhqQTV6ZLZkg==/3235862723975492.mp3"
+	];
+
+    
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+ 
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+ 
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+ 
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+ 
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+ 
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+ 
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+ 
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+ 
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.getElementById("audio_element_id");
+        if(e != null){
+            var index = parseInt(e.getAttribute("curSongIndex"));
+            if(index > songs.length - 2) {
+                index = 0;
+            } else {
+                index++;
+            }
+            e.setAttribute("curSongIndex", index);
+            N();
+        }
+
+        e.src = i;
+        e.play()
+    }
+ 
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+ 
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+ 
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    function initAudioEle() {
+        var e = document.getElementById("audio_element_id");
+        if(e === null){
+            e = document.createElement("audio");
+            e.setAttribute("class", l);
+            e.setAttribute("curSongIndex", 0);
+            e.id = "audio_element_id";
+            e.loop = false;
+            e.bgcolor = 0;
+            e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h();
+            go();
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        }
+    }
+    
+    initAudioEle();
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+
+    var curSongIndex = parseInt(document.getElementById("audio_element_id").getAttribute("curSongIndex"));
+    var i = songs[curSongIndex];
+    
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+
+    /* harlem-shake-style.css，替换成你的位置，也可以直接使用：//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css */
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()'><i class="menu-item-icon fa fa-music fa-fw"></i>High一下</a> </li>
+          <!-- end High一下 -->
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search fa-lg"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                10条命令检查Linux性能
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-29T23:08:53-08:00" content="2015-12-29">
+              2015-12-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/29/10条命令检查Linux性能/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/29/10条命令检查Linux性能/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">热度
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>℃
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近看微博发现一片在Linux圈很流行的文章叫”10条命令检查Linux性能”，于是我对这10条命令相当感兴趣，顺便对各个命令做下详细的介绍好了。<br>文章链接：<br><a href="http://wkee.net/post/linux-performance.html" target="_blank" rel="external">http://wkee.net/post/linux-performance.html</a><br><a id="more"></a></p>
+<h2 id="uptime">uptime</h2><p>解释load average（平均负载情况）后的三个数字：1分钟，5分钟，15分钟<br>1分钟负载较高，15分钟负载较低，则说明服务器正在面临高负载的情况，CPU资源正在紧张，需要排查CPU的资源消耗在哪里<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#执行压测过程中的uptime</div><div class="line">[root@VM_159_22_centos logs]# uptime</div><div class="line"> 16:50:11 up 23:02,  2 users,  load average: 66.48, 24.53, 36.78</div><div class="line">[root@VM_159_22_centos logs]# uptime</div><div class="line"> 16:51:03 up 23:02,  2 users,  load average: 91.41, 37.97, 40.71</div><div class="line">[root@VM_159_22_centos logs]# uptime</div><div class="line"> 16:52:16 up 23:04,  2 users,  load average: 116.89, 55.67, 46.57</div></pre></td></tr></table></figure></p>
+<p>1分钟负载较低，15分钟负载较高，则说明服务器的高负载情况过去，CPU资源正在缓解<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#停止压测后的uptime</div><div class="line">[root@VM_159_22_centos logs]# uptime</div><div class="line"> 16:57:35 up 23:09,  2 users,  load average: 28.17, 58.97, 52.17</div><div class="line">[root@VM_159_22_centos logs]# uptime</div><div class="line"> 16:57:37 up 23:09,  2 users,  load average: 25.92, 57.99, 51.89</div><div class="line">[root@VM_159_22_centos logs]# uptime</div><div class="line"> 16:57:41 up 23:09,  2 users,  load average: 23.84, 57.03, 51.61</div><div class="line">[root@VM_159_22_centos logs]# uptime</div><div class="line"> 16:58:38 up 23:10,  2 users,  load average: 9.52, 47.43, 48.64</div><div class="line">[root@VM_159_22_centos logs]# uptime</div><div class="line"> 16:59:09 up 23:11,  2 users,  load average: 5.77, 42.90, 47.10</div></pre></td></tr></table></figure></p>
+<h2 id="dmesg">dmesg</h2><p>显示开机信息，同时也会保存在/var/log/dmesg文件中<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 显示开机信息的最后十条信息</div><div class="line">[root@ip-172-31-1-8 ~]# dmesg |tail</div><div class="line">[    2.672858] evbug: Connected device: input2 (Power Button at LNXPWRBN/button/input0)</div><div class="line">[    2.672859] evbug: Connected device: input3 (Sleep Button at LNXSLPBN/button/input0)</div><div class="line">[    3.670982] input: ImExPS/2 Generic Explorer Mouse as /devices/platform/i8042/serio1/input/input4</div><div class="line">[    3.675797] evbug: Connected device: input4 (ImExPS/2 Generic Explorer Mouse at isa0060/serio1/input0)</div><div class="line">[    5.933678] EXT4-fs (xvda1): re-mounted. Opts: (null)</div><div class="line">[    6.067840] ip_tables: (C) 2000-2006 Netfilter Core Team</div><div class="line">[    6.073707] nf_conntrack version 0.5.0 (7964 buckets, 31856 max)</div><div class="line">[    6.118031] NET: Registered protocol family 10</div><div class="line">[    7.469579] random: nonblocking pool is initialized</div><div class="line">[    8.440910] audit: type=1305 audit(1447402398.763:2): audit_pid=2063 old=0 auid=4294967295 ses=4294967295 res=1</div><div class="line"></div><div class="line"># 显示开机信息利用正则表达式过滤后的信息</div><div class="line">[root@ip-172-31-1-8 ~]# dmesg | grep -i net</div><div class="line">[    0.000000] Netfront and the Xen platform PCI driver have been compiled for this kernel: unplug emulated NICs.</div><div class="line">[    0.048007] Initializing cgroup subsys net_cls</div><div class="line">[    0.051221] Initializing cgroup subsys net_prio</div><div class="line">[    0.164193] NET: Registered protocol family 16</div><div class="line">[    0.380478] NetLabel: Initializing</div><div class="line">[    0.381885] NetLabel:  domain hash size = 128</div><div class="line">[    0.383801] NetLabel:  protocols = UNLABELED CIPSOv4</div><div class="line">[    0.384016] NetLabel:  unlabeled traffic allowed by default</div><div class="line">[    0.441281] NET: Registered protocol family 2</div><div class="line">[    0.456733] NET: Registered protocol family 1</div><div class="line">[    0.697494] audit: initializing netlink subsys (disabled)</div><div class="line">[    0.790387] xen_netfront: Initialising Xen virtual ethernet driver</div><div class="line">[    0.819778] NET: Registered protocol family 17</div><div class="line">[    6.067840] ip_tables: (C) 2000-2006 Netfilter Core Team</div><div class="line">[    6.118031] NET: Registered protocol family 10</div></pre></td></tr></table></figure></p>
+<h2 id="vmstat">vmstat</h2><p>vmstat命令是常用的Linux/Unix监控工具，可以展现给点时间间隔的服务器的状态值，包括服务器的CPU使用率，内存使用等等，与top的不同是，top看到的是各个CPU使用率，vmstat看到的是总体CPU使用率。<br><figure class="highlight"><table><tr><td class="code"><pre><div class="line"># 每2秒采集一次服务器的状态，总共采集5次</div><div class="line">[root@host-192-168-200-153 logs]# vmstat 2 5</div><div class="line">procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu-----</div><div class="line"> r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st</div><div class="line"> 2  0      0 14361012  14600 530480    0    0     4     9   62  117  0  0 99  0  0</div><div class="line"> 4  0      0 14322284  14600 536084    0    0     0     0 20568 39009 10  7 81  0  2</div><div class="line"> 3  0      0 14287296  14608 542412    0    0     0    18 21127 41069 13  8 75  0  4</div><div class="line"> 1  0      0 14235668  14608 549392    0    0     0     0 23555 45623 12  9 75  0  4</div><div class="line"> 3  0      0 14206072  14608 555816    0    0     0     0 23593 44988 12  8 77  0  3</div></pre></td></tr></table></figure></p>
+<p><strong>对vmstat的输出结果进行解释：  </strong></p>
+<h5 id="procs">procs</h5><p>r : 表示运行队列（即多少进程真正分配到了CPU）,当这个值超过了CPU数目，就会出现CPU瓶颈;<br>b : 表示进程阻塞；（block）  </p>
+<h5 id="memory">memory</h5><p>swpd : 虚拟内存使用的大小，如果大于0，则表示机器内存不够啦<br>free : 空闲的物理内存<br>buffer : 缓冲区大小<br>cache : 告诉缓存大小<br>（注意：buffer和cache也属于内存的一部分，他们会在free耗尽后释放，并提供给内存使用）  </p>
+<h5 id="swap">swap</h5><p>si : 每秒从磁盘读入到虚拟内存的大小，如果该值大于0，则表示磁盘内存不足或者内存泄漏<br>so : 每秒虚拟内存写入到磁盘的大小，如果该值大雨0，则表示磁盘内存不足或者内存泄漏  </p>
+<h5 id="io">io</h5><p>bi : 块设备每秒接受的块数量（读磁盘）<br>bo : 块设备每秒发送的块数量（写磁盘）  </p>
+<h5 id="system">system</h5><p>in : 每秒CPU的中断次数<br>cs : 每秒上下文切换次数，例如我们调用系统函数，就要进行上下文切换，线程的切换，也要进程上下文切换，这个值要越小越好，太大了，要考虑调低线程或者进程的数目,例如在apache和nginx这种web服务器中，我们一般做性能测试时会进行几千并发甚至几万并发的测试，选择web服务器的进程可以由进程或者线程的峰值一直下调，压测，直到cs到一个比较小的值，这个进程和线程数就是比较合适的值了。系统调用也是，每次调用系统函数，我们的代码就会进入内核空间，导致上下文切换，这个是很耗资源，也要尽量避免频繁调用系统函数。上下文切换次数过多表示你的CPU大部分浪费在上下文切换，导致CPU干正经事的时间少了，CPU没有充分利用，是不可取的。  </p>
+<h5 id="cpu">cpu</h5><p>us : 用户进程消耗CPU的时间<br>sy : 系统进程消耗CPU的时间<br>id : 空闲CPU时间<br>wa : IO等待CPU时间<br>st : 被偷走的CPU时间  </p>
+<h2 id="mpstat">mpstat</h2><p>用于获取系统中每个CPU的占用情况，如果有一个CPU占用率特别高，那么有可能是一个单线程应用程序引起的。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 开启一个MySQL压测程序时的mpstat输出</div><div class="line">[root@localhost ~]# mpstat -P ALL 5</div><div class="line">Linux 3.10.0-229.el7.x86_64 (localhost.localdomain)     2016年02月01日  _x86_64_        (4 CPU)</div><div class="line"></div><div class="line">01时35分27秒  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle</div><div class="line">01时35分32秒  all   38.82    0.00   32.83    2.31    0.00   10.27    0.00    0.00    0.00   15.77</div><div class="line">01时35分32秒    0   34.76    0.00   32.89    2.67    0.00   13.10    0.00    0.00    0.00   16.58</div><div class="line">01时35分32秒    1   35.81    0.00   30.50    6.10    0.00   11.67    0.00    0.00    0.00   15.92</div><div class="line">01时35分32秒    2   42.74    0.00   33.70    0.00    0.00    7.95    0.00    0.00    0.00   15.62</div><div class="line">01时35分32秒    3   42.18    0.00   33.80    0.56    0.00    8.10    0.00    0.00    0.00   15.36</div><div class="line"></div><div class="line">01时35分32秒  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle</div><div class="line">01时35分37秒  all   36.39    0.00   20.34    6.29    0.00    7.41    0.00    0.00    0.00   29.57</div><div class="line">01时35分37秒    0   33.49    0.00   20.28    6.37    0.00    8.73    0.00    0.00    0.00   31.13</div><div class="line">01时35分37秒    1   34.11    0.00   19.95   18.10    0.00    8.35    0.00    0.00    0.00   19.49</div><div class="line">01时35分37秒    2   39.67    0.00   20.19    0.00    0.00    5.23    0.00    0.00    0.00   34.92</div><div class="line">01时35分37秒    3   38.24    0.00   21.38    0.48    0.00    6.89    0.00    0.00    0.00   33.02</div><div class="line"></div><div class="line">01时35分37秒  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle</div><div class="line">01时35分42秒  all   52.17    0.00   28.41    1.41    0.00    8.98    0.00    0.00    0.00    9.04</div><div class="line">01时35分42秒    0   50.37    0.00   28.12    0.73    0.00   10.02    0.00    0.00    0.00   10.76</div><div class="line">01时35分42秒    1   51.33    0.00   28.19    3.61    0.00    9.64    0.00    0.00    0.00    7.23</div><div class="line">01时35分42秒    2   54.00    0.00   27.60    0.00    0.00    8.72    0.00    0.00    0.00    9.69</div><div class="line">01时35分42秒    3   52.74    0.00   29.60    1.24    0.00    7.96    0.00    0.00    0.00    8.46</div><div class="line"></div><div class="line">01时35分42秒  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle</div><div class="line">01时35分47秒  all   42.36    0.00   23.46    3.55    0.00    8.35    0.00    0.00    0.00   22.27</div><div class="line">01时35分47秒    0   40.24    0.00   23.53    2.12    0.00    9.18    0.00    0.00    0.00   24.94</div><div class="line">01时35分47秒    1   40.24    0.00   23.29   11.29    0.00    9.41    0.00    0.00    0.00   15.76</div><div class="line">01时35分47秒    2   45.15    0.00   23.40    0.00    0.00    7.09    0.00    0.00    0.00   24.35</div><div class="line">01时35分47秒    3   44.12    0.00   23.50    0.48    0.00    7.67    0.00    0.00    0.00   24.22</div><div class="line"></div><div class="line">01时35分47秒  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle</div><div class="line">01时35分52秒  all   50.39    0.00   27.61    1.15    0.00    9.34    0.00    0.00    0.00   11.51</div><div class="line">01时35分52秒    0   48.56    0.00   26.44    1.44    0.00   10.34    0.00    0.00    0.00   13.22</div><div class="line">01时35分52秒    1   48.67    0.00   26.75    1.69    0.00   10.60    0.00    0.00    0.00   12.29</div><div class="line">01时35分52秒    2   52.62    0.00   29.29    0.95    0.00    7.38    0.00    0.00    0.00    9.76</div><div class="line">01时35分52秒    3   51.59    0.00   27.87    0.73    0.00    9.29    0.00    0.00    0.00   10.51</div><div class="line"></div><div class="line"># 添加-P ALL的输出区别</div><div class="line">[root@localhost ~]# mpstat</div><div class="line">Linux 3.10.0-229.el7.x86_64 (localhost.localdomain)     2016年02月01日  _x86_64_        (4 CPU)</div><div class="line"></div><div class="line">01时41分15秒  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle</div><div class="line">01时41分15秒  all    5.00    0.00    3.36    1.30    0.00    1.85    0.00    0.00    0.00   88.50</div><div class="line">[root@localhost ~]# mpstat -P ALL</div><div class="line">Linux 3.10.0-229.el7.x86_64 (localhost.localdomain)     2016年02月01日  _x86_64_        (4 CPU)</div><div class="line"></div><div class="line">01时41分25秒  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle</div><div class="line">01时41分25秒  all    4.95    0.00    3.33    1.28    0.00    1.83    0.00    0.00    0.00   88.61</div><div class="line">01时41分25秒    0    4.90    0.00    3.29    1.13    0.00    2.57    0.00    0.00    0.00   88.12</div><div class="line">01时41分25秒    1    4.98    0.00    3.32    1.42    0.00    2.61    0.00    0.00    0.00   87.67</div><div class="line">01时41分25秒    2    4.94    0.00    3.32    1.00    0.00    1.05    0.00    0.00    0.00   89.69</div><div class="line">01时41分25秒    3    4.97    0.00    3.38    1.59    0.00    1.08    0.00    0.00    0.00   88.97</div></pre></td></tr></table></figure></p>
+<p>-P ALL显示所有CPU的统计信息。<br><strong>对mpstat输出结果的解释：  </strong></p>
+<h5 id="%usr">%usr</h5><p>表示处理用户进程所使用的CPU百分比。  </p>
+<h5 id="%nice">%nice</h5><p>表示使用nice命令对进程进行降级时CPU的百分比。  </p>
+<h5 id="%sys">%sys</h5><p>表示内核进程使用的CPU百分比。  </p>
+<h5 id="%iowait">%iowait</h5><p>表示等待进行I/O所使用的CPU百分比。  </p>
+<h5 id="%irq">%irq</h5><p>表示用于处理系统中断的    CPU百分比。  </p>
+<h5 id="%soft">%soft</h5><p>表示用于处理软件中断的CPU百分比。  </p>
+<h5 id="%steal">%steal</h5><h5 id="%guest">%guest</h5><h5 id="%gnice">%gnice</h5><h5 id="%idle">%idle</h5><p>表示空闲CPU的百分比。  </p>
+<h2 id="pidstat">pidstat</h2><p>监控全部或者指定进程占用系统资源的情况，如CPU、内存等。pidstat首次运行时显示自系统启动开始的各项统计信息，之后运行自上次运行pidstat命令以后的信息。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 开启一个mysql压测程序的pidstat的输出</div><div class="line">[root@localhost ~]# pidstat</div><div class="line">Linux 3.10.0-229.el7.x86_64 (localhost.localdomain)     2016年02月01日  _x86_64_        (4 CPU)</div><div class="line"></div><div class="line">01时53分38秒   UID       PID    %usr %system  %guest    %CPU   CPU  Command</div><div class="line">01时53分38秒     0         1    0.01    0.08    0.00    0.10     3  systemd</div><div class="line">01时53分38秒     0         3    0.00    0.02    0.00    0.02     0  ksoftirqd/0</div><div class="line">01时53分38秒     0         7    0.00    0.02    0.00    0.02     0  migration/0</div><div class="line">01时53分38秒     0       137    0.00    0.02    0.00    0.02     3  rcu_sched</div><div class="line">01时53分38秒     0       138    0.00    0.01    0.00    0.01     0  rcuos/0</div><div class="line">01时53分38秒     0       139    0.00    0.01    0.00    0.01     3  rcuos/1</div><div class="line">01时53分38秒     0       140    0.00    0.01    0.00    0.01     3  rcuos/2</div><div class="line">01时53分38秒     0       141    0.00    0.01    0.00    0.01     3  rcuos/3</div><div class="line">01时53分38秒     0       266    0.00    0.00    0.00    0.00     0  watchdog/0</div><div class="line">01时53分38秒     0       267    0.00    0.00    0.00    0.00     1  watchdog/1</div><div class="line">01时53分38秒     0       268    0.00    0.02    0.00    0.02     1  migration/1</div><div class="line">01时53分38秒     0       269    0.00    0.02    0.00    0.02     1  ksoftirqd/1</div><div class="line">01时53分38秒     0       272    0.00    0.00    0.00    0.00     2  watchdog/2</div><div class="line">01时53分38秒     0       273    0.00    0.01    0.00    0.01     2  migration/2</div><div class="line">01时53分38秒     0       274    0.00    0.01    0.00    0.01     2  ksoftirqd/2</div><div class="line">01时53分38秒     0       277    0.00    0.00    0.00    0.00     3  watchdog/3</div><div class="line">01时53分38秒     0       278    0.00    0.01    0.00    0.01     3  migration/3</div><div class="line">01时53分38秒     0       279    0.00    0.03    0.00    0.03     3  ksoftirqd/3</div><div class="line">01时53分38秒     0       289    0.00    0.00    0.00    0.00     1  khubd</div><div class="line">01时53分38秒     0       291    0.00    0.01    0.00    0.01     0  kworker/0:1</div><div class="line">01时53分38秒     0       295    0.00    0.03    0.00    0.03     3  kswapd0</div><div class="line">01时53分38秒     0       297    0.00    0.00    0.00    0.00     2  khugepaged</div><div class="line">01时53分38秒     0       332    0.00    0.10    0.00    0.10     1  kworker/1:1</div><div class="line">01时53分38秒     0       355    0.00    0.00    0.00    0.00     2  kauditd</div><div class="line">01时53分38秒     0       428    0.00    0.14    0.00    0.14     3  kworker/3:2</div><div class="line">01时53分38秒     0       550    0.00    0.00    0.00    0.00     0  scsi_eh_1</div><div class="line">01时53分38秒     0       552    0.00    0.00    0.00    0.00     1  scsi_eh_2</div><div class="line">01时53分38秒     0       653    0.00    0.05    0.00    0.05     3  kworker/u256:29</div><div class="line">01时53分38秒     0       745    0.00    0.00    0.00    0.00     3  kworker/3:1H</div><div class="line">01时53分38秒     0       746    0.00    0.03    0.00    0.03     1  xfsaild/dm-0</div><div class="line">01时53分38秒     0       751    0.00    0.00    0.00    0.00     0  kworker/0:1H</div><div class="line">01时53分38秒     0       822    0.00    0.01    0.00    0.01     1  systemd-journal</div><div class="line">01时53分38秒     0       835    0.00    0.00    0.00    0.00     3  lvmetad</div><div class="line">01时53分38秒     0       843    0.01    0.01    0.00    0.02     2  systemd-udevd</div><div class="line">01时53分38秒     0       959    0.00    0.00    0.00    0.00     3  auditd</div><div class="line">01时53分38秒     0       981    0.01    0.02    0.00    0.04     0  firewalld</div><div class="line">01时53分38秒     0       986    0.00    0.01    0.00    0.01     2  irqbalance</div><div class="line">01时53分38秒     0       987    0.00    0.01    0.00    0.01     3  rsyslogd</div><div class="line">01时53分38秒     0       988    0.01    0.02    0.00    0.03     1  tuned</div><div class="line">01时53分38秒     0       991    0.00    0.00    0.00    0.00     2  systemd-logind</div><div class="line">01时53分38秒    81       992    0.00    0.01    0.00    0.01     0  dbus-daemon</div><div class="line">01时53分38秒     0       996    0.00    0.03    0.00    0.03     0  crond</div><div class="line">01时53分38秒     0      1099    0.00    0.01    0.00    0.01     2  NetworkManager</div><div class="line">01时53分38秒   999      1300    0.00    0.00    0.00    0.00     0  polkitd</div><div class="line">01时53分38秒     0      1580    0.00    0.00    0.00    0.00     1  dhclient</div><div class="line">01时53分38秒     0      1608    0.00    0.00    0.00    0.00     0  sshd</div><div class="line">01时53分38秒     0      2825    0.00    0.00    0.00    0.00     1  kworker/1:1H</div><div class="line">01时53分38秒     0      2826    0.00    0.12    0.00    0.13     0  sshd</div><div class="line">01时53分38秒     0      2830    0.00    0.00    0.00    0.00     0  bash</div><div class="line">01时53分38秒     0      2851    0.01    0.01    0.00    0.01     1  bash</div><div class="line">01时53分38秒     0      2878    0.00    0.01    0.00    0.01     1  mysqld_safe</div><div class="line">01时53分38秒   998      4303    9.83    8.95    0.00   18.77     1  mysqld</div><div class="line">01时53分38秒     0      4418    0.00    0.02    0.00    0.02     2  kworker/2:0</div><div class="line">01时53分38秒     0      4509    0.00    0.17    0.00    0.17     0  kworker/u256:0</div><div class="line">01时53分38秒     0      4642    0.00    0.01    0.00    0.01     2  kworker/2:1</div><div class="line">01时53分38秒     0      4650    0.00    0.00    0.00    0.00     2  kworker/2:2</div><div class="line">01时53分38秒     0      4689    0.69    0.58    0.00    1.27     3  java</div><div class="line">01时53分38秒     0      4714    0.00    0.01    0.00    0.01     3  kworker/u256:1</div><div class="line">01时53分38秒     0      4715    0.00    0.00    0.00    0.00     1  pidstat</div><div class="line"></div><div class="line"># 输出指定pid(即指定进程)的输出</div><div class="line">[root@localhost ~]# pidstat -p 4303 1</div><div class="line">Linux 3.10.0-229.el7.x86_64 (localhost.localdomain)     2016年02月01日  _x86_64_        (4 CPU)</div><div class="line"></div><div class="line">01时59分27秒   UID       PID    %usr %system  %guest    %CPU   CPU  Command</div><div class="line">01时59分28秒   998      4303    0.00    0.99    0.00    0.99     1  mysqld</div><div class="line">01时59分29秒   998      4303    1.00    0.00    0.00    1.00     1  mysqld</div><div class="line">01时59分30秒   998      4303    0.00    0.00    0.00    0.00     1  mysqld</div><div class="line">01时59分31秒   998      4303    0.00    1.00    0.00    1.00     1  mysqld</div><div class="line">01时59分32秒   998      4303    1.00    0.00    0.00    1.00     1  mysqld</div><div class="line">01时59分33秒   998      4303    0.00    0.00    0.00    0.00     1  mysqld</div><div class="line">01时59分34秒   998      4303    1.00    0.00    0.00    1.00     1  mysqld</div><div class="line">01时59分35秒   998      4303    0.00    0.00    0.00    0.00     1  mysqld</div><div class="line">01时59分36秒   998      4303    0.00    1.00    0.00    1.00     2  mysqld</div><div class="line">01时59分37秒   998      4303    1.00    0.00    0.00    1.00     2  mysqld</div><div class="line">01时59分38秒   998      4303    0.00    0.00    0.00    0.00     2  mysqld</div><div class="line">01时59分39秒   998      4303    0.00    0.00    0.00    0.00     2  mysqld</div><div class="line">01时59分40秒   998      4303    1.00    1.00    0.00    2.00     2  mysqld</div><div class="line">01时59分41秒   998      4303    0.00    0.00    0.00    0.00     2  mysqld</div><div class="line">01时59分42秒   998      4303    1.00    0.00    0.00    1.00     2  mysqld</div><div class="line">01时59分43秒   998      4303    0.00    0.00    0.00    0.00     2  mysqld</div><div class="line">01时59分44秒   998      4303    2.97    1.98    0.00    4.95     2  mysqld</div><div class="line">01时59分45秒   998      4303    1.00    0.00    0.00    1.00     2  mysqld</div><div class="line">01时59分46秒   998      4303    0.00    1.00    0.00    1.00     2  mysqld</div><div class="line">01时59分47秒   998      4303   20.00   24.00    0.00   44.00     0  mysqld</div><div class="line">01时59分48秒   998      4303   98.00   77.00    0.00  175.00     0  mysqld</div><div class="line">01时59分49秒   998      4303  130.00  113.00    0.00  243.00     0  mysqld</div><div class="line">01时59分50秒   998      4303  141.00  112.00    0.00  253.00     0  mysqld</div><div class="line">01时59分51秒   998      4303  149.00   95.00    0.00  244.00     0  mysqld</div><div class="line">01时59分52秒   998      4303  121.00   94.00    0.00  215.00     0  mysqld</div><div class="line">01时59分53秒   998      4303  141.00  110.00    0.00  251.00     0  mysqld</div><div class="line">01时59分54秒   998      4303  140.00  103.00    0.00  243.00     0  mysqld</div><div class="line">01时59分55秒   998      4303  124.00   92.00    0.00  216.00     0  mysqld</div><div class="line">01时59分56秒   998      4303  136.00  105.00    0.00  241.00     0  mysqld</div><div class="line">01时59分57秒   998      4303  138.00  102.00    0.00  240.00     0  mysqld</div><div class="line">01时59分58秒   998      4303  112.00   82.00    0.00  194.00     0  mysqld</div><div class="line">01时59分59秒   998      4303  138.00  106.00    0.00  244.00     0  mysqld</div><div class="line">02时00分00秒   998      4303  136.00  106.00    0.00  242.00     0  mysqld</div><div class="line">02时00分01秒   998      4303  131.00  101.00    0.00  232.00     0  mysqld</div><div class="line">02时00分02秒   998      4303   46.00   37.00    0.00   83.00     0  mysqld</div><div class="line">02时00分03秒   998      4303  140.00  106.00    0.00  246.00     0  mysqld</div><div class="line">02时00分04秒   998      4303  143.00  104.00    0.00  247.00     0  mysqld</div><div class="line">02时00分05秒   998      4303  127.00   99.00    0.00  226.00     0  mysqld</div><div class="line">02时00分06秒   998      4303  147.00  105.00    0.00  252.00     0  mysqld</div><div class="line">02时00分07秒   998      4303  126.00  102.00    0.00  228.00     0  mysqld</div><div class="line">02时00分08秒   998      4303  129.00   95.00    0.00  224.00     0  mysqld</div><div class="line">02时00分09秒   998      4303  141.00  103.00    0.00  244.00     0  mysqld</div><div class="line">02时00分10秒   998      4303  125.00   93.00    0.00  218.00     0  mysqld</div><div class="line">02时00分11秒   998      4303  138.00  105.00    0.00  243.00     0  mysqld</div><div class="line"></div><div class="line">02时00分11秒   UID       PID    %usr %system  %guest    %CPU   CPU  Command</div><div class="line">02时00分12秒   998      4303  142.00  113.00    0.00  255.00     0  mysqld</div><div class="line">02时00分13秒   998      4303  125.00   94.00    0.00  219.00     0  mysqld</div><div class="line">02时00分14秒   998      4303   78.00   61.00    0.00  139.00     0  mysqld</div><div class="line">02时00分15秒   998      4303  134.00  107.00    0.00  241.00     0  mysqld</div><div class="line">02时00分16秒   998      4303  142.57  107.92    0.00  250.50     0  mysqld</div><div class="line">02时00分17秒   998      4303  137.00  102.00    0.00  239.00     0  mysqld</div><div class="line">02时00分18秒   998      4303  140.00  105.00    0.00  245.00     0  mysqld</div><div class="line">02时00分20秒   998      4303  124.00  106.00    0.00  230.00     0  mysqld</div><div class="line">02时00分21秒   998      4303  128.00   94.00    0.00  222.00     0  mysqld</div><div class="line">02时00分22秒   998      4303  142.00  114.00    0.00  256.00     0  mysqld</div><div class="line">02时00分23秒   998      4303  140.00  114.00    0.00  254.00     0  mysqld</div><div class="line"></div><div class="line">平均时间:   998      4303   82.88   63.55    0.00  146.43     -  mysqld</div><div class="line"></div><div class="line"># 输出指定pid的CPU统计信息</div><div class="line">[root@localhost ~]# pidstat -u -p 4303 1</div><div class="line">Linux 3.10.0-229.el7.x86_64 (localhost.localdomain)     2016年02月01日  _x86_64_        (4 CPU)</div><div class="line"></div><div class="line">02时00分29秒   UID       PID    %usr %system  %guest    %CPU   CPU  Command</div><div class="line">02时00分30秒   998      4303  134.00  100.00    0.00  234.00     0  mysqld</div><div class="line">02时00分31秒   998      4303  120.00   94.00    0.00  214.00     0  mysqld</div><div class="line">02时00分32秒   998      4303  143.00  104.00    0.00  247.00     0  mysqld</div><div class="line">^C</div><div class="line">平均时间:   998      4303  132.33   99.33    0.00  231.67     -  mysqld</div><div class="line"></div><div class="line"># 输出指定进程的内存统计信息</div><div class="line">[root@localhost ~]# pidstat -r -p 4303 1   </div><div class="line">Linux 3.10.0-229.el7.x86_64 (localhost.localdomain)     2016年02月01日  _x86_64_        (4 CPU)</div><div class="line"></div><div class="line">02时00分59秒   UID       PID  minflt/s  majflt/s     VSZ    RSS   %MEM  Command</div><div class="line">02时01分00秒   998      4303      0.00      0.00 2793112 167380   8.95  mysqld</div><div class="line">02时01分01秒   998      4303    228.00      0.00 2793112 167380   8.95  mysqld</div><div class="line">02时01分02秒   998      4303      0.00      0.00 2793112 167360   8.95  mysqld</div><div class="line">02时01分03秒   998      4303      3.00      2.00 2793112 167356   8.95  mysqld</div><div class="line">02时01分04秒   998      4303    226.00      1.00 2793112 168112   8.99  mysqld</div><div class="line">02时01分05秒   998      4303      0.00      0.00 2793112 167352   8.95  mysqld</div><div class="line">02时01分06秒   998      4303      0.00      1.00 2793112 167352   8.95  mysqld</div><div class="line">02时01分07秒   998      4303      3.92      0.98 2793112 167352   8.95  mysqld</div><div class="line">02时01分08秒   998      4303     95.00      4.00 2793112 167624   8.96  mysqld</div><div class="line">02时01分09秒   998      4303    226.00      0.00 2793112 167652   8.96  mysqld</div><div class="line">02时01分10秒   998      4303      0.00      0.00 2793112 167652   8.96  mysqld</div><div class="line">02时01分11秒   998      4303    227.00      0.00 2793112 167648   8.96  mysqld</div><div class="line">02时01分12秒   998      4303      0.00      0.00 2793112 167648   8.96  mysqld</div><div class="line">02时01分13秒   998      4303    227.00      0.00 2793112 167648   8.96  mysqld</div><div class="line">02时01分14秒   998      4303      2.00      0.00 2793112 167648   8.96  mysqld</div><div class="line">02时01分15秒   998      4303    226.00      0.00 2793112 167640   8.96  mysqld</div><div class="line">^C</div><div class="line">平均时间:   998      4303     91.04      0.56 2793112 167550   8.96  mysqld</div><div class="line"></div><div class="line"># 输出I/O的统计信息</div><div class="line">[root@localhost ~]# pidstat -d</div><div class="line">Linux 3.10.0-229.el7.x86_64 (localhost.localdomain)     2016年02月01日  _x86_64_        (4 CPU)</div><div class="line"></div><div class="line">02时01分32秒   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s  Command</div><div class="line">02时01分32秒     0         1     49.20      0.09      0.01  systemd</div><div class="line">02时01分32秒     0       653      0.00      0.00      0.00  kworker/u256:29</div><div class="line">02时01分32秒     0       746      0.02      0.00      0.00  xfsaild/dm-0</div><div class="line">02时01分32秒     0       822      1.05      0.00      0.00  systemd-journal</div><div class="line">02时01分32秒     0       835      0.02      0.00      0.00  lvmetad</div><div class="line">02时01分32秒     0       843      5.14      0.00      0.00  systemd-udevd</div><div class="line">02时01分32秒     0       959      0.85      0.15      0.00  auditd</div><div class="line">02时01分32秒     0       981      5.21      0.00      0.00  firewalld</div><div class="line">02时01分32秒     0       986      0.46      0.00      0.00  irqbalance</div><div class="line">02时01分32秒     0       987      1.63      0.12      0.00  rsyslogd</div><div class="line">02时01分32秒     0       988      3.81      0.01      0.00  tuned</div><div class="line">02时01分32秒     0       991      0.65      0.00      0.00  systemd-logind</div><div class="line">02时01分32秒    81       992      1.05      0.00      0.00  dbus-daemon</div><div class="line">02时01分32秒     0       996      9.42      0.01      0.00  crond</div><div class="line">02时01分32秒     0      1004      0.02      0.00      0.00  agetty</div><div class="line">02时01分32秒     0      1099      9.04      0.01      0.00  NetworkManager</div><div class="line">02时01分32秒   999      1300      4.15      0.00      0.00  polkitd</div><div class="line">02时01分32秒     0      1580      4.13      0.01      0.00  dhclient</div><div class="line">02时01分32秒     0      1608      0.64      0.00      0.00  sshd</div><div class="line">02时01分32秒     0      2826      5.21      0.00      0.00  sshd</div><div class="line">02时01分32秒     0      2830     23.59      0.01      0.00  bash</div><div class="line">02时01分32秒     0      2851     53.59      3.08      0.12  bash</div><div class="line">02时01分32秒     0      2878      0.01      0.00      0.00  mysqld_safe</div><div class="line">02时01分32秒   998      4303     41.58   1891.53      4.24  mysqld</div><div class="line">02时01分32秒     0      4714      0.00      7.51      0.00  kworker/u256:1</div><div class="line">02时01分32秒     0      4726     27.46      2.16      0.00  java</div><div class="line">02时01分32秒     0      4751      0.00      8.99      0.00  kworker/u256:0</div><div class="line">02时01分32秒     0      4786      2.79      0.00      0.00  pidstat</div><div class="line"></div><div class="line"># 输出指定进程I/O的统计信息</div><div class="line">[root@localhost ~]# pidstat -d -p 4303 1</div><div class="line">Linux 3.10.0-229.el7.x86_64 (localhost.localdomain)     2016年02月01日  _x86_64_        (4 CPU)</div><div class="line"></div><div class="line">02时01分43秒   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s  Command</div><div class="line">02时01分44秒   998      4303     35.64  14756.44      0.00  mysqld</div><div class="line">02时01分45秒   998      4303    124.00  19640.00      0.00  mysqld</div><div class="line">02时01分46秒   998      4303     44.00  17540.00      0.00  mysqld</div><div class="line">02时01分47秒   998      4303     16.00  16740.00      0.00  mysqld</div><div class="line">02时01分48秒   998      4303     44.00  18280.00      0.00  mysqld</div><div class="line">02时01分49秒   998      4303     48.00  14132.00      0.00  mysqld</div><div class="line">02时01分50秒   998      4303   1300.00  18500.00      0.00  mysqld</div><div class="line">02时01分51秒   998      4303    728.00  12368.00      0.00  mysqld</div><div class="line">02时01分52秒   998      4303   5348.00  18224.00      0.00  mysqld</div><div class="line">02时01分53秒   998      4303     16.00  11244.00      0.00  mysqld</div><div class="line">^C</div><div class="line">平均时间:   998      4303    769.63  16141.06      0.00  mysqld</div><div class="line"></div><div class="line"># 输出正则匹配的进程统计信息</div><div class="line">[root@localhost ~]# pidstat -C mysql 1</div><div class="line">Linux 3.10.0-229.el7.x86_64 (localhost.localdomain)     2016年02月01日  _x86_64_        (4 CPU)</div><div class="line"></div><div class="line">02时23分57秒   UID       PID    %usr %system  %guest    %CPU   CPU  Command</div><div class="line">02时23分58秒   998      4303    8.91   77.23    0.00   86.14     3  mysqld</div><div class="line"></div><div class="line">02时23分58秒   UID       PID    %usr %system  %guest    %CPU   CPU  Command</div><div class="line">02时23分59秒   998      4303   16.83   35.64    0.00   52.48     3  mysqld</div><div class="line"></div><div class="line">02时23分59秒   UID       PID    %usr %system  %guest    %CPU   CPU  Command</div><div class="line">02时24分00秒   998      4303    5.00   27.00    0.00   32.00     3  mysqld</div><div class="line">^C</div><div class="line"></div><div class="line">平均时间:   UID       PID    %usr %system  %guest    %CPU   CPU  Command</div><div class="line">平均时间:   998      4303   10.26   46.69    0.00   56.95     -  mysqld</div></pre></td></tr></table></figure></p>
+<p><strong>pidstat的选项详解：  </strong></p>
+<h5 id="-C_comm">-C comm</h5><p>输出与<em>comm</em>模糊匹配的进程。  </p>
+<h5 id="-d">-d</h5><p>输出I/O统计信息。  </p>
+<ul>
+<li>UID 任务的UID  </li>
+<li>USER 任务的所有者  </li>
+<li>PID 任务的进程号  </li>
+<li>kB_rd/s 每秒进程从磁盘读取的数据量（单位：kB）</li>
+<li>kB_wr/s 每秒进程向磁盘写的数据量（单位：kB）</li>
+<li>kB_ccwr/s<br>-</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/25/yum安装MySQLdb模块/" rel="next" title="yum安装MySQLdb模块">
+                <i class="fa fa-chevron-left"></i> yum安装MySQLdb模块
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/02/getpass交互式密码模块/" rel="prev" title="getpass交互式密码模块">
+                getpass交互式密码模块 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/12/29/10条命令检查Linux性能/"
+     data-title="10条命令检查Linux性能"
+     data-content=""
+     data-url="https://wing324.github.io/2015/12/29/10条命令检查Linux性能/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><span class="ds-more">分享到：</span></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      <li><a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+      <li><a class="ds-google" href="javascript:void(0);" data-service="google">Google</a></li>
+    </ul>
+    <!--
+      <div class="ds-share-icons-more">
+      </div>
+    -->
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/12/29/10条命令检查Linux性能/"
+           data-title="10条命令检查Linux性能" data-url="https://wing324.github.io/2015/12/29/10条命令检查Linux性能/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wing.jpg"
+               alt="Wing" />
+          <p class="site-author-name" itemprop="name">Wing</p>
+          <p class="site-description motion-element" itemprop="description">热在分享，衷在开源。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">131</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/">
+                <span class="site-state-item-count">113</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wing324" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#uptime"><span class="nav-number">1.</span> <span class="nav-text">uptime</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dmesg"><span class="nav-number">2.</span> <span class="nav-text">dmesg</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vmstat"><span class="nav-number">3.</span> <span class="nav-text">vmstat</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#procs"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">procs</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#memory"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">memory</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#swap"><span class="nav-number">3.0.0.3.</span> <span class="nav-text">swap</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#io"><span class="nav-number">3.0.0.4.</span> <span class="nav-text">io</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#system"><span class="nav-number">3.0.0.5.</span> <span class="nav-text">system</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#cpu"><span class="nav-number">3.0.0.6.</span> <span class="nav-text">cpu</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mpstat"><span class="nav-number">4.</span> <span class="nav-text">mpstat</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%usr"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">%usr</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%nice"><span class="nav-number">4.0.0.2.</span> <span class="nav-text">%nice</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%sys"><span class="nav-number">4.0.0.3.</span> <span class="nav-text">%sys</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%iowait"><span class="nav-number">4.0.0.4.</span> <span class="nav-text">%iowait</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%irq"><span class="nav-number">4.0.0.5.</span> <span class="nav-text">%irq</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%soft"><span class="nav-number">4.0.0.6.</span> <span class="nav-text">%soft</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%steal"><span class="nav-number">4.0.0.7.</span> <span class="nav-text">%steal</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%guest"><span class="nav-number">4.0.0.8.</span> <span class="nav-text">%guest</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%gnice"><span class="nav-number">4.0.0.9.</span> <span class="nav-text">%gnice</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%idle"><span class="nav-number">4.0.0.10.</span> <span class="nav-text">%idle</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pidstat"><span class="nav-number">5.</span> <span class="nav-text">pidstat</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#-C_comm"><span class="nav-number">5.0.0.1.</span> <span class="nav-text">-C comm</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#-d"><span class="nav-number">5.0.0.2.</span> <span class="nav-text">-d</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">您是第<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>个小伙伴</span>
+  
+
+  
+    <span class="site-pv">本站总浏览<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wing</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"Wing"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementById('footer')
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+  <!-- 背景动画 -->
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+  <!-- 页面点击小红心 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>

@@ -1,0 +1,1256 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="show profile,show processlist,status," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wing's Tech Space" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="MySQL官方文档中的status存在于好几个小节中，每个status的英文解释其实一般是可以看的懂的，主要是寻找相应的status有点困难，所以我将所有的status整理在一个页面，直接Ctrl+F就可以查找到相应的status啦。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SHOW PROCESSLIST和SHOW PROFILE的Status整理（英文官方文档版）">
+<meta property="og:url" content="https://wing324.github.io/2018/04/02/SHOW-PROCESSLIST和SHOW-PROFILE的Status整理（英文官方文档版）/index.html">
+<meta property="og:site_name" content="Wing's Tech Space">
+<meta property="og:description" content="MySQL官方文档中的status存在于好几个小节中，每个status的英文解释其实一般是可以看的懂的，主要是寻找相应的status有点困难，所以我将所有的status整理在一个页面，直接Ctrl+F就可以查找到相应的status啦。">
+<meta property="og:updated_time" content="2017-03-01T07:01:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SHOW PROCESSLIST和SHOW PROFILE的Status整理（英文官方文档版）">
+<meta name="twitter:description" content="MySQL官方文档中的status存在于好几个小节中，每个status的英文解释其实一般是可以看的懂的，主要是寻找相应的status有点困难，所以我将所有的status整理在一个页面，直接Ctrl+F就可以查找到相应的status啦。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 11154520,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://wing324.github.io/2018/04/02/SHOW-PROCESSLIST和SHOW-PROFILE的Status整理（英文官方文档版）/"/>
+
+  <title> SHOW PROCESSLIST和SHOW PROFILE的Status整理（英文官方文档版） | Wing's Tech Space </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?49b16c9d482511603ad262b1dcf7bb45";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Wing's Tech Space</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+
+      <!-- 自定义High一下的功能 -->
+      <li class="menu-item"> <a title="把这个链接拖到你的工具栏中,任何网页都可以High" href='javascript:(
+    function go() {
+
+
+    var songs = [
+    	"http://p2.music.126.net/B0HhRLh0h2NBdlcGTcTrEA==/2076977464881622.mp3",
+	"http://p2.music.126.net/RMJR7wDullRqppBk8dhLow==/3435973841155597.mp3",
+	"http://p2.music.126.net/sLKP3na0M4mdXocWFcVHlA==/3236962235602026.mp3",
+	"http://p2.music.126.net/JHuQLKSs47g-jTAASut-2g==/7714173581565477.mp3",
+	"http://p2.music.126.net/dGpxzld-XaokuOdbMKzGrA==/2533274792968816.mp3",
+	"http://p2.music.126.net/O1-e4JylX2IhqQTV6ZLZkg==/3235862723975492.mp3"
+	];
+
+    
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+ 
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+ 
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+ 
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+ 
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+ 
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+ 
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+ 
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+ 
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.getElementById("audio_element_id");
+        if(e != null){
+            var index = parseInt(e.getAttribute("curSongIndex"));
+            if(index > songs.length - 2) {
+                index = 0;
+            } else {
+                index++;
+            }
+            e.setAttribute("curSongIndex", index);
+            N();
+        }
+
+        e.src = i;
+        e.play()
+    }
+ 
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+ 
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+ 
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    function initAudioEle() {
+        var e = document.getElementById("audio_element_id");
+        if(e === null){
+            e = document.createElement("audio");
+            e.setAttribute("class", l);
+            e.setAttribute("curSongIndex", 0);
+            e.id = "audio_element_id";
+            e.loop = false;
+            e.bgcolor = 0;
+            e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h();
+            go();
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        }
+    }
+    
+    initAudioEle();
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+
+    var curSongIndex = parseInt(document.getElementById("audio_element_id").getAttribute("curSongIndex"));
+    var i = songs[curSongIndex];
+    
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+
+    /* harlem-shake-style.css，替换成你的位置，也可以直接使用：//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css */
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()'><i class="menu-item-icon fa fa-music fa-fw"></i>High一下</a> </li>
+          <!-- end High一下 -->
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search fa-lg"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SHOW PROCESSLIST和SHOW PROFILE的Status整理（英文官方文档版）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-04-02T20:24:59-07:00" content="2018-04-02">
+              2018-04-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/04/02/SHOW-PROCESSLIST和SHOW-PROFILE的Status整理（英文官方文档版）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/02/SHOW-PROCESSLIST和SHOW-PROFILE的Status整理（英文官方文档版）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">热度
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>℃
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>MySQL官方文档中的status存在于好几个小节中，每个status的英文解释其实一般是可以看的懂的，主要是寻找相应的status有点困难，所以我将所有的status整理在一个页面，直接Ctrl+F就可以查找到相应的status啦。<br><a id="more"></a></p>
+<h2 id="Thread_Command">Thread Command</h2><p>A thread can have any of the following Command values:  </p>
+<h5 id="Binlog_Dump">Binlog Dump</h5><p>This is a thread on a master server for sending binary log contents to a slave server.</p>
+<h5 id="Change_user">Change user</h5><p>The thread is executing a change-user operation.</p>
+<h5 id="Close_stmt">Close stmt</h5><p>The thread is closing a prepared statement.</p>
+<h5 id="Connect">Connect</h5><p>A replication slave is connected to its master.</p>
+<h5 id="Connect_Out">Connect Out</h5><p>A replication slave is connecting to its master.</p>
+<h5 id="Create_DB">Create DB</h5><p>The thread is executing a create-database operation.</p>
+<h5 id="Daemon">Daemon</h5><p>This thread is internal to the server, not a thread that services a client connection.</p>
+<h5 id="Debug">Debug</h5><p>The thread is generating debugging information.</p>
+<h5 id="Delayed_insert">Delayed insert</h5><p>The thread is a delayed-insert handler.</p>
+<h5 id="Drop_DB">Drop DB</h5><p>The thread is executing a drop-database operation.</p>
+<h5 id="Error">Error</h5><h5 id="Execute">Execute</h5><p>The thread is executing a prepared statement.</p>
+<h5 id="Fetch">Fetch</h5><p>The thread is fetching the results from executing a prepared statement.</p>
+<h5 id="Field_List">Field List</h5><p>The thread is retrieving information for table columns.</p>
+<h5 id="Init_DB">Init DB</h5><p>The thread is selecting a default database.</p>
+<h5 id="Kill">Kill</h5><p>The thread is killing another thread.</p>
+<h5 id="Long_Data">Long Data</h5><p>The thread is retrieving long data in the result of executing a prepared statement.</p>
+<h5 id="Ping">Ping</h5><p>The thread is handling a server-ping request.</p>
+<h5 id="Prepare">Prepare</h5><p>The thread is preparing a prepared statement.</p>
+<h5 id="Processlist">Processlist</h5><p>The thread is producing information about server threads.</p>
+<h5 id="Query">Query</h5><p>The thread is executing a statement.</p>
+<h5 id="Quit">Quit</h5><p>The thread is terminating.</p>
+<h5 id="Refresh">Refresh</h5><p>The thread is flushing table, logs, or caches, or resetting status variable or replication server information.</p>
+<h5 id="Register_Slave">Register Slave</h5><p>The thread is registering a slave server.</p>
+<h5 id="Reset_stmt">Reset stmt</h5><p>The thread is resetting a prepared statement.</p>
+<h5 id="Set_option">Set option</h5><p>The thread is setting or resetting a client statement-execution option.</p>
+<h5 id="Shutdown">Shutdown</h5><p>The thread is shutting down the server.</p>
+<h5 id="Sleep">Sleep</h5><p>The thread is waiting for the client to send a new statement to it.</p>
+<h5 id="Statistics">Statistics</h5><p>The thread is producing server-status information.</p>
+<h5 id="Table_Dump">Table Dump</h5><p>The thread is sending table contents to a slave server.</p>
+<h5 id="Time">Time</h5><p>Unused.</p>
+<h2 id="General_Thread">General Thread</h2><p>The following list describes thread State values that are associated with general query processing and not more specialized activities such as replication. Many of these are useful only for finding bugs in the server.  </p>
+<h5 id="After_create">After create</h5><p>This occurs when the thread creates a table (including internal temporary tables), at the end of the function that creates the table. This state is used even if the table could not be created due to some error.</p>
+<h5 id="altering_table">altering table</h5><p>The server is in the process of executing an in-place ALTER TABLE.</p>
+<h5 id="Analyzing">Analyzing</h5><p>The thread is calculating a MyISAM table key distributions (for example, for ANALYZE TABLE).</p>
+<h5 id="checking_permissions">checking permissions</h5><p>The thread is checking whether the server has the required privileges to execute the statement.</p>
+<h5 id="Checking_table">Checking table</h5><p>The thread is performing a table check operation.</p>
+<h5 id="cleaning_up">cleaning up</h5><p>The thread has processed one command and is preparing to free memory and reset certain state variables.</p>
+<h5 id="closing_tables">closing tables</h5><p>The thread is flushing the changed table data to disk and closing the used tables. This should be a fast operation. If not, verify that you do not have a full disk and that the disk is not in very heavy use.</p>
+<h5 id="committing_alter_table_to_storage_engine">committing alter table to storage engine</h5><p>The server has finished an in-place ALTER TABLE and is committing the result.</p>
+<h5 id="converting_HEAP_to_MyISAM">converting HEAP to MyISAM</h5><p>The thread is converting an internal temporary table from a MEMORY table to an on-disk MyISAM table.</p>
+<h5 id="copy_to_tmp_table">copy to tmp table</h5><p>The thread is processing an ALTER TABLE statement. This state occurs after the table with the new structure has been created but before rows are copied into it.</p>
+<h5 id="Copying_to_group_table">Copying to group table</h5><p>If a statement has different ORDER BY and GROUP BY criteria, the rows are sorted by group and copied to a temporary table.</p>
+<h5 id="Copying_to_tmp_table">Copying to tmp table</h5><p>The server is copying to a temporary table in memory.</p>
+<h5 id="Copying_to_tmp_table_on_disk">Copying to tmp table on disk</h5><p>The server is copying to a temporary table on disk. The temporary result set has become too large (see Section 8.4.4, “Internal Temporary Table Use in MySQL”). Consequently, the thread is changing the temporary table from in-memory to disk-based format to save memory.</p>
+<h5 id="Creating_index">Creating index</h5><p>The thread is processing ALTER TABLE … ENABLE KEYS for a MyISAM table.</p>
+<h5 id="Creating_sort_index">Creating sort index</h5><p>The thread is processing a SELECT that is resolved using an internal temporary table.</p>
+<h5 id="creating_table">creating table</h5><p>The thread is creating a table. This includes creation of temporary tables.</p>
+<h5 id="Creating_tmp_table">Creating tmp table</h5><p>The thread is creating a temporary table in memory or on disk. If the table is created in memory but later is converted to an on-disk table, the state during that operation will be Copying to tmp table on disk.</p>
+<h5 id="deleting_from_main_table">deleting from main table</h5><p>The server is executing the first part of a multiple-table delete. It is deleting only from the first table, and saving columns and offsets to be used for deleting from the other (reference) tables.</p>
+<h5 id="deleting_from_reference_tables">deleting from reference tables</h5><p>The server is executing the second part of a multiple-table delete and deleting the matched rows from the other tables.</p>
+<h5 id="discard_or_import_tablespace">discard_or_import_tablespace</h5><p>The thread is processing an ALTER TABLE … DISCARD TABLESPACE or ALTER TABLE … IMPORT TABLESPACE statement.</p>
+<h5 id="end">end</h5><p>This occurs at the end but before the cleanup of ALTER TABLE, CREATE VIEW, DELETE, INSERT, SELECT, or UPDATE statements.</p>
+<h5 id="executing">executing</h5><p>The thread has begun executing a statement.</p>
+<h5 id="Execution_of_init_command">Execution of init_command</h5><p>The thread is executing statements in the value of the init_command system variable.</p>
+<h5 id="freeing_items">freeing items</h5><p>The thread has executed a command. Some freeing of items done during this state involves the query cache. This state is usually followed by cleaning up.</p>
+<h5 id="Flushing_tables">Flushing tables</h5><p>The thread is executing FLUSH TABLES and is waiting for all threads to close their tables.</p>
+<h5 id="FULLTEXT_initialization">FULLTEXT initialization</h5><p>The server is preparing to perform a natural-language full-text search.</p>
+<h5 id="init">init</h5><p>This occurs before the initialization of ALTER TABLE, DELETE, INSERT, SELECT, or UPDATE statements. Actions taken by the server in this state include flushing the binary log, the InnoDB log, and some query cache cleanup operations.<br>For the end state, the following operations could be happening:<br>    Removing query cache entries after data in a table is changed<br>    Writing an event to the binary log<br>    Freeing memory buffers, including for blobs</p>
+<h5 id="Killed">Killed</h5><p>Someone has sent a KILL statement to the thread and it should abort next time it checks the kill flag. The flag is checked in each major loop in MySQL, but in some cases it might still take a short time for the thread to die. If the thread is locked by some other thread, the kill takes effect as soon as the other thread releases its lock.</p>
+<h5 id="logging_slow_query">logging slow query</h5><p>The thread is writing a statement to the slow-query log.</p>
+<h5 id="NULL">NULL</h5><p>This state is used for the SHOW PROCESSLIST state.</p>
+<h5 id="login">login</h5><p>The initial state for a connection thread until the client has been authenticated successfully.</p>
+<h5 id="manage_keys">manage keys</h5><p>The server is enabling or disabling a table index.</p>
+<h5 id="Opening_tables,_Opening_table">Opening tables, Opening table</h5><p>The thread is trying to open a table. This is should be very fast procedure, unless something prevents opening. For example, an ALTER TABLE or a LOCK TABLE statement can prevent opening a table until the statement is finished. It is also worth checking that your table_open_cache value is large enough.</p>
+<h5 id="optimizing">optimizing</h5><p>The server is performing initial optimizations for a query.</p>
+<h5 id="preparing">preparing</h5><p>This state occurs during query optimization.</p>
+<h5 id="preparing_for_alter_table">preparing for alter table</h5><p>The server is preparing to execute an in-place ALTER TABLE.</p>
+<h5 id="Purging_old_relay_logs">Purging old relay logs</h5><p>The thread is removing unneeded relay log files.</p>
+<h5 id="query_end">query end</h5><p>This state occurs after processing a query but before the freeing items state.</p>
+<h5 id="Reading_from_net">Reading from net</h5><p>The server is reading a packet from the network.</p>
+<h5 id="Removing_duplicates">Removing duplicates</h5><p>The query was using SELECT DISTINCT in such a way that MySQL could not optimize away the distinct operation at an early stage. Because of this, MySQL requires an extra stage to remove all duplicated rows before sending the result to the client.</p>
+<h5 id="removing_tmp_table">removing tmp table</h5><p>The thread is removing an internal temporary table after processing a SELECT statement. This state is not used if no temporary table was created.</p>
+<h5 id="rename">rename</h5><p>The thread is renaming a table.</p>
+<h5 id="rename_result_table">rename result table</h5><p>The thread is processing an ALTER TABLE statement, has created the new table, and is renaming it to replace the original table.</p>
+<h5 id="Reopen_tables">Reopen tables</h5><p>The thread got a lock for the table, but noticed after getting the lock that the underlying table structure changed. It has freed the lock, closed the table, and is trying to reopen it.</p>
+<h5 id="Repair_by_sorting">Repair by sorting</h5><p>The repair code is using a sort to create indexes.</p>
+<h5 id="Repair_done">Repair done</h5><p>The thread has completed a multi-threaded repair for a MyISAM table.</p>
+<h5 id="Repair_with_keycache">Repair with keycache</h5><p>The repair code is using creating keys one by one through the key cache. This is much slower than Repair by sorting.</p>
+<h5 id="Rolling_back">Rolling back</h5><p>The thread is rolling back a transaction.</p>
+<h5 id="Saving_state">Saving state</h5><p>For MyISAM table operations such as repair or analysis, the thread is saving the new table state to the .MYI file header. State includes information such as number of rows, the AUTO_INCREMENT counter, and key distributions.</p>
+<h5 id="Searching_rows_for_update">Searching rows for update</h5><p>The thread is doing a first phase to find all matching rows before updating them. This has to be done if the UPDATE is changing the index that is used to find the involved rows.</p>
+<h5 id="Sending_data">Sending data</h5><p>The thread is reading and processing rows for a SELECT statement, and sending data to the client. Because operations occurring during this state tend to perform large amounts of disk access (reads), it is often the longest-running state over the lifetime of a given query.</p>
+<h5 id="setup">setup</h5><p>The thread is beginning an ALTER TABLE operation.</p>
+<h5 id="Sorting_for_group">Sorting for group</h5><p>The thread is doing a sort to satisfy a GROUP BY.</p>
+<h5 id="Sorting_for_order">Sorting for order</h5><p>The thread is doing a sort to satisfy a ORDER BY.</p>
+<h5 id="Sorting_index">Sorting index</h5><p>The thread is sorting index pages for more efficient access during a MyISAM table optimization operation.</p>
+<h5 id="Sorting_result">Sorting result</h5><p>For a SELECT statement, this is similar to Creating sort index, but for nontemporary tables.</p>
+<h5 id="statistics">statistics</h5><p>The server is calculating statistics to develop a query execution plan. If a thread is in this state for a long time, the server is probably disk-bound performing other work.</p>
+<h5 id="System_lock">System lock</h5><p>The thread is going to request or is waiting for an internal or external system lock for the table. If this state is being caused by requests for external locks and you are not using multiple mysqld servers that are accessing the same MyISAM tables, you can disable external system locks with the –skip-external-locking option. However, external locking is disabled by default, so it is likely that this option will have no effect. For SHOW PROFILE, this state means the thread is requesting the lock (not waiting for it).</p>
+<h5 id="update">update</h5><p>The thread is getting ready to start updating the table.</p>
+<h5 id="Updating">Updating</h5><p>The thread is searching for rows to update and is updating them.</p>
+<h5 id="updating_main_table">updating main table</h5><p>The server is executing the first part of a multiple-table update. It is updating only the first table, and saving columns and offsets to be used for updating the other (reference) tables.</p>
+<h5 id="updating_reference_tables">updating reference tables</h5><p>The server is executing the second part of a multiple-table update and updating the matched rows from the other tables.</p>
+<h5 id="User_lock">User lock</h5><p>The thread is going to request or is waiting for an advisory lock requested with a GET_LOCK() call. For SHOW PROFILE, this state means the thread is requesting the lock (not waiting for it).</p>
+<h5 id="User_sleep">User sleep</h5><p>The thread has invoked a SLEEP() call.</p>
+<h5 id="Waiting_for_commit_lock">Waiting for commit lock</h5><p>FLUSH TABLES WITH READ LOCK is waiting for a commit lock.</p>
+<h5 id="Waiting_for_global_read_lock">Waiting for global read lock</h5><p>FLUSH TABLES WITH READ LOCK is waiting for a global read lock or the global read_only system variable is being set.</p>
+<h5 id="Waiting_for_tables,_Waiting_for_table_flush">Waiting for tables, Waiting for table flush</h5><p>The thread got a notification that the underlying structure for a table has changed and it needs to reopen the table to get the new structure. However, to reopen the table, it must wait until all other threads have closed the table in question.<br>This notification takes place if another thread has used FLUSH TABLES or one of the following statements on the table in question: FLUSH TABLES tbl_name, ALTER TABLE, RENAME TABLE, REPAIR TABLE, ANALYZE TABLE, or OPTIMIZE TABLE.  </p>
+<h5 id="Waiting_for_lock_type_lock">Waiting for lock_type lock</h5><p>The server is waiting to acquire a lock, where lock_type indicates the type of lock:</p>
+<pre><code>Waiting for event metadata <span class="operator"><span class="keyword">lock</span>
+
+Waiting <span class="keyword">for</span> <span class="keyword">global</span> <span class="keyword">read</span> <span class="keyword">lock</span>
+
+Waiting <span class="keyword">for</span> <span class="keyword">schema</span> metadata <span class="keyword">lock</span>
+
+Waiting <span class="keyword">for</span> <span class="keyword">stored</span> <span class="keyword">function</span> metadata <span class="keyword">lock</span>
+
+Waiting <span class="keyword">for</span> <span class="keyword">stored</span> <span class="keyword">procedure</span> metadata <span class="keyword">lock</span>
+
+Waiting <span class="keyword">for</span> <span class="keyword">table</span> <span class="keyword">level</span> <span class="keyword">lock</span>
+
+Waiting <span class="keyword">for</span> <span class="keyword">table</span> metadata <span class="keyword">lock</span>
+
+Waiting <span class="keyword">for</span> <span class="keyword">trigger</span> metadata <span class="keyword">lock</span></span>
+</code></pre><h5 id="Waiting_on_cond">Waiting on cond</h5><p>A generic state in which the thread is waiting for a condition to become true. No specific state information is available.</p>
+<h5 id="Writing_to_net">Writing to net</h5><p>The server is writing a packet to the network.</p>
+<h2 id="Delayed-Insert_Thread">Delayed-Insert Thread</h2><p>These thread states are associated with processing for DELAYED inserts (see Section 13.2.5.2, “INSERT DELAYED Syntax”). Some states are associated with connection threads that process INSERT DELAYED statements from clients. Other states are associated with delayed-insert handler threads that insert the rows. There is a delayed-insert handler thread for each table for which INSERT DELAYED statements are issued.<br>States associated with a connection thread that processes an INSERT DELAYED statement from the client:  </p>
+<h5 id="allocating_local_table">allocating local table</h5><p>The thread is preparing to feed rows to the delayed-insert handler thread.</p>
+<h5 id="Creating_delayed_handler">Creating delayed handler</h5><p>The thread is creating a handler for DELAYED inserts.</p>
+<h5 id="got_handler_lock">got handler lock</h5><p>This occurs before the allocating local table state and after the waiting for handler lock state, when the connection thread gets access to the delayed-insert handler thread.</p>
+<h5 id="got_old_table">got old table</h5><p>This occurs after the waiting for handler open state. The delayed-insert handler thread has signaled that it has ended its initialization phase, which includes opening the table for delayed inserts.</p>
+<h5 id="storing_row_into_queue">storing row into queue</h5><p>The thread is adding a new row to the list of rows that the delayed-insert handler thread must insert.</p>
+<h5 id="waiting_for_delay_list">waiting for delay_list</h5><p>This occurs during the initialization phase when the thread is trying to find the delayed-insert handler thread for the table, and before attempting to gain access to the list of delayed-insert threads.</p>
+<h5 id="waiting_for_handler_insert">waiting for handler insert</h5><p>An INSERT DELAYED handler has processed all pending inserts and is waiting for new ones.</p>
+<h5 id="waiting_for_handler_lock">waiting for handler lock</h5><p>This occurs before the allocating local table state when the connection thread waits for access to the delayed-insert handler thread.</p>
+<h5 id="waiting_for_handler_open">waiting for handler open</h5><p>This occurs after the Creating delayed handler state and before the got old table state. The delayed-insert handler thread has just been started, and the connection thread is waiting for it to initialize.<br>States associated with a delayed-insert handler thread that inserts the rows:  </p>
+<h5 id="insert">insert</h5><p>The state that occurs just before inserting rows into the table.</p>
+<h5 id="reschedule">reschedule</h5><p>After inserting a number of rows, the delayed-insert thread sleeps to let other threads do work.</p>
+<h5 id="upgrading_lock">upgrading lock</h5><p>A delayed-insert handler is trying to get a lock for the table to insert rows.</p>
+<h5 id="Waiting_for_INSERT">Waiting for INSERT</h5><p>A delayed-insert handler is waiting for a connection thread to add rows to the queue (see storing row into queue).</p>
+<h2 id="Query_Cache_Thread">Query Cache Thread</h2><p>These thread states are associated with the query cache (see Section 8.10.3, “The MySQL Query Cache”).  </p>
+<h5 id="checking_privileges_on_cached_query">checking privileges on cached query</h5><p>The server is checking whether the user has privileges to access a cached query result.</p>
+<h5 id="checking_query_cache_for_query">checking query cache for query</h5><p>The server is checking whether the current query is present in the query cache.</p>
+<h5 id="invalidating_query_cache_entries">invalidating query cache entries</h5><p>Query cache entries are being marked invalid because the underlying tables have changed.</p>
+<h5 id="sending_cached_result_to_client">sending cached result to client</h5><p>The server is taking the result of a query from the query cache and sending it to the client.</p>
+<h5 id="storing_result_in_query_cache">storing result in query cache</h5><p>The server is storing the result of a query in the query cache.</p>
+<h5 id="Waiting_for_query_cache_lock">Waiting for query cache lock</h5><p>This state occurs while a session is waiting to take the query cache lock. This can happen for any statement that needs to perform some query cache operation, such as an INSERT or DELETE that invalidates the query cache, a SELECT that looks for a cached entry, RESET QUERY CACHE, and so forth.</p>
+<h2 id="Replication_Master_Thread">Replication Master Thread</h2><p>The following list shows the most common states you may see in the State column for the master’s Binlog Dump thread. If you see no Binlog Dump threads on a master server, this means that replication is not running—that is, that no slaves are currently connected.  </p>
+<h5 id="Sending_binlog_event_to_slave">Sending binlog event to slave</h5><p>Binary logs consist of events, where an event is usually an update plus some other information. The thread has read an event from the binary log and is now sending it to the slave.</p>
+<h5 id="Finished_reading_one_binlog;_switching_to_next_binlog">Finished reading one binlog; switching to next binlog</h5><p>The thread has finished reading a binary log file and is opening the next one to send to the slave.</p>
+<h5 id="Master_has_sent_all_binlog_to_slave;_waiting_for_binlog_to_be_updated">Master has sent all binlog to slave; waiting for binlog to be updated</h5><p>The thread has read all outstanding updates from the binary logs and sent them to the slave. The thread is now idle, waiting for new events to appear in the binary log resulting from new updates occurring on the master.</p>
+<h5 id="Waiting_to_finalize_termination">Waiting to finalize termination</h5><p>A very brief state that occurs as the thread is stopping.</p>
+<h2 id="Replication_Slave_I/O_Thread">Replication Slave I/O Thread</h2><p>The following list shows the most common states you see in the State column for a slave server I/O thread. This state also appears in the Slave_IO_State column displayed by SHOW SLAVE STATUS, so you can get a good view of what is happening by using that statement.  </p>
+<h5 id="Waiting_for_master_update">Waiting for master update</h5><p>The initial state before Connecting to master.</p>
+<h5 id="Connecting_to_master">Connecting to master</h5><p>The thread is attempting to connect to the master.</p>
+<h5 id="Checking_master_version">Checking master version</h5><p>A state that occurs very briefly, after the connection to the master is established.</p>
+<h5 id="Registering_slave_on_master">Registering slave on master</h5><p>A state that occurs very briefly after the connection to the master is established.</p>
+<h5 id="Requesting_binlog_dump">Requesting binlog dump</h5><p>A state that occurs very briefly, after the connection to the master is established. The thread sends to the master a request for the contents of its binary logs, starting from the requested binary log file name and position.</p>
+<h5 id="Waiting_to_reconnect_after_a_failed_binlog_dump_request">Waiting to reconnect after a failed binlog dump request</h5><p>If the binary log dump request failed (due to disconnection), the thread goes into this state while it sleeps, then tries to reconnect periodically. The interval between retries can be specified using the CHANGE MASTER TO statement.</p>
+<h5 id="Reconnecting_after_a_failed_binlog_dump_request">Reconnecting after a failed binlog dump request</h5><p>The thread is trying to reconnect to the master.</p>
+<h5 id="Waiting_for_master_to_send_event">Waiting for master to send event</h5><p>The thread has connected to the master and is waiting for binary log events to arrive. This can last for a long time if the master is idle. If the wait lasts for slave_net_timeout seconds, a timeout occurs. At that point, the thread considers the connection to be broken and makes an attempt to reconnect.</p>
+<h5 id="Queueing_master_event_to_the_relay_log">Queueing master event to the relay log</h5><p>The thread has read an event and is copying it to the relay log so that the SQL thread can process it.</p>
+<h5 id="Waiting_to_reconnect_after_a_failed_master_event_read">Waiting to reconnect after a failed master event read</h5><p>An error occurred while reading (due to disconnection). The thread is sleeping for the number of seconds set by the CHANGE MASTER TO statement (default 60) before attempting to reconnect.</p>
+<h5 id="Reconnecting_after_a_failed_master_event_read">Reconnecting after a failed master event read</h5><p>The thread is trying to reconnect to the master. When connection is established again, the state becomes Waiting for master to send event.</p>
+<h5 id="Waiting_for_the_slave_SQL_thread_to_free_enough_relay_log_space">Waiting for the slave SQL thread to free enough relay log space</h5><p>You are using a nonzero relay_log_space_limit value, and the relay logs have grown large enough that their combined size exceeds this value. The I/O thread is waiting until the SQL thread frees enough space by processing relay log contents so that it can delete some relay log files.</p>
+<h5 id="Waiting_for_slave_mutex_on_exit">Waiting for slave mutex on exit</h5><p>A state that occurs briefly as the thread is stopping.</p>
+<h2 id="Replication_Slave_SQL_Thread">Replication Slave SQL Thread</h2><p>The following list shows the most common states you may see in the State column for a slave server SQL thread:  </p>
+<h5 id="Waiting_for_the_next_event_in_relay_log">Waiting for the next event in relay log</h5><p>The initial state before Reading event from the relay log.</p>
+<h5 id="Reading_event_from_the_relay_log">Reading event from the relay log</h5><p>The thread has read an event from the relay log so that the event can be processed.</p>
+<h5 id="Making_temporary_file_(append)_before_replaying_LOAD_DATA_INFILE">Making temporary file (append) before replaying LOAD DATA INFILE</h5><p>The thread is executing a LOAD DATA INFILE statement and is appending the data to a temporary file containing the data from which the slave will read rows.</p>
+<h5 id="Making_temporary_file_(create)_before_replaying_LOAD_DATA_INFILE">Making temporary file (create) before replaying LOAD DATA INFILE</h5><p>The thread is executing a LOAD DATA INFILE statement and is creating a temporary file containing the data from which the slave will read rows. This state can only be encountered if the original LOAD DATA INFILE statement was logged by a master running a version of MySQL earlier than version 5.0.3.</p>
+<h5 id="Slave_has_read_all_relay_log;_waiting_for_more_updates">Slave has read all relay log; waiting for more updates</h5><p>The thread has processed all events in the relay log files, and is now waiting for the I/O thread to write new events to the relay log.</p>
+<h5 id="Waiting_for_slave_mutex_on_exit-1">Waiting for slave mutex on exit</h5><p>A very brief state that occurs as the thread is stopping.</p>
+<h5 id="Waiting_until_MASTER_DELAY_seconds_after_master_executed_event">Waiting until MASTER_DELAY seconds after master executed event</h5><p>The SQL thread has read an event but is waiting for the slave delay to lapse. This delay is set with the MASTER_DELAY option of CHANGE MASTER TO.</p>
+<h5 id="Killing_slave">Killing slave</h5><p>The thread is processing a STOP SLAVE statement.</p>
+<h5 id="Waiting_for_an_event_from_Coordinator">Waiting for an event from Coordinator</h5><p>Using the multi-threaded slave (slave_parallel_workers is greater than 1), one of the slave worker threads is waiting for an event from the coordinator thread.  </p>
+<p>The Info column for the SQL thread may also show the text of a statement. This indicates that the thread has read an event from the relay log, extracted the statement from it, and may be executing it.  </p>
+<h2 id="Replication_Slave_Connection_Thread">Replication Slave Connection Thread</h2><p>These thread states occur on a replication slave but are associated with connection threads, not with the I/O or SQL threads.  </p>
+<h5 id="Changing_master">Changing master</h5><p>The thread is processing a CHANGE MASTER TO statement.</p>
+<h5 id="Killing_slave-1">Killing slave</h5><p>The thread is processing a STOP SLAVE statement.</p>
+<h5 id="Opening_master_dump_table">Opening master dump table</h5><p>This state occurs after Creating table from master dump.</p>
+<h5 id="Reading_master_dump_table_data">Reading master dump table data</h5><p>This state occurs after Opening master dump table.</p>
+<h5 id="Rebuilding_the_index_on_master_dump_table">Rebuilding the index on master dump table</h5><p>This state occurs after Reading master dump table data.</p>
+<h2 id="MySQL_Cluster_Thread">MySQL Cluster Thread</h2><h5 id="Committing_events_to_binlog">Committing events to binlog</h5><h5 id="Opening_mysql-ndb_apply_status">Opening mysql.ndb_apply_status</h5><h5 id="Processing_events">Processing events</h5><p>The thread is processing events for binary logging.</p>
+<h5 id="Processing_events_from_schema_table">Processing events from schema table</h5><p>The thread is doing the work of schema replication.</p>
+<h5 id="Shutting_down">Shutting down</h5><h5 id="Syncing_ndb_table_schema_operation_and_binlog">Syncing ndb table schema operation and binlog</h5><p>This is used to have a correct binary log of schema operations for NDB.</p>
+<h5 id="Waiting_for_event_from_ndbcluster">Waiting for event from ndbcluster</h5><p>The server is acting as an SQL node in a MySQL Cluster, and is connected to a cluster management node.</p>
+<h5 id="Waiting_for_first_event_from_ndbcluster">Waiting for first event from ndbcluster</h5><h5 id="Waiting_for_ndbcluster_binlog_update_to_reach_current_position">Waiting for ndbcluster binlog update to reach current position</h5><h5 id="Waiting_for_ndbcluster_to_start">Waiting for ndbcluster to start</h5><h5 id="Waiting_for_schema_epoch">Waiting for schema epoch</h5><p>The thread is waiting for a schema epoch (that is, a global checkpoint).</p>
+<h5 id="Waiting_for_allowed_to_take_ndbcluster_global_schema_lock">Waiting for allowed to take ndbcluster global schema lock</h5><p>The thread is waiting for permission to take a global schema lock.</p>
+<h5 id="Waiting_for_ndbcluster_global_schema_lock">Waiting for ndbcluster global schema lock</h5><p>The thread is waiting for a global schema lock held by another thread to be released.</p>
+<h2 id="Event_Scheduler_Thread">Event Scheduler Thread</h2><p>These states occur for the Event Scheduler thread, threads that are created to execute scheduled events, or threads that terminate the scheduler.  </p>
+<h5 id="Clearing">Clearing</h5><p>The scheduler thread or a thread that was executing an event is terminating and is about to end.</p>
+<h5 id="Initialized">Initialized</h5><p>The scheduler thread or a thread that will execute an event has been initialized.</p>
+<h5 id="Waiting_for_next_activation">Waiting for next activation</h5><p>The scheduler has a nonempty event queue but the next activation is in the future.</p>
+<h5 id="Waiting_for_scheduler_to_stop">Waiting for scheduler to stop</h5><p>The thread issued SET GLOBAL event_scheduler=OFF and is waiting for the scheduler to stop.</p>
+<h5 id="Waiting_on_empty_queue">Waiting on empty queue</h5><p>The scheduler’s event queue is empty and it is sleeping.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/show-profile/" rel="tag">#show profile</a>
+          
+            <a href="/tags/show-processlist/" rel="tag">#show processlist</a>
+          
+            <a href="/tags/status/" rel="tag">#status</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/02/Linux的账号管理/" rel="next" title="Linux的账号管理">
+                <i class="fa fa-chevron-left"></i> Linux的账号管理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/30/CSS常用选择器/" rel="prev" title="CSS常用选择器">
+                CSS常用选择器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2018/04/02/SHOW-PROCESSLIST和SHOW-PROFILE的Status整理（英文官方文档版）/"
+     data-title="SHOW PROCESSLIST和SHOW PROFILE的Status整理（英文官方文档版）"
+     data-content=""
+     data-url="https://wing324.github.io/2018/04/02/SHOW-PROCESSLIST和SHOW-PROFILE的Status整理（英文官方文档版）/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><span class="ds-more">分享到：</span></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      <li><a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+      <li><a class="ds-google" href="javascript:void(0);" data-service="google">Google</a></li>
+    </ul>
+    <!--
+      <div class="ds-share-icons-more">
+      </div>
+    -->
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/04/02/SHOW-PROCESSLIST和SHOW-PROFILE的Status整理（英文官方文档版）/"
+           data-title="SHOW PROCESSLIST和SHOW PROFILE的Status整理（英文官方文档版）" data-url="https://wing324.github.io/2018/04/02/SHOW-PROCESSLIST和SHOW-PROFILE的Status整理（英文官方文档版）/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wing.jpg"
+               alt="Wing" />
+          <p class="site-author-name" itemprop="name">Wing</p>
+          <p class="site-description motion-element" itemprop="description">热在分享，衷在开源。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">131</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/">
+                <span class="site-state-item-count">113</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wing324" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Thread_Command"><span class="nav-number">1.</span> <span class="nav-text">Thread Command</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Binlog_Dump"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">Binlog Dump</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Change_user"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">Change user</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Close_stmt"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">Close stmt</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Connect"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">Connect</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Connect_Out"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">Connect Out</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Create_DB"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">Create DB</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Daemon"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">Daemon</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Debug"><span class="nav-number">1.0.0.8.</span> <span class="nav-text">Debug</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Delayed_insert"><span class="nav-number">1.0.0.9.</span> <span class="nav-text">Delayed insert</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Drop_DB"><span class="nav-number">1.0.0.10.</span> <span class="nav-text">Drop DB</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Error"><span class="nav-number">1.0.0.11.</span> <span class="nav-text">Error</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Execute"><span class="nav-number">1.0.0.12.</span> <span class="nav-text">Execute</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Fetch"><span class="nav-number">1.0.0.13.</span> <span class="nav-text">Fetch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Field_List"><span class="nav-number">1.0.0.14.</span> <span class="nav-text">Field List</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Init_DB"><span class="nav-number">1.0.0.15.</span> <span class="nav-text">Init DB</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Kill"><span class="nav-number">1.0.0.16.</span> <span class="nav-text">Kill</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Long_Data"><span class="nav-number">1.0.0.17.</span> <span class="nav-text">Long Data</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Ping"><span class="nav-number">1.0.0.18.</span> <span class="nav-text">Ping</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Prepare"><span class="nav-number">1.0.0.19.</span> <span class="nav-text">Prepare</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Processlist"><span class="nav-number">1.0.0.20.</span> <span class="nav-text">Processlist</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Query"><span class="nav-number">1.0.0.21.</span> <span class="nav-text">Query</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Quit"><span class="nav-number">1.0.0.22.</span> <span class="nav-text">Quit</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Refresh"><span class="nav-number">1.0.0.23.</span> <span class="nav-text">Refresh</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Register_Slave"><span class="nav-number">1.0.0.24.</span> <span class="nav-text">Register Slave</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Reset_stmt"><span class="nav-number">1.0.0.25.</span> <span class="nav-text">Reset stmt</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Set_option"><span class="nav-number">1.0.0.26.</span> <span class="nav-text">Set option</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Shutdown"><span class="nav-number">1.0.0.27.</span> <span class="nav-text">Shutdown</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Sleep"><span class="nav-number">1.0.0.28.</span> <span class="nav-text">Sleep</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Statistics"><span class="nav-number">1.0.0.29.</span> <span class="nav-text">Statistics</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Table_Dump"><span class="nav-number">1.0.0.30.</span> <span class="nav-text">Table Dump</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Time"><span class="nav-number">1.0.0.31.</span> <span class="nav-text">Time</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#General_Thread"><span class="nav-number">2.</span> <span class="nav-text">General Thread</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#After_create"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">After create</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#altering_table"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">altering table</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Analyzing"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">Analyzing</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#checking_permissions"><span class="nav-number">2.0.0.4.</span> <span class="nav-text">checking permissions</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Checking_table"><span class="nav-number">2.0.0.5.</span> <span class="nav-text">Checking table</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#cleaning_up"><span class="nav-number">2.0.0.6.</span> <span class="nav-text">cleaning up</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#closing_tables"><span class="nav-number">2.0.0.7.</span> <span class="nav-text">closing tables</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#committing_alter_table_to_storage_engine"><span class="nav-number">2.0.0.8.</span> <span class="nav-text">committing alter table to storage engine</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#converting_HEAP_to_MyISAM"><span class="nav-number">2.0.0.9.</span> <span class="nav-text">converting HEAP to MyISAM</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#copy_to_tmp_table"><span class="nav-number">2.0.0.10.</span> <span class="nav-text">copy to tmp table</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Copying_to_group_table"><span class="nav-number">2.0.0.11.</span> <span class="nav-text">Copying to group table</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Copying_to_tmp_table"><span class="nav-number">2.0.0.12.</span> <span class="nav-text">Copying to tmp table</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Copying_to_tmp_table_on_disk"><span class="nav-number">2.0.0.13.</span> <span class="nav-text">Copying to tmp table on disk</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Creating_index"><span class="nav-number">2.0.0.14.</span> <span class="nav-text">Creating index</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Creating_sort_index"><span class="nav-number">2.0.0.15.</span> <span class="nav-text">Creating sort index</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#creating_table"><span class="nav-number">2.0.0.16.</span> <span class="nav-text">creating table</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Creating_tmp_table"><span class="nav-number">2.0.0.17.</span> <span class="nav-text">Creating tmp table</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#deleting_from_main_table"><span class="nav-number">2.0.0.18.</span> <span class="nav-text">deleting from main table</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#deleting_from_reference_tables"><span class="nav-number">2.0.0.19.</span> <span class="nav-text">deleting from reference tables</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#discard_or_import_tablespace"><span class="nav-number">2.0.0.20.</span> <span class="nav-text">discard_or_import_tablespace</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#end"><span class="nav-number">2.0.0.21.</span> <span class="nav-text">end</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#executing"><span class="nav-number">2.0.0.22.</span> <span class="nav-text">executing</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Execution_of_init_command"><span class="nav-number">2.0.0.23.</span> <span class="nav-text">Execution of init_command</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#freeing_items"><span class="nav-number">2.0.0.24.</span> <span class="nav-text">freeing items</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Flushing_tables"><span class="nav-number">2.0.0.25.</span> <span class="nav-text">Flushing tables</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#FULLTEXT_initialization"><span class="nav-number">2.0.0.26.</span> <span class="nav-text">FULLTEXT initialization</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#init"><span class="nav-number">2.0.0.27.</span> <span class="nav-text">init</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Killed"><span class="nav-number">2.0.0.28.</span> <span class="nav-text">Killed</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#logging_slow_query"><span class="nav-number">2.0.0.29.</span> <span class="nav-text">logging slow query</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NULL"><span class="nav-number">2.0.0.30.</span> <span class="nav-text">NULL</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#login"><span class="nav-number">2.0.0.31.</span> <span class="nav-text">login</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#manage_keys"><span class="nav-number">2.0.0.32.</span> <span class="nav-text">manage keys</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Opening_tables,_Opening_table"><span class="nav-number">2.0.0.33.</span> <span class="nav-text">Opening tables, Opening table</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#optimizing"><span class="nav-number">2.0.0.34.</span> <span class="nav-text">optimizing</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#preparing"><span class="nav-number">2.0.0.35.</span> <span class="nav-text">preparing</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#preparing_for_alter_table"><span class="nav-number">2.0.0.36.</span> <span class="nav-text">preparing for alter table</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Purging_old_relay_logs"><span class="nav-number">2.0.0.37.</span> <span class="nav-text">Purging old relay logs</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#query_end"><span class="nav-number">2.0.0.38.</span> <span class="nav-text">query end</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Reading_from_net"><span class="nav-number">2.0.0.39.</span> <span class="nav-text">Reading from net</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Removing_duplicates"><span class="nav-number">2.0.0.40.</span> <span class="nav-text">Removing duplicates</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#removing_tmp_table"><span class="nav-number">2.0.0.41.</span> <span class="nav-text">removing tmp table</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#rename"><span class="nav-number">2.0.0.42.</span> <span class="nav-text">rename</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#rename_result_table"><span class="nav-number">2.0.0.43.</span> <span class="nav-text">rename result table</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Reopen_tables"><span class="nav-number">2.0.0.44.</span> <span class="nav-text">Reopen tables</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Repair_by_sorting"><span class="nav-number">2.0.0.45.</span> <span class="nav-text">Repair by sorting</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Repair_done"><span class="nav-number">2.0.0.46.</span> <span class="nav-text">Repair done</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Repair_with_keycache"><span class="nav-number">2.0.0.47.</span> <span class="nav-text">Repair with keycache</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Rolling_back"><span class="nav-number">2.0.0.48.</span> <span class="nav-text">Rolling back</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Saving_state"><span class="nav-number">2.0.0.49.</span> <span class="nav-text">Saving state</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Searching_rows_for_update"><span class="nav-number">2.0.0.50.</span> <span class="nav-text">Searching rows for update</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Sending_data"><span class="nav-number">2.0.0.51.</span> <span class="nav-text">Sending data</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#setup"><span class="nav-number">2.0.0.52.</span> <span class="nav-text">setup</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Sorting_for_group"><span class="nav-number">2.0.0.53.</span> <span class="nav-text">Sorting for group</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Sorting_for_order"><span class="nav-number">2.0.0.54.</span> <span class="nav-text">Sorting for order</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Sorting_index"><span class="nav-number">2.0.0.55.</span> <span class="nav-text">Sorting index</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Sorting_result"><span class="nav-number">2.0.0.56.</span> <span class="nav-text">Sorting result</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#statistics"><span class="nav-number">2.0.0.57.</span> <span class="nav-text">statistics</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#System_lock"><span class="nav-number">2.0.0.58.</span> <span class="nav-text">System lock</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#update"><span class="nav-number">2.0.0.59.</span> <span class="nav-text">update</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Updating"><span class="nav-number">2.0.0.60.</span> <span class="nav-text">Updating</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#updating_main_table"><span class="nav-number">2.0.0.61.</span> <span class="nav-text">updating main table</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#updating_reference_tables"><span class="nav-number">2.0.0.62.</span> <span class="nav-text">updating reference tables</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#User_lock"><span class="nav-number">2.0.0.63.</span> <span class="nav-text">User lock</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#User_sleep"><span class="nav-number">2.0.0.64.</span> <span class="nav-text">User sleep</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_commit_lock"><span class="nav-number">2.0.0.65.</span> <span class="nav-text">Waiting for commit lock</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_global_read_lock"><span class="nav-number">2.0.0.66.</span> <span class="nav-text">Waiting for global read lock</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_tables,_Waiting_for_table_flush"><span class="nav-number">2.0.0.67.</span> <span class="nav-text">Waiting for tables, Waiting for table flush</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_lock_type_lock"><span class="nav-number">2.0.0.68.</span> <span class="nav-text">Waiting for lock_type lock</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_on_cond"><span class="nav-number">2.0.0.69.</span> <span class="nav-text">Waiting on cond</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Writing_to_net"><span class="nav-number">2.0.0.70.</span> <span class="nav-text">Writing to net</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Delayed-Insert_Thread"><span class="nav-number">3.</span> <span class="nav-text">Delayed-Insert Thread</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#allocating_local_table"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">allocating local table</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Creating_delayed_handler"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">Creating delayed handler</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#got_handler_lock"><span class="nav-number">3.0.0.3.</span> <span class="nav-text">got handler lock</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#got_old_table"><span class="nav-number">3.0.0.4.</span> <span class="nav-text">got old table</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#storing_row_into_queue"><span class="nav-number">3.0.0.5.</span> <span class="nav-text">storing row into queue</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#waiting_for_delay_list"><span class="nav-number">3.0.0.6.</span> <span class="nav-text">waiting for delay_list</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#waiting_for_handler_insert"><span class="nav-number">3.0.0.7.</span> <span class="nav-text">waiting for handler insert</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#waiting_for_handler_lock"><span class="nav-number">3.0.0.8.</span> <span class="nav-text">waiting for handler lock</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#waiting_for_handler_open"><span class="nav-number">3.0.0.9.</span> <span class="nav-text">waiting for handler open</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#insert"><span class="nav-number">3.0.0.10.</span> <span class="nav-text">insert</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#reschedule"><span class="nav-number">3.0.0.11.</span> <span class="nav-text">reschedule</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#upgrading_lock"><span class="nav-number">3.0.0.12.</span> <span class="nav-text">upgrading lock</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_INSERT"><span class="nav-number">3.0.0.13.</span> <span class="nav-text">Waiting for INSERT</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Query_Cache_Thread"><span class="nav-number">4.</span> <span class="nav-text">Query Cache Thread</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#checking_privileges_on_cached_query"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">checking privileges on cached query</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#checking_query_cache_for_query"><span class="nav-number">4.0.0.2.</span> <span class="nav-text">checking query cache for query</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#invalidating_query_cache_entries"><span class="nav-number">4.0.0.3.</span> <span class="nav-text">invalidating query cache entries</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#sending_cached_result_to_client"><span class="nav-number">4.0.0.4.</span> <span class="nav-text">sending cached result to client</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#storing_result_in_query_cache"><span class="nav-number">4.0.0.5.</span> <span class="nav-text">storing result in query cache</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_query_cache_lock"><span class="nav-number">4.0.0.6.</span> <span class="nav-text">Waiting for query cache lock</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Replication_Master_Thread"><span class="nav-number">5.</span> <span class="nav-text">Replication Master Thread</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Sending_binlog_event_to_slave"><span class="nav-number">5.0.0.1.</span> <span class="nav-text">Sending binlog event to slave</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Finished_reading_one_binlog;_switching_to_next_binlog"><span class="nav-number">5.0.0.2.</span> <span class="nav-text">Finished reading one binlog; switching to next binlog</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Master_has_sent_all_binlog_to_slave;_waiting_for_binlog_to_be_updated"><span class="nav-number">5.0.0.3.</span> <span class="nav-text">Master has sent all binlog to slave; waiting for binlog to be updated</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_to_finalize_termination"><span class="nav-number">5.0.0.4.</span> <span class="nav-text">Waiting to finalize termination</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Replication_Slave_I/O_Thread"><span class="nav-number">6.</span> <span class="nav-text">Replication Slave I/O Thread</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_master_update"><span class="nav-number">6.0.0.1.</span> <span class="nav-text">Waiting for master update</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Connecting_to_master"><span class="nav-number">6.0.0.2.</span> <span class="nav-text">Connecting to master</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Checking_master_version"><span class="nav-number">6.0.0.3.</span> <span class="nav-text">Checking master version</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Registering_slave_on_master"><span class="nav-number">6.0.0.4.</span> <span class="nav-text">Registering slave on master</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Requesting_binlog_dump"><span class="nav-number">6.0.0.5.</span> <span class="nav-text">Requesting binlog dump</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_to_reconnect_after_a_failed_binlog_dump_request"><span class="nav-number">6.0.0.6.</span> <span class="nav-text">Waiting to reconnect after a failed binlog dump request</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Reconnecting_after_a_failed_binlog_dump_request"><span class="nav-number">6.0.0.7.</span> <span class="nav-text">Reconnecting after a failed binlog dump request</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_master_to_send_event"><span class="nav-number">6.0.0.8.</span> <span class="nav-text">Waiting for master to send event</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Queueing_master_event_to_the_relay_log"><span class="nav-number">6.0.0.9.</span> <span class="nav-text">Queueing master event to the relay log</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_to_reconnect_after_a_failed_master_event_read"><span class="nav-number">6.0.0.10.</span> <span class="nav-text">Waiting to reconnect after a failed master event read</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Reconnecting_after_a_failed_master_event_read"><span class="nav-number">6.0.0.11.</span> <span class="nav-text">Reconnecting after a failed master event read</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_the_slave_SQL_thread_to_free_enough_relay_log_space"><span class="nav-number">6.0.0.12.</span> <span class="nav-text">Waiting for the slave SQL thread to free enough relay log space</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_slave_mutex_on_exit"><span class="nav-number">6.0.0.13.</span> <span class="nav-text">Waiting for slave mutex on exit</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Replication_Slave_SQL_Thread"><span class="nav-number">7.</span> <span class="nav-text">Replication Slave SQL Thread</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_the_next_event_in_relay_log"><span class="nav-number">7.0.0.1.</span> <span class="nav-text">Waiting for the next event in relay log</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Reading_event_from_the_relay_log"><span class="nav-number">7.0.0.2.</span> <span class="nav-text">Reading event from the relay log</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Making_temporary_file_(append)_before_replaying_LOAD_DATA_INFILE"><span class="nav-number">7.0.0.3.</span> <span class="nav-text">Making temporary file (append) before replaying LOAD DATA INFILE</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Making_temporary_file_(create)_before_replaying_LOAD_DATA_INFILE"><span class="nav-number">7.0.0.4.</span> <span class="nav-text">Making temporary file (create) before replaying LOAD DATA INFILE</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Slave_has_read_all_relay_log;_waiting_for_more_updates"><span class="nav-number">7.0.0.5.</span> <span class="nav-text">Slave has read all relay log; waiting for more updates</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_slave_mutex_on_exit-1"><span class="nav-number">7.0.0.6.</span> <span class="nav-text">Waiting for slave mutex on exit</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_until_MASTER_DELAY_seconds_after_master_executed_event"><span class="nav-number">7.0.0.7.</span> <span class="nav-text">Waiting until MASTER_DELAY seconds after master executed event</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Killing_slave"><span class="nav-number">7.0.0.8.</span> <span class="nav-text">Killing slave</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_an_event_from_Coordinator"><span class="nav-number">7.0.0.9.</span> <span class="nav-text">Waiting for an event from Coordinator</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Replication_Slave_Connection_Thread"><span class="nav-number">8.</span> <span class="nav-text">Replication Slave Connection Thread</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Changing_master"><span class="nav-number">8.0.0.1.</span> <span class="nav-text">Changing master</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Killing_slave-1"><span class="nav-number">8.0.0.2.</span> <span class="nav-text">Killing slave</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Opening_master_dump_table"><span class="nav-number">8.0.0.3.</span> <span class="nav-text">Opening master dump table</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Reading_master_dump_table_data"><span class="nav-number">8.0.0.4.</span> <span class="nav-text">Reading master dump table data</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Rebuilding_the_index_on_master_dump_table"><span class="nav-number">8.0.0.5.</span> <span class="nav-text">Rebuilding the index on master dump table</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL_Cluster_Thread"><span class="nav-number">9.</span> <span class="nav-text">MySQL Cluster Thread</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Committing_events_to_binlog"><span class="nav-number">9.0.0.1.</span> <span class="nav-text">Committing events to binlog</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Opening_mysql-ndb_apply_status"><span class="nav-number">9.0.0.2.</span> <span class="nav-text">Opening mysql.ndb_apply_status</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Processing_events"><span class="nav-number">9.0.0.3.</span> <span class="nav-text">Processing events</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Processing_events_from_schema_table"><span class="nav-number">9.0.0.4.</span> <span class="nav-text">Processing events from schema table</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Shutting_down"><span class="nav-number">9.0.0.5.</span> <span class="nav-text">Shutting down</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Syncing_ndb_table_schema_operation_and_binlog"><span class="nav-number">9.0.0.6.</span> <span class="nav-text">Syncing ndb table schema operation and binlog</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_event_from_ndbcluster"><span class="nav-number">9.0.0.7.</span> <span class="nav-text">Waiting for event from ndbcluster</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_first_event_from_ndbcluster"><span class="nav-number">9.0.0.8.</span> <span class="nav-text">Waiting for first event from ndbcluster</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_ndbcluster_binlog_update_to_reach_current_position"><span class="nav-number">9.0.0.9.</span> <span class="nav-text">Waiting for ndbcluster binlog update to reach current position</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_ndbcluster_to_start"><span class="nav-number">9.0.0.10.</span> <span class="nav-text">Waiting for ndbcluster to start</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_schema_epoch"><span class="nav-number">9.0.0.11.</span> <span class="nav-text">Waiting for schema epoch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_allowed_to_take_ndbcluster_global_schema_lock"><span class="nav-number">9.0.0.12.</span> <span class="nav-text">Waiting for allowed to take ndbcluster global schema lock</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_ndbcluster_global_schema_lock"><span class="nav-number">9.0.0.13.</span> <span class="nav-text">Waiting for ndbcluster global schema lock</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Event_Scheduler_Thread"><span class="nav-number">10.</span> <span class="nav-text">Event Scheduler Thread</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Clearing"><span class="nav-number">10.0.0.1.</span> <span class="nav-text">Clearing</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Initialized"><span class="nav-number">10.0.0.2.</span> <span class="nav-text">Initialized</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_next_activation"><span class="nav-number">10.0.0.3.</span> <span class="nav-text">Waiting for next activation</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_for_scheduler_to_stop"><span class="nav-number">10.0.0.4.</span> <span class="nav-text">Waiting for scheduler to stop</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Waiting_on_empty_queue"><span class="nav-number">10.0.0.5.</span> <span class="nav-text">Waiting on empty queue</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">您是第<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>个小伙伴</span>
+  
+
+  
+    <span class="site-pv">本站总浏览<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wing</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"Wing"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementById('footer')
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+  <!-- 背景动画 -->
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+  <!-- 页面点击小红心 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>

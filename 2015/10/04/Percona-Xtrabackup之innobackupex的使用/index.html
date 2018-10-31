@@ -1,0 +1,1160 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Percona Xtrabackup,pt,innobackupex," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wing's Tech Space" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="innobackupex为Percona Xtrabackup工具之一，文章从innobackupex工具的工作原理与使用对其进行了介绍。Percona Xtrabackup的安装详见：http://wing324.github.io/2015/10/04/Percona-Xtrabackup%E5%AE%89%E8%A3%85/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Percona-Xtrabackup之innobackupex的使用">
+<meta property="og:url" content="https://wing324.github.io/2015/10/04/Percona-Xtrabackup之innobackupex的使用/index.html">
+<meta property="og:site_name" content="Wing's Tech Space">
+<meta property="og:description" content="innobackupex为Percona Xtrabackup工具之一，文章从innobackupex工具的工作原理与使用对其进行了介绍。Percona Xtrabackup的安装详见：http://wing324.github.io/2015/10/04/Percona-Xtrabackup%E5%AE%89%E8%A3%85/">
+<meta property="og:updated_time" content="2017-01-31T10:36:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Percona-Xtrabackup之innobackupex的使用">
+<meta name="twitter:description" content="innobackupex为Percona Xtrabackup工具之一，文章从innobackupex工具的工作原理与使用对其进行了介绍。Percona Xtrabackup的安装详见：http://wing324.github.io/2015/10/04/Percona-Xtrabackup%E5%AE%89%E8%A3%85/">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 11154520,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://wing324.github.io/2015/10/04/Percona-Xtrabackup之innobackupex的使用/"/>
+
+  <title> Percona-Xtrabackup之innobackupex的使用 | Wing's Tech Space </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?49b16c9d482511603ad262b1dcf7bb45";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Wing's Tech Space</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+
+      <!-- 自定义High一下的功能 -->
+      <li class="menu-item"> <a title="把这个链接拖到你的工具栏中,任何网页都可以High" href='javascript:(
+    function go() {
+
+
+    var songs = [
+    	"http://p2.music.126.net/B0HhRLh0h2NBdlcGTcTrEA==/2076977464881622.mp3",
+	"http://p2.music.126.net/RMJR7wDullRqppBk8dhLow==/3435973841155597.mp3",
+	"http://p2.music.126.net/sLKP3na0M4mdXocWFcVHlA==/3236962235602026.mp3",
+	"http://p2.music.126.net/JHuQLKSs47g-jTAASut-2g==/7714173581565477.mp3",
+	"http://p2.music.126.net/dGpxzld-XaokuOdbMKzGrA==/2533274792968816.mp3",
+	"http://p2.music.126.net/O1-e4JylX2IhqQTV6ZLZkg==/3235862723975492.mp3"
+	];
+
+    
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+ 
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+ 
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+ 
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+ 
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+ 
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+ 
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+ 
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+ 
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.getElementById("audio_element_id");
+        if(e != null){
+            var index = parseInt(e.getAttribute("curSongIndex"));
+            if(index > songs.length - 2) {
+                index = 0;
+            } else {
+                index++;
+            }
+            e.setAttribute("curSongIndex", index);
+            N();
+        }
+
+        e.src = i;
+        e.play()
+    }
+ 
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+ 
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+ 
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    function initAudioEle() {
+        var e = document.getElementById("audio_element_id");
+        if(e === null){
+            e = document.createElement("audio");
+            e.setAttribute("class", l);
+            e.setAttribute("curSongIndex", 0);
+            e.id = "audio_element_id";
+            e.loop = false;
+            e.bgcolor = 0;
+            e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h();
+            go();
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        }
+    }
+    
+    initAudioEle();
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+
+    var curSongIndex = parseInt(document.getElementById("audio_element_id").getAttribute("curSongIndex"));
+    var i = songs[curSongIndex];
+    
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+
+    /* harlem-shake-style.css，替换成你的位置，也可以直接使用：//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css */
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()'><i class="menu-item-icon fa fa-music fa-fw"></i>High一下</a> </li>
+          <!-- end High一下 -->
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search fa-lg"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Percona-Xtrabackup之innobackupex的使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-10-04T15:26:52-07:00" content="2015-10-04">
+              2015-10-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/04/Percona-Xtrabackup之innobackupex的使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/04/Percona-Xtrabackup之innobackupex的使用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">热度
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>℃
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>innobackupex为Percona Xtrabackup工具之一，文章从innobackupex工具的工作原理与使用对其进行了介绍。<br>Percona Xtrabackup的安装详见：<br><a href="http://wing324.github.io/2015/10/04/Percona-Xtrabackup%E5%AE%89%E8%A3%85/">http://wing324.github.io/2015/10/04/Percona-Xtrabackup%E5%AE%89%E8%A3%85/</a><br><a id="more"></a></p>
+<h1 id="innobackupex">innobackupex</h1><h2 id="工作原理">工作原理</h2><h5 id="备份">备份</h5><ol>
+<li>默认情况下,innobackupex会以xtrbackup –suspend-at-end启动复制InnoDB文件,当xtrbackup完成后,innobackupex检测到xtrabackup创建的xtrabackup_suspended_2文件,然后执行FTWRL复制非InnoDB文件。  </li>
+<li>当所有的文件都备份成功,重新开始ibbackup,等待完成复制备份过程中执行完成的事务,然后释放表锁,从库开启（在使用参数–safe-slave-backup的前提下）,关闭连接MySQL,删除xtrabackup_suspended_2文件,退出xtrabackup。<br><strong>备份目录下的文件</strong><br>backup-my.cnf文件<br>备份时需要的一些my.cnf文件中的选项。  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">[root@oracle01 2015-09-08_14-29-08]# cat backup-my.cnf </div><div class="line"># This MySQL options file was generated by innobackupex.</div><div class="line"></div><div class="line"># The MySQL server</div><div class="line">[mysqld]</div><div class="line">innodb_checksum_algorithm=innodb</div><div class="line">innodb_data_file_path=ibdata1:64M:autoextend</div><div class="line">innodb_log_files_in_group=2</div><div class="line">innodb_log_file_size=67108864</div><div class="line">innodb_page_size=16384</div><div class="line">innodb_undo_directory=.</div><div class="line">innodb_undo_tablespaces=0</div></pre></td></tr></table></figure>
+<p>xtrabackup_binlog_info文件<br>记录最后的binlog目录和位置  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">[root@oracle01 2015-09-08_14-29-08]# cat xtrabackup_binlog_info </div><div class="line">mysql-bin.000005        47391729</div></pre></td></tr></table></figure>
+<p>xtrabackup_checkpoints文件<br>记录备份类型,开始和结束的LSN,是否为压缩备份  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">[root@oracle01 2015-09-08_14-29-08]# cat xtrabackup_checkpoints </div><div class="line">backup_type = full-backuped</div><div class="line">from_lsn = 0</div><div class="line">to_lsn = 545232808</div><div class="line">last_lsn = 545232808</div><div class="line">compact = 0</div></pre></td></tr></table></figure>
+<p>xtrabackup_info文件<br>备份的相关信息  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">[root@oracle01 2015-09-08_14-29-08]# cat xtrabackup_info </div><div class="line">uuid = f19640f9-55f2-11e5-9676-fa163ee44368</div><div class="line">name = </div><div class="line">tool_name = innobackupex</div><div class="line">tool_command = --user=percona --host=127.0.0.1 --password=... --port=3306 --defaults-group=mysqld3306 /data/backup/</div><div class="line">tool_version = 1.5.1-xtrabackup</div><div class="line">ibbackup_version = xtrabackup version 2.2.12 based on MySQL server 5.6.24 Linux (x86_64) (revision id: 8726828)</div><div class="line">server_version = 5.6.26-log</div><div class="line">start_time = 2015-09-08 14:29:08</div><div class="line">end_time = 2015-09-08 14:29:22</div><div class="line">lock_time = 1</div><div class="line">binlog_pos = filename &apos;mysql-bin.000005&apos;, position 47391729</div><div class="line">innodb_from_lsn = 0</div><div class="line">innodb_to_lsn = 545232808</div><div class="line">partial = N</div><div class="line">incremental = N</div><div class="line">format = file</div><div class="line">compact = N</div><div class="line">compressed = N</div><div class="line">encrypted = N</div></pre></td></tr></table></figure>
+<p>xtrabackup_binlog_pos_innodb文件<br>当前正在备份的相关事务对应的binlog位置  </p>
+<p>xtrabackup_slave_info文件<br>使用-slave-info参数时记录SHOW SLAVE STATUS\G的主库binlog位置  </p>
+<h5 id="恢复">恢复</h5><ol>
+<li>首先innobackup会读取my.cnf文件，检查 datadir, innodb_data_home_dir, innodb_data_file_path, innodb_log_group_home_dir 对应的目录是否存在  </li>
+<li>然后，最先复制非InnoDB数据和索引文件，然后复制InnoDB表和索引文件，最后复制日志文件。复制会保留文件属性，所以在启动恢复服务器之前要修改复制文件的用户和用户组为mysql  </li>
+</ol>
+<h2 id="innobackupex连接MySQL需要使用的参数">innobackupex连接MySQL需要使用的参数</h2><p>–user：连接MySQL用户<br>–port： 连接MySQL端口<br>–host：连接MySQL的IP地址<br>–socket：连接MySQL的socket文件<br>–password：连接MySQL用户的密码<br>–defaults-file：指定MySQL配置文件<br>–defaults-group：指定MySQL配置文件读取的位置,如–defaults-group=‘mysqld’或者–defaults-group=‘mysqld3306’  </p>
+<h2 id="innobackupex用户权限">innobackupex用户权限</h2><ol>
+<li>RELOAD &amp; LOCK TABLES：为了在复制文件之前FLUSH TABLE WITH READ LOCK &amp; FLUSH ENGINE LOGS使用,但备份锁需要时,则还需要执行LOCK TABLE FOR BACKUP &amp; LOCK BINLOG FOR BACKUP  </li>
+<li>REPLICATION CLIENT：获取二进制日志位置信息  </li>
+<li>CREATE TABLESPACE：为了导入表  </li>
+<li>PROECSS：为了查看服务器上哪些线程正在运行  </li>
+<li>SUPER：复制环境下start/stop从库线程  </li>
+<li>CREATE：创建PERCONA_SCHEMA.xtrabackup_history数据库和表  </li>
+<li>INSERT：向PERCONA_SCHEMA.xtrabackup_history表中插入历史记录  </li>
+<li>SELECT：在PERCONA_SCHEMA.xtrabackup_history表中查看innodb_to_lsn值  </li>
+</ol>
+<p>备份用户所需要的最小的权限为：RELOAD、LOCK TABLES、REPLICATION CLIENT<br>恢复用户所需要的最小的权限为：CREATE TABLESPACE</p>
+<h2 id="innobackupex完全备份使用演示">innobackupex完全备份使用演示</h2><h5 id="创建完全备份">创建完全备份</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># innobackupex备份工具</div><div class="line">innobackupex --user=percona --host=127.0.0.1 --Port=3306 --password=percona --defaults-group=&apos;mysqld3306&apos;  /data/backup  </div><div class="line"># 备份成功会有如下输出信息</div><div class="line">150906 13:16:53  innobackupex: Connection to database server closed</div><div class="line">150906 13:16:53  innobackupex: completed OK!</div><div class="line"># 进入备份目录</div><div class="line">cd /data/backup/2015-09-06_13-16-49</div><div class="line"># 查看备份目录下的文件</div><div class="line">ls -l</div><div class="line"># 备份目录下的文件如下</div><div class="line">-rw-r--r--	backup-my.cnf</div><div class="line">-rw-r------	ibdata1</div><div class="line">drwx------	mysql</div><div class="line">drwxr-xr-x	performance_schema</div><div class="line">drwx------	test</div><div class="line">drwx------	wing</div><div class="line">-rw-r--r--	xtrabackup_binlog_info</div><div class="line">-rw-r-----	xtrabackup_checkpoints</div><div class="line">-rw-r--r-- 	xtrabackup_info</div><div class="line">-rw-r----- 	xtrabackup_logfile</div></pre></td></tr></table></figure>
+<h5 id="完全备份准备阶段">完全备份准备阶段</h5><p>完全备份结束后,数据并不能立即被使用,因为此时的备份只是简单的复制文件,而存在未提交事务,需要进行prepare阶段方可使用数据。  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 准备阶段</div><div class="line">innobackupex  --apply-log /data/backup/2015-09-06_13-16-49/</div><div class="line"># 准备成功会有如下输出信息</div><div class="line">InnoDB: Shutdown completed; log sequence number 1639446</div><div class="line">150906 13:18:16  innobackupex: completed OK!</div></pre></td></tr></table></figure>
+<p>注意该部分准备阶段不适合增量备份。<br><strong>原理</strong><br>该过程从备份目录下的backup-my.cnf开始读取配置,然后innobackupex重播已提交事务或者回滚未提交事务,一旦这样做,表空间的所有信息和日志文件都将被重建。<br><strong>其他参数</strong><br>–use-memory 指定该过程使用的内存,默认为100MB。  </p>
+<h5 id="恢复完全备份">恢复完全备份</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># innobackupex备份工具</div><div class="line">innobackupex --defaults-group=&apos;mysqld3307&apos; --copy-back  /data/backup/2015-09-06_13-16-49/</div><div class="line"></div><div class="line"># 恢复成功会有如下输出信息</div><div class="line">innobackupex: Finished copying back files.</div><div class="line"></div><div class="line">150906 15:27:22  innobackupex: completed OK!</div></pre></td></tr></table></figure>
+<p><strong>特别说明</strong>  </p>
+<ol>
+<li>恢复前,需要停掉恢复使用的MySQL数据库实例  </li>
+<li>datadir、innodb_data_home_dir（即共享表空间目录）、innodb_log_group_home_dir（即InnoDB日志文件）目录均需要清空,因为表空间的所有信息和日志文件都需要被重建。  </li>
+<li>恢复完成后,实例启动前,需要将之前清空的目录内部文件的权限修改为mysql用户。  </li>
+<li>恢复备份的实例不需要恢复账号即可完成。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">chown -R mysql:mysql 目录名</div></pre></td></tr></table></figure>
+<p><strong>恢复中的常见错误</strong><br>错误1：innobackupex: Error: Cannot overwrite file: /data/mysqldata3307/innodb_ts/ibdata1 at /usr/bin/innobackupex line 2177<br>解决方法：删除文件ibdata1<br>错误2：innobackupex: Error: Cannot overwrite file: /data/mysqldata3307/innodb_log/ib_logfile0 at /usr/bin/innobackupex line 2177.<br>解决方法：删除文件ib_logfile0<br>错误3：innobackupex: Error: Original data directory ‘/data/mysqldata3307/mydata’ is not empty! at /usr/bin/innobackupex line 2162.<br>解决方法：删除/data/mysqldata3307/mydata下的所有文件  </p>
+<h2 id="innobackupex增量备份使用演示">innobackupex增量备份使用演示</h2><p>增量备份只适用于XtraDB和InnoDB存储引擎,对于其他的存储引擎会复制整个数据库。</p>
+<h5 id="创建增量备份">创建增量备份</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 指定上一次备份后的增量备份</div><div class="line">innobackupex --user=percona --host=192.168.200.143 --port=3306 --password=percona --defaults-group=&apos;mysqld3306&apos; --incremental /data/backup --incremental-basedir=/data/backup/2015-09-06_13-16-49/</div><div class="line"># 备份成功会有如下输出信息</div><div class="line">150906 16:34:11  innobackupex: Connection to database server closed</div><div class="line">150906 16:34:11  innobackupex: completed OK!</div><div class="line"></div><div class="line"># 指定lsn后的增量备份</div><div class="line">innobackupex --user=percona --host=192.168.200.143 --port=3306 --password=percona --incremental /data/backup --defaults-group=&apos;mysqld3306&apos; --incremental-lsn=1639125</div><div class="line"># 备份成功后会有如下输出信息</div><div class="line">150906 16:45:43  innobackupex: Connection to database server closed</div><div class="line">150906 16:45:43  innobackupex: completed OK!</div></pre></td></tr></table></figure>
+<p><strong>特别说明</strong><br>–incremental 指定增量备份的存储位置,以及指定为增量备份<br>–incremental-basedir 指定最近上一次备份的目录  </p>
+<p><strong>原理</strong><br>基于LSN,增量备份是在上一次备份后的LSN后备份其后的修改数据,可通过 xtrabackup_checkpoints文件查看LSN的变化。  </p>
+<h5 id="增量备份准备阶段">增量备份准备阶段</h5><p><strong>特别说明</strong>  </p>
+<ol>
+<li>只有已提交的事务被使用,未提交的事务将会被回滚。  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 完全备份准备阶段</div><div class="line">innobackupex --apply-log --redo-only /data/backup/2015-09-06_13-16-49/</div><div class="line">注意此处存在--redo-only参数,如果在基础完全备份上对未提交事务进行回滚,此时将不能使用增量备份,故使用--redo-only只重播已提交事务解决该问题。</div><div class="line"># 第一次增量备份准备阶段</div><div class="line">innobackupex --apply-log --redo-only /data/backup/2015-09-06_13-16-49/ --incremental-dir=/data/backup/2015-09-06_16-34-08/</div><div class="line">--incremental-dir 表示增量备份的目录</div><div class="line"># 第二次增量备份准备阶段</div><div class="line">innobackupex --apply-log /data/backup/2015-09-06_13-16-49/ --incremental-dir=/data/backup/2015-09-06_16-45-40/</div><div class="line">注意此处没有--redo-only参数,该参数用于所有的增量备份准备阶段,除了最后一个增量备份</div><div class="line">此时可在基础的完全备份目录下查看xtrabackup_checkpoints文件中LSN位置已经备份之最后一个增量备份处。</div></pre></td></tr></table></figure>
+<h5 id="增量备份恢复阶段">增量备份恢复阶段</h5><p>与完全备份恢复相同,故省略。  </p>
+<h2 id="部分备份使用演示">部分备份使用演示</h2><h5 id="创建部分备份">创建部分备份</h5><p>仅备份部分表(要求表为独立表空间)或者部分数据库。<br>注意：部分备份的恢复不建议使用–copy-back,因为–copy-back是复制所有之前备份的文件。  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 备份wing.percona_test表,使用--include参数</div><div class="line"> innobackupex --user=percona --host=127.0.0.1 --port=3306 --password=percona --defaults-group=&apos;mysqld3306&apos; --include=&apos;^wing[.]percona_test&apos; /data/backup/</div><div class="line"> # 备份成功输出如下信息</div><div class="line">150907 11:08:44  innobackupex: Connection to database server closed</div><div class="line">150907 11:08:44  innobackupex: completed OK!</div><div class="line"># 该备份还是会为每个数据库创建目录,但是没有备份表的数据库目录会没有文件,mysql和information_schema亦没有文件。</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 备份wing.t表,使用--tables_file参数</div><div class="line">innobackupex --user=percona --host=127.0.0.1 --port=3306 --password=percona --defaults-group=&apos;mysqld3306&apos; --tables-file=/data/mysqldata3306/tmpdir/innobackupex_table.txt /data/backup/</div><div class="line"># 备份成功输出如下信息</div><div class="line">150907 11:20:21  innobackupex: Connection to database server closed</div><div class="line">150907 11:20:21  innobackupex: completed OK!</div><div class="line"># 该备份不会为每个数据库创建目录,仅指定备份的表的数据库才会创建目录</div></pre></td></tr></table></figure>
+<h5 id="部分备份恢复准备阶段">部分备份恢复准备阶段</h5><p>该阶段将会为每个innodb表创建自己的.exp表空间文件。  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># --include参数备份文件恢复准备</div><div class="line">innobackupex --apply-log --export 2015-09-07_11-08-40/</div><div class="line">--export 用户导入单独表到服务器使用</div><div class="line"># 恢复准备成功输出如下信息</div><div class="line">InnoDB: Shutdown completed; log sequence number 1659926</div><div class="line">150907 11:29:18  innobackupex: completed OK!</div><div class="line"># 此时可看到该数据库目录下,该表的文件格式如下几种</div><div class="line">[root@oracle01 wing]# ll</div><div class="line">total 128</div><div class="line">-rw-r--r-- 1 root root   420 Sep  7 11:53 t.cfg</div><div class="line">-rw-r--r-- 1 root root 16384 Sep  7 11:53 t.exp</div><div class="line">-rw-r----- 1 root root  8586 Sep  7 11:20 t.frm</div><div class="line">-rw-r----- 1 root root 98304 Sep  7 11:20 t.ibd</div></pre></td></tr></table></figure>
+<p><strong>特别说明</strong><br>对于上述四种文件：.ctg、.exp、.frm、.ibd,有三种文件(.cfg、.exp、.ibd)需导入到服务器中<br>.cfg文件：该文件将表的数据字典存放为特殊的格式,严格来说,该文件不需要被导入到服务器中,但是如果没有该文件,会在导入表空间时存在如下警告信息；  </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line">Warning (Code 1810): InnoDB: IO Read error: (2, No such file or directory) Error opening './wing/t.cfg', will attempt to import without schema verification</div></pre></td></tr></table></figure>
+<p>.exp文件：<br>.frm文件：innodb表的数据字典文件；<br>.ibd文件：innodb表的数据+索引文件。  </p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line"># 以导入t表为例</div><div class="line"># 首先需要在导入的服务器中添加相同的表结构</div><div class="line">root@localhost : wing 01:44:32&gt; create table t (id int,name varchar(16));</div><div class="line">Query OK, 0 rows affected (0.01 sec)</div><div class="line"># 然后discard该表的表空间</div><div class="line">root@localhost : wing 01:45:03&gt; alter table t discard tablespace;</div><div class="line">Query OK, 0 rows affected (0.00 sec)</div><div class="line"># 将备份文件中的.exp、.ibd文件复制到该数据库目录下,.cfg文件可选复制</div><div class="line">cp t.ibd t.exp  /data/mysqldata3307/mydata/wing/</div><div class="line"># 修改复制文件的权限</div><div class="line">[root@oracle01 wing]# chown -R mysql:mysql t.*</div><div class="line"># 然后import该表空间</div><div class="line">root@localhost : wing 01:48:09&gt; alter table t import tablespace;</div><div class="line">Query OK, 0 rows affected, 1 warning (0.02 sec)</div></pre></td></tr></table></figure>
+<h2 id="压缩备份使用演示">压缩备份使用演示</h2><p>压缩备份会跳过innodb表的二级索引页,所以在恢复准备阶段需要更长的时间用于重建二级索引。（只适用于独立表空间的表）  </p>
+<h5 id="创建压缩备份">创建压缩备份</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">innobackupex --user=percona --host=127.0.0.1 --port=3306 --password=percona --defaults-group=&apos;mysqld3306&apos; --compact /data/backup/</div></pre></td></tr></table></figure>
+<p>是否为压缩备份,可从xtrabackup_checkpoints文件中查看,compact 选项为 1时,则为压缩备份。  </p>
+<h5 id="恢复压缩备份准备阶段">恢复压缩备份准备阶段</h5><p>该过程需要重建二级索引,所以需要使用–rebuild-indexes参数。  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">innobackupex --apply-log --rebuild-indexes /data/backup/2015-09-07_14-17-50/</div></pre></td></tr></table></figure>
+<h5 id="恢复压缩备份">恢复压缩备份</h5><p>与完全恢复备份相同,请参考之。  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">innobackupex --user=percona --host=127.0.0.1 --port=3307 --password=percona --defaults-group=&apos;mysqld3307&apos; --copy-back   /data/backup/2015-09-07_14-17-50</div></pre></td></tr></table></figure>
+<h2 id="加密备份">加密备份</h2><p>个人不是特别感兴趣,若以后感兴趣再学习之。<br><a href="https://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/encrypted_backups_innobackupex.html" target="_blank" rel="external">https://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/encrypted_backups_innobackupex.html</a>  </p>
+<h2 id="复制环境下的备份">复制环境下的备份</h2><p>–slave-info 该选项用于备份从库,输出二进制位置以及主库服务器名称,也会将CHANGE MASTER语句写入到xtrabackup_slave_info文件中。<br>–safe-slave-backup 该选项用于确保一致性的复制状态,该选项将停止从库的SQL线程,等到Slave_open_temp_tables的状态值为0时,开始备份,备份完成后会重启SQL线程。如果在–safe-slave-backup-timeout(默认为30s)之后,Slave_open_temp_tables的状态值未变为0,则备份将失败。<br>percona建议使用pt-table-checksum工具检查主从备份是否正确,暂时本人还未使用,待使用后告知。  </p>
+<h2 id="基于时间点恢复备份">基于时间点恢复备份</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 完全备份</div><div class="line">innobackupex --user=percona --host=127.0.0.1 --port=3306 --password=percona --defaults-group=&apos;mysqld3306&apos; --parallel=5 --rsync  /data/backup/</div><div class="line"></div><div class="line"># 准备恢复阶段</div><div class="line">innobackupex --apply-log 2015-09-08_10-50-05/</div><div class="line"></div><div class="line"># 对数据库做一些更改,然后查看当前数据库二进制日志及位置</div><div class="line">root@localhost : wing 10:52:44&gt; show tables;</div><div class="line">+----------------+</div><div class="line">| Tables_in_wing |</div><div class="line">+----------------+</div><div class="line">| percona_test   |</div><div class="line">| t              |</div><div class="line">+----------------+</div><div class="line">2 rows in set (0.00 sec)</div><div class="line"></div><div class="line">root@localhost : wing 10:52:46&gt; drop table t;</div><div class="line">Query OK, 0 rows affected (0.18 sec)</div><div class="line"></div><div class="line">root@localhost : wing 10:52:56&gt; drop table percona_test;</div><div class="line">Query OK, 0 rows affected (0.01 sec)</div><div class="line"></div><div class="line">root@localhost : wing 11:28:27&gt; create table wing(id int);</div><div class="line">Query OK, 0 rows affected (0.09 sec)</div><div class="line"></div><div class="line">root@localhost : wing 11:29:11&gt; insert into wing values(1),(2),(3),(4),(5),(6),(7),(8),(9);</div><div class="line">Query OK, 9 rows affected (0.01 sec)</div><div class="line">Records: 9  Duplicates: 0  Warnings: 0</div><div class="line"></div><div class="line">root@localhost : wing 11:29:18&gt; select * from wing;</div><div class="line">+------+</div><div class="line">| id   |</div><div class="line">+------+</div><div class="line">|    1 |</div><div class="line">|    2 |</div><div class="line">|    3 |</div><div class="line">|    4 |</div><div class="line">|    5 |</div><div class="line">|    6 |</div><div class="line">|    7 |</div><div class="line">|    8 |</div><div class="line">|    9 |</div><div class="line">+------+</div><div class="line">9 rows in set (0.00 sec)</div><div class="line">root@localhost : wing 11:29:34&gt; show binary logs;</div><div class="line">+------------------+-----------+</div><div class="line">| Log_name         | File_size |</div><div class="line">+------------------+-----------+</div><div class="line">| mysql-bin.000001 |     65456 |</div><div class="line">| mysql-bin.000002 |   1175657 |</div><div class="line">| mysql-bin.000003 |      2099 |</div><div class="line">| mysql-bin.000004 |       600 |</div><div class="line">| mysql-bin.000005 |       449 |</div><div class="line">+------------------+-----------+</div><div class="line">5 rows in set (0.00 sec)</div><div class="line"></div><div class="line">root@localhost : wing 11:29:40&gt; show master status;</div><div class="line">+------------------+----------+--------------+------------------+-------------------+</div><div class="line">| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |</div><div class="line">+------------------+----------+--------------+------------------+-------------------+</div><div class="line">| mysql-bin.000005 |      449 |              |                  |                   |</div><div class="line">+------------------+----------+--------------+------------------+-------------------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line"></div><div class="line"># 查找备份中的二进制日志及位置</div><div class="line">[root@oracle01 2015-09-08_10-50-05]# less xtrabackup_binlog_info </div><div class="line">mysql-bin.000004        338</div><div class="line"></div><div class="line"># 恢复完全备份</div><div class="line">innobackupex --copy-back --defaults-group=&apos;mysqld3307&apos; /data/backup/2015-09-08_10-50-05/</div><div class="line"></div><div class="line"># 基于完全备份后的位置(338)重定向到另一个文件中(官网需要这一步,然而好像并没有什么用的样子)</div><div class="line">mysqlbinlog /data/mysqldata3306/binlog/mysql-bin.000004 /data/mysqldata3306/binlog/mysql-bin.000005  --start-position=338 &gt; /data/mysqldata3307/tmpdir/mybinlog.sql</div><div class="line"></div><div class="line"># 此时我想将备份恢复到时间为2015-09-08 11:00:00</div><div class="line">mysqlbinlog /data/mysqldata3306/binlog/mysql-bin.000004 /data/mysqldata3306/binlog/mysql-bin.000005  --start-position=338 --stop-datetime=&apos;15-09-08 11:00:00&apos; | mysql -uroot --socket=/data/mysqldata3307/sock/mysql.sock</div><div class="line"></div><div class="line"># 检查发现percona_test,t表均不存在,是我想要的结果</div><div class="line">root@localhost : (none) 11:37:48&gt; use wing</div><div class="line">Database changed</div><div class="line"></div><div class="line">root@localhost : wing 11:37:50&gt; show tables;</div><div class="line">Empty set (0.00 sec)</div></pre></td></tr></table></figure>
+<h2 id="加速innobackupex备份的几个选项">加速innobackupex备份的几个选项</h2><ol>
+<li>–parallel<br>为备份添加多个并行线程,它是文件级别上的,只适用于独立表空间或者共享表空间有多个文件。  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">innobackupex --user=percona --host=127.0.0.1 --port=3306 --password=percona --defaults-group=&apos;mysqld3306&apos; --parallel=5  /data/backup/</div></pre></td></tr></table></figure>
+<ol>
+<li><p>–compress-threads<br>对使用–stream=xbstream –compress的压缩备份时,–compress-threads代表压缩备份的并行线程数。  </p>
+</li>
+<li><p>–rsync<br>该选项是加速备份并且缩小flush tables with read lock,使用该选项可以对非innodb文件使用rsync代替cp复制。<br>该参数不能与–remote-host、–stream一起使用。  </p>
+</li>
+</ol>
+<h2 id="提高FLUSH_TABLES_WITH_READ_LOCK处理">提高FLUSH TABLES WITH READ LOCK处理</h2><p>备份时为了保证一致性,会在备份开始时使用FLUSH TABLES WITH READ LOCK,但此时如果存在很长的写操作,将会导致产生冲突,默认为所有操作执行完毕后,才开始执行FLUSH TABLES WITH READ LOCK.  </p>
+<p>–lock-wait-timeout 当产生冲突时,innobackupex等待的时候,如果在–lock-wait-timeout时间内没有执行FLUSH TABLES WITH READ LOCK,那么将退出备份。  </p>
+<p>–lock-wait-query-type=all|update all表示执行等待所有长运行语句结束后执行FLUSH TABLES WITH READ LOCK,update表示等待UPDATE/ALTER/REPLACE/INSERT长运行语句结束后执行FLUSH TABLES WITH READ LOCK。  </p>
+<p>–lock-wait-threshold 执行长运行查询的时间,超过该值的语句均为长运行语句,该参数需要PROCESS&amp;SUPPER权限。  </p>
+<p>–kill-long-queries-timeout 杀死FTWRL（FLUSH TABLES WITH READ LOCK）开始后超过该时间的操作。  </p>
+<p>–kill-long-query-type=all|select  all代表杀死FTWRL（FLUSH TABLES WITH READ LOCK）开始后超过–kill-long-queries-timeout 时间的所有操作,select表示杀死FTWRL（FLUSH TABLES WITH READ LOCK）开始后超过–kill-long-queries-timeout 时间的select操作。  </p>
+<h2 id="在服务器上保存备份历史">在服务器上保存备份历史</h2><p><a href="https://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/storing_history.html" target="_blank" rel="external">https://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/storing_history.html</a><br>暂时搁置该部分的学习。  </p>
+<h2 id="innobackex参数">innobackex参数</h2><p><a href="https://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/innobackupex_option_reference.html" target="_blank" rel="external">https://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/innobackupex_option_reference.html</a></p>
+<h2 id="推荐阅读">推荐阅读</h2><p><a href="http://www.cnblogs.com/Amaranthus/archive/2014/08/19/3922570.html" target="_blank" rel="external">http://www.cnblogs.com/Amaranthus/archive/2014/08/19/3922570.html</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Percona-Xtrabackup/" rel="tag">#Percona Xtrabackup</a>
+          
+            <a href="/tags/pt/" rel="tag">#pt</a>
+          
+            <a href="/tags/innobackupex/" rel="tag">#innobackupex</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/04/Percona-Xtrabackup安装/" rel="next" title="Percona-Xtrabackup安装">
+                <i class="fa fa-chevron-left"></i> Percona-Xtrabackup安装
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/04/Percona-Xtrabackup之xtrabackup使用/" rel="prev" title="Percona-Xtrabackup之xtrabackup使用">
+                Percona-Xtrabackup之xtrabackup使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/10/04/Percona-Xtrabackup之innobackupex的使用/"
+     data-title="Percona-Xtrabackup之innobackupex的使用"
+     data-content=""
+     data-url="https://wing324.github.io/2015/10/04/Percona-Xtrabackup之innobackupex的使用/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><span class="ds-more">分享到：</span></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      <li><a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+      <li><a class="ds-google" href="javascript:void(0);" data-service="google">Google</a></li>
+    </ul>
+    <!--
+      <div class="ds-share-icons-more">
+      </div>
+    -->
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/10/04/Percona-Xtrabackup之innobackupex的使用/"
+           data-title="Percona-Xtrabackup之innobackupex的使用" data-url="https://wing324.github.io/2015/10/04/Percona-Xtrabackup之innobackupex的使用/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wing.jpg"
+               alt="Wing" />
+          <p class="site-author-name" itemprop="name">Wing</p>
+          <p class="site-description motion-element" itemprop="description">热在分享，衷在开源。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">131</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/">
+                <span class="site-state-item-count">113</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wing324" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#innobackupex"><span class="nav-number">1.</span> <span class="nav-text">innobackupex</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#工作原理"><span class="nav-number">1.1.</span> <span class="nav-text">工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#备份"><span class="nav-number">1.1.0.0.1.</span> <span class="nav-text">备份</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#恢复"><span class="nav-number">1.1.0.0.2.</span> <span class="nav-text">恢复</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#innobackupex连接MySQL需要使用的参数"><span class="nav-number">1.2.</span> <span class="nav-text">innobackupex连接MySQL需要使用的参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#innobackupex用户权限"><span class="nav-number">1.3.</span> <span class="nav-text">innobackupex用户权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#innobackupex完全备份使用演示"><span class="nav-number">1.4.</span> <span class="nav-text">innobackupex完全备份使用演示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建完全备份"><span class="nav-number">1.4.0.0.1.</span> <span class="nav-text">创建完全备份</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#完全备份准备阶段"><span class="nav-number">1.4.0.0.2.</span> <span class="nav-text">完全备份准备阶段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#恢复完全备份"><span class="nav-number">1.4.0.0.3.</span> <span class="nav-text">恢复完全备份</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#innobackupex增量备份使用演示"><span class="nav-number">1.5.</span> <span class="nav-text">innobackupex增量备份使用演示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建增量备份"><span class="nav-number">1.5.0.0.1.</span> <span class="nav-text">创建增量备份</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#增量备份准备阶段"><span class="nav-number">1.5.0.0.2.</span> <span class="nav-text">增量备份准备阶段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#增量备份恢复阶段"><span class="nav-number">1.5.0.0.3.</span> <span class="nav-text">增量备份恢复阶段</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部分备份使用演示"><span class="nav-number">1.6.</span> <span class="nav-text">部分备份使用演示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建部分备份"><span class="nav-number">1.6.0.0.1.</span> <span class="nav-text">创建部分备份</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#部分备份恢复准备阶段"><span class="nav-number">1.6.0.0.2.</span> <span class="nav-text">部分备份恢复准备阶段</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#压缩备份使用演示"><span class="nav-number">1.7.</span> <span class="nav-text">压缩备份使用演示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建压缩备份"><span class="nav-number">1.7.0.0.1.</span> <span class="nav-text">创建压缩备份</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#恢复压缩备份准备阶段"><span class="nav-number">1.7.0.0.2.</span> <span class="nav-text">恢复压缩备份准备阶段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#恢复压缩备份"><span class="nav-number">1.7.0.0.3.</span> <span class="nav-text">恢复压缩备份</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加密备份"><span class="nav-number">1.8.</span> <span class="nav-text">加密备份</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制环境下的备份"><span class="nav-number">1.9.</span> <span class="nav-text">复制环境下的备份</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于时间点恢复备份"><span class="nav-number">1.10.</span> <span class="nav-text">基于时间点恢复备份</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加速innobackupex备份的几个选项"><span class="nav-number">1.11.</span> <span class="nav-text">加速innobackupex备份的几个选项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提高FLUSH_TABLES_WITH_READ_LOCK处理"><span class="nav-number">1.12.</span> <span class="nav-text">提高FLUSH TABLES WITH READ LOCK处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在服务器上保存备份历史"><span class="nav-number">1.13.</span> <span class="nav-text">在服务器上保存备份历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#innobackex参数"><span class="nav-number">1.14.</span> <span class="nav-text">innobackex参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐阅读"><span class="nav-number">1.15.</span> <span class="nav-text">推荐阅读</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">您是第<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>个小伙伴</span>
+  
+
+  
+    <span class="site-pv">本站总浏览<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wing</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"Wing"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementById('footer')
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+  <!-- 背景动画 -->
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+  <!-- 页面点击小红心 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>

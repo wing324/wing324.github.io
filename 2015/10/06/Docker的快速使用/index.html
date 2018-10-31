@@ -1,0 +1,1178 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="quick start," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wing's Tech Space" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="介绍完Docker的安装和基本使用之后，那就进入quick start吧。Docker的安装和基本使用：http://wing324.github.io/2015/10/06/Docker%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker的快速使用">
+<meta property="og:url" content="https://wing324.github.io/2015/10/06/Docker的快速使用/index.html">
+<meta property="og:site_name" content="Wing's Tech Space">
+<meta property="og:description" content="介绍完Docker的安装和基本使用之后，那就进入quick start吧。Docker的安装和基本使用：http://wing324.github.io/2015/10/06/Docker%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+<meta property="og:updated_time" content="2017-01-31T10:35:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker的快速使用">
+<meta name="twitter:description" content="介绍完Docker的安装和基本使用之后，那就进入quick start吧。Docker的安装和基本使用：http://wing324.github.io/2015/10/06/Docker%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 11154520,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://wing324.github.io/2015/10/06/Docker的快速使用/"/>
+
+  <title> Docker的快速使用 | Wing's Tech Space </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?49b16c9d482511603ad262b1dcf7bb45";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Wing's Tech Space</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+
+      <!-- 自定义High一下的功能 -->
+      <li class="menu-item"> <a title="把这个链接拖到你的工具栏中,任何网页都可以High" href='javascript:(
+    function go() {
+
+
+    var songs = [
+    	"http://p2.music.126.net/B0HhRLh0h2NBdlcGTcTrEA==/2076977464881622.mp3",
+	"http://p2.music.126.net/RMJR7wDullRqppBk8dhLow==/3435973841155597.mp3",
+	"http://p2.music.126.net/sLKP3na0M4mdXocWFcVHlA==/3236962235602026.mp3",
+	"http://p2.music.126.net/JHuQLKSs47g-jTAASut-2g==/7714173581565477.mp3",
+	"http://p2.music.126.net/dGpxzld-XaokuOdbMKzGrA==/2533274792968816.mp3",
+	"http://p2.music.126.net/O1-e4JylX2IhqQTV6ZLZkg==/3235862723975492.mp3"
+	];
+
+    
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+ 
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+ 
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+ 
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+ 
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+ 
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+ 
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+ 
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+ 
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.getElementById("audio_element_id");
+        if(e != null){
+            var index = parseInt(e.getAttribute("curSongIndex"));
+            if(index > songs.length - 2) {
+                index = 0;
+            } else {
+                index++;
+            }
+            e.setAttribute("curSongIndex", index);
+            N();
+        }
+
+        e.src = i;
+        e.play()
+    }
+ 
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+ 
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+ 
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    function initAudioEle() {
+        var e = document.getElementById("audio_element_id");
+        if(e === null){
+            e = document.createElement("audio");
+            e.setAttribute("class", l);
+            e.setAttribute("curSongIndex", 0);
+            e.id = "audio_element_id";
+            e.loop = false;
+            e.bgcolor = 0;
+            e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h();
+            go();
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        }
+    }
+    
+    initAudioEle();
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+
+    var curSongIndex = parseInt(document.getElementById("audio_element_id").getAttribute("curSongIndex"));
+    var i = songs[curSongIndex];
+    
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+
+    /* harlem-shake-style.css，替换成你的位置，也可以直接使用：//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css */
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()'><i class="menu-item-icon fa fa-music fa-fw"></i>High一下</a> </li>
+          <!-- end High一下 -->
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search fa-lg"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Docker的快速使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-10-06T12:11:19-07:00" content="2015-10-06">
+              2015-10-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/06/Docker的快速使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/06/Docker的快速使用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">热度
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>℃
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>介绍完Docker的安装和基本使用之后，那就进入quick start吧。<br>Docker的安装和基本使用：<br><a href="http://wing324.github.io/2015/10/06/Docker%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">http://wing324.github.io/2015/10/06/Docker%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</a><br><a id="more"></a></p>
+<p>推荐课程：<a href="http://www.jikexueyuan.com/path/docker/" target="_blank" rel="external">http://www.jikexueyuan.com/path/docker/</a>  </p>
+<h2 id="Docker的配置文件">Docker的配置文件</h2><p>docker的配置文件位于/etc/default/docker<br>使用后续介绍  </p>
+<h2 id="Docker的基本操作">Docker的基本操作</h2><ol>
+<li>启动容器：docker run IMAGE<br>启动交互式容器：docker run -i -t IMAGE /bin/bash  </li>
+<li>查看容器：docker ps -a -l  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">无参数时,返回的是当前运行时的容器</div><div class="line">-a 代表列出所有的容器</div><div class="line">-l 代表列出最新创建的容器</div></pre></td></tr></table></figure>
+<ol>
+<li>返回容器相关配置信息  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">docker inspect CONTAINER ID/NAMES</div></pre></td></tr></table></figure>
+<ol>
+<li>自定义容器名  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">docker run --name=自定义容器名 -i -t  IMAGE</div></pre></td></tr></table></figure>
+<p>EXAMPLE  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">[root@localhost ~]# docker run --name=mydocker -i -t hello-world</div><div class="line">Usage of loopback devices is strongly discouraged for production use. Either use `--storage-opt dm.thinpooldev` or use `--storage-opt dm.no_warn_on_loop_devices=true` to suppress this warning.</div><div class="line"></div><div class="line">Hello from Docker.</div><div class="line">This message shows that your installation appears to be working correctly.</div><div class="line"></div><div class="line">To generate this message, Docker took the following steps:</div><div class="line"> 1. The Docker client contacted the Docker daemon.</div><div class="line"> 2. The Docker daemon pulled the &quot;hello-world&quot; image from the Docker Hub.</div><div class="line"> 3. The Docker daemon created a new container from that image which runs the</div><div class="line">    executable that produces the output you are currently reading.</div><div class="line"> 4. The Docker daemon streamed that output to the Docker client, which sent it</div><div class="line">    to your terminal.</div><div class="line"></div><div class="line">To try something more ambitious, you can run an Ubuntu container with:</div><div class="line"> $ docker run -it ubuntu bash</div><div class="line"></div><div class="line">Share images, automate workflows, and more with a free Docker Hub account:</div><div class="line"> https://hub.docker.com</div><div class="line"></div><div class="line">For more examples and ideas, visit:</div><div class="line"> https://docs.docker.com/userguide/</div><div class="line"></div><div class="line">[root@localhost ~]# docker -a</div><div class="line">flag provided but not defined: -a</div><div class="line">See &apos;docker --help&apos;.</div><div class="line">[root@localhost ~]# docker ps -a</div><div class="line">CONTAINER ID        IMAGE                   COMMAND             CREATED             STATUS                      PORTS               NAMES</div><div class="line">4b1a0607bc88        hello-world             &quot;/hello&quot;            12 seconds ago      Exited (0) 10 seconds ago                       mydocker             # ,名字已换成自定义的mydocker  </div><div class="line">1e98f9067f6b        docker.io/hello-world   &quot;/hello&quot;            10 minutes ago      Exited (0) 10 minutes ago                       jovial_pasteur         </div><div class="line">1d2c288dcde8        hello-world             &quot;/bin/bash&quot;         28 minutes ago                                                      sharp_hoover           </div><div class="line">855231f306a4        hello-world             &quot;/hello&quot;            28 minutes ago      Exited (0) 28 minutes ago                       desperate_kilby        </div><div class="line">0ab13a92ed4b        hello-world             &quot;/hello&quot;            32 minutes ago      Exited (0) 32 minutes ago                       clever_sammet          </div><div class="line">e1fa10d7a55f        hello-world             &quot;/bin/bash&quot;         35 minutes ago                                                      drunk_albattani        </div><div class="line">dad5054db548        hello-world             &quot;/hello&quot;            42 minutes ago      Exited (0) 42 minutes ago                       compassionate_turing   </div><div class="line">16ae30c8b4d0        hello-world             &quot;/hello&quot;            45 minutes ago      Exited (0) 45 minutes ago                       cranky_goldstine       </div><div class="line">f1ba689673d3        hello-world             &quot;/hello&quot;            21 hours ago        Exited (0) 21 hours ago                         silly_almeida          </div><div class="line">8f200d44ba00        hello-world             &quot;/hello&quot;            21 hours ago        Exited (0) 21 hours ago                         loving_mayer</div></pre></td></tr></table></figure>
+<ol>
+<li>重新启动停止的容器  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">docker start [-i] 容器名</div></pre></td></tr></table></figure>
+<ol>
+<li>删除停止的容器  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">docker rm 容器名</div><div class="line"># 不能用于删除运行中的容器</div></pre></td></tr></table></figure>
+<h2 id="Docker运行守护式容器">Docker运行守护式容器</h2><ol>
+<li>以守护形式运行容器  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">docker run -i -t 	IMAGE</div><div class="line">Ctrl+P Ctrl+Q #将当前容器置于后台运行</div></pre></td></tr></table></figure>
+<ol>
+<li>附加到运行中的容器 #调出后台运行的容器至前台运行  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">docker attach 容器名</div></pre></td></tr></table></figure>
+<ol>
+<li>启动守护式容器  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">docker run -d IMAGE 循环脚本之类的等,让docker一直运行</div><div class="line"></div><div class="line">-d 将docker后台运行,若没有循环脚本之类等,在命令执行结束后即停止,若想让docker一直运行,需在命令后使用-c添加脚本</div></pre></td></tr></table></figure>
+<ol>
+<li>查看容器日志  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">docker logs [-f] [-t] [--tail] 容器名</div><div class="line">-f 表示动态加载日志,相当于LINUX命令里面的tail -f的参数</div><div class="line">-t 表示显示时间timestamp</div><div class="line">--tail N 表示只显示最后N条记录</div></pre></td></tr></table></figure>
+<p>EXAMPLE  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">[root@localhost ~]# docker logs mydocker</div><div class="line"></div><div class="line">Hello from Docker.</div><div class="line">This message shows that your installation appears to be working correctly.</div><div class="line"></div><div class="line">To generate this message, Docker took the following steps:</div><div class="line"> 1. The Docker client contacted the Docker daemon.</div><div class="line"> 2. The Docker daemon pulled the &quot;hello-world&quot; image from the Docker Hub.</div><div class="line"> 3. The Docker daemon created a new container from that image which runs the</div><div class="line">    executable that produces the output you are currently reading.</div><div class="line"> 4. The Docker daemon streamed that output to the Docker client, which sent it</div><div class="line">    to your terminal.</div><div class="line"></div><div class="line">To try something more ambitious, you can run an Ubuntu container with:</div><div class="line"> $ docker run -it ubuntu bash</div><div class="line"></div><div class="line">Share images, automate workflows, and more with a free Docker Hub account:</div><div class="line"> https://hub.docker.com</div><div class="line"></div><div class="line">For more examples and ideas, visit:</div><div class="line"> https://docs.docker.com/userguide/</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># docker logs -t示例</div><div class="line">[root@localhost ~]# docker logs  -t mydocker</div><div class="line">2015-09-04T13:06:04.469114324Z </div><div class="line">2015-09-04T13:06:04.469184154Z Hello from Docker.</div><div class="line">2015-09-04T13:06:04.469191726Z This message shows that your installation appears to be working correctly.</div><div class="line">2015-09-04T13:06:04.469196921Z </div><div class="line">2015-09-04T13:06:04.469201788Z To generate this message, Docker took the following steps:</div><div class="line">2015-09-04T13:06:04.469206498Z  1. The Docker client contacted the Docker daemon.</div><div class="line">2015-09-04T13:06:04.469211437Z  2. The Docker daemon pulled the &quot;hello-world&quot; image from the Docker Hub.</div><div class="line">2015-09-04T13:06:04.469216436Z  3. The Docker daemon created a new container from that image which runs the</div><div class="line">2015-09-04T13:06:04.469221194Z     executable that produces the output you are currently reading.</div><div class="line">2015-09-04T13:06:04.469225733Z  4. The Docker daemon streamed that output to the Docker client, which sent it</div><div class="line">2015-09-04T13:06:04.469230539Z     to your terminal.</div><div class="line">2015-09-04T13:06:04.469235191Z </div><div class="line">2015-09-04T13:06:04.469239605Z To try something more ambitious, you can run an Ubuntu container with:</div><div class="line">2015-09-04T13:06:04.469244274Z  $ docker run -it ubuntu bash</div><div class="line">2015-09-04T13:06:04.469248764Z </div><div class="line">2015-09-04T13:06:04.469253159Z Share images, automate workflows, and more with a free Docker Hub account:</div><div class="line">2015-09-04T13:06:04.469257784Z  https://hub.docker.com</div><div class="line">2015-09-04T13:06:04.469262189Z </div><div class="line">2015-09-04T13:06:04.469267096Z For more examples and ideas, visit:</div><div class="line">2015-09-04T13:06:04.469271622Z  https://docs.docker.com/userguide/</div><div class="line">2015-09-04T13:06:04.469276135Z </div><div class="line">[root@localhost ~]# docker logs  -t -f mydocker</div><div class="line">2015-09-04T13:06:04.469114324Z </div><div class="line">2015-09-04T13:06:04.469184154Z Hello from Docker.</div><div class="line">2015-09-04T13:06:04.469191726Z This message shows that your installation appears to be working correctly.</div><div class="line">2015-09-04T13:06:04.469196921Z </div><div class="line">2015-09-04T13:06:04.469201788Z To generate this message, Docker took the following steps:</div><div class="line">2015-09-04T13:06:04.469206498Z  1. The Docker client contacted the Docker daemon.</div><div class="line">2015-09-04T13:06:04.469211437Z  2. The Docker daemon pulled the &quot;hello-world&quot; image from the Docker Hub.</div><div class="line">2015-09-04T13:06:04.469216436Z  3. The Docker daemon created a new container from that image which runs the</div><div class="line">2015-09-04T13:06:04.469221194Z     executable that produces the output you are currently reading.</div><div class="line">2015-09-04T13:06:04.469225733Z  4. The Docker daemon streamed that output to the Docker client, which sent it</div><div class="line">2015-09-04T13:06:04.469230539Z     to your terminal.</div><div class="line">2015-09-04T13:06:04.469235191Z </div><div class="line">2015-09-04T13:06:04.469239605Z To try something more ambitious, you can run an Ubuntu container with:</div><div class="line">2015-09-04T13:06:04.469244274Z  $ docker run -it ubuntu bash</div><div class="line">2015-09-04T13:06:04.469248764Z </div><div class="line">2015-09-04T13:06:04.469253159Z Share images, automate workflows, and more with a free Docker Hub account:</div><div class="line">2015-09-04T13:06:04.469257784Z  https://hub.docker.com</div><div class="line">2015-09-04T13:06:04.469262189Z </div><div class="line">2015-09-04T13:06:04.469267096Z For more examples and ideas, visit:</div><div class="line">2015-09-04T13:06:04.469271622Z  https://docs.docker.com/userguide/</div><div class="line">2015-09-04T13:06:04.469276135Z</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># docker logs --tail演示</div><div class="line">[root@localhost ~]# docker logs  -t -f --tail 10  mydocker</div><div class="line">2015-09-04T13:06:04.469235191Z </div><div class="line">2015-09-04T13:06:04.469239605Z To try something more ambitious, you can run an Ubuntu container with:</div><div class="line">2015-09-04T13:06:04.469244274Z  $ docker run -it ubuntu bash</div><div class="line">2015-09-04T13:06:04.469248764Z </div><div class="line">2015-09-04T13:06:04.469253159Z Share images, automate workflows, and more with a free Docker Hub account:</div><div class="line">2015-09-04T13:06:04.469257784Z  https://hub.docker.com</div><div class="line">2015-09-04T13:06:04.469262189Z </div><div class="line">2015-09-04T13:06:04.469267096Z For more examples and ideas, visit:</div><div class="line">2015-09-04T13:06:04.469271622Z  https://docs.docker.com/userguide/</div><div class="line">2015-09-04T13:06:04.469276135Z</div></pre></td></tr></table></figure>
+<ol>
+<li>查看容器进程  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">docker top 容器名</div></pre></td></tr></table></figure>
+<ol>
+<li>在运行中的容器内启动新的进程  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">docker exec [-d] [-i] [-t] 容器名</div></pre></td></tr></table></figure>
+<ol>
+<li>停止守护式容器</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">docker stop 容器名</div><div class="line">docker kill 容器名</div></pre></td></tr></table></figure>
+<h2 id="Docker镜像与仓库">Docker镜像与仓库</h2><ol>
+<li>查看镜像  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">docker images </div><div class="line">无参数时,显示所有当前安装的镜像</div><div class="line">-a 显示所有的镜像,包括中间层镜像（仓库为&lt;none&gt;,TAG为&lt;none&gt;）</div><div class="line">-f 使用过滤条件</div><div class="line">--no-trunc 不截断镜像的ID</div><div class="line">-q,--quiet 只显示镜像的ID</div></pre></td></tr></table></figure>
+<ol>
+<li>删除镜像  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">docker rmi 镜像名</div><div class="line"># 注意 &apos;docker rm 容器名&apos;&apos; 的区别</div><div class="line">-f,--false 强制删除镜像</div><div class="line">--no-prune 不删除被打标签的父镜像</div></pre></td></tr></table></figure>
+<ol>
+<li>查看镜像的详细信息  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">docker inspect 容器名/镜像名 </div><div class="line">-f,--format=&apos;&apos;</div></pre></td></tr></table></figure>
+<ol>
+<li>查找镜像<br>Docker Hub官网查找镜像<br>或者<br>docker search TERM<br>–automated 只显示完成的镜像<br>–no-trunc 不截断IMAGE ID<br>-s,–stars   </li>
+<li>获取镜像  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">docker pull NAME:TAG</div><div class="line">-a,--all-tags 下载仓库中所有的镜像文件</div><div class="line"></div><div class="line"># </div><div class="line">当网络缓慢时,可以使用--registry-mirror选项在配置文件中添加国内的镜像地址</div><div class="line">修改/etc/default/docker</div><div class="line">添加DOCKER_OPTS=&apos;--registry-mirror=添加URL&apos;</div></pre></td></tr></table></figure>
+<ol>
+<li>推送镜像</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">docker push 用户名/镜像名</div></pre></td></tr></table></figure>
+<p>EXAMPLE</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">doxker push wing324/mysql</div></pre></td></tr></table></figure>
+<ol>
+<li>构建镜像  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 通过容器构建</div><div class="line">docker commit  容器名 [REPOSITORY[:TAG]]</div><div class="line">-a,--author 作者</div><div class="line">-m,--message 提交消息</div><div class="line">-p,--pause 提交阶段暂停容器</div><div class="line"></div><div class="line"># 通过Dockerfile构建镜像</div><div class="line">docker build</div><div class="line">-t,--tag 为镜像去一个名字</div></pre></td></tr></table></figure>
+<h2 id="Dockerfile介绍">Dockerfile介绍</h2><ol>
+<li>Dockerfile关键字  <h5 id="FROM">FROM</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">FROM</div><div class="line">FROM &lt;image&gt;</div><div class="line">FROM &lt;image&gt;:&lt;tag&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>特别说明</strong><br>FROM后的镜像特性：<br>已经存在的镜像<br>基础镜像<br>必须是第一条非注释指令  </p>
+<h5 id="MAINTAINER">MAINTAINER</h5><p>指定镜像的作者信息  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">MAINTAINER &lt;name&gt;</div></pre></td></tr></table></figure>
+<h5 id="RUN">RUN</h5><p>指定当前镜像中的运行命令  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># shell模式</div><div class="line">RUN &lt;command&gt;</div><div class="line">/bin/sh -c command</div><div class="line">eg.</div><div class="line">RUN echo hello</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># exec模式</div><div class="line">RUN [&apos;executable&apos;,&apos;参数1&apos;,&apos;参数2&apos;]</div><div class="line">RUN [&apos;/bin/bash&apos;,&apos;-c&apos;,&apos;echo hello&apos;]</div></pre></td></tr></table></figure>
+<h5 id="EXPOSE">EXPOSE</h5><p>指定该镜像容器使用的端口  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">EXPOSE &lt;port&gt;</div></pre></td></tr></table></figure>
+<h5 id="CMD">CMD</h5><p>在容器中指定运行的命令<br>RUN是在镜像构建中执行的命令<br>CMD是在容器运行中执行的命令<br>CMD是指定容器运行指令的默认行为,当RUN中指定后,CMD指令将会被RUN指令覆盖  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># shell模式</div><div class="line">CMD command 参数1 参数2</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># exec模式</div><div class="line">CMD [&apos;executable&apos;,&apos;参数1&apos;,&apos;参数2&apos;]</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 与ENTRYPOINT搭配使用</div><div class="line">CMD [&apos;参数1&apos;,&apos;参数2&apos;]</div><div class="line"># 为ENRYPOINT提供默认参数</div></pre></td></tr></table></figure>
+<h5 id="ENTRYPOINT">ENTRYPOINT</h5><p>与CMD功能相同,不同的是ENTRYPOINT指令不会被RUN指令覆盖<br>可以使用docker run –entrypoint强制使用RUN指令覆盖ENTRYPOINT指令  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># shell模式</div><div class="line">ENTRYPOINT command 参数1 参数2</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># exec模式</div><div class="line">ENTRYPOINT [&apos;executable&apos;,&apos;参数1&apos;,&apos;参数2&apos;]</div></pre></td></tr></table></figure>
+<h5 id="ADD_&amp;_COPY">ADD &amp; COPY</h5><p>将其后的使用文件复制到Dockerfile镜像文件中<br>ADD vs COPY<br>ADD包含tar解压功能,如果只是单纯的复制文件,Docker推荐使用COPY  </p>
+<h5 id="VOLUME_[‘/data’]">VOLUME [‘/data’]</h5><p>提供卷的功能,后续讲解  </p>
+<h5 id="WORKDIR">WORKDIR</h5><p>在容器内部设置执行目录,即CMD,ENTRYPOINT工作目录  </p>
+<h5 id="ENV">ENV</h5><p>设置环境变量  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">ENV &lt;key&gt;&lt;value&gt;</div><div class="line">ENV &lt;key&gt;=&lt;value&gt;</div></pre></td></tr></table></figure>
+<h5 id="USER">USER</h5><p>指定镜像是什么用户运行  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">USER daemon</div></pre></td></tr></table></figure>
+<p>EXAMPLE</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">USER mysql</div><div class="line"># 基于该镜像的指令使用mysql用户运行</div></pre></td></tr></table></figure>
+<h5 id="ONBUILD">ONBUILD</h5><p>镜像触发器</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/quick-start/" rel="tag">#quick start</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/06/Docker的安装及基本操作/" rel="next" title="Docker的安装及基本操作">
+                <i class="fa fa-chevron-left"></i> Docker的安装及基本操作
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/06/MySQL字符集/" rel="prev" title="MySQL字符集">
+                MySQL字符集 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/10/06/Docker的快速使用/"
+     data-title="Docker的快速使用"
+     data-content=""
+     data-url="https://wing324.github.io/2015/10/06/Docker的快速使用/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><span class="ds-more">分享到：</span></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      <li><a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+      <li><a class="ds-google" href="javascript:void(0);" data-service="google">Google</a></li>
+    </ul>
+    <!--
+      <div class="ds-share-icons-more">
+      </div>
+    -->
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/10/06/Docker的快速使用/"
+           data-title="Docker的快速使用" data-url="https://wing324.github.io/2015/10/06/Docker的快速使用/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wing.jpg"
+               alt="Wing" />
+          <p class="site-author-name" itemprop="name">Wing</p>
+          <p class="site-description motion-element" itemprop="description">热在分享，衷在开源。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">131</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/">
+                <span class="site-state-item-count">113</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wing324" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker的配置文件"><span class="nav-number">1.</span> <span class="nav-text">Docker的配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker的基本操作"><span class="nav-number">2.</span> <span class="nav-text">Docker的基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker运行守护式容器"><span class="nav-number">3.</span> <span class="nav-text">Docker运行守护式容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker镜像与仓库"><span class="nav-number">4.</span> <span class="nav-text">Docker镜像与仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerfile介绍"><span class="nav-number">5.</span> <span class="nav-text">Dockerfile介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#FROM"><span class="nav-number">5.0.0.1.</span> <span class="nav-text">FROM</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MAINTAINER"><span class="nav-number">5.0.0.2.</span> <span class="nav-text">MAINTAINER</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RUN"><span class="nav-number">5.0.0.3.</span> <span class="nav-text">RUN</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#EXPOSE"><span class="nav-number">5.0.0.4.</span> <span class="nav-text">EXPOSE</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CMD"><span class="nav-number">5.0.0.5.</span> <span class="nav-text">CMD</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ENTRYPOINT"><span class="nav-number">5.0.0.6.</span> <span class="nav-text">ENTRYPOINT</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ADD_&_COPY"><span class="nav-number">5.0.0.7.</span> <span class="nav-text">ADD & COPY</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#VOLUME_[‘/data’]"><span class="nav-number">5.0.0.8.</span> <span class="nav-text">VOLUME [‘/data’]</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#WORKDIR"><span class="nav-number">5.0.0.9.</span> <span class="nav-text">WORKDIR</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ENV"><span class="nav-number">5.0.0.10.</span> <span class="nav-text">ENV</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#USER"><span class="nav-number">5.0.0.11.</span> <span class="nav-text">USER</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ONBUILD"><span class="nav-number">5.0.0.12.</span> <span class="nav-text">ONBUILD</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">您是第<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>个小伙伴</span>
+  
+
+  
+    <span class="site-pv">本站总浏览<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wing</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"Wing"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementById('footer')
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+  <!-- 背景动画 -->
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+  <!-- 页面点击小红心 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>

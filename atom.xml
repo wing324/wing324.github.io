@@ -1,0 +1,1426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Wing&#39;s Tech Space</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://wing324.github.io/"/>
+  <updated>2018-10-31T00:00:09.082Z</updated>
+  <id>https://wing324.github.io/</id>
+  
+  <author>
+    <name>Wing</name>
+    <email>wing324@126.com</email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CSS常用选择器</title>
+    <link href="https://wing324.github.io/2018/10/30/CSS%E5%B8%B8%E7%94%A8%E9%80%89%E6%8B%A9%E5%99%A8/"/>
+    <id>https://wing324.github.io/2018/10/30/CSS常用选择器/</id>
+    <published>2018-10-30T23:54:32.000Z</published>
+    <updated>2018-10-31T00:00:09.082Z</updated>
+    
+    <content type="html"><![CDATA[<p>CSS的几种选择器总是让我非常的迷糊，所以自己来总结下吧。</p>
+<a id="more"></a>
+<p>文章来源：<a href="https://developer.mozilla.org/zh-CN/docs/Learn/Getting_started_with_the_web/CSS_basics" target="_blank" rel="external">https://developer.mozilla.org/zh-CN/docs/Learn/Getting_started_with_the_web/CSS_basics</a></p>
+<table>
+<thead>
+<tr>
+<th>选择器名称</th>
+<th>选择的内容</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>元素选择器（有时也称作标签或类型选择器）</td>
+<td>所有指定类型的 HTML 元素</td>
+<td><code>p</code><br>选择 <code>&lt;p&gt;</code></td>
+</tr>
+<tr>
+<td>标识（ID）选择器</td>
+<td>页面中指定标识的元素（在一个 HTML 页面中，每个标识只被允许指定到一个元素）</td>
+<td><code>#my-id</code><br>选择 <code>&lt;p id=&quot;my-id&quot;&gt;</code> 或 <code>&lt;a id=&quot;my-id&quot;&gt;</code></td>
+</tr>
+<tr>
+<td>类别选择器</td>
+<td>页面中指定类别的元素（一个页面中可以出现多个类别实例）</td>
+<td><code>.my-class</code><br>选择 <code>&lt;p class=&quot;my-class&quot;&gt;</code> 和 <code>&lt;a class=&quot;my-class&quot;&gt;</code></td>
+</tr>
+<tr>
+<td>属性选择器</td>
+<td>页面中拥有指定属性的元素</td>
+<td><code>img[src]</code><br>选择 <code>&lt;img src=&quot;myimage.png&quot;&gt;</code> 而不是 <code>&lt;img&gt;</code></td>
+</tr>
+<tr>
+<td>伪类选择器</td>
+<td>指定的元素，但是需要在特殊的状态，比如悬停</td>
+<td><code>a:hover</code><br>选择 <code>&lt;a&gt;</code>, 但是只在鼠标悬停在链接上时</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;CSS的几种选择器总是让我非常的迷糊，所以自己来总结下吧。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Front End" scheme="https://wing324.github.io/categories/Front-End/"/>
+    
+    
+      <category term="CSS" scheme="https://wing324.github.io/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SHOW PROCESSLIST和SHOW PROFILE的Status整理（英文官方文档版）</title>
+    <link href="https://wing324.github.io/2018/04/02/SHOW-PROCESSLIST%E5%92%8CSHOW-PROFILE%E7%9A%84Status%E6%95%B4%E7%90%86%EF%BC%88%E8%8B%B1%E6%96%87%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%89%88%EF%BC%89/"/>
+    <id>https://wing324.github.io/2018/04/02/SHOW-PROCESSLIST和SHOW-PROFILE的Status整理（英文官方文档版）/</id>
+    <published>2018-04-03T03:24:59.112Z</published>
+    <updated>2017-03-01T07:01:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>MySQL官方文档中的status存在于好几个小节中，每个status的英文解释其实一般是可以看的懂的，主要是寻找相应的status有点困难，所以我将所有的status整理在一个页面，直接Ctrl+F就可以查找到相应的status啦。<br><a id="more"></a></p>
+<h2 id="Thread_Command">Thread Command</h2><p>A thread can have any of the following Command values:  </p>
+<h5 id="Binlog_Dump">Binlog Dump</h5><p>This is a thread on a master server for sending binary log contents to a slave server.</p>
+<h5 id="Change_user">Change user</h5><p>The thread is executing a change-user operation.</p>
+<h5 id="Close_stmt">Close stmt</h5><p>The thread is closing a prepared statement.</p>
+<h5 id="Connect">Connect</h5><p>A replication slave is connected to its master.</p>
+<h5 id="Connect_Out">Connect Out</h5><p>A replication slave is connecting to its master.</p>
+<h5 id="Create_DB">Create DB</h5><p>The thread is executing a create-database operation.</p>
+<h5 id="Daemon">Daemon</h5><p>This thread is internal to the server, not a thread that services a client connection.</p>
+<h5 id="Debug">Debug</h5><p>The thread is generating debugging information.</p>
+<h5 id="Delayed_insert">Delayed insert</h5><p>The thread is a delayed-insert handler.</p>
+<h5 id="Drop_DB">Drop DB</h5><p>The thread is executing a drop-database operation.</p>
+<h5 id="Error">Error</h5><h5 id="Execute">Execute</h5><p>The thread is executing a prepared statement.</p>
+<h5 id="Fetch">Fetch</h5><p>The thread is fetching the results from executing a prepared statement.</p>
+<h5 id="Field_List">Field List</h5><p>The thread is retrieving information for table columns.</p>
+<h5 id="Init_DB">Init DB</h5><p>The thread is selecting a default database.</p>
+<h5 id="Kill">Kill</h5><p>The thread is killing another thread.</p>
+<h5 id="Long_Data">Long Data</h5><p>The thread is retrieving long data in the result of executing a prepared statement.</p>
+<h5 id="Ping">Ping</h5><p>The thread is handling a server-ping request.</p>
+<h5 id="Prepare">Prepare</h5><p>The thread is preparing a prepared statement.</p>
+<h5 id="Processlist">Processlist</h5><p>The thread is producing information about server threads.</p>
+<h5 id="Query">Query</h5><p>The thread is executing a statement.</p>
+<h5 id="Quit">Quit</h5><p>The thread is terminating.</p>
+<h5 id="Refresh">Refresh</h5><p>The thread is flushing table, logs, or caches, or resetting status variable or replication server information.</p>
+<h5 id="Register_Slave">Register Slave</h5><p>The thread is registering a slave server.</p>
+<h5 id="Reset_stmt">Reset stmt</h5><p>The thread is resetting a prepared statement.</p>
+<h5 id="Set_option">Set option</h5><p>The thread is setting or resetting a client statement-execution option.</p>
+<h5 id="Shutdown">Shutdown</h5><p>The thread is shutting down the server.</p>
+<h5 id="Sleep">Sleep</h5><p>The thread is waiting for the client to send a new statement to it.</p>
+<h5 id="Statistics">Statistics</h5><p>The thread is producing server-status information.</p>
+<h5 id="Table_Dump">Table Dump</h5><p>The thread is sending table contents to a slave server.</p>
+<h5 id="Time">Time</h5><p>Unused.</p>
+<h2 id="General_Thread">General Thread</h2><p>The following list describes thread State values that are associated with general query processing and not more specialized activities such as replication. Many of these are useful only for finding bugs in the server.  </p>
+<h5 id="After_create">After create</h5><p>This occurs when the thread creates a table (including internal temporary tables), at the end of the function that creates the table. This state is used even if the table could not be created due to some error.</p>
+<h5 id="altering_table">altering table</h5><p>The server is in the process of executing an in-place ALTER TABLE.</p>
+<h5 id="Analyzing">Analyzing</h5><p>The thread is calculating a MyISAM table key distributions (for example, for ANALYZE TABLE).</p>
+<h5 id="checking_permissions">checking permissions</h5><p>The thread is checking whether the server has the required privileges to execute the statement.</p>
+<h5 id="Checking_table">Checking table</h5><p>The thread is performing a table check operation.</p>
+<h5 id="cleaning_up">cleaning up</h5><p>The thread has processed one command and is preparing to free memory and reset certain state variables.</p>
+<h5 id="closing_tables">closing tables</h5><p>The thread is flushing the changed table data to disk and closing the used tables. This should be a fast operation. If not, verify that you do not have a full disk and that the disk is not in very heavy use.</p>
+<h5 id="committing_alter_table_to_storage_engine">committing alter table to storage engine</h5><p>The server has finished an in-place ALTER TABLE and is committing the result.</p>
+<h5 id="converting_HEAP_to_MyISAM">converting HEAP to MyISAM</h5><p>The thread is converting an internal temporary table from a MEMORY table to an on-disk MyISAM table.</p>
+<h5 id="copy_to_tmp_table">copy to tmp table</h5><p>The thread is processing an ALTER TABLE statement. This state occurs after the table with the new structure has been created but before rows are copied into it.</p>
+<h5 id="Copying_to_group_table">Copying to group table</h5><p>If a statement has different ORDER BY and GROUP BY criteria, the rows are sorted by group and copied to a temporary table.</p>
+<h5 id="Copying_to_tmp_table">Copying to tmp table</h5><p>The server is copying to a temporary table in memory.</p>
+<h5 id="Copying_to_tmp_table_on_disk">Copying to tmp table on disk</h5><p>The server is copying to a temporary table on disk. The temporary result set has become too large (see Section 8.4.4, “Internal Temporary Table Use in MySQL”). Consequently, the thread is changing the temporary table from in-memory to disk-based format to save memory.</p>
+<h5 id="Creating_index">Creating index</h5><p>The thread is processing ALTER TABLE … ENABLE KEYS for a MyISAM table.</p>
+<h5 id="Creating_sort_index">Creating sort index</h5><p>The thread is processing a SELECT that is resolved using an internal temporary table.</p>
+<h5 id="creating_table">creating table</h5><p>The thread is creating a table. This includes creation of temporary tables.</p>
+<h5 id="Creating_tmp_table">Creating tmp table</h5><p>The thread is creating a temporary table in memory or on disk. If the table is created in memory but later is converted to an on-disk table, the state during that operation will be Copying to tmp table on disk.</p>
+<h5 id="deleting_from_main_table">deleting from main table</h5><p>The server is executing the first part of a multiple-table delete. It is deleting only from the first table, and saving columns and offsets to be used for deleting from the other (reference) tables.</p>
+<h5 id="deleting_from_reference_tables">deleting from reference tables</h5><p>The server is executing the second part of a multiple-table delete and deleting the matched rows from the other tables.</p>
+<h5 id="discard_or_import_tablespace">discard_or_import_tablespace</h5><p>The thread is processing an ALTER TABLE … DISCARD TABLESPACE or ALTER TABLE … IMPORT TABLESPACE statement.</p>
+<h5 id="end">end</h5><p>This occurs at the end but before the cleanup of ALTER TABLE, CREATE VIEW, DELETE, INSERT, SELECT, or UPDATE statements.</p>
+<h5 id="executing">executing</h5><p>The thread has begun executing a statement.</p>
+<h5 id="Execution_of_init_command">Execution of init_command</h5><p>The thread is executing statements in the value of the init_command system variable.</p>
+<h5 id="freeing_items">freeing items</h5><p>The thread has executed a command. Some freeing of items done during this state involves the query cache. This state is usually followed by cleaning up.</p>
+<h5 id="Flushing_tables">Flushing tables</h5><p>The thread is executing FLUSH TABLES and is waiting for all threads to close their tables.</p>
+<h5 id="FULLTEXT_initialization">FULLTEXT initialization</h5><p>The server is preparing to perform a natural-language full-text search.</p>
+<h5 id="init">init</h5><p>This occurs before the initialization of ALTER TABLE, DELETE, INSERT, SELECT, or UPDATE statements. Actions taken by the server in this state include flushing the binary log, the InnoDB log, and some query cache cleanup operations.<br>For the end state, the following operations could be happening:<br>    Removing query cache entries after data in a table is changed<br>    Writing an event to the binary log<br>    Freeing memory buffers, including for blobs</p>
+<h5 id="Killed">Killed</h5><p>Someone has sent a KILL statement to the thread and it should abort next time it checks the kill flag. The flag is checked in each major loop in MySQL, but in some cases it might still take a short time for the thread to die. If the thread is locked by some other thread, the kill takes effect as soon as the other thread releases its lock.</p>
+<h5 id="logging_slow_query">logging slow query</h5><p>The thread is writing a statement to the slow-query log.</p>
+<h5 id="NULL">NULL</h5><p>This state is used for the SHOW PROCESSLIST state.</p>
+<h5 id="login">login</h5><p>The initial state for a connection thread until the client has been authenticated successfully.</p>
+<h5 id="manage_keys">manage keys</h5><p>The server is enabling or disabling a table index.</p>
+<h5 id="Opening_tables,_Opening_table">Opening tables, Opening table</h5><p>The thread is trying to open a table. This is should be very fast procedure, unless something prevents opening. For example, an ALTER TABLE or a LOCK TABLE statement can prevent opening a table until the statement is finished. It is also worth checking that your table_open_cache value is large enough.</p>
+<h5 id="optimizing">optimizing</h5><p>The server is performing initial optimizations for a query.</p>
+<h5 id="preparing">preparing</h5><p>This state occurs during query optimization.</p>
+<h5 id="preparing_for_alter_table">preparing for alter table</h5><p>The server is preparing to execute an in-place ALTER TABLE.</p>
+<h5 id="Purging_old_relay_logs">Purging old relay logs</h5><p>The thread is removing unneeded relay log files.</p>
+<h5 id="query_end">query end</h5><p>This state occurs after processing a query but before the freeing items state.</p>
+<h5 id="Reading_from_net">Reading from net</h5><p>The server is reading a packet from the network.</p>
+<h5 id="Removing_duplicates">Removing duplicates</h5><p>The query was using SELECT DISTINCT in such a way that MySQL could not optimize away the distinct operation at an early stage. Because of this, MySQL requires an extra stage to remove all duplicated rows before sending the result to the client.</p>
+<h5 id="removing_tmp_table">removing tmp table</h5><p>The thread is removing an internal temporary table after processing a SELECT statement. This state is not used if no temporary table was created.</p>
+<h5 id="rename">rename</h5><p>The thread is renaming a table.</p>
+<h5 id="rename_result_table">rename result table</h5><p>The thread is processing an ALTER TABLE statement, has created the new table, and is renaming it to replace the original table.</p>
+<h5 id="Reopen_tables">Reopen tables</h5><p>The thread got a lock for the table, but noticed after getting the lock that the underlying table structure changed. It has freed the lock, closed the table, and is trying to reopen it.</p>
+<h5 id="Repair_by_sorting">Repair by sorting</h5><p>The repair code is using a sort to create indexes.</p>
+<h5 id="Repair_done">Repair done</h5><p>The thread has completed a multi-threaded repair for a MyISAM table.</p>
+<h5 id="Repair_with_keycache">Repair with keycache</h5><p>The repair code is using creating keys one by one through the key cache. This is much slower than Repair by sorting.</p>
+<h5 id="Rolling_back">Rolling back</h5><p>The thread is rolling back a transaction.</p>
+<h5 id="Saving_state">Saving state</h5><p>For MyISAM table operations such as repair or analysis, the thread is saving the new table state to the .MYI file header. State includes information such as number of rows, the AUTO_INCREMENT counter, and key distributions.</p>
+<h5 id="Searching_rows_for_update">Searching rows for update</h5><p>The thread is doing a first phase to find all matching rows before updating them. This has to be done if the UPDATE is changing the index that is used to find the involved rows.</p>
+<h5 id="Sending_data">Sending data</h5><p>The thread is reading and processing rows for a SELECT statement, and sending data to the client. Because operations occurring during this state tend to perform large amounts of disk access (reads), it is often the longest-running state over the lifetime of a given query.</p>
+<h5 id="setup">setup</h5><p>The thread is beginning an ALTER TABLE operation.</p>
+<h5 id="Sorting_for_group">Sorting for group</h5><p>The thread is doing a sort to satisfy a GROUP BY.</p>
+<h5 id="Sorting_for_order">Sorting for order</h5><p>The thread is doing a sort to satisfy a ORDER BY.</p>
+<h5 id="Sorting_index">Sorting index</h5><p>The thread is sorting index pages for more efficient access during a MyISAM table optimization operation.</p>
+<h5 id="Sorting_result">Sorting result</h5><p>For a SELECT statement, this is similar to Creating sort index, but for nontemporary tables.</p>
+<h5 id="statistics">statistics</h5><p>The server is calculating statistics to develop a query execution plan. If a thread is in this state for a long time, the server is probably disk-bound performing other work.</p>
+<h5 id="System_lock">System lock</h5><p>The thread is going to request or is waiting for an internal or external system lock for the table. If this state is being caused by requests for external locks and you are not using multiple mysqld servers that are accessing the same MyISAM tables, you can disable external system locks with the –skip-external-locking option. However, external locking is disabled by default, so it is likely that this option will have no effect. For SHOW PROFILE, this state means the thread is requesting the lock (not waiting for it).</p>
+<h5 id="update">update</h5><p>The thread is getting ready to start updating the table.</p>
+<h5 id="Updating">Updating</h5><p>The thread is searching for rows to update and is updating them.</p>
+<h5 id="updating_main_table">updating main table</h5><p>The server is executing the first part of a multiple-table update. It is updating only the first table, and saving columns and offsets to be used for updating the other (reference) tables.</p>
+<h5 id="updating_reference_tables">updating reference tables</h5><p>The server is executing the second part of a multiple-table update and updating the matched rows from the other tables.</p>
+<h5 id="User_lock">User lock</h5><p>The thread is going to request or is waiting for an advisory lock requested with a GET_LOCK() call. For SHOW PROFILE, this state means the thread is requesting the lock (not waiting for it).</p>
+<h5 id="User_sleep">User sleep</h5><p>The thread has invoked a SLEEP() call.</p>
+<h5 id="Waiting_for_commit_lock">Waiting for commit lock</h5><p>FLUSH TABLES WITH READ LOCK is waiting for a commit lock.</p>
+<h5 id="Waiting_for_global_read_lock">Waiting for global read lock</h5><p>FLUSH TABLES WITH READ LOCK is waiting for a global read lock or the global read_only system variable is being set.</p>
+<h5 id="Waiting_for_tables,_Waiting_for_table_flush">Waiting for tables, Waiting for table flush</h5><p>The thread got a notification that the underlying structure for a table has changed and it needs to reopen the table to get the new structure. However, to reopen the table, it must wait until all other threads have closed the table in question.<br>This notification takes place if another thread has used FLUSH TABLES or one of the following statements on the table in question: FLUSH TABLES tbl_name, ALTER TABLE, RENAME TABLE, REPAIR TABLE, ANALYZE TABLE, or OPTIMIZE TABLE.  </p>
+<h5 id="Waiting_for_lock_type_lock">Waiting for lock_type lock</h5><p>The server is waiting to acquire a lock, where lock_type indicates the type of lock:</p>
+<pre><code>Waiting for event metadata <span class="operator"><span class="keyword">lock</span>
+
+Waiting <span class="keyword">for</span> <span class="keyword">global</span> <span class="keyword">read</span> <span class="keyword">lock</span>
+
+Waiting <span class="keyword">for</span> <span class="keyword">schema</span> metadata <span class="keyword">lock</span>
+
+Waiting <span class="keyword">for</span> <span class="keyword">stored</span> <span class="keyword">function</span> metadata <span class="keyword">lock</span>
+
+Waiting <span class="keyword">for</span> <span class="keyword">stored</span> <span class="keyword">procedure</span> metadata <span class="keyword">lock</span>
+
+Waiting <span class="keyword">for</span> <span class="keyword">table</span> <span class="keyword">level</span> <span class="keyword">lock</span>
+
+Waiting <span class="keyword">for</span> <span class="keyword">table</span> metadata <span class="keyword">lock</span>
+
+Waiting <span class="keyword">for</span> <span class="keyword">trigger</span> metadata <span class="keyword">lock</span></span>
+</code></pre><h5 id="Waiting_on_cond">Waiting on cond</h5><p>A generic state in which the thread is waiting for a condition to become true. No specific state information is available.</p>
+<h5 id="Writing_to_net">Writing to net</h5><p>The server is writing a packet to the network.</p>
+<h2 id="Delayed-Insert_Thread">Delayed-Insert Thread</h2><p>These thread states are associated with processing for DELAYED inserts (see Section 13.2.5.2, “INSERT DELAYED Syntax”). Some states are associated with connection threads that process INSERT DELAYED statements from clients. Other states are associated with delayed-insert handler threads that insert the rows. There is a delayed-insert handler thread for each table for which INSERT DELAYED statements are issued.<br>States associated with a connection thread that processes an INSERT DELAYED statement from the client:  </p>
+<h5 id="allocating_local_table">allocating local table</h5><p>The thread is preparing to feed rows to the delayed-insert handler thread.</p>
+<h5 id="Creating_delayed_handler">Creating delayed handler</h5><p>The thread is creating a handler for DELAYED inserts.</p>
+<h5 id="got_handler_lock">got handler lock</h5><p>This occurs before the allocating local table state and after the waiting for handler lock state, when the connection thread gets access to the delayed-insert handler thread.</p>
+<h5 id="got_old_table">got old table</h5><p>This occurs after the waiting for handler open state. The delayed-insert handler thread has signaled that it has ended its initialization phase, which includes opening the table for delayed inserts.</p>
+<h5 id="storing_row_into_queue">storing row into queue</h5><p>The thread is adding a new row to the list of rows that the delayed-insert handler thread must insert.</p>
+<h5 id="waiting_for_delay_list">waiting for delay_list</h5><p>This occurs during the initialization phase when the thread is trying to find the delayed-insert handler thread for the table, and before attempting to gain access to the list of delayed-insert threads.</p>
+<h5 id="waiting_for_handler_insert">waiting for handler insert</h5><p>An INSERT DELAYED handler has processed all pending inserts and is waiting for new ones.</p>
+<h5 id="waiting_for_handler_lock">waiting for handler lock</h5><p>This occurs before the allocating local table state when the connection thread waits for access to the delayed-insert handler thread.</p>
+<h5 id="waiting_for_handler_open">waiting for handler open</h5><p>This occurs after the Creating delayed handler state and before the got old table state. The delayed-insert handler thread has just been started, and the connection thread is waiting for it to initialize.<br>States associated with a delayed-insert handler thread that inserts the rows:  </p>
+<h5 id="insert">insert</h5><p>The state that occurs just before inserting rows into the table.</p>
+<h5 id="reschedule">reschedule</h5><p>After inserting a number of rows, the delayed-insert thread sleeps to let other threads do work.</p>
+<h5 id="upgrading_lock">upgrading lock</h5><p>A delayed-insert handler is trying to get a lock for the table to insert rows.</p>
+<h5 id="Waiting_for_INSERT">Waiting for INSERT</h5><p>A delayed-insert handler is waiting for a connection thread to add rows to the queue (see storing row into queue).</p>
+<h2 id="Query_Cache_Thread">Query Cache Thread</h2><p>These thread states are associated with the query cache (see Section 8.10.3, “The MySQL Query Cache”).  </p>
+<h5 id="checking_privileges_on_cached_query">checking privileges on cached query</h5><p>The server is checking whether the user has privileges to access a cached query result.</p>
+<h5 id="checking_query_cache_for_query">checking query cache for query</h5><p>The server is checking whether the current query is present in the query cache.</p>
+<h5 id="invalidating_query_cache_entries">invalidating query cache entries</h5><p>Query cache entries are being marked invalid because the underlying tables have changed.</p>
+<h5 id="sending_cached_result_to_client">sending cached result to client</h5><p>The server is taking the result of a query from the query cache and sending it to the client.</p>
+<h5 id="storing_result_in_query_cache">storing result in query cache</h5><p>The server is storing the result of a query in the query cache.</p>
+<h5 id="Waiting_for_query_cache_lock">Waiting for query cache lock</h5><p>This state occurs while a session is waiting to take the query cache lock. This can happen for any statement that needs to perform some query cache operation, such as an INSERT or DELETE that invalidates the query cache, a SELECT that looks for a cached entry, RESET QUERY CACHE, and so forth.</p>
+<h2 id="Replication_Master_Thread">Replication Master Thread</h2><p>The following list shows the most common states you may see in the State column for the master’s Binlog Dump thread. If you see no Binlog Dump threads on a master server, this means that replication is not running—that is, that no slaves are currently connected.  </p>
+<h5 id="Sending_binlog_event_to_slave">Sending binlog event to slave</h5><p>Binary logs consist of events, where an event is usually an update plus some other information. The thread has read an event from the binary log and is now sending it to the slave.</p>
+<h5 id="Finished_reading_one_binlog;_switching_to_next_binlog">Finished reading one binlog; switching to next binlog</h5><p>The thread has finished reading a binary log file and is opening the next one to send to the slave.</p>
+<h5 id="Master_has_sent_all_binlog_to_slave;_waiting_for_binlog_to_be_updated">Master has sent all binlog to slave; waiting for binlog to be updated</h5><p>The thread has read all outstanding updates from the binary logs and sent them to the slave. The thread is now idle, waiting for new events to appear in the binary log resulting from new updates occurring on the master.</p>
+<h5 id="Waiting_to_finalize_termination">Waiting to finalize termination</h5><p>A very brief state that occurs as the thread is stopping.</p>
+<h2 id="Replication_Slave_I/O_Thread">Replication Slave I/O Thread</h2><p>The following list shows the most common states you see in the State column for a slave server I/O thread. This state also appears in the Slave_IO_State column displayed by SHOW SLAVE STATUS, so you can get a good view of what is happening by using that statement.  </p>
+<h5 id="Waiting_for_master_update">Waiting for master update</h5><p>The initial state before Connecting to master.</p>
+<h5 id="Connecting_to_master">Connecting to master</h5><p>The thread is attempting to connect to the master.</p>
+<h5 id="Checking_master_version">Checking master version</h5><p>A state that occurs very briefly, after the connection to the master is established.</p>
+<h5 id="Registering_slave_on_master">Registering slave on master</h5><p>A state that occurs very briefly after the connection to the master is established.</p>
+<h5 id="Requesting_binlog_dump">Requesting binlog dump</h5><p>A state that occurs very briefly, after the connection to the master is established. The thread sends to the master a request for the contents of its binary logs, starting from the requested binary log file name and position.</p>
+<h5 id="Waiting_to_reconnect_after_a_failed_binlog_dump_request">Waiting to reconnect after a failed binlog dump request</h5><p>If the binary log dump request failed (due to disconnection), the thread goes into this state while it sleeps, then tries to reconnect periodically. The interval between retries can be specified using the CHANGE MASTER TO statement.</p>
+<h5 id="Reconnecting_after_a_failed_binlog_dump_request">Reconnecting after a failed binlog dump request</h5><p>The thread is trying to reconnect to the master.</p>
+<h5 id="Waiting_for_master_to_send_event">Waiting for master to send event</h5><p>The thread has connected to the master and is waiting for binary log events to arrive. This can last for a long time if the master is idle. If the wait lasts for slave_net_timeout seconds, a timeout occurs. At that point, the thread considers the connection to be broken and makes an attempt to reconnect.</p>
+<h5 id="Queueing_master_event_to_the_relay_log">Queueing master event to the relay log</h5><p>The thread has read an event and is copying it to the relay log so that the SQL thread can process it.</p>
+<h5 id="Waiting_to_reconnect_after_a_failed_master_event_read">Waiting to reconnect after a failed master event read</h5><p>An error occurred while reading (due to disconnection). The thread is sleeping for the number of seconds set by the CHANGE MASTER TO statement (default 60) before attempting to reconnect.</p>
+<h5 id="Reconnecting_after_a_failed_master_event_read">Reconnecting after a failed master event read</h5><p>The thread is trying to reconnect to the master. When connection is established again, the state becomes Waiting for master to send event.</p>
+<h5 id="Waiting_for_the_slave_SQL_thread_to_free_enough_relay_log_space">Waiting for the slave SQL thread to free enough relay log space</h5><p>You are using a nonzero relay_log_space_limit value, and the relay logs have grown large enough that their combined size exceeds this value. The I/O thread is waiting until the SQL thread frees enough space by processing relay log contents so that it can delete some relay log files.</p>
+<h5 id="Waiting_for_slave_mutex_on_exit">Waiting for slave mutex on exit</h5><p>A state that occurs briefly as the thread is stopping.</p>
+<h2 id="Replication_Slave_SQL_Thread">Replication Slave SQL Thread</h2><p>The following list shows the most common states you may see in the State column for a slave server SQL thread:  </p>
+<h5 id="Waiting_for_the_next_event_in_relay_log">Waiting for the next event in relay log</h5><p>The initial state before Reading event from the relay log.</p>
+<h5 id="Reading_event_from_the_relay_log">Reading event from the relay log</h5><p>The thread has read an event from the relay log so that the event can be processed.</p>
+<h5 id="Making_temporary_file_(append)_before_replaying_LOAD_DATA_INFILE">Making temporary file (append) before replaying LOAD DATA INFILE</h5><p>The thread is executing a LOAD DATA INFILE statement and is appending the data to a temporary file containing the data from which the slave will read rows.</p>
+<h5 id="Making_temporary_file_(create)_before_replaying_LOAD_DATA_INFILE">Making temporary file (create) before replaying LOAD DATA INFILE</h5><p>The thread is executing a LOAD DATA INFILE statement and is creating a temporary file containing the data from which the slave will read rows. This state can only be encountered if the original LOAD DATA INFILE statement was logged by a master running a version of MySQL earlier than version 5.0.3.</p>
+<h5 id="Slave_has_read_all_relay_log;_waiting_for_more_updates">Slave has read all relay log; waiting for more updates</h5><p>The thread has processed all events in the relay log files, and is now waiting for the I/O thread to write new events to the relay log.</p>
+<h5 id="Waiting_for_slave_mutex_on_exit-1">Waiting for slave mutex on exit</h5><p>A very brief state that occurs as the thread is stopping.</p>
+<h5 id="Waiting_until_MASTER_DELAY_seconds_after_master_executed_event">Waiting until MASTER_DELAY seconds after master executed event</h5><p>The SQL thread has read an event but is waiting for the slave delay to lapse. This delay is set with the MASTER_DELAY option of CHANGE MASTER TO.</p>
+<h5 id="Killing_slave">Killing slave</h5><p>The thread is processing a STOP SLAVE statement.</p>
+<h5 id="Waiting_for_an_event_from_Coordinator">Waiting for an event from Coordinator</h5><p>Using the multi-threaded slave (slave_parallel_workers is greater than 1), one of the slave worker threads is waiting for an event from the coordinator thread.  </p>
+<p>The Info column for the SQL thread may also show the text of a statement. This indicates that the thread has read an event from the relay log, extracted the statement from it, and may be executing it.  </p>
+<h2 id="Replication_Slave_Connection_Thread">Replication Slave Connection Thread</h2><p>These thread states occur on a replication slave but are associated with connection threads, not with the I/O or SQL threads.  </p>
+<h5 id="Changing_master">Changing master</h5><p>The thread is processing a CHANGE MASTER TO statement.</p>
+<h5 id="Killing_slave-1">Killing slave</h5><p>The thread is processing a STOP SLAVE statement.</p>
+<h5 id="Opening_master_dump_table">Opening master dump table</h5><p>This state occurs after Creating table from master dump.</p>
+<h5 id="Reading_master_dump_table_data">Reading master dump table data</h5><p>This state occurs after Opening master dump table.</p>
+<h5 id="Rebuilding_the_index_on_master_dump_table">Rebuilding the index on master dump table</h5><p>This state occurs after Reading master dump table data.</p>
+<h2 id="MySQL_Cluster_Thread">MySQL Cluster Thread</h2><h5 id="Committing_events_to_binlog">Committing events to binlog</h5><h5 id="Opening_mysql-ndb_apply_status">Opening mysql.ndb_apply_status</h5><h5 id="Processing_events">Processing events</h5><p>The thread is processing events for binary logging.</p>
+<h5 id="Processing_events_from_schema_table">Processing events from schema table</h5><p>The thread is doing the work of schema replication.</p>
+<h5 id="Shutting_down">Shutting down</h5><h5 id="Syncing_ndb_table_schema_operation_and_binlog">Syncing ndb table schema operation and binlog</h5><p>This is used to have a correct binary log of schema operations for NDB.</p>
+<h5 id="Waiting_for_event_from_ndbcluster">Waiting for event from ndbcluster</h5><p>The server is acting as an SQL node in a MySQL Cluster, and is connected to a cluster management node.</p>
+<h5 id="Waiting_for_first_event_from_ndbcluster">Waiting for first event from ndbcluster</h5><h5 id="Waiting_for_ndbcluster_binlog_update_to_reach_current_position">Waiting for ndbcluster binlog update to reach current position</h5><h5 id="Waiting_for_ndbcluster_to_start">Waiting for ndbcluster to start</h5><h5 id="Waiting_for_schema_epoch">Waiting for schema epoch</h5><p>The thread is waiting for a schema epoch (that is, a global checkpoint).</p>
+<h5 id="Waiting_for_allowed_to_take_ndbcluster_global_schema_lock">Waiting for allowed to take ndbcluster global schema lock</h5><p>The thread is waiting for permission to take a global schema lock.</p>
+<h5 id="Waiting_for_ndbcluster_global_schema_lock">Waiting for ndbcluster global schema lock</h5><p>The thread is waiting for a global schema lock held by another thread to be released.</p>
+<h2 id="Event_Scheduler_Thread">Event Scheduler Thread</h2><p>These states occur for the Event Scheduler thread, threads that are created to execute scheduled events, or threads that terminate the scheduler.  </p>
+<h5 id="Clearing">Clearing</h5><p>The scheduler thread or a thread that was executing an event is terminating and is about to end.</p>
+<h5 id="Initialized">Initialized</h5><p>The scheduler thread or a thread that will execute an event has been initialized.</p>
+<h5 id="Waiting_for_next_activation">Waiting for next activation</h5><p>The scheduler has a nonempty event queue but the next activation is in the future.</p>
+<h5 id="Waiting_for_scheduler_to_stop">Waiting for scheduler to stop</h5><p>The thread issued SET GLOBAL event_scheduler=OFF and is waiting for the scheduler to stop.</p>
+<h5 id="Waiting_on_empty_queue">Waiting on empty queue</h5><p>The scheduler’s event queue is empty and it is sleeping.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;MySQL官方文档中的status存在于好几个小节中，每个status的英文解释其实一般是可以看的懂的，主要是寻找相应的status有点困难，所以我将所有的status整理在一个页面，直接Ctrl+F就可以查找到相应的status啦。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://wing324.github.io/categories/MySQL/"/>
+    
+    
+      <category term="show profile" scheme="https://wing324.github.io/tags/show-profile/"/>
+    
+      <category term="show processlist" scheme="https://wing324.github.io/tags/show-processlist/"/>
+    
+      <category term="status" scheme="https://wing324.github.io/tags/status/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux的账号管理</title>
+    <link href="https://wing324.github.io/2018/04/02/Linux%E7%9A%84%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86/"/>
+    <id>https://wing324.github.io/2018/04/02/Linux的账号管理/</id>
+    <published>2018-04-03T03:24:58.388Z</published>
+    <updated>2017-01-31T10:35:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>记忆力不好，对于Linux最基本的账号管理都记不住，只能默默的写下来，此处列出常用的让自己记住。。。<br><a id="more"></a></p>
+<h2 id="查看用户相关信息">查看用户相关信息</h2><ul>
+<li>/etc/passwd查看用户，/etc/shadow查看密码，/etc/group查看组</li>
+<li>id命令查看自己或他人相关的UID/GID信息<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># id命令看起来有点像这样</div><div class="line">[test@localhost ~]$ id test1</div><div class="line">uid=1001(test1) gid=1001(test1) 组=1001(test1)</div><div class="line">[test@localhost ~]$ id test</div><div class="line">uid=1000(test) gid=1000(test) 组=1000(test)</div><div class="line">[test@localhost ~]$ id root</div><div class="line">uid=0(root) gid=0(root) 组=0(root)</div><div class="line"># 可以直接通过id查看当前用户的UID/GID</div><div class="line">[test@localhost ~]$ id</div><div class="line">uid=1000(test) gid=1000(test) 组=1000(test) 环境=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="新增用户">新增用户</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 只添加用户</div><div class="line">useradd test1</div><div class="line"></div><div class="line"># -g表示初始化的组，-G表示还可以加入的组</div><div class="line">[root@localhost ~]# useradd test2 -g test -G test2</div><div class="line"></div><div class="line"># useradd添加的账户是没有密码的，所以我们需要用passwd命令，修改账户密码</div><div class="line">[root@localhost ~]# passwd test2		</div><div class="line">更改用户 test2 的密码 。</div><div class="line">新的 密码：</div><div class="line">无效的密码： 密码少于 8 个字符</div><div class="line">重新输入新的 密码：</div><div class="line">passwd：所有的身份验证令牌已经成功更新。</div></pre></td></tr></table></figure>
+<h2 id="修改用户">修改用户</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 为账户test2修改注释，接着可在/etc/passwd文件中查看相应的修改</div><div class="line">[root@localhost ~]# usermod -c &apos;just test&apos; test2</div><div class="line">该语句执行前：test2:x:1002:1000::/home/test2:/bin/bash</div><div class="line">该语句执行后：test2:x:1002:1000:just test:/home/test2:/bin/bash</div><div class="line"></div><div class="line"># 修改账户test2的初始化组，此处test1组的GID为1001</div><div class="line">[root@localhost ~]# usermod -g test1 test2</div><div class="line">该语句执行前：test2:x:1002:1000:just test:/home/test2:/bin/bash</div><div class="line">该语句执行后：test2:x:1002:1001:just test:/home/test2:/bin/bash</div><div class="line"></div><div class="line"># 修改账户test2的次要组</div><div class="line">[root@localhost ~]# usermod -G test test2</div></pre></td></tr></table></figure>
+<h2 id="删除用户">删除用户</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 仅删除test2用户</div><div class="line">[root@localhost ~]# userdel test2</div><div class="line"></div><div class="line"># 删除test2用户及其home</div><div class="line">[root@localhost ~]# userdel -r test2</div></pre></td></tr></table></figure>
+<p>使用userdel需要谨慎，因为也许可能你存在文件的user是test2用户创建的，如果删除test2用户，用户名就会变成一串数字。  </p>
+<h2 id="新增用户组">新增用户组</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 只添加用户组</div><div class="line">[root@localhost ~]# groupadd group1</div><div class="line"></div><div class="line"># 创建用户组时，指定GID</div><div class="line">[root@localhost ~]# groupadd -g 324 group2</div></pre></td></tr></table></figure>
+<h2 id="修改用户组">修改用户组</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 更改用户组的GID </div><div class="line">[root@localhost ~]# groupmod -g 125 group2</div></pre></td></tr></table></figure>
+<h2 id="删除用户组">删除用户组</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 删除用户组</div><div class="line">[root@localhost ~]# groupdel group2</div><div class="line"></div><div class="line"># 为什么这个用户组删除不了呢</div><div class="line">[root@localhost ~]# groupdel test1</div><div class="line">groupdel：不能移除用户“test1”的主组</div><div class="line"># 该用户组删除不了的原因为，它为某个账号的初始化组即initial group,所以此时删除不了，此时可将该账号的GID修改为其他或者删除该账号</div><div class="line">[root@localhost ~]# groupdel test1</div><div class="line">groupdel：不能移除用户“test1”的主组</div><div class="line">[root@localhost ~]# usermod -g 1000 test1</div><div class="line">[root@localhost ~]# groupdel test1</div></pre></td></tr></table></figure>
+<h2 id="组管理员">组管理员</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 建立群组</div><div class="line">[root@localhost ~]# groupadd testgroup</div><div class="line"># 为该群组添加密码</div><div class="line">[root@localhost ~]# gpasswd testgroup</div><div class="line">正在修改 testgroup 组的密码</div><div class="line">新密码：</div><div class="line">请重新输入新密码：</div><div class="line"># 将test设为testgroup的组管理员</div><div class="line">[root@localhost ~]# gpasswd -A test testgroup</div><div class="line"></div><div class="line">#以test登陆，将自己和test2加入到testgroup群组中</div><div class="line">[test@localhost ~]$ gpasswd -a test testgroup</div><div class="line">正在将用户“test”加入到“testgroup”组中</div><div class="line">[test@localhost ~]$ gpasswd -a test2 testgroup</div><div class="line">正在将用户“test2”加入到“testgroup”组中</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;记忆力不好，对于Linux最基本的账号管理都记不住，只能默默的写下来，此处列出常用的让自己记住。。。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://wing324.github.io/categories/Linux/"/>
+    
+    
+      <category term="user" scheme="https://wing324.github.io/tags/user/"/>
+    
+      <category term="group" scheme="https://wing324.github.io/tags/group/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java之final关键字</title>
+    <link href="https://wing324.github.io/2017/10/31/Java%E4%B9%8Bfinal%E5%85%B3%E9%94%AE%E5%AD%97/"/>
+    <id>https://wing324.github.io/2017/10/31/Java之final关键字/</id>
+    <published>2017-10-31T17:30:04.000Z</published>
+    <updated>2017-10-31T02:31:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>还记得前面的static关键字吗？这次我们说说final关键字。</p>
+<a id="more"></a>
+<p>参考：<a href="https://ke.qq.com/webcourse/index.html#course_id=147646&amp;term_id=100167776&amp;taid=747444568735934&amp;vid=r1411l01p38" target="_blank" rel="external">腾讯课堂 </a></p>
+<h5 id="一、为什么使用final关键字">一、为什么使用final关键字</h5><p>继承关系中最大的弊端是破坏了封装：子类可以访问父类的实现细节，而且可以通过方法覆盖的形式修改方法的实现细节。那么final就用来让你不可以做任何的更改，只能调用，不允许修改。  </p>
+<p>final可以修饰非抽象类/非抽象方法/变量。  </p>
+<p><strong>注意：</strong>构造方法不能使用final修饰，因为构造方法不能被继承，它是最终的一个状态。  </p>
+<h5 id="二、关于final">二、关于final</h5><ul>
+<li><p>final修饰的非抽象类<br>final修饰的非抽象类是不能被子类继承的。  </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">package</span> com.wing.finaldemo;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalDemo</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Superclass</span></span>&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Subclass</span> <span class="keyword">extends</span> <span class="title">Superclass</span></span>&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//此时会出现如下的报错</span></div><div class="line">Cannot inherit from <span class="keyword">final</span> <span class="string">'com.wing.finaldemo.Superclass'</span></div><div class="line">即com.wing.finaldemo.Superclass使用了<span class="keyword">final</span>修饰符，导致子类无法继承。</div></pre></td></tr></table></figure>
+<p><strong>哪些类需要使用final来修饰呢？</strong>  </p>
+<ul>
+<li>该类不是专门为继承而设计的  </li>
+<li>处于安全考虑，类的实现细节不许改动，不准修改源代码  </li>
+<li>确保该类不会在被拓展。  </li>
+</ul>
+</li>
+<li><p>final修饰的非抽象方法<br>final修饰的非抽象方法被称为最终的类，该方法不能被子类修改。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">package</span> com.wing.finaldemo;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalDemo</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Superclass</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"SuperClass doWork"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Subclass</span> <span class="keyword">extends</span> <span class="title">Superclass</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"SubClass doWork"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//此时会出现以下错误</span></div><div class="line">Error:(<span class="number">17</span>, <span class="number">17</span>) java: com.wing.finaldemo.<span class="function">Subclass cannot override  <span class="title">doWork</span><span class="params">()</span> in com.wing.finaldemo.Superclass <span class="title">doWork</span><span class="params">()</span>,overriden method is <span class="keyword">final</span>.</span></div></pre></td></tr></table></figure>
+<p><strong>哪些方法需要使用final修饰呢？</strong>  </p>
+<ul>
+<li>在父类中提供的统一的方法不准子类通过Override来修改，只允许子类调用，不允许子类修改。  </li>
+<li>在构造器中调用的方法(初始化方法)，初始化方法一般为final修饰。  </li>
+</ul>
+</li>
+<li><p>final修饰的变量<br>final修饰的变量被称为常量，该变量只能赋值一次，不能再次被赋值。<br><strong>final是唯一可以修改局部变量的修饰符。</strong><br>final修饰基本类型变量：表示该变量的值不能改变，即不能用”=”赋值;<br>final修饰引用类型变量：表示该引用变量的引用地址不能改变，而不是引用地址里面的内容不能变。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 修改final修饰引用类型变量对应的引用地址的内容</span></div><div class="line"><span class="keyword">package</span> com.wing.finaldemo;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalDemo</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        <span class="keyword">final</span> Person p1 = <span class="keyword">new</span> Person();</div><div class="line">        System.out.println(p1.info);</div><div class="line">        p1.info = <span class="string">"Second Vlaue"</span>;</div><div class="line">        System.out.println(p1.info);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> String info=<span class="string">"First value"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//此时输出</span></div><div class="line">First value</div><div class="line">Second Vlaue</div><div class="line"><span class="comment">// 可见：final修饰引用变量时，其引用地址里面的内容可以改变。</span></div><div class="line"></div><div class="line"><span class="comment">//修改final修饰引用类型变量对应的引用地址改变</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalDemo</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        <span class="keyword">final</span> Person p1 = <span class="keyword">new</span> Person();</div><div class="line">        System.out.println(p1.info);</div><div class="line">        p1.info = <span class="string">"Second Vlaue"</span>;</div><div class="line">        System.out.println(p1.info);</div><div class="line">        p1 = <span class="keyword">new</span> Person();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> String info=<span class="string">"First value"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 此时编译报错</span></div><div class="line">Cannot assign a value to <span class="keyword">final</span> variable <span class="string">'p1'</span></div></pre></td></tr></table></figure>
+<p><strong>哪些变量需要使用final修饰呢？</strong><br>当在程序中多个地方使用一个不变的变量，就将其定义为常量。</p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;还记得前面的static关键字吗？这次我们说说final关键字。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="https://wing324.github.io/categories/Java/"/>
+    
+    
+      <category term="final" scheme="https://wing324.github.io/tags/final/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java之多态方法中的调用问题</title>
+    <link href="https://wing324.github.io/2017/10/31/Java%E4%B9%8B%E5%A4%9A%E6%80%81%E6%96%B9%E6%B3%95%E4%B8%AD%E7%9A%84%E8%B0%83%E7%94%A8%E9%97%AE%E9%A2%98/"/>
+    <id>https://wing324.github.io/2017/10/31/Java之多态方法中的调用问题/</id>
+    <published>2017-10-31T17:25:07.000Z</published>
+    <updated>2017-10-31T02:27:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Java的多态。嗯。是个很有意思的东西。</p>
+<a id="more"></a>
+<p>参考：<a href="https://ke.qq.com/webcourse/index.html#course_id=147646&amp;term_id=100167776&amp;taid=747414503964862&amp;vid=n1411d4d7v9" target="_blank" rel="external">腾讯课堂</a></p>
+<p>多态方法调用情况存在四类，以doWork()方法为例：</p>
+<ol>
+<li><p>doWork()存在子类中，不存在父类中，结果调用子类的doWork()；</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">package</span> com.wing.multidemo;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiDemo2</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        SuperClass s1 = <span class="keyword">new</span> SubClass();</div><div class="line">        s1.doWork();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 父类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperClass</span></span>&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 子类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubClass</span> <span class="keyword">extends</span> <span class="title">SuperClass</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"SubClass doWork"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//此时输出结果</span></div><div class="line">编译报错。</div><div class="line">因为编译时期需要去编译类型(Superclass)中找是否有doWork()方法，找到则编译通过，找不到则编译失败。</div></pre></td></tr></table></figure>
+</li>
+<li><p>dowork()不存在子类中，存在父类中，结果调用父类的doWork()；</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">package</span> com.wing.multidemo;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiDemo2</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        SuperClass s1 = <span class="keyword">new</span> SubClass();</div><div class="line">        s1.doWork();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 父类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperClass</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"SuperClass doWork"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 子类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubClass</span> <span class="keyword">extends</span> <span class="title">SuperClass</span></span>&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 此时输出结果</span></div><div class="line">SuperClass doWork</div></pre></td></tr></table></figure>
+</li>
+<li><p>doWork()存在子类中，存在父类中，结果调用子类的doWork()；[就近原则]</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">package</span> com.wing.multidemo;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiDemo2</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        SuperClass s1 = <span class="keyword">new</span> SubClass();</div><div class="line">        s1.doWork();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 父类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperClass</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"SuperClass doWork"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 子类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubClass</span> <span class="keyword">extends</span> <span class="title">SuperClass</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"SubClass doWork"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 此时输出结果</span></div><div class="line">SubClass doWork</div><div class="line">此时是先从SubClass中找是否存在doWork()方法，再去SuperClass中找是否存在doWork()方法。</div></pre></td></tr></table></figure>
+</li>
+<li><p>doWork()存在子类中(static方法)，存在父类中(方法)，结果调用子类的doWork()。[就近原则]<br>注意，这种方式称之为”隐藏”，而不是”方法覆盖”。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">package</span> com.wing.multidemo;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiDemo2</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        SuperClass s1 = <span class="keyword">new</span> SubClass();</div><div class="line">        s1.doWork();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 父类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperClass</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"SuperClass doWork"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 子类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubClass</span> <span class="keyword">extends</span> <span class="title">SuperClass</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"SubClass doWork"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 此时输出结果</span></div><div class="line">SuperClass doWork</div><div class="line">解释：静态方法的调用，只需要类即可。如果使用对象来调用方法，其实使用对象的类(该代码中为SuperClass)调用静态方法。</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>总结:</strong></p>
+<ol>
+<li>多态调用方法时，首先方法会去子类中查找方法是否存在，再去父类中查找方法是否存在[方法必须存在父类中，否则多态编译将会失败。]</li>
+<li>多态中静态方法的”重写”不叫重写，应该叫”方法隐藏”，为什么呢？因为静态方法的调用，只需要类即可，如果使用对象来调用静态方法，其实使用的是对象的类来调用静态方法的。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Java的多态。嗯。是个很有意思的东西。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="https://wing324.github.io/categories/Java/"/>
+    
+    
+      <category term="polymorphism" scheme="https://wing324.github.io/tags/polymorphism/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hive实用函数大全</title>
+    <link href="https://wing324.github.io/2017/10/20/Hive%E5%AE%9E%E7%94%A8%E5%87%BD%E6%95%B0%E5%A4%A7%E5%85%A8/"/>
+    <id>https://wing324.github.io/2017/10/20/Hive实用函数大全/</id>
+    <published>2017-10-21T03:24:41.000Z</published>
+    <updated>2017-10-20T12:26:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>为什么叫实用函数，因为有些不实用的函数没有写进文档中，哈哈。<br><a id="more"></a></p>
+<p>参考文档：</p>
+<p>《Apache Hive Cookbook》</p>
+<p><a href="http://lxw1234.com/archives/2015/04/176.htm" target="_blank" rel="external">Hive分析窗口函数(一) SUM,AVG,MIN,MAX</a></p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line"># 示例表结构sales</div><div class="line">CREATE TABLE `sales`(</div><div class="line">  `id` int,</div><div class="line">  `fname` string,</div><div class="line">  `state` string,</div><div class="line">  `zip` int,</div><div class="line">  `ip` string,</div><div class="line">  `pid` string)</div><div class="line"></div><div class="line"># 示例数据sales</div><div class="line">0	Zena	Tennessee	21550	192.168.56.101	PI_09</div><div class="line">1	Elaine	Alaska	6429	192.168.56.101	PI_03</div><div class="line">2	Sage	Nevada	8899	192.168.56.102	PI_03</div><div class="line">3	Cade	Missouri	11233	192.168.56.103	PI_06</div><div class="line">4	Abra	New Jersry	21500	192.168.56.101	PI_09</div><div class="line">5	Stone	Nebraska	3560	192.168.56.104	PI_08</div><div class="line">6	Regina	Tennessee	21550	192.168.56.105	PI_10</div><div class="line">7	Donova	New York	95234	192.168.56.106	PI_05</div><div class="line">8	Aileen	Illinois	68284	192.168.56.106	PI_02</div><div class="line">9	Maraam	Hawaii	95234	192.168.56.107	PI_07</div><div class="line"></div><div class="line"># 示例表结构po</div><div class="line">CREATE TABLE `po`(</div><div class="line">  `cookieid` string,</div><div class="line">  `createtime` string,</div><div class="line">  `pv` int)</div><div class="line"></div><div class="line"># 示例数据po</div><div class="line">cookie1	2015-04-10	1</div><div class="line">cookie1	2015-04-11	5</div><div class="line">cookie1	2015-04-12	7</div><div class="line">cookie1	2015-04-13	3</div><div class="line">cookie1	2015-04-14	2</div><div class="line">cookie1	2015-04-15	4</div><div class="line">cookie1	2015-04-16	5</div></pre></td></tr></table></figure>
+<h5 id="一、分析型函数">一、分析型函数</h5><ol>
+<li><p>ROW_NUMBER<br>语法：</p>
+<ul>
+<li>ROW_NUMBER() OVER (ORDER BY col)<br>为每个分组记录返回一个排序的数字。</li>
+<li>ROW_NUMBER() OVER (PARTITION BY col1 ORDER BY col2)<br>按照col1分组，在分组内对col2进行排序并返回顺序数字。</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select fname,pid,ip  from sales;</div><div class="line">OK</div><div class="line">Zena	PI_09	192.168.56.101</div><div class="line">Elaine	PI_03	192.168.56.101</div><div class="line">Sage	PI_03	192.168.56.102</div><div class="line">Cade	PI_06	192.168.56.103</div><div class="line">Abra	PI_09	192.168.56.101</div><div class="line">Stone	PI_08	192.168.56.104</div><div class="line">Regina	PI_10	192.168.56.105</div><div class="line">Donova	PI_05	192.168.56.106</div><div class="line">Aileen	PI_02	192.168.56.106</div><div class="line">Maraam	PI_07	192.168.56.107</div><div class="line"></div><div class="line">hive&gt; select fname,pid,ip,row_number() over (order by ip) from sales;</div><div class="line">Abra	PI_09	192.168.56.101	1</div><div class="line">Elaine	PI_03	192.168.56.101	2</div><div class="line">Zena	PI_09	192.168.56.101	3</div><div class="line">Sage	PI_03	192.168.56.102	4</div><div class="line">Cade	PI_06	192.168.56.103	5</div><div class="line">Stone	PI_08	192.168.56.104	6</div><div class="line">Regina	PI_10	192.168.56.105	7</div><div class="line">Aileen	PI_02	192.168.56.106	8</div><div class="line">Donova	PI_05	192.168.56.106	9</div><div class="line">Maraam	PI_07	192.168.56.107	10</div><div class="line"></div><div class="line">hive&gt; select fname,pid,ip,row_number() over (partition by pid order by ip) from sales;</div><div class="line">Aileen	PI_02	192.168.56.106	1</div><div class="line">Elaine	PI_03	192.168.56.101	1</div><div class="line">Sage	PI_03	192.168.56.102	2</div><div class="line">Donova	PI_05	192.168.56.106	1</div><div class="line">Cade	PI_06	192.168.56.103	1</div><div class="line">Maraam	PI_07	192.168.56.107	1</div><div class="line">Stone	PI_08	192.168.56.104	1</div><div class="line">Abra	PI_09	192.168.56.101	1</div><div class="line">Zena	PI_09	192.168.56.101	2</div><div class="line">Regina	PI_10	192.168.56.105	1</div></pre></td></tr></table></figure>
+</li>
+<li><p>RANK</p>
+<ul>
+<li>RANK() OVER (ORDER BY col)<br>和ROW_NUMBER()差不多，但是排序时候相同的字段会返回相同的数字。</li>
+<li>RANK() OVER (PARTITION by col1 ORDER BY col2)<br>和ROW_NUMBER()差不多，但是排序时候同等级的字段会返回相同的数字。</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select fname,ip,rank() over (order by ip) from sales;</div><div class="line">Abra	192.168.56.101	1</div><div class="line">Elaine	192.168.56.101	1</div><div class="line">Zena	192.168.56.101	1</div><div class="line">Sage	192.168.56.102	4</div><div class="line">Cade	192.168.56.103	5</div><div class="line">Stone	192.168.56.104	6</div><div class="line">Regina	192.168.56.105	7</div><div class="line">Aileen	192.168.56.106	8</div><div class="line">Donova	192.168.56.106	8</div><div class="line">Maraam	192.168.56.107	10</div><div class="line"></div><div class="line">hive&gt; select fname,pid,ip,rank() over (partition by pid order by ip) from sales;</div><div class="line">Aileen	PI_02	192.168.56.106	1</div><div class="line">Elaine	PI_03	192.168.56.101	1</div><div class="line">Sage	PI_03	192.168.56.102	2</div><div class="line">Donova	PI_05	192.168.56.106	1</div><div class="line">Cade	PI_06	192.168.56.103	1</div><div class="line">Maraam	PI_07	192.168.56.107	1</div><div class="line">Stone	PI_08	192.168.56.104	1</div><div class="line">Abra	PI_09	192.168.56.101	1</div><div class="line">Zena	PI_09	192.168.56.101	1</div><div class="line">Regina	PI_10	192.168.56.105	1</div></pre></td></tr></table></figure>
+</li>
+<li><p>DENSE_RANK<br>和RANK()差不多，但是RANK()的排序数字存在空洞，见一-2-第一个示例。而DENSE_RANK()则不会存在排序数字空洞。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select fname,ip,dense_rank() over (order by ip) from sales;</div><div class="line">Abra	192.168.56.101	1</div><div class="line">Elaine	192.168.56.101	1</div><div class="line">Zena	192.168.56.101	1</div><div class="line">Sage	192.168.56.102	2</div><div class="line">Cade	192.168.56.103	3</div><div class="line">Stone	192.168.56.104	4</div><div class="line">Regina	192.168.56.105	5</div><div class="line">Aileen	192.168.56.106	6</div><div class="line">Donova	192.168.56.106	6</div><div class="line">Maraam	192.168.56.107	7</div></pre></td></tr></table></figure>
+</li>
+<li><p>PERCENT_RANK</p>
+<ul>
+<li>PERCENT_RANK() OVER (ORDER BY col)  当前行的rank-1/总行数-1</li>
+<li>PERCENT_RAANK() OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，分组内当前行的rank-1/分组内的总行数-1</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select id,ip,percent_rank() over (order by id)from sales;</div><div class="line">0	192.168.56.101	0.0</div><div class="line">1	192.168.56.101	0.1111111111111111</div><div class="line">2	192.168.56.102	0.2222222222222222</div><div class="line">3	192.168.56.103	0.3333333333333333</div><div class="line">4	192.168.56.101	0.4444444444444444</div><div class="line">5	192.168.56.104	0.5555555555555556</div><div class="line">6	192.168.56.105	0.6666666666666666</div><div class="line">7	192.168.56.106	0.7777777777777778</div><div class="line">8	192.168.56.106	0.8888888888888888</div><div class="line">9	192.168.56.107	1.0</div><div class="line"></div><div class="line">hive&gt; select id,ip,percent_rank() over (partition by ip order by id)from sales;</div><div class="line">0	192.168.56.101	0.0</div><div class="line">1	192.168.56.101	0.5</div><div class="line">4	192.168.56.101	1.0</div><div class="line">2	192.168.56.102	0.0</div><div class="line">3	192.168.56.103	0.0</div><div class="line">5	192.168.56.104	0.0</div><div class="line">6	192.168.56.105	0.0</div><div class="line">7	192.168.56.106	0.0</div><div class="line">8	192.168.56.106	1.0</div><div class="line">9	192.168.56.107	0.0</div></pre></td></tr></table></figure>
+</li>
+<li><p>CUME_DIST</p>
+<ul>
+<li>CUME_DIST() OVER (ORDER BY col) 小于等于col当前值的行数/总行数。</li>
+<li>CUME_DIST() OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，分组内部小于等于col2当前值的行数/总行数。</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select id,ip from sales;</div><div class="line">OK</div><div class="line">0	192.168.56.101</div><div class="line">1	192.168.56.101</div><div class="line">2	192.168.56.102</div><div class="line">3	192.168.56.103</div><div class="line">4	192.168.56.101</div><div class="line">5	192.168.56.104</div><div class="line">6	192.168.56.105</div><div class="line">7	192.168.56.106</div><div class="line">8	192.168.56.106</div><div class="line">9	192.168.56.107</div><div class="line"></div><div class="line">hive&gt; select id,ip,cume_dist() over (order by id)from sales;</div><div class="line">0	192.168.56.101	0.1</div><div class="line">1	192.168.56.101	0.2</div><div class="line">2	192.168.56.102	0.3</div><div class="line">3	192.168.56.103	0.4</div><div class="line">4	192.168.56.101	0.5</div><div class="line">5	192.168.56.104	0.6</div><div class="line">6	192.168.56.105	0.7</div><div class="line">7	192.168.56.106	0.8</div><div class="line">8	192.168.56.106	0.9</div><div class="line">9	192.168.56.107	1.0</div><div class="line"></div><div class="line">hive&gt; select id,ip,cume_dist() over (partition by ip order by id)from sales;</div><div class="line">0	192.168.56.101	0.3333333333333333</div><div class="line">1	192.168.56.101	0.6666666666666666</div><div class="line">4	192.168.56.101	1.0</div><div class="line">2	192.168.56.102	1.0</div><div class="line">3	192.168.56.103	1.0</div><div class="line">5	192.168.56.104	1.0</div><div class="line">6	192.168.56.105	1.0</div><div class="line">7	192.168.56.106	0.5</div><div class="line">8	192.168.56.106	1.0</div><div class="line">9	192.168.56.107	1.0</div></pre></td></tr></table></figure>
+</li>
+<li><p>NTILE<br>用于将分组数据按照顺序切分成n片，并返回当前切片值。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select id,ip, ntile(2) over (partition by ip order by id)from sales;</div><div class="line">0	192.168.56.101	1</div><div class="line">1	192.168.56.101	1</div><div class="line">4	192.168.56.101	2</div><div class="line">2	192.168.56.102	1</div><div class="line">3	192.168.56.103	1</div><div class="line">5	192.168.56.104	1</div><div class="line">6	192.168.56.105	1</div><div class="line">7	192.168.56.106	1</div><div class="line">8	192.168.56.106	2</div><div class="line">9	192.168.56.107	1</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="二、窗口型函数">二、窗口型函数</h5><ol>
+<li>LEAD<ul>
+<li>LEAD() OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，返回结果集中的下一个col2</li>
+</ul>
+</li>
+<li>LAG<ul>
+<li>OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，返回结果集中的上一个col2</li>
+</ul>
+</li>
+<li>FIRST_VALUE<ul>
+<li>OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，返回结果集中的第一个col2</li>
+</ul>
+</li>
+<li>LAST_VALUE<ul>
+<li>OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，返回结果集中的最后一个col2</li>
+</ul>
+</li>
+<li>OVER<ul>
+<li>聚集OVER</li>
+<li>COUNT</li>
+<li>MIN</li>
+<li>MAX</li>
+<li>AVG</li>
+<li>OVER WITH PARTITION BY</li>
+<li>OVER WITH PARTITION BY and ORDER BY</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line"># 首先需要了解函数OVER(PARTITION BY col1 ORDER BY col2)</div><div class="line">SELECT cookieid,</div><div class="line">createtime,</div><div class="line">pv,</div><div class="line">SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime) AS pv1, -- 默认为从起点到当前行</div><div class="line">SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS pv2, --从起点到当前行，结果同pv1</div><div class="line">SUM(pv) OVER(PARTITION BY cookieid) AS pv3,								--分组内所有行</div><div class="line">SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS pv4,   --当前行+往前3行</div><div class="line">SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN 3 PRECEDING AND 1 FOLLOWING) AS pv5,    --当前行+往前3行+往后1行</div><div class="line">SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING) AS pv6   ---当前行+往后所有行  </div><div class="line">FROM po;</div><div class="line">cookie1	2015-04-16	5	27	27	27	14	14	5</div><div class="line">cookie1	2015-04-15	4	22	22	27	16	21	9</div><div class="line">cookie1	2015-04-14	2	18	18	27	17	21	11</div><div class="line">cookie1	2015-04-13	3	16	16	27	16	18	14</div><div class="line">cookie1	2015-04-12	7	13	13	27	13	16	21</div><div class="line">cookie1	2015-04-11	5	6	6	27	6	13	26</div><div class="line">cookie1	2015-04-10	1	1	1	27	1	6	27</div><div class="line"># 其他聚集函数方式相同。</div><div class="line"></div><div class="line"># LEAD</div><div class="line">hive&gt; select fname,ip,pid,lead(pid) over (partition by ip order by ip) from sales;</div><div class="line">Abra	192.168.56.101	PI_09	PI_03 -- ip的分组中下一个pid的值为PI_03</div><div class="line">Elaine	192.168.56.101	PI_03	PI_09</div><div class="line">Zena	192.168.56.101	PI_09	NULL</div><div class="line">Sage	192.168.56.102	PI_03	NULL</div><div class="line">Cade	192.168.56.103	PI_06	NULL</div><div class="line">Stone	192.168.56.104	PI_08	NULL</div><div class="line">Regina	192.168.56.105	PI_10	NULL</div><div class="line">Aileen	192.168.56.106	PI_02	PI_05</div><div class="line">Donova	192.168.56.106	PI_05	NULL</div><div class="line">Maraam	192.168.56.107	PI_07	NULL</div><div class="line"></div><div class="line"># LAG</div><div class="line">hive&gt; select fname,ip,pid,lag(pid) over (partition by ip order by ip) from sales;</div><div class="line">Abra	192.168.56.101	PI_09	NULL  </div><div class="line">Elaine	192.168.56.101	PI_03	PI_09  -- ip的分组中上一个pid的值为PI_09</div><div class="line">Zena	192.168.56.101	PI_09	PI_03</div><div class="line">Sage	192.168.56.102	PI_03	NULL</div><div class="line">Cade	192.168.56.103	PI_06	NULL</div><div class="line">Stone	192.168.56.104	PI_08	NULL</div><div class="line">Regina	192.168.56.105	PI_10	NULL</div><div class="line">Aileen	192.168.56.106	PI_02	NULL</div><div class="line">Donova	192.168.56.106	PI_05	PI_02</div><div class="line">Maraam	192.168.56.107	PI_07	NULL</div><div class="line"></div><div class="line"># FIRST_VALUE</div><div class="line">hive&gt; select fname,ip,pid,first_value(pid) over (partition by ip order by ip) from sales;</div><div class="line">Abra	192.168.56.101	PI_09	PI_09  -- ip的分组中第一个pid的值为PI_09</div><div class="line">Elaine	192.168.56.101	PI_03	PI_09</div><div class="line">Zena	192.168.56.101	PI_09	PI_09</div><div class="line">Sage	192.168.56.102	PI_03	PI_03</div><div class="line">Cade	192.168.56.103	PI_06	PI_06</div><div class="line">Stone	192.168.56.104	PI_08	PI_08</div><div class="line">Regina	192.168.56.105	PI_10	PI_10</div><div class="line">Aileen	192.168.56.106	PI_02	PI_02  -- ip的分组中第一个pid的值为PI_02</div><div class="line">Donova	192.168.56.106	PI_05	PI_02</div><div class="line">Maraam	192.168.56.107	PI_07	PI_07</div><div class="line"></div><div class="line"># LAST_VALUE</div><div class="line">hive&gt; select fname,ip,pid,last_value(pid) over (order by ip) from sales;</div><div class="line">Abra	192.168.56.101	PI_09	PI_09 -- ip的分组中最后一个pid的值为PI_09</div><div class="line">Elaine	192.168.56.101	PI_03	PI_09</div><div class="line">Zena	192.168.56.101	PI_09	PI_09</div><div class="line">Sage	192.168.56.102	PI_03	PI_03</div><div class="line">Cade	192.168.56.103	PI_06	PI_06</div><div class="line">Stone	192.168.56.104	PI_08	PI_08</div><div class="line">Regina	192.168.56.105	PI_10	PI_10</div><div class="line">Aileen	192.168.56.106	PI_02	PI_05</div><div class="line">Donova	192.168.56.106	PI_05	PI_05 -- ip的分组中最后一个pid的值为PI_05</div><div class="line">Maraam	192.168.56.107	PI_07	PI_07</div></pre></td></tr></table></figure>
+<h5 id="二、数值型函数">二、数值型函数</h5><ol>
+<li><p>abs(x)<br>返回x的绝对值。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select abs(-1);</div><div class="line">1</div><div class="line"></div><div class="line">hive&gt; select abs(1);</div><div class="line">1</div><div class="line"></div><div class="line">hive&gt; select abs(0);</div><div class="line">0</div></pre></td></tr></table></figure>
+</li>
+<li><p>bin(x)<br>返回x的二进制格式。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select bin(123);</div><div class="line">1111011</div><div class="line"></div><div class="line">hive&gt; select bin(2);</div><div class="line">10</div><div class="line"></div><div class="line">hive&gt; select bin(3);</div><div class="line">11</div></pre></td></tr></table></figure>
+</li>
+<li><p>ceil(x),ceiling(x)<br>返回x向上取整整数。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select ceil(10.01);</div><div class="line">11</div><div class="line"></div><div class="line">hive&gt; select ceil(0.01);</div><div class="line">1</div><div class="line"></div><div class="line">hive&gt; select ceil(-10.01);</div><div class="line">-10</div></pre></td></tr></table></figure>
+</li>
+<li><p>conv(x,y,z)<br>进制转换，将x从y进制转换为z进制。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line"># 将10从十进制转换为二进制</div><div class="line">hive&gt; select conv(10,10,2);</div><div class="line">1010</div></pre></td></tr></table></figure>
+</li>
+<li><p>floor(x)<br>返回x向下取整整数。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select floor(10.01);</div><div class="line">10</div><div class="line"></div><div class="line">hive&gt; select floor(11.01);</div><div class="line">11</div><div class="line"></div><div class="line">hive&gt; select floor(11.77);</div><div class="line">11</div></pre></td></tr></table></figure>
+</li>
+<li><p>greatest(x,y,z…)<br>返回x,y,z….中数值最大的值。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select greatest(1,8,2,3,-10,-12);</div><div class="line">8</div></pre></td></tr></table></figure>
+</li>
+<li><p>least(x,y,z,…)<br>返回x,y,z…中数值最小的值。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select least(1,8,2,3,-10,-12);</div><div class="line">-12</div></pre></td></tr></table></figure>
+</li>
+<li><p>negative(x)<br>返回x的负值。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select negative(1);</div><div class="line">-1</div><div class="line">hive&gt; select negative(-1);</div><div class="line">1</div></pre></td></tr></table></figure>
+</li>
+<li><p>round(x)<br>x取整。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select round(10.12);</div><div class="line">10</div><div class="line"></div><div class="line">hive&gt; select round(10.92);</div><div class="line">11</div><div class="line"></div><div class="line">hive&gt; select round(10);</div><div class="line">10</div><div class="line"></div><div class="line">hive&gt; select round(10.5);</div><div class="line">11</div></pre></td></tr></table></figure>
+</li>
+<li><p>sign(x)<br>当x是正数时返回1，当x是负数时返回-1，当x是0时返回0。</p>
+</li>
+</ol>
+<h5 id="三、类型转换型函数">三、类型转换型函数</h5><ol>
+<li><p>binary(x)<br>将x以二进制的方式存储。</p>
+</li>
+<li><p>cast(x as T)<br>将x转换为T类型。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select cast(10 as STRING);</div><div class="line">10</div><div class="line"></div><div class="line">hive&gt; select cast(10 as INT);</div><div class="line">10</div><div class="line"></div><div class="line">hive&gt; select cast('A' as INT);</div><div class="line">NULL</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="四、日期函数">四、日期函数</h5><ol>
+<li><p>add_month(x,y)<br>在日期x的基础上加上y月。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select add_months('2017-10-09',1);</div><div class="line">2017-11-09</div><div class="line"></div><div class="line">hive&gt; select add_months('2017-10-09',4);</div><div class="line">2018-02-09</div></pre></td></tr></table></figure>
+</li>
+<li><p>current_date()<br>获取当前日期。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select current_date();</div><div class="line">OK</div><div class="line">2017-10-20</div></pre></td></tr></table></figure>
+</li>
+<li><p>current_timestamp()<br>获取当前时间。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select current_timestamp();</div><div class="line">2017-10-20 18:59:52.19</div></pre></td></tr></table></figure>
+</li>
+<li><p>date_add(x,y)<br>在日期x的基础上加上y天。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select date_add('2017-10-09',4);</div><div class="line">2017-10-13</div><div class="line"></div><div class="line">hive&gt; select date_add('2017-12-30',4);</div><div class="line">2018-01-03</div></pre></td></tr></table></figure>
+</li>
+<li><p>date_format(x,y)<br>将日期x的格式化为y形式的时间。<br>y的格式<a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html" target="_blank" rel="external">请点击参考</a>。</p>
+</li>
+<li><p>date_sub(x,y)<br>在日期x的基础上减去y天。</p>
+</li>
+<li><p>datediff(x,y)<br>返回日期x,y之间的时间差(天数)。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select datediff('2017-10-09','2017-10-01');</div><div class="line">8</div></pre></td></tr></table></figure>
+</li>
+<li><p>unix_timestamp()<br>获取当前时区的UNIX时间戳</p>
+</li>
+<li><p>from_unixtime(x)<br>返回时间戳x的直观日期。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select from_unixtime(unix_timestamp());</div><div class="line">2017-10-20 19:13:11</div></pre></td></tr></table></figure>
+</li>
+<li><p>last_day(x)<br>返回日期x的月份的最后一天的日期。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select last_day('2017-02-02');</div><div class="line">2017-02-28</div></pre></td></tr></table></figure>
+</li>
+<li><p>months_between(x,y)<br>返回x,y之间的月份差。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select months_between('2017-10-01','2017-02-02');</div><div class="line">OK</div><div class="line">7.96774194</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="四、字符型函数">四、字符型函数</h5><ol>
+<li><p>concat(x,y,….)<br>连接x,y….字符串合并为一个字符串。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select concat('ABC','abc','zzz');</div><div class="line">ABCabczzz</div></pre></td></tr></table></figure>
+</li>
+<li><p>concat_ws(z,x,y,….)<br>实用分隔符z连接x,y….字符串。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select concat_ws('/','ABC','abc','zzz');</div><div class="line">ABC/abc/zzz</div></pre></td></tr></table></figure>
+</li>
+<li><p>find_in_set(‘x’,’y,z,…’)<br>检查x是否存在与y,z…中，存在则返回位置值，否则返回0。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select find_in_set('abc','a,b,c,ab,abc,bc');</div><div class="line">5</div><div class="line"></div><div class="line">hive&gt; select find_in_set('abc','a,b,c,ab,bc');</div><div class="line">0</div></pre></td></tr></table></figure>
+</li>
+<li><p>in_file(x,y)<br>检查字符串x是否为文件y的一行。</p>
+</li>
+<li><p>initcap(x)<br>将字符串x的首字母大写，然后将其他字母小写。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select initcap('hello');</div><div class="line">Hello</div><div class="line"></div><div class="line">hive&gt; select initcap('hellO');</div><div class="line">Hello</div><div class="line"></div><div class="line">hive&gt; select initcap('hELLO');</div><div class="line">Hello</div><div class="line"></div><div class="line">hive&gt; select initcap('HeLLO');</div><div class="line">Hello</div><div class="line"></div><div class="line">hive&gt; select initcap('HELLO');</div><div class="line">Hello</div></pre></td></tr></table></figure>
+</li>
+<li><p>instr(x,y)<br>返回y在x中的第一个位置值。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select instr('abc','c');</div><div class="line">3</div><div class="line"></div><div class="line">hive&gt; select instr('abc','d');</div><div class="line">0</div></pre></td></tr></table></figure>
+</li>
+<li><p>length(x)<br>返回x的字符个数</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select length('abc');</div><div class="line">3</div><div class="line">hive&gt; select length('中国');</div><div class="line">2</div></pre></td></tr></table></figure>
+</li>
+<li><p>lower(x),lcase(x)<br>返回x的小写字符串。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select lower('ABC');</div><div class="line">abc</div></pre></td></tr></table></figure>
+</li>
+<li><p>locate(x,y,z)<br>返回x在y的位置z之后第一次出现的位置。</p>
+</li>
+<li><p>lpad(x,y,z)<br>将x左侧用字符串z填充，xz组合的总长度为z</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select lpad('a',2,'b');</div><div class="line">ba</div><div class="line"></div><div class="line">hive&gt; select lpad('a',3,'b');</div><div class="line">bba</div><div class="line"></div><div class="line">hive&gt; select lpad('aaaa',3,'b');</div><div class="line">aaa</div></pre></td></tr></table></figure>
+</li>
+<li><p>ltrim(x)<br>去除x左侧的空格。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select ltrim('  AA');</div><div class="line">AA</div></pre></td></tr></table></figure>
+</li>
+<li><p>repeat(x,y)<br>将x重复y次。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select repeat('a',5);</div><div class="line">aaaaa</div></pre></td></tr></table></figure>
+</li>
+<li><p>reverse(x)<br>将x逆向输出。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select reverse('SUV');</div><div class="line">VUS</div></pre></td></tr></table></figure>
+</li>
+<li><p>rpad(x,y,z)<br>将x左侧用字符串z填充，xz组合的总长度为z。</p>
+</li>
+<li><p>rtrim(x)<br>去除x右侧的空格。</p>
+</li>
+<li><p>split(x,y)<br>用y分割字符串x,y为正则表达式。</p>
+</li>
+<li><p>substr(x,y),substring(x,y)<br>返回x从位置y直到结尾的字符串。</p>
+</li>
+<li><p>substr(x,y,z),substring(x,y,z)<br>返回x从位置y开始的字符串，长度为z的子串。</p>
+</li>
+<li><p>trim(x)<br>去掉x两端的空格。</p>
+</li>
+</ol>
+<h5 id="五、条件函数">五、条件函数</h5><ol>
+<li><p>case when</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line"># 方式1</div><div class="line">case when a=b then b1 when a=c then c1 else a end as col</div><div class="line"></div><div class="line"># 方式2</div><div class="line">case a when b then b1 when c then c1 else a end as col</div></pre></td></tr></table></figure>
+</li>
+<li><p>coalsce(x,y,z)<br>当x is null时返回y，当x is not null 返回z。</p>
+</li>
+<li><p>if(x,y,z)<br>当条件x成立时返回y，当条件x不成立时返回z。</p>
+</li>
+<li><p>isnotnull(x)<br>当x is not null时返回true，当x i null 返回false。</p>
+</li>
+<li><p>isnull(x)<br>当x is null时返回true，当x is not null 返回false。</p>
+</li>
+<li><p>nvl(x,y)<br>当x is null时返回y，当x is not null 返回x。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select nvl(1,100);</div><div class="line">1</div><div class="line"></div><div class="line">hive&gt; select nvl(null,100);</div><div class="line">100</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="六、UDAF函数">六、UDAF函数</h5><ol>
+<li>avg()<br>返回平均值</li>
+<li>count()<br>返回总数</li>
+<li>max()<br>返回最大值</li>
+<li>min()<br>返回最小值</li>
+<li>sum()<br>返回总和</li>
+<li>variance()<br>返回方差</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;为什么叫实用函数，因为有些不实用的函数没有写进文档中，哈哈。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Bigdata" scheme="https://wing324.github.io/categories/Bigdata/"/>
+    
+    
+      <category term="Hive" scheme="https://wing324.github.io/tags/Hive/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hive常见的数据导入方式</title>
+    <link href="https://wing324.github.io/2017/10/12/Hive%E5%B8%B8%E8%A7%81%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E6%96%B9%E5%BC%8F/"/>
+    <id>https://wing324.github.io/2017/10/12/Hive常见的数据导入方式/</id>
+    <published>2017-10-13T00:29:09.000Z</published>
+    <updated>2017-10-12T09:33:39.000Z</updated>
+    
+    <content type="html"><![CDATA[<ol>
+<li>从本地文件导入到Hive表中；</li>
+<li>从HDFS上导入到Hive表中；</li>
+<li>从别的表中查询出相应的数据并导入到表中；</li>
+<li>Hive多表插入；</li>
+<li>创建表的时候通过从别的表中查询出相应的记录并插入到表中，即表和数据是在一条SQL语句中完成的。<a id="more"></a>
+</li>
+</ol>
+<p>参考文档：<a href="https://yq.aliyun.com/articles/100910?spm=5176.10017275.843861.53.9aaSS4" target="_blank" rel="external">HIVE的四种数据导入方式</a></p>
+<h5 id="一、从本地文件导入到Hive表中">一、从本地文件导入到Hive表中</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 建表语句</div><div class="line">hive&gt; create table t1 (id int,name string,age int) row format delimited fields terminated by &apos;,&apos; lines terminated by &apos;\n&apos; STORED AS TEXTFILE;</div><div class="line"></div><div class="line"># /tmp/sample.txt文件内容</div><div class="line">linux&gt;  cat /tmp/sample.txt</div><div class="line">1,Technical manager,10</div><div class="line">2,Proof reader,20</div><div class="line">3,Wing,30</div><div class="line"></div><div class="line"># 导入本地文件/tmp/sample.txt至t1表中</div><div class="line">hive&gt; load data local inpath &apos;/tmp/sample.txt&apos; into table t1;</div><div class="line">No rows affected (0.325 seconds)</div><div class="line">hive&gt; select * from t1;</div><div class="line">+--------+--------------------+---------+</div><div class="line">| t1.id  |      t1.name       | t1.age  |</div><div class="line">+--------+--------------------+---------+</div><div class="line">| 1      | Technical manager  | 10      |</div><div class="line">| 2      | Proof reader       | 20      |</div><div class="line">| 3      | Wing               | 30      |</div><div class="line">+--------+--------------------+---------+</div><div class="line">3 rows selected (0.119 seconds)</div><div class="line"></div><div class="line"># 注意</div><div class="line"># 此时只是将本地文件的数据插入到hive表中，本地文件sample.txt仍然在本地目录/tmp上，并不是被移动到HDFS上。</div><div class="line"># 此时可以再进行一次相同的load，会发现数据依然可以被加载到t1去</div><div class="line">hive&gt; load data local inpath &apos;/tmp/sample.txt&apos; into table t1;</div><div class="line">hive&gt; select * from t1;</div><div class="line">+--------+--------------------+---------+</div><div class="line">| t1.id  |      t1.name       | t1.age  |</div><div class="line">+--------+--------------------+---------+</div><div class="line">| 1      | Technical manager  | 10      |</div><div class="line">| 2      | Proof reader       | 20      |</div><div class="line">| 3      | Wing               | 30      |</div><div class="line">| 1      | Technical manager  | 10      |</div><div class="line">| 2      | Proof reader       | 20      |</div><div class="line">| 3      | Wing               | 30      |</div><div class="line">+--------+--------------------+---------+</div><div class="line">6 rows selected (0.119 seconds)</div></pre></td></tr></table></figure>
+<h5 id="二、从HDFS上导入到Hive表中">二、从HDFS上导入到Hive表中</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 查看Linux上的本地文件</div><div class="line">linux&gt;  cat /tmp/sample.txt</div><div class="line">1,Technical manager,10</div><div class="line">2,Proof reader,20</div><div class="line">3,Wing,30</div><div class="line"></div><div class="line"># 将Linux上的本地文件上传到HDFS上</div><div class="line">linux&gt;  hdfs dfs -put /tmp/sample.txt /tmp</div><div class="line"></div><div class="line"># 建表语句</div><div class="line">hive&gt; create table t2 (id int,name string,age int) row format delimited fields terminated by &apos;,&apos; lines terminated by &apos;\n&apos; STORED AS TEXTFILE;</div><div class="line"></div><div class="line"># 导入HDFS文件至t2表中</div><div class="line">hive&gt; load data  inpath &apos;/tmp/sample.txt&apos; into table t2;</div><div class="line">hive&gt; select * from t2;</div><div class="line">+--------+--------------------+---------+</div><div class="line">| t2.id  |      t2.name       | t2.age  |</div><div class="line">+--------+--------------------+---------+</div><div class="line">| 1      | Technical manager  | 10      |</div><div class="line">| 2      | Proof reader       | 20      |</div><div class="line">| 3      | Wing               | 30      |</div><div class="line">+--------+--------------------+---------+</div><div class="line">3 rows selected (0.117 seconds)</div><div class="line"></div><div class="line"># 注意</div><div class="line"># 此时查看HDFS目录可以发现，原本在HDFS的/tmp目录上的sample.txt文件没有了，反而在e/warehouse/test1.db/t2目录下面多出来了一个sample.txt文件，因为此时的操作是将HDFS上的sample.txt文件移动到了表目录下面。</div><div class="line"># 此时可以再进行一次相同的load，会发现报错&quot;件不存在&quot;</div><div class="line">hive&gt; load data  inpath &apos;/tmp/sample.txt&apos; into table t2;</div><div class="line">Error: Error while compiling statement: FAILED: SemanticException Line 1:18 Invalid path &apos;&apos;/tmp/sample.txt&apos;&apos;: No files matching path hdfs://172.16.0.220:9000/tmp/sample.txt (state=42000,code=40000)</div></pre></td></tr></table></figure>
+<h5 id="三、从别的表中查询出相应的数据并导入到表中">三、从别的表中查询出相应的数据并导入到表中</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 建表语句</div><div class="line">hive&gt; create table t3(id int,name string) partitioned by (age int) row format DELIMITED FIELDS TERMINATED BY &apos;,&apos; lines terminated by &apos;\n&apos; STORED AS TEXTFILE;</div><div class="line"></div><div class="line"># 指定分区插入数据</div><div class="line">hive&gt; insert into table t3 partition (age=20) select id,name from t2;</div><div class="line">hive&gt; select * from t3;</div><div class="line">OK</div><div class="line">1	Technical manager	20</div><div class="line">2	Proof reader	20</div><div class="line">3	Wing	20</div><div class="line">Time taken: 0.137 seconds, Fetched: 3 row(s)</div><div class="line"># 注意</div><div class="line"># 在t2表里面，其实3条记录的age并不全是20，为什么在t3里面3条记录的age全是20呢？hive修改了我的数据吗？？</div><div class="line"># 解答：其实，下载t3的数据文件之后，可以发现，在t3的数据文件中并没有age这一栏，只是这个文件记录的所有age都为20而已。</div><div class="line"></div><div class="line"># 动态插入分区</div><div class="line">hive&gt; set hive.exec.dynamic.partition.mode=nonstrict;</div><div class="line">hive&gt; insert overwrite table t3 partition (age) select id,name,age from t2;</div><div class="line">hive&gt; select * from t3;</div><div class="line">OK</div><div class="line">1	Technical manager	10</div><div class="line">2	Proof reader	20</div><div class="line">3	Wing	30</div><div class="line">Time taken: 0.168 seconds, Fetched: 3 row(s)</div><div class="line"># 注意</div><div class="line"># 此时可以看到t3和t2长的一模一样了。进入t3的HDFS目录下可以看到3个文件，分别为age=10,age=20,age=30三个文件。这是hive在导入数据的时候已经将数据分区好了。hive是不是很棒棒～</div></pre></td></tr></table></figure>
+<h5 id="四、Hive多表插入">四、Hive多表插入</h5><p>HIve支持扫描一次源表，通过一条SQL将数据插入到多个表中。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 创建t4,t5表</div><div class="line">hive&gt; create table t4 (id int,name string,age int) row format delimited fields terminated by &apos;,&apos; lines terminated by &apos;\n&apos; STORED AS TEXTFILE;</div><div class="line">OK</div><div class="line">Time taken: 0.073 seconds</div><div class="line">hive&gt; create table t5 (id int,name string,age int) row format delimited fields terminated by &apos;,&apos; lines terminated by &apos;\n&apos; STORED AS TEXTFILE;</div><div class="line">OK</div><div class="line">Time taken: 0.043 seconds</div><div class="line"></div><div class="line"># 通过一条SQL，同时向t4,t5表插入数据。</div><div class="line">hive&gt; from t2</div><div class="line">    &gt; insert into table t4 select id,name,age</div><div class="line">    &gt; insert into table t5 select id,name,age where age=30;</div><div class="line">hive&gt; select * from t4;</div><div class="line">OK</div><div class="line">1	Technical manager	10</div><div class="line">2	Proof reader	20</div><div class="line">3	Wing	30</div><div class="line">Time taken: 0.068 seconds, Fetched: 3 row(s)</div><div class="line">hive&gt; select * from t5;</div><div class="line">OK</div><div class="line">3	Wing	30</div><div class="line">Time taken: 0.128 seconds, Fetched: 1 row(s)</div></pre></td></tr></table></figure>
+<h5 id="五、创建表的时候通过从别的表中查询出相应的记录并插入到表中">五、创建表的时候通过从别的表中查询出相应的记录并插入到表中</h5><p>即建表和导入数据在一条SQL中完成。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 建表+导入数据+不带t3分区字段age</div><div class="line">hive&gt; create table t6 as select id,name from t3;</div><div class="line">hive&gt; show create table t6;</div><div class="line">OK</div><div class="line">CREATE TABLE `t6`(</div><div class="line">  `id` int,</div><div class="line">  `name` string)</div><div class="line">ROW FORMAT SERDE</div><div class="line">  &apos;org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe&apos;</div><div class="line">STORED AS INPUTFORMAT</div><div class="line">  &apos;org.apache.hadoop.mapred.TextInputFormat&apos;</div><div class="line">OUTPUTFORMAT</div><div class="line">  &apos;org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat&apos;</div><div class="line">LOCATION</div><div class="line">  &apos;hdfs://172.16.0.220:9000/user/hive/warehouse/test1.db/t6&apos;</div><div class="line">TBLPROPERTIES (</div><div class="line">  &apos;transient_lastDdlTime&apos;=&apos;1505904374&apos;)</div><div class="line">Time taken: 0.027 seconds, Fetched: 13 row(s)</div><div class="line">hive&gt; select * from t6;</div><div class="line">OK</div><div class="line">1	Technical manager</div><div class="line">2	Proof reader</div><div class="line">3	Wing</div><div class="line">Time taken: 0.109 seconds, Fetched: 3 row(s)</div><div class="line"></div><div class="line"># 建表+导入数据+带t3分区字段age</div><div class="line">hive&gt; create table t7 as select id,name,age from t3;</div><div class="line">hive&gt; show create table t7;</div><div class="line">OK</div><div class="line">CREATE TABLE `t7`(</div><div class="line">  `id` int,</div><div class="line">  `name` string,</div><div class="line">  `age` int)</div><div class="line">ROW FORMAT SERDE</div><div class="line">  &apos;org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe&apos;</div><div class="line">STORED AS INPUTFORMAT</div><div class="line">  &apos;org.apache.hadoop.mapred.TextInputFormat&apos;</div><div class="line">OUTPUTFORMAT</div><div class="line">  &apos;org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat&apos;</div><div class="line">LOCATION</div><div class="line">  &apos;hdfs://172.16.0.220:9000/user/hive/warehouse/test1.db/t7&apos;</div><div class="line">TBLPROPERTIES (</div><div class="line">  &apos;transient_lastDdlTime&apos;=&apos;1505904594&apos;)</div><div class="line">Time taken: 0.026 seconds, Fetched: 14 row(s)</div><div class="line">hive&gt; select * from t7;</div><div class="line">OK</div><div class="line">1	Technical manager	10</div><div class="line">2	Proof reader	20</div><div class="line">3	Wing	30</div><div class="line">Time taken: 0.065 seconds, Fetched: 3 row(s)</div><div class="line"></div><div class="line"># 注意，t3是分区表，但是CTAS操作并没有把分区信息copy出来，容我思索下再来解释==</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;从本地文件导入到Hive表中；&lt;/li&gt;
+&lt;li&gt;从HDFS上导入到Hive表中；&lt;/li&gt;
+&lt;li&gt;从别的表中查询出相应的数据并导入到表中；&lt;/li&gt;
+&lt;li&gt;Hive多表插入；&lt;/li&gt;
+&lt;li&gt;创建表的时候通过从别的表中查询出相应的记录并插入到表中，即表和数据是在一条SQL语句中完成的。
+    
+    </summary>
+    
+      <category term="Bigdata" scheme="https://wing324.github.io/categories/Bigdata/"/>
+    
+    
+      <category term="Hive" scheme="https://wing324.github.io/tags/Hive/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hive数据库远程模式部署</title>
+    <link href="https://wing324.github.io/2017/09/14/Hive%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9C%E7%A8%8B%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2/"/>
+    <id>https://wing324.github.io/2017/09/14/Hive数据库远程模式部署/</id>
+    <published>2017-09-14T23:47:41.000Z</published>
+    <updated>2017-10-12T09:33:09.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>由于Hive运行在HDFS上，所以部署Hive之前需要先部署Hadoop,Hadoop部署的三种方式可参考<a href="https://github.com/wing324/helloworld_zh/blob/master/Bigdata/Hadoop%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2-%E4%B8%8A%E7%AF%87.md" target="_blank" rel="external">《Hadoop的三种模式部署-上篇》</a>和<a href="https://github.com/wing324/helloworld_zh/blob/master/Bigdata/Hadoop%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2-%E4%B8%8B%E7%AF%87.md" target="_blank" rel="external">《Hadoop的三种模式部署-下篇》</a>，本文将不在重复Hadoop的部署方式，本次Hive的部署基于Hadoop完全分布式部署环境的前提下。</p>
+<p>Hive共有三种部署模式，分别为：内置模式，本地模式，远程模式。此处仅介绍生产环境常用的“远程模式”部署。</p>
+<p>远程模式需要部署数据库，此处选择MariaDB,MariaDB的部署请参考<a href="https://github.com/wing324/helloworld_zh/blob/master/MySQL/Debian8%E4%B8%8A%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85MySQL5-6-xx.md" target="_blank" rel="external">Debian8上源码安装MySQL5-6-xx</a>。<br><a id="more"></a></p>
+<h4 id="一、基础环境">一、基础环境</h4><ul>
+<li><p>主机信息</p>
+<p>hadoopmaster    192.168.1.1</p>
+<p>hadoopslave1    192.168.1.2</p>
+<p>hadoopslave2    192.168.1.3</p>
+<p>MySQL和Hive server段将部署在hadoopmaster上。</p>
+</li>
+<li><p>软件信息</p>
+<p>Linux: Debian8.2</p>
+<p>MariaDB: 10.1.22</p>
+<p>Java: 1.8.0_144</p>
+<p>Hadoop: 2.8.1</p>
+<p>Hive 2.3.0</p>
+</li>
+<li><p>目录信息</p>
+<p>Hive安装目录： /usr/local/hive</p>
+</li>
+<li><p>HDFS目录信息</p>
+<p>由于Hive表创建之前需要在HDFS上存在相应的目录，所以目录规划如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">hdfs dfs -mkdir -p /user/hive/warehouse	#Hive的数据目录</div><div class="line">hdfs dfs -mkdir -p /user/hive/tmp	#Hive的临时目录</div><div class="line">hdfs dfs -mkdir -p /user/hive/log	#Hive的日志目录</div><div class="line">hdfs dfs -chmod g+w /user/hive/warehouse</div><div class="line">hdfs dfs -chmod a+w /usr/hive/tmp</div><div class="line">hdfs dfs -chmod g+w /usr/hive/log</div></pre></td></tr></table></figure>
+</li>
+<li><p>三台机器上分别添加环境变量</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim ~/.bashrc</div><div class="line"># 添加如下环境变量</div><div class="line">export HIVE_HOME=/usr/local/hive</div><div class="line">export PATH=$PATH:$HIVE_HOME/bin</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="二、Hive远程模式部署">二、Hive远程模式部署</h4><ul>
+<li><p>在MySQL中创建hive数据库以及hive用户</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">mysql&gt; create database hive;</div><div class="line">mysql&gt; grant select,insert,update,delete,create,drop,index on hive.* to 'hive'@'%' identified by 'hive';</div></pre></td></tr></table></figure>
+</li>
+<li><p>解压hive二进制安装包到/usr/local目录下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">tar apache-hive-2.3.0-bin.tar.gz -C /usr/local</div><div class="line">cd /usr/local</div><div class="line">mv apache-hive-2.3.0 hive</div><div class="line">chown -R hadoop:hadoop /usr/local/hive</div></pre></td></tr></table></figure>
+</li>
+<li><p>重命名hive几个配置文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd /usr/local/hive</div><div class="line">cp conf/hive-default.xml.template conf/hive-default.xml</div><div class="line">cp conf/hive-env.sh.template conf/hive-env.sh</div><div class="line">cp conf/hive-log4j2.properties.template conf/hive-log4j2.properties</div></pre></td></tr></table></figure>
+</li>
+<li><p>在conf目录下新增hive-site.xml文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim conf/hive-site.xml</div><div class="line">添加如下配置：</div><div class="line">&lt;configuration&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;</div><div class="line">        &lt;value&gt;jdbc:mysql://192.168.1.1:3306/hive?createDatabaseIfNotExist=true&lt;/value&gt;</div><div class="line">        &lt;description&gt;JDBC connect string for a JDBC metastore&lt;/description&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt;</div><div class="line">        &lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt;</div><div class="line">        &lt;description&gt;Driver class name for a JDBC metastore&lt;/description&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line"></div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt;</div><div class="line">        &lt;value&gt;hive&lt;/value&gt;</div><div class="line">        &lt;description&gt;username to use against metastore database&lt;/description&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt;</div><div class="line">        &lt;value&gt;hive&lt;/value&gt;</div><div class="line">        &lt;description&gt;password to use against metastore database&lt;/description&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;hive.exec.scratchdir&lt;/name&gt;</div><div class="line">        &lt;value&gt;/user/hive/tmp&lt;/value&gt;</div><div class="line">        &lt;description&gt;HDFS root scratch dir for Hive jobs which gets created with write all (733) permission. For each connecting user, an HDFS scratch dir: $&#123;hive.exec.scratchdir&#125;/&amp;lt;username&amp;gt; is created, with $&#123;hive.scratch.dir.permission&#125;.&lt;/description&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;hive.metastore.warehouse.dir&lt;/name&gt;</div><div class="line">        &lt;value&gt;/user/hive/warehouse&lt;/value&gt;</div><div class="line">        &lt;description&gt;location of default database for the warehouse&lt;/description&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;hive.querylog.location&lt;/name&gt;</div><div class="line">        &lt;value&gt;/user/hive/log&lt;/value&gt;</div><div class="line">        &lt;description&gt;Location of Hive run time structured log file&lt;/description&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>从网上下载MySQL驱动(mysql-connector-java-5.1.44-bin.jar)放置在/usr/local/hive/lib文件夹下。</p>
+<p>驱动下载地址：<a href="https://dev.mysql.com/downloads/connector/j/" target="_blank" rel="external">https://dev.mysql.com/downloads/connector/j/</a></p>
+</li>
+<li><p>从 Hive 2.1 版本开始, 我们需要先运行 schematool 命令来执行初始化操作。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">schematool -dbType mysql -initSchema</div><div class="line"># 初始化成功之后，可以从MySQL数据库的hive库里面看到初始化的数据表</div></pre></td></tr></table></figure>
+</li>
+<li><p>Hive启动metastore服务</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">hive --service metastore &amp;</div><div class="line"># 此时通过jps命令，可以发现&quot;RunJar&quot;进程</div><div class="line"># 该进程的关闭，可以通过jps获取&quot;RunJar&quot;进程号，然后kill %jobid即可</div></pre></td></tr></table></figure>
+</li>
+<li><p>访问Hive</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">linux:/usr/local/hive $ hive</div><div class="line">SLF4J: Class path contains multiple SLF4J bindings.</div><div class="line">SLF4J: Found binding in [jar:file:/usr/local/hive/lib/log4j-slf4j-impl-2.6.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]</div><div class="line">SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]</div><div class="line">SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.</div><div class="line">SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]</div><div class="line"></div><div class="line">Logging initialized using configuration in file:/usr/local/hive/conf/hive-log4j2.properties Async: true</div><div class="line">Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.</div><div class="line">hive&gt; show databases;</div><div class="line">OK</div><div class="line">default</div><div class="line">test1</div><div class="line">Time taken: 4.267 seconds, Fetched: 2 row(s)</div><div class="line">hive&gt; use test1;</div><div class="line">OK</div><div class="line">Time taken: 0.024 seconds</div><div class="line">hive&gt; show tables;</div><div class="line">OK</div><div class="line">t</div><div class="line">Time taken: 0.026 seconds, Fetched: 1 row(s)</div><div class="line">hive&gt; show create table t;</div><div class="line">OK</div><div class="line">CREATE TABLE `t`(</div><div class="line">  `id` int,</div><div class="line">  `name` string)</div><div class="line">ROW FORMAT SERDE</div><div class="line">  &apos;org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe&apos;</div><div class="line">STORED AS INPUTFORMAT</div><div class="line">  &apos;org.apache.hadoop.mapred.TextInputFormat&apos;</div><div class="line">OUTPUTFORMAT</div><div class="line">  &apos;org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat&apos;</div><div class="line">LOCATION</div><div class="line">  &apos;hdfs://172.16.0.220:9000/user/hive/warehouse/test1.db/t&apos;</div><div class="line">TBLPROPERTIES (</div><div class="line">  &apos;transient_lastDdlTime&apos;=&apos;1505356773&apos;)</div><div class="line">Time taken: 0.193 seconds, Fetched: 13 row(s)</div><div class="line">hive&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>hiveserver2的启动和登录    </p>
+<p>  hiveserver2的作用是：支持嵌入模式和远程模式，需要用beeline配合使用，此时，我们将演示一下。    </p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 启动hiveserver2的命令行模式</div><div class="line">linux&gt;  hive --service hiveserver2 --hiveconf hive.server2.thrift.port=9999 &amp;</div><div class="line">或者</div><div class="line">linux&gt;  /usr/loal/hive/bin/hiveserver2 --hiveconf hive.server2.thrift.port=9999 &amp;</div><div class="line"></div><div class="line"># 使用beeline登录hive</div><div class="line">linux&gt;  /usr/loal/hive/bin/beeline</div><div class="line">SLF4J: Class path contains multiple SLF4J bindings.</div><div class="line">SLF4J: Found binding in [jar:file:/usr/local/hive/lib/log4j-slf4j-impl-2.6.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]</div><div class="line">SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]</div><div class="line">SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.</div><div class="line">SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]</div><div class="line">Beeline version 2.3.0 by Apache Hive</div><div class="line">beeline&gt; !connect jdbc:hive2://192.168.1.1:9999</div><div class="line">Connecting to jdbc:hive2://192.168.1.1:9999</div><div class="line">Enter username for jdbc:hive2://192.168.1.1:9999: hadoop</div><div class="line">Enter password for jdbc:hive2://192.168.1.1:9999: ******</div><div class="line">Connected to: Apache Hive (version 2.3.0)</div><div class="line">Driver: Hive JDBC (version 2.3.0)</div><div class="line">Transaction isolation: TRANSACTION_REPEATABLE_READ</div><div class="line">0: jdbc:hive2://192.168.1.1:9999&gt;show databases;</div><div class="line">OK</div><div class="line">+----------------+</div><div class="line">| database_name  |</div><div class="line">+----------------+</div><div class="line">| default        |</div><div class="line">| test1          |</div><div class="line">+----------------+</div><div class="line">2 rows selected (1.233 seconds)</div><div class="line">0: jdbc:hive2://192.168.1.1:9999&gt; use test1;</div><div class="line">OK</div><div class="line">No rows affected (0.101 seconds)</div><div class="line">0: jdbc:hive2://192.168.1.1:9999&gt; show tables;</div><div class="line">OK</div><div class="line">+-----------+</div><div class="line">| tab_name  |</div><div class="line">+-----------+</div><div class="line">| invites   |</div><div class="line">| pokes     |</div><div class="line">| t         |</div><div class="line">| t3        |</div><div class="line">| tt        |</div><div class="line">| ttt       |</div><div class="line">+-----------+</div><div class="line">6 rows selected (0.115 seconds)</div><div class="line">0: jdbc:hive2://192.168.1.1:9999&gt;</div></pre></td></tr></table></figure>
+<p>  ​</p>
+<h4 id="三、FAQ">三、FAQ</h4><ol>
+<li><p>beeline登录的时候可能会遇到“User: hadoop is not allowed to impersonate hadoop (state=08S01,code=0)”这个错误。  </p>
+<p>原因：指的是访问权限的问题。  </p>
+<p>解决方法：  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 在hadoop的core-site.xml文件中添加如下配置项</div><div class="line">linux&gt;  vim /usr/lcoal/hadoop/etc/hadoop/core-site.xml    </div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;hadoop.proxyuser.hadoop.hosts&lt;/name&gt;</div><div class="line">        &lt;value&gt;*&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;hadoop.proxyuser.hadoop.groups&lt;/name&gt;</div><div class="line">        &lt;value&gt;hadoop&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line"></div><div class="line"># 然后重启HDFS之后，即可解决</div><div class="line">sbin/stop-dfs.sh</div><div class="line">sbin/start-dfs.sh</div></pre></td></tr></table></figure>
+</li>
+<li><p>在hdfs重启之后很短的时间内登录hive可能会遇到“Error: Could not open client transport with JDBC Uri: jdbc:hive2://192.168.1.1:9999: Failed to open new session: java.lang.RuntimeException: org.apache.hadoop.hdfs.server.namenode.SafeModeException: Cannot create directory /user/hive/tmp/hadoop/acde78a1-baea-4eb3-834b-fb4a177313cb. Name node is in safe mode.”  </p>
+<p>原因：Name node is in safe mode，说明Hadoop的Namenode在安全模式下。在分布式文件系统启动的时候，开始的时候会有安全模式，当分布式文件系统处于安全模式的情况下，文件系统中的内容不允许修改也不允许删除，直到安全模式结束。安全模式主要是为了系统启动的时候检查各个DataNode上数据块的有效性，同时根据策略必要的复制或者删除部分数据块。运行期通过命令也可以进入安全模式。在实践过程中，系统启动的时候去修改和删除文件也会有安全模式不允许修改的出错提示，只需要等待一会儿即可。  </p>
+<p>解决方式：  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 方法一： 耐心等待一会即可。</div><div class="line"># 方法二：不想耐心等待，那么久老老实实敲入命令</div><div class="line">在Hadoop的安装目录下执行`bin/hadoop dfsadmin -safemode leave`即可</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;由于Hive运行在HDFS上，所以部署Hive之前需要先部署Hadoop,Hadoop部署的三种方式可参考&lt;a href=&quot;https://github.com/wing324/helloworld_zh/blob/master/Bigdata/Hadoop%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2-%E4%B8%8A%E7%AF%87.md&quot;&gt;《Hadoop的三种模式部署-上篇》&lt;/a&gt;和&lt;a href=&quot;https://github.com/wing324/helloworld_zh/blob/master/Bigdata/Hadoop%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2-%E4%B8%8B%E7%AF%87.md&quot;&gt;《Hadoop的三种模式部署-下篇》&lt;/a&gt;，本文将不在重复Hadoop的部署方式，本次Hive的部署基于Hadoop完全分布式部署环境的前提下。&lt;/p&gt;
+&lt;p&gt;Hive共有三种部署模式，分别为：内置模式，本地模式，远程模式。此处仅介绍生产环境常用的“远程模式”部署。&lt;/p&gt;
+&lt;p&gt;远程模式需要部署数据库，此处选择MariaDB,MariaDB的部署请参考&lt;a href=&quot;https://github.com/wing324/helloworld_zh/blob/master/MySQL/Debian8%E4%B8%8A%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85MySQL5-6-xx.md&quot;&gt;Debian8上源码安装MySQL5-6-xx&lt;/a&gt;。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Bigdata" scheme="https://wing324.github.io/categories/Bigdata/"/>
+    
+    
+      <category term="Hive" scheme="https://wing324.github.io/tags/Hive/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hadoop的三种模式部署-下篇</title>
+    <link href="https://wing324.github.io/2017/09/13/Hadoop%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2-%E4%B8%8B%E7%AF%87/"/>
+    <id>https://wing324.github.io/2017/09/13/Hadoop的三种模式部署-下篇/</id>
+    <published>2017-09-13T19:26:07.000Z</published>
+    <updated>2017-10-10T02:45:32.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>该篇将演示Hadoop完全分布式的部署，并且以hadoop用户启动。<br><a id="more"></a></p>
+<p>Linux: Debian8.2</p>
+<p>Java: 1.8.0_144</p>
+<p>Hadoop: Hadoop 2.8.1</p>
+<p>Hadoop安装包下载地址：<a href="http://hadoop.apache.org/releases.html" target="_blank" rel="external">http://hadoop.apache.org/releases.html</a></p>
+<p>Java部署请参考<a href="https://github.com/wing324/helloworld_zh/blob/master/Bigdata/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E9%83%A8%E7%BD%B2--Debian%E7%89%88.md" target="_blank" rel="external">《常用软件部署—Debian版》</a></p>
+<p><strong>该篇将演示Hadoop的完全分布式部署，并且以hadoop用户启动。</strong></p>
+<p>参考文档链接：<a href="https://chu888chu888.gitbooks.io/hadoopstudy/content/Content/4/chapter0404.html" target="_blank" rel="external">https://chu888chu888.gitbooks.io/hadoopstudy/content/Content/4/chapter0404.html</a></p>
+<h4 id="一、基础环境准备">一、基础环境准备</h4><ul>
+<li><p>主机信息</p>
+<p>hadoopmaster    192.168.1.1</p>
+<p>hadoopslave1    192.168.1.2</p>
+<p>hadoopslave2    192.168.1.3</p>
+</li>
+<li><p>软件信息</p>
+<ul>
+<li>Debian8.2</li>
+<li>JAVA1.8.0_144</li>
+<li>Hadoop 2.8.1</li>
+</ul>
+</li>
+<li><p>目录信息</p>
+<p>Java安装目录: <code>/usr/local/jdk</code></p>
+<p>Hadoop安装目录: <code>/usr/local/hadoop</code></p>
+<p>Hadoop数据目录: <code>/data/hadoop</code></p>
+</li>
+<li><p>安装依赖包，三台主机分别执行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">apt-get install ssh pdsh</div></pre></td></tr></table></figure>
+</li>
+<li><p>三台机器配置hadoop:hadoop组合用户，三台主机分别执行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">addgroup hadoop</div><div class="line">adduser -ingroup hadoop hadoop</div></pre></td></tr></table></figure>
+</li>
+<li><p>三台主机分别配置/etc/hosts文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim /etc/hosts</div><div class="line">添加如下主机名</div><div class="line">192.168.1.1	hadoopmaster</div><div class="line">192.168.1.2 hadoopslave1</div><div class="line">192.168.1.3 hadoopslave2</div></pre></td></tr></table></figure>
+</li>
+<li><p>三台主机使用hadoop用户登录，并添加如下环境变量：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim /home/hadoop/.bashrc</div><div class="line">添加如下变量：</div><div class="line">export JAVA_HOME=/usr/local/jdk</div><div class="line">export JRE_HOME=/usr/local/jdk/jre</div><div class="line">export CLASSPATH=$CLASSPATH:$JAVA_HOME/lib:$JRE_HOME/lib</div><div class="line">export HADOOP_HOME=/usr/local/hadoop</div><div class="line">export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin:$HADOOP_HOME/bin</div><div class="line">export PDSH_RCMD_TYPE=ssh</div><div class="line">if [[ $- == *i* ]]</div><div class="line">then</div><div class="line">    PS1=&quot;\[$(tput bold)\]\[$(tput setaf 3)\]\u\[$(tput setaf 7)\]@\[$(tput setaf 5)\]\h:\[$(tput setaf 2)\]\w\[$(tput setaf 4)\] \\$\[$(tput sgr0)\] &quot;</div><div class="line">fi</div><div class="line"></div><div class="line"># 立即生效环境变量</div><div class="line">source /home/hadoop/.bashrc</div></pre></td></tr></table></figure>
+</li>
+<li><p>三台主机相互之前SSH免密码登录（主机和主机本身也需要SSH免密码登录），详细信息请参考<a href="https://github.com/wing324/helloworld_zh/blob/master/Linux/SSH%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4.md" target="_blank" rel="external">《SSH免密码登录操作步骤》</a></p>
+<p>​</p>
+</li>
+</ul>
+<h4 id="二、Hadoop完全分布式配置">二、Hadoop完全分布式配置</h4><p><strong>以下所有操作没有特殊说明的前提下，使用的是hadoop用户进行操作。</strong></p>
+<ul>
+<li><p>hadoopmaster机器上解压文件包(以root用户操作)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">tar -zxvf hadoop-2.8.1.tar.gz -C /usr/local</div><div class="line">mv hadoop-2.8.1 hadoop</div><div class="line">chown -R hadoop:hadoop /usr/local/hadoop</div></pre></td></tr></table></figure>
+</li>
+<li><p>hadoopmaster机器上新增/data/hadoop/tmp数据目录(以root用户操作)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">mkdir /data/hadoop/tmp</div><div class="line">chown -R hadoop:hadoop /data/hadoop/tmp</div></pre></td></tr></table></figure>
+</li>
+<li><p>hadoopmaster机器上配置hadoop-env.sh文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd /usr/local/hadoop</div><div class="line">vim etc/hadoop/hadoop-env.sh</div><div class="line">更新如下变量：</div><div class="line">export JAVA_HOME=/usr/local/jdk</div></pre></td></tr></table></figure>
+</li>
+<li><p>hadoopmaster机器上配置集群环境，正常启动最小配置文件： slaves、core-site.xml、hdfs-site.xml、mapred-site.xml、yarn-site.xml</p>
+<ul>
+<li><p>配置etc/hadoop/slaves文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim etc/hadoop/slaves</div><div class="line">添加如下文件：</div><div class="line">192.168.1.2</div><div class="line">192.168.1.3</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置core-site.xml文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;fs.defaultFS&lt;/name&gt;</div><div class="line">        &lt;value&gt;hdfs://192.168.1.1:9000&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</div><div class="line">        &lt;value&gt;file:/data/hadoop/tmp&lt;/value&gt;</div><div class="line">        &lt;description&gt;Abase for other temporary directories.&lt;/description&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置hfs-site.xml文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;</div><div class="line">        &lt;value&gt;192.168.1.1:50090&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;dfs.replication&lt;/name&gt;</div><div class="line">        &lt;value&gt;2&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;</div><div class="line">        &lt;value&gt;file:/data/hadoop/tmp/dfs/name&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;</div><div class="line">        &lt;value&gt;file:/data/hadoop/tmp/dfs/data&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置mapred-site.xml文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;mapreduce.framework.name&lt;/name&gt;</div><div class="line">        &lt;value&gt;yarn&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;mapreduce.jobhistory.address&lt;/name&gt;</div><div class="line">        &lt;value&gt;172.168.1.1:10020&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;mapreduce.jobhistory.webapp.address&lt;/name&gt;</div><div class="line">        &lt;value&gt;192.168.1.1:19888&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置yarn-site.xml文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line"></div><div class="line">&lt;!-- Site specific YARN configuration properties --&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;</div><div class="line">        &lt;value&gt;192.168.1.1&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</div><div class="line">        &lt;value&gt;mapreduce_shuffle&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>hadoopslave1和hadoopslave2可以将hadoopmaster的/usr/local/hadoop完全copy一份至本机的/usr/local/hadoop目录下。其中/usr/local/hadoop/etc/hadoop/slaves文件在两台slave机器上是无用的，但是该文件存在并无其他影响。</p>
+<p>​</p>
+<h4 id="三、Hadoop完全分布式启动">三、Hadoop完全分布式启动</h4><ul>
+<li><p>hadoopmaster上执行初始化，执行一次即可</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">hdfs namenode -format</div><div class="line"># 初始化的作用是：一个全新的HDFS安装需要被初始化，初始化的过程会在存储目录下创建一个空的文件系统，以及创建namenode持久化数据结构的初始版本。</div></pre></td></tr></table></figure>
+</li>
+<li><p>hadoopmaster上执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sbin/start-dfs.sh</div><div class="line">sbin/start-yarn.sh</div><div class="line">sbin/mr-jobhistory-daemon.sh start historyserver</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="四、Hadoop完全分布式部署完成验证">四、Hadoop完全分布式部署完成验证</h4><ul>
+<li><p>三台主机上分别执行jps查看java进程</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">hadoopmaster:/usr/local/hadoop $ jps</div><div class="line">19360 JobHistoryServer</div><div class="line">19012 ResourceManager</div><div class="line">18806 SecondaryNameNode</div><div class="line">18620 NameNode</div><div class="line">20190 Jps</div><div class="line"></div><div class="line">hadoopslave1:/usr/local/hadoop $ jps</div><div class="line">17393 NodeManager</div><div class="line">17282 DataNode</div><div class="line">17907 Jps</div><div class="line"></div><div class="line">hadoopslave2:/usr/local/hadoop $ jps</div><div class="line">21720 NodeManager</div><div class="line">21609 DataNode</div><div class="line">21837 Jps</div></pre></td></tr></table></figure>
+</li>
+<li><p>hadoopmaster执行<code>hdfs dfsadmin -report</code>查看各个数据节点是否正常</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">hadoopmaster:/usr/local/hadoop $ hdfs dfsadmin -report</div><div class="line">Configured Capacity: 42398629888 (39.49 GB)</div><div class="line">Present Capacity: 11841167360 (11.03 GB)</div><div class="line">DFS Remaining: 11841110016 (11.03 GB)</div><div class="line">DFS Used: 57344 (56 KB)</div><div class="line">DFS Used%: 0.00%</div><div class="line">Under replicated blocks: 0</div><div class="line">Blocks with corrupt replicas: 0</div><div class="line">Missing blocks: 0</div><div class="line">Missing blocks (with replication factor 1): 0</div><div class="line">Pending deletion blocks: 0</div><div class="line"></div><div class="line">-------------------------------------------------</div><div class="line">Live datanodes (2):</div><div class="line"></div><div class="line">Name: 192.168.1.2:50010 (hadoopslave1)</div><div class="line">Hostname: hadoopslave1</div><div class="line">Decommission Status : Normal</div><div class="line">Configured Capacity: 21199314944 (19.74 GB)</div><div class="line">DFS Used: 28672 (28 KB)</div><div class="line">Non DFS Used: 14452621312 (13.46 GB)</div><div class="line">DFS Remaining: 5654732800 (5.27 GB)</div><div class="line">DFS Used%: 0.00%</div><div class="line">DFS Remaining%: 26.67%</div><div class="line">Configured Cache Capacity: 0 (0 B)</div><div class="line">Cache Used: 0 (0 B)</div><div class="line">Cache Remaining: 0 (0 B)</div><div class="line">Cache Used%: 100.00%</div><div class="line">Cache Remaining%: 0.00%</div><div class="line">Xceivers: 1</div><div class="line">Last contact: Wed Sep 13 12:00:35 CST 2017</div></pre></td></tr></table></figure>
+<p>Name: 192.168.1.2:50010 (hadoopslave2)<br>Hostname: hadoopslave2<br>Decommission Status : Normal<br>Configured Capacity: 21199314944 (19.74 GB)<br>DFS Used: 28672 (28 KB)<br>Non DFS Used: 13920976896 (12.96 GB)<br>DFS Remaining: 6186377216 (5.76 GB)<br>DFS Used%: 0.00%<br>DFS Remaining%: 29.18%<br>Configured Cache Capacity: 0 (0 B)<br>Cache Used: 0 (0 B)<br>Cache Remaining: 0 (0 B)<br>Cache Used%: 100.00%<br>Cache Remaining%: 0.00%<br>Xceivers: 1<br>Last contact: Wed Sep 13 12:00:35 CST 2017</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">- 打开浏览器，验证是否能打开如下四个网址：</div><div class="line"></div><div class="line">  MapReduce JobHistory Server		http://192.168.1.1:19888</div><div class="line"></div><div class="line">  ResourceManager				http://192.168.1.1:8088/</div><div class="line"></div><div class="line">  NameNode						http://192.168.1.1:50070</div><div class="line"></div><div class="line">  DataNode						http://192.168.1.2:50075 http://192.168.1.3:50075</div><div class="line"></div><div class="line"></div><div class="line">#### 五、Hadoop集群关闭</div><div class="line"></div><div class="line">  ```shell</div><div class="line">  stop-yarn.sh</div><div class="line">  stop-dfs.sh</div><div class="line">  mr-jobhistory-daemon.sh stop historyserver</div></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;该篇将演示Hadoop完全分布式的部署，并且以hadoop用户启动。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Bigdata" scheme="https://wing324.github.io/categories/Bigdata/"/>
+    
+    
+      <category term="Hadoop" scheme="https://wing324.github.io/tags/Hadoop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>常用软件部署-Debian版</title>
+    <link href="https://wing324.github.io/2017/09/13/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E9%83%A8%E7%BD%B2-Debian%E7%89%88/"/>
+    <id>https://wing324.github.io/2017/09/13/常用软件部署-Debian版/</id>
+    <published>2017-09-13T17:37:39.000Z</published>
+    <updated>2017-09-13T02:39:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>工作中常用软件部署集合，有如下的软件部署：Java、Tomcat、ZooKeeper….<br>未来会越来越多。<br><a id="more"></a></p>
+<h5 id="一、jdk安装">一、jdk安装</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd ~</div><div class="line"># 解压jdk压缩包</div><div class="line">tar -zxvf ~/jdk-7u45-linux-x64.tar.gz -C /usr/local/</div><div class="line">cd /usr/local</div><div class="line">mv jdk1.7.0_45/ jdk</div><div class="line"># 配置jdk环境变量</div><div class="line">vim ~/.bashrc</div><div class="line"># 添加环境变量</div><div class="line">export JAVA_HOME=/usr/local/jdk</div><div class="line">export PATH=$PATH:$JAVA_HOME/bin</div><div class="line"># 使环境变量立即生效</div><div class="line">source ~/.bashrc</div><div class="line"></div><div class="line"># 验证jdk安装成功方式</div><div class="line">java -version</div></pre></td></tr></table></figure>
+<h5 id="二、tomcat安装">二、tomcat安装</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd ~</div><div class="line"># 解压tomcat压缩包</div><div class="line">tar -zxvf apache-tomcat-7.0.68.tar.gz -C /usr/local/</div><div class="line">cd /usr/local</div><div class="line">mv apache-tomcat-7.0.68/ tomcat</div><div class="line"># 启动tomcat</div><div class="line">./tomcat/bin/start.sh</div><div class="line"># 启动成功输出信息</div><div class="line">Using CATALINA_BASE:   /usr/local/tomcat</div><div class="line">Using CATALINA_HOME:   /usr/local/tomcat</div><div class="line">Using CATALINA_TMPDIR: /usr/local/tomcat/temp</div><div class="line">Using JRE_HOME:        /usr/local/jdk</div><div class="line">Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar</div><div class="line">Tomcat started.</div><div class="line"></div><div class="line"># 验证tomcat启动成功方式</div><div class="line">netstat -npl | grep &apos;java&apos;</div><div class="line"># 输出信息</div><div class="line">tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      13916/java      </div><div class="line">tcp        0      0 127.0.0.1:8005          0.0.0.0:*               LISTEN      13916/java      </div><div class="line">tcp        0      0 0.0.0.0:8009            0.0.0.0:*               LISTEN      13916/java</div></pre></td></tr></table></figure>
+<h5 id="三、zookeeper安装">三、zookeeper安装</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">tar -zxvf zookeeper-3.4.10.tar.gz -C /usr/local/</div><div class="line">cd /usr/local/</div><div class="line">mv zookeeper-3.4.10 zookeeper</div><div class="line">cd zookeeper</div><div class="line">cp conf/zoo_sample.cfg conf/zoo.cfg</div><div class="line">vim conf/zoo.cfg</div><div class="line"># 修改dataDir=/data/zk</div><div class="line"># 增加节点：server.1=ip:2888:3888</div><div class="line"># 增加节点：server.2=ip:2888:3888</div><div class="line"># 创建zk的数据目录</div><div class="line">mkdir /data/zk</div><div class="line">cd /data/zk</div><div class="line">echo $id &gt; myid</div><div class="line"># 如server1，此处需要做的神操作是：echi &apos;1&apos; &gt; myid</div><div class="line"></div><div class="line"># 启动zookeeper</div><div class="line">bin/zkServer.sh start</div><div class="line"># 启动成功输出信息</div><div class="line"># ZooKeeper JMX enabled by default</div><div class="line"># Using config: /usr/local/zookeeper/bin/../conf/zoo.cfg</div><div class="line"># Starting zookeeper ... STARTED</div><div class="line"></div><div class="line"># 查看zookeeper当前的状态</div><div class="line">bin/zkServer.sh status</div><div class="line"># 输出信息</div><div class="line"># ZooKeeper JMX enabled by default</div><div class="line"># Using config: /usr/local/zookeeper/bin/../conf/zoo.cfg</div><div class="line"># Mode: follower</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;工作中常用软件部署集合，有如下的软件部署：Java、Tomcat、ZooKeeper….&lt;br&gt;未来会越来越多。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Bigdata" scheme="https://wing324.github.io/categories/Bigdata/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hadoop的三种模式部署-上篇</title>
+    <link href="https://wing324.github.io/2017/09/13/Hadoop%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2-%E4%B8%8A%E7%AF%87/"/>
+    <id>https://wing324.github.io/2017/09/13/Hadoop的三种模式部署-上篇/</id>
+    <published>2017-09-13T17:31:00.000Z</published>
+    <updated>2017-09-13T02:39:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>该篇将分别讲解Hadoop的本地模式和伪分布模式的部署，并且以root用户启动。<br><a id="more"></a></p>
+<p>Linux: Debian8.2</p>
+<p>Java: 1.8.0_144</p>
+<p>Hadoop: Hadoop 3.0.0-alpha4</p>
+<p>Hadoop安装包下载地址：<a href="http://hadoop.apache.org/releases.html" target="_blank" rel="external">http://hadoop.apache.org/releases.html</a></p>
+<p>Java部署请参考<a href="https://github.com/wing324/helloworld_zh/blob/master/Bigdata/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E9%83%A8%E7%BD%B2--Debian%E7%89%88.md" target="_blank" rel="external">《常用软件部署—Debian版》</a></p>
+<h4 id="一、基本配置（三种部署模式都需要的基本步骤）">一、基本配置（三种部署模式都需要的基本步骤）</h4><ol>
+<li><p>安装依赖包</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">apt-get install ssh pdsh</div></pre></td></tr></table></figure>
+</li>
+<li><p>解压Hadoop安装包至指定的目录下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">tar -zxvf hadoop-3.0.0-alpha4.tar.gz -C /usr/local/</div><div class="line">cd /usr/local</div><div class="line">mv hadoop-3.0.0-alpha4/ hadoop</div><div class="line">cd hadoop/</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置环境变量</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">编辑etc/hadoop/hadoop-env.sh文件</div><div class="line">vim etc/hadoop/hadoop-env.sh</div><div class="line">配置以下选项</div><div class="line"># set to the root of your Java installation</div><div class="line">  export JAVA_HOME=/usr/local/jdk</div></pre></td></tr></table></figure>
+</li>
+<li><p>尝试hadoop命令，验证环境变量是否正确</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">bin/hadoop</div><div class="line">#此时如果显示一系列的hadoop命令说明，则环境变量正确。否则，请检查之前的步骤是否正确。</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="二、本地模式(Local/Standalone_Mode)">二、本地模式(Local/Standalone Mode)</h4><ol>
+<li><p>Hadoop默认配置下，是个local mode，即可以立即使用local operation。</p>
+</li>
+<li><p>操作示例</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">mkdir input</div><div class="line">cp etc/hadoop/*.xml input</div><div class="line">bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.0.0-alpha4.jar grep input output &apos;dfs[a-z.]+&apos;</div><div class="line">cat output/*</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="三、伪分布模式(Pesudo-Distributed_Mode)">三、伪分布模式(Pesudo-Distributed Mode)</h4><ol>
+<li><p>配置</p>
+<ul>
+<li><p>配置/etc/hosts文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">添加：</div><div class="line">192.18.16.220 hadoop-master</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置pdsh的默认使用ssh</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim ~/.bashrc</div><div class="line">添加：</div><div class="line">export PDSH_RCMD_TYPE=ssh</div><div class="line"></div><div class="line">source ~/.bashrc</div><div class="line"># 使其在当前会话中立即生效</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置本机ssh root@localhost免密登录</p>
+<p>具体配置方式见<a href="https://github.com/wing324/helloworld_zh/blob/master/Linux/SSH%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4.md" target="_blank" rel="external">《SSH免密码登录操作步骤 》</a></p>
+</li>
+<li><p>配置etc/hadoop/hadoop-env.sh文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">添加如下变量：(目前我使用的是root用户，所以配置root,如果使用别的用户，请将root用户替换成你使用的用户)</div><div class="line">export HDFS_NAMENODE_USER=root</div><div class="line">export HDFS_DATANODE_USER=root</div><div class="line">export HDFS_SECONDARYNAMENODE_USER=root</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置etc/hadoop/core-site.xml文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;fs.defaultFS&lt;/name&gt;</div><div class="line">        &lt;value&gt;hdfs://192.18.16.220:9000&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置etc/hadoop/hdfs-site.xml文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;dfs.replication&lt;/name&gt;</div><div class="line">        &lt;value&gt;1&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>操作示例</p>
+<ul>
+<li><p>初始化文件系统</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">bin/hdfs namenode -format</div></pre></td></tr></table></figure>
+</li>
+<li><p>启动NameNode和DataNode节点</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sbin/start-dfs.sh</div></pre></td></tr></table></figure>
+<p>此时可以登录NameNode的web端：<a href="http://192.18.16.220:9870" target="_blank" rel="external">http://192.18.16.220:9870</a></p>
+</li>
+<li><p>创建hdfs的目录</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">bin/hdfs dfs -mkdir /user</div><div class="line">bin/hdfs dfs -mkdir /user/&lt;username&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>复制input文件的内容到分布式文件系统上</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">bin/hdfs dfs -mkdir input</div><div class="line">bin/hdfs dfs -put etc/hadoop/*.xml input</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行一个示例操作</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.0.0-alpha4.jar grep input output &apos;dfs[a-z.]+&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看输出文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">bin/hdfs dfs -get output output</div><div class="line">cat output/*</div><div class="line">或者</div><div class="line">bin/hdfs dfs -cat output/*</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;该篇将分别讲解Hadoop的本地模式和伪分布模式的部署，并且以root用户启动。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Bigdata" scheme="https://wing324.github.io/categories/Bigdata/"/>
+    
+    
+      <category term="Hadoop" scheme="https://wing324.github.io/tags/Hadoop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java中a++和++a的区别</title>
+    <link href="https://wing324.github.io/2017/08/01/Java%E4%B8%ADa-%E5%92%8C-a%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>https://wing324.github.io/2017/08/01/Java中a-和-a的区别/</id>
+    <published>2017-08-02T03:01:29.000Z</published>
+    <updated>2017-08-01T12:02:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>第一次搞搞明白a++和++a的区别。</p>
+<a id="more"></a>
+<h5 id="首先、看个代码">首先、看个代码</h5><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">package</span> wing;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">justAtest</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> a=<span class="number">3</span>,b;</div><div class="line">		b = a++;</div><div class="line">		<span class="keyword">int</span> c=<span class="number">3</span>,d;</div><div class="line">		d = ++c;</div><div class="line">		System.out.println(<span class="string">"b="</span>+b+<span class="string">",a="</span>+a);</div><div class="line">		System.out.println(<span class="string">"c="</span>+c+<span class="string">",d="</span>+d);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="然后、瞅瞅结果">然后、瞅瞅结果</h5><figure class="highlight java"><table><tr><td class="code"><pre><div class="line">b=<span class="number">3</span>,a=<span class="number">4</span></div><div class="line">c=<span class="number">4</span>,d=<span class="number">4</span></div></pre></td></tr></table></figure>
+<h5 id="再然后、、、">再然后、、、</h5><p>这个结果咋和我们想象的不一样呢？为什么b和d的结果不一样呢？为什么a和c的结果也不一样呢？为什么为什么为什么呢？？？</p>
+<h5 id="最后、给个解释">最后、给个解释</h5><ul>
+<li>为什么a=4,b=3呢？<br>因为a++的时候，a将自己初始化的值3放入临时内存空间中，然后自身加1，再将临时内存空间内存的值赋值给b，所以此时a=4,b=3</li>
+<li>为什么c=4,d=4呢？<br>因为++c的时候，c会自加1，然后再将加1后的c赋值给d，所以c=4,d=4。</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;第一次搞搞明白a++和++a的区别。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="https://wing324.github.io/categories/Java/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>不听话的timestamp类型</title>
+    <link href="https://wing324.github.io/2017/07/11/%E4%B8%8D%E5%90%AC%E8%AF%9D%E7%9A%84timestamp%E7%B1%BB%E5%9E%8B/"/>
+    <id>https://wing324.github.io/2017/07/11/不听话的timestamp类型/</id>
+    <published>2017-07-12T03:00:05.000Z</published>
+    <updated>2017-07-11T12:03:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天开发提交了一个这样的表结构给我….<br><a id="more"></a></p>
+<h5 id="一、前因后果">一、前因后果</h5><p>今天开发提交了一个这样的表结构(做了无用信息的清理)给我：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> t(c1 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">               c2 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>)</div></pre></td></tr></table></figure>
+<p>但是发现，操作完毕之后，数据库中的表结构变成了这样：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> t(c1 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">               c2 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">DEFAULT</span> <span class="string">'0000-00-00 00:00:00'</span>)</div></pre></td></tr></table></figure>
+<p>于是我百思不得其解，这是为什么为什么为什么呢？。。</p>
+<h5 id="二、动手实验">二、动手实验</h5><p>创建如下表结构：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> t1(c1 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c2 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c3 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c4 <span class="keyword">timestamp</span> <span class="literal">null</span>);</div><div class="line"></div><div class="line"> <span class="keyword">create</span> <span class="keyword">table</span> t2(c1 datetime <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                 c2 datetime <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                 c3 datetime <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                 c4 datetime <span class="literal">null</span>);</div><div class="line"></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> t3(c1 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">                c2 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c3 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c4 <span class="keyword">timestamp</span> <span class="literal">null</span>);</div><div class="line"></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> t4(c1 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c2 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c3 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">                c4 <span class="keyword">timestamp</span> <span class="literal">null</span>);</div><div class="line"></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> t5(c1 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">                c2 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c3 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c4 <span class="keyword">timestamp</span> <span class="literal">null</span>);</div><div class="line"></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> t6(c1 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c2 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c3 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">                c4 <span class="keyword">timestamp</span> <span class="literal">null</span>);</div></pre></td></tr></table></figure>
+<p>操作完毕后，数据库实际存在的表结构：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="comment">-- 参数explicit_defaults_for_timestamp=off</span></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`t1`</span> (</div><div class="line">  <span class="string">`c1`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">  <span class="string">`c2`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0000-00-00 00:00:00'</span>,</div><div class="line">  <span class="string">`c3`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0000-00-00 00:00:00'</span>,</div><div class="line">  <span class="string">`c4`</span> <span class="keyword">timestamp</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8</div><div class="line"></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`t2`</span> (</div><div class="line">  <span class="string">`c1`</span> datetime <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`c2`</span> datetime <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`c3`</span> datetime <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`c4`</span> datetime <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8</div><div class="line"></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`t3`</span> (</div><div class="line">  <span class="string">`c1`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">  <span class="string">`c2`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0000-00-00 00:00:00'</span>,</div><div class="line">  <span class="string">`c3`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0000-00-00 00:00:00'</span>,</div><div class="line">  <span class="string">`c4`</span> <span class="keyword">timestamp</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8</div><div class="line"></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`t4`</span> (</div><div class="line">  <span class="string">`c1`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">  <span class="string">`c2`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0000-00-00 00:00:00'</span>,</div><div class="line">  <span class="string">`c3`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">  <span class="string">`c4`</span> <span class="keyword">timestamp</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8</div><div class="line"></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`t5`</span> (</div><div class="line">  <span class="string">`c1`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">  <span class="string">`c2`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0000-00-00 00:00:00'</span>,</div><div class="line">  <span class="string">`c3`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0000-00-00 00:00:00'</span>,</div><div class="line">  <span class="string">`c4`</span> <span class="keyword">timestamp</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8</div><div class="line"></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`t6`</span> (</div><div class="line">  <span class="string">`c1`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">  <span class="string">`c2`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0000-00-00 00:00:00'</span>,</div><div class="line">  <span class="string">`c3`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">  <span class="string">`c4`</span> <span class="keyword">timestamp</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8</div></pre></td></tr></table></figure>
+<h5 id="三、得出结论">三、得出结论</h5><ul>
+<li>timestamp类型的not null 必须和default值共存，datetime类型的not null不需要default值共存；(t1 VS t2)</li>
+<li>如果timestamp类型的not null没有和default值共存的情况下，MySQL/MariaDB处理方式如下：<br>第一个timestamp not null类型自动变更为：timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP，<br>第一个timestamp not null类型之后的所有该类型，自动变更为：timestamp NOT NULL DEFAULT ‘0000-00-00 00:00:00’；(t1)</li>
+<li>如果timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP类型位于第一个timestamp not null类型字段，那么其他的timestamp not null类型字段自动处理为timestamp NOT NULL DEFAULT ‘0000-00-00 00:00:00’，否则第一个timestamp not null类型字段依旧会自动处理为timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP类型；（t3 VS t4）</li>
+<li>如果timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP 类型位于第一个timestamp not null类型字段，那么其他的timestamp not null类型字段自动处理为timestamp NOT NULL DEFAULT ‘0000-00-00 00:00:00’，否则第一个timestamp not null类型字段依旧会自动处理为timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP类型；(t5 VS t6)</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天开发提交了一个这样的表结构给我….&lt;br&gt;
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://wing324.github.io/categories/MySQL/"/>
+    
+    
+      <category term="DATETIME" scheme="https://wing324.github.io/tags/DATETIME/"/>
+    
+      <category term="timestamp" scheme="https://wing324.github.io/tags/timestamp/"/>
+    
+      <category term="NOT NULL" scheme="https://wing324.github.io/tags/NOT-NULL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java之抽象类</title>
+    <link href="https://wing324.github.io/2017/05/20/Java%E4%B9%8B%E6%8A%BD%E8%B1%A1%E7%B1%BB/"/>
+    <id>https://wing324.github.io/2017/05/20/Java之抽象类/</id>
+    <published>2017-05-21T02:30:09.000Z</published>
+    <updated>2017-05-20T11:31:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>抽象类居然和我理解的类不大一样，它居然是一种规范哎。。。</p>
+<a id="more"></a>
+<h5 id="一、特点">一、特点</h5><ol>
+<li>方法只有申明没有实现时，必须定义为抽象方法，被abstract修饰；抽象方法必须定义在抽象类中，该类必须备abstract修饰。</li>
+<li>抽象类不可以被实例化（即new）。why?因为调用抽象方法没意义。</li>
+<li>抽象类被继承后，其子类必须覆盖所有的抽象方法，该子类才可以实例化，否则，这个字类还是抽象类。</li>
+</ol>
+<h5 id="二、疑问">二、疑问</h5><ol>
+<li><p>抽象类有构造函数吗？<br>有，用于给子类对象进行初始化。</p>
+</li>
+<li><p>抽象类可以定义非抽象方法吗？<br>可以。但是毫无意义，因为抽象类不可以被实例化。</p>
+</li>
+<li><p>抽象关键字不可以和哪些关键字共存？<br>private 不可以，抽象类的所有抽象方法是一种规范。<br>static 不可以。static不需要对象，但是抽象类需要对象。<br>final不可以。final不可以覆盖，而抽象类需要被覆盖。</p>
+</li>
+<li><p>抽象类和一般类的异同点？<br>相同点：</p>
+<blockquote>
+<p>抽象类和一般类都是描述事物的，都在内部定义了成员。</p>
+</blockquote>
+<p>不同点：</p>
+<blockquote>
+<ul>
+<li>一般类有足够的信息描述事物，抽象类描述事物的信息可能不足；</li>
+<li>一般类中不能定义抽象方法，而抽象类中是可以的。</li>
+<li>一般类可以被实例化，抽象类不可以被实例化。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>抽象类一定是父类吗？<br>是的。</p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;抽象类居然和我理解的类不大一样，它居然是一种规范哎。。。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="https://wing324.github.io/categories/Java/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java之数组</title>
+    <link href="https://wing324.github.io/2017/05/20/Java%E4%B9%8B%E6%95%B0%E7%BB%84/"/>
+    <id>https://wing324.github.io/2017/05/20/Java之数组/</id>
+    <published>2017-05-21T02:27:56.000Z</published>
+    <updated>2017-05-20T11:29:31.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>数组这个工具，存在于无数种语言中，让我们一起了解下java中的数组又是怎么玩的呢？</p>
+<a id="more"></a>
+<h5 id="数组的内存空间">数组的内存空间</h5><blockquote>
+<p>数组其实是对象的一种，所以它存在堆内存空间中。</p>
+</blockquote>
+<h5 id="数组的三种定义格式">数组的三种定义格式</h5><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 数组定义格式1</span></div><div class="line"><span class="keyword">int</span>[] arr1= <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</div><div class="line"></div><div class="line"><span class="comment">//数组定义格式2</span></div><div class="line"><span class="keyword">int</span>[] arr2= <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>&#125;;</div><div class="line"></div><div class="line"><span class="comment">//数组定义格式3</span></div><div class="line"><span class="keyword">int</span>[] arr3=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</div></pre></td></tr></table></figure>
+<h5 id="数组的操作方法">数组的操作方法</h5><ul>
+<li>数组遍历</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">int</span>[] arr3=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</div><div class="line">System.out.println(arr3[<span class="number">2</span>]);</div><div class="line">System.out.println(arr3.length);</div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>;x&lt;arr3.length;x++)&#123;</div><div class="line">	System.out.println(arr3[x]);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 结果</span></div><div class="line"><span class="number">0</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span></div></pre></td></tr></table></figure>
+<ul>
+<li>获取最值（最大值、最小值）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 最大值</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span>[] arr1=&#123;-<span class="number">34</span>,-<span class="number">24</span>,-<span class="number">98</span>,-<span class="number">10</span>,-<span class="number">100</span>,-<span class="number">55</span>&#125;;</div><div class="line">	<span class="keyword">int</span> maxvalues = GetMaxArr(arr1);</div><div class="line">	System.out.println(maxvalues);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">GetMaxArr</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> max=arr[<span class="number">0</span>];</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">1</span>;x&lt;arr.length;x++)&#123;</div><div class="line">		<span class="keyword">if</span>(arr[x]&gt;max)&#123;</div><div class="line">			max=arr[x];</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> max;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 结果</span></div><div class="line"><span class="number">100</span></div></pre></td></tr></table></figure>
+<ul>
+<li>选择排序</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">SelectSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>;x&lt;arr.length-<span class="number">1</span>;x++)&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> y=x+<span class="number">1</span>;y&lt;arr.length;y++)&#123;</div><div class="line">			<span class="keyword">if</span>(arr[x]&gt;arr[y])&#123;</div><div class="line">				<span class="keyword">int</span> temp=arr[x];</div><div class="line">				arr[x]=arr[y];</div><div class="line">				arr[y]=temp;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>冒泡排序</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">BubbleSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>;x&lt;arr.length-<span class="number">1</span>;x++)&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> y=<span class="number">0</span>;y&lt;arr.length-<span class="number">1</span>-x;y++)&#123;</div><div class="line">			<span class="keyword">if</span>(arr[y]&gt;arr[y+<span class="number">1</span>])&#123;</div><div class="line">				<span class="keyword">int</span> temp=arr[y];</div><div class="line">				arr[y]=arr[y+<span class="number">1</span>];</div><div class="line">				arr[y+<span class="number">1</span>]=temp;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>Java内置数组排序功能</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.*;</div><div class="line">Arrays.sort(arr1)</div></pre></td></tr></table></figure>
+<ul>
+<li>折半查找</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">* 二分查找法（折半查找法）</div><div class="line">*/</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">halfSearch</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> value)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> minindex,midindex,maxindex;</div><div class="line">	minindex=<span class="number">0</span>;</div><div class="line">	maxindex=arr.length-<span class="number">1</span>;</div><div class="line">	midindex=(maxindex+minindex)/<span class="number">2</span>;</div><div class="line">	<span class="keyword">while</span>(arr[midindex]!=value)&#123;</div><div class="line">		<span class="keyword">if</span>(arr[midindex]&gt;value)&#123;</div><div class="line">			maxindex=midindex-<span class="number">1</span>;</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			minindex=midindex+<span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(maxindex&lt;minindex)&#123;</div><div class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		midindex=(maxindex+minindex)/<span class="number">2</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> midindex;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;数组这个工具，存在于无数种语言中，让我们一起了解下java中的数组又是怎么玩的呢？&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="https://wing324.github.io/categories/Java/"/>
+    
+    
+      <category term="Arrays" scheme="https://wing324.github.io/tags/Arrays/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java之static关键字</title>
+    <link href="https://wing324.github.io/2017/05/20/Java%E4%B9%8Bstatic%E5%85%B3%E9%94%AE%E5%AD%97/"/>
+    <id>https://wing324.github.io/2017/05/20/Java之static关键字/</id>
+    <published>2017-05-21T02:25:50.000Z</published>
+    <updated>2017-10-31T02:28:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>魔性的static参数，你想了解它吗？</p>
+<a id="more"></a>
+<h5 id="一、特点">一、特点</h5><ol>
+<li>static是一种修饰符，用于修饰成员（成员变量+成员函数）；</li>
+<li>数据共享：static修饰后的成员可以被每个对象所共享；</li>
+<li>static修饰的成员优于对象之前存在，因为static的成员随着类的加载就已经存在了；</li>
+<li>static修饰后的成员可以被类名直接调用，而不仅仅被对象调用；</li>
+<li>static修饰的是共享数据，对象中存储的是特有数据。</li>
+</ol>
+<h5 id="二、成员变量_PK_静态变量">二、成员变量 PK 静态变量</h5><ol>
+<li>两个变量的生命周期不同。<br>成员变量随着对象的创建而创建，随着对象的回收而释放；<br>静态变量随着类的加载而加载，随着类的消失而消失（类一般在虚拟机结束了，则消失了）。</li>
+<li>调用方式不同。<br>成员变量只能被对象调用；<br>静态变量可以被对象调用，也可以被类调用（推荐这种方式使用静态变量）。</li>
+<li>别名不同。<br>成员变量称为实例变量；<br>静态变量称为类变量。</li>
+<li>数据存储位置不同。<br>成员变量数据存储在堆内存的对象中，所以也叫对象的特有数据；<br>静态变量数据存储在共享区（方法区）中，所以也叫对象的共享数据。</li>
+</ol>
+<h5 id="三、注意事项">三、注意事项</h5><ol>
+<li><p>静态方法只能访问静态变量。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 错误代码</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">staticDemo</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">		Person.show();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</div><div class="line">	String name;</div><div class="line">	<span class="keyword">static</span> String country = <span class="string">"CN"</span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(country+<span class="string">":"</span>+name); <span class="comment">// 此处编译会报错，因为show是静态方法，但是name是非静态变量</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line"><span class="comment">// 正确代码</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">staticDemo</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">		Person.show();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</div><div class="line">	String name;</div><div class="line">	<span class="keyword">static</span> String country = <span class="string">"CN"</span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(country);</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>静态方法中不可以使用this/super关键字。（this是因为没有对象==）</p>
+</li>
+<li><p>主函数是静态的。</p>
+<blockquote>
+<p>主函数特殊之处：</p>
+<ul>
+<li><p>格式是固定的<code>public static void main(String[] args){}</code><br>public： 因为权限必须是最大的；<br>static： 不需要创建对象，直接用主函数所属类名调用即可，如java staticDemo.java时，直接用java staticDemo.main调用方法即可；</p>
+<p>void：主函数没有具体的返回值；<br>main:   函数名，不是关键字，只是一个被jvm识别的固定名字；<br>String[] args：主函数的参数列表，是一个数组类型的参数。而且元素都是字符串类型。</p>
+</li>
+<li><p>被jvm识别和调用</p>
+</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<p>四、静态代码块</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 代码</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">mainTest</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">		<span class="keyword">new</span> Demo().show();</div><div class="line">		<span class="keyword">new</span> Demo().show();</div><div class="line">		<span class="keyword">new</span> Demo().show();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"show run"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 静态代码块</span></div><div class="line">	<span class="keyword">static</span>&#123;</div><div class="line">		System.out.println(<span class="string">"hahahhahah"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 结果</span></div><div class="line">hahahhahah</div><div class="line">show run</div><div class="line">show run</div><div class="line">show run</div></pre></td></tr></table></figure>
+<p>特点：<br>随着类的加载而执行，并且只执行一次。</p>
+<p>作用：</p>
+<p>用于给类进行初始化。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;魔性的static参数，你想了解它吗？&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="https://wing324.github.io/categories/Java/"/>
+    
+    
+      <category term="static" scheme="https://wing324.github.io/tags/static/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java中接口和抽象类的区别</title>
+    <link href="https://wing324.github.io/2017/05/20/Java%E4%B8%AD%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>https://wing324.github.io/2017/05/20/Java中接口和抽象类的区别/</id>
+    <published>2017-05-21T02:24:03.000Z</published>
+    <updated>2017-05-20T11:24:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>接口和抽象类傻傻分不清的我==</p>
+<a id="more"></a>
+<h5 id="相同点">相同点</h5><p>都是不断向上抽取而来的。</p>
+<h5 id="不同点">不同点</h5><blockquote>
+<ul>
+<li>抽象类需要被继承，而且只能单继承；<br>接口可以被实现，而且可以多实现。</li>
+<li>抽象类中可以定义抽象方法和非抽象方法，子类继承后，可以直接使用非抽象方法；<br>接口中只能定义抽象方法，必须由子类去实现。</li>
+<li>抽象类的继承，是is a 关系，在定义该体系的基本共性内容；<br>接口的实现，是like a关系，在定义该体系的额外功能。</li>
+</ul>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;接口和抽象类傻傻分不清的我==&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="https://wing324.github.io/categories/Java/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java之构造函数</title>
+    <link href="https://wing324.github.io/2017/05/20/Java%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/"/>
+    <id>https://wing324.github.io/2017/05/20/Java之构造函数/</id>
+    <published>2017-05-21T02:21:42.000Z</published>
+    <updated>2017-05-20T11:23:25.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Java的构造函数方便又很不同于其他语言（其实我也只学过python，==），这个构造函数需要好好的总结下，毕竟我觉得这是个奇怪的家伙，虽然它真的很方便==</p>
+<a id="more"></a>
+<h5 id="一、特点">一、特点</h5><ol>
+<li>函数名与类名相同；  </li>
+<li>不用定义返回值类型；  </li>
+<li>没有具体的返回值；</li>
+<li>构造函数具有重载的特点。</li>
+</ol>
+<h5 id="二、作用">二、作用</h5><p>给对象进行初始化。  </p>
+<h5 id="三、注意事项">三、注意事项</h5><p>一个类中如果没有定义构造函数，则会默认一个空参数的构造函数；如果类中定义了构造函数，那么类中默认构造函数就没有了。</p>
+<h5 id="四、构造函数与一般函数的区别">四、构造函数与一般函数的区别</h5><ol>
+<li>构造函数：对象创建时，就会调用与之对应的构造函数，对对象进行初始化；<br>一般函数：对象创建后，需要函数功能的时候才会调用。</li>
+<li>构造函数：对象创建时，只会调用一次；<br>一般函数：对象创建后，可以被调用多次。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Java的构造函数方便又很不同于其他语言（其实我也只学过python，==），这个构造函数需要好好的总结下，毕竟我觉得这是个奇怪的家伙，虽然它真的很方便==&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="https://wing324.github.io/categories/Java/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java中成员变量和局部变量的区别</title>
+    <link href="https://wing324.github.io/2017/05/20/Java%E4%B8%AD%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>https://wing324.github.io/2017/05/20/Java中成员变量和局部变量的区别/</id>
+    <published>2017-05-21T02:19:10.000Z</published>
+    <updated>2017-05-20T11:21:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Java中的成员变量是什么？局部变量又是什么？它们之间有什么不同呢？</p>
+<a id="more"></a>
+<ol>
+<li><p>成员变量定义在类中，整个类都可以访问;<br>局部变量定义在函数、语句、局部代码块中，只在所属的区域有效。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">int</span> num;<span class="comment">//成员变量</span></div><div class="line">	String color;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line">      	 <span class="keyword">int</span> numlocal = <span class="number">5</span>;<span class="comment">// 局部变量</span></div><div class="line">		System.out.println(num+<span class="string">","</span>+color);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>成员变量存在与堆内存的对象中;<br>局部变量存在与栈内存的方法中。<br>因为成员变量是对象的属性，对象是存储在堆内存中的，而局部变量是存储在栈中的。</p>
+</li>
+<li><p>成员变量随着对象的创建而存在，随着对象的消失而消失;<br>局部变量随着所属区域的执行而存在，随着所属区域的结束而释放。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">int</span> num=<span class="number">4</span>;<span class="comment">//轮胎数</span></div><div class="line">	String color;<span class="comment">//颜色</span></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> num=<span class="number">8</span>;</div><div class="line">		System.out.println(num);<span class="comment">//此时的num为8</span></div><div class="line">	&#125;</div><div class="line">	System.out.println(num);<span class="comment">// 此时的num为4</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>成员变量具有默认初始化值;<br>局部变量没有默认初始化值。</p>
+</li>
+<li><p>当成员变量和局部变量重名时，可以使用this关键字区分。（this代表对象）</p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Java中的成员变量是什么？局部变量又是什么？它们之间有什么不同呢？&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="https://wing324.github.io/categories/Java/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java中基本数据类型参数传递和引用数据类型参数传递</title>
+    <link href="https://wing324.github.io/2017/05/15/Java%E4%B8%AD%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/"/>
+    <id>https://wing324.github.io/2017/05/15/Java中基本数据类型参数传递和引用数据类型参数传递/</id>
+    <published>2017-05-15T16:59:08.000Z</published>
+    <updated>2017-05-20T11:21:15.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Java中的基本数据类型参数传递和引用数据类型传递大有不同，下面让我们一起见证下吧～</p>
+<a id="more"></a>
+<ul>
+<li><h4 id="基本数据类型参数传递">基本数据类型参数传递</h4><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 基本数据类型参数传递demo</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo1</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line"></div><div class="line">		<span class="keyword">int</span> x=<span class="number">3</span>;</div><div class="line">		show(x);</div><div class="line">		System.out.println(<span class="string">"x="</span>+x);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">		x=<span class="number">4</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 结果</span></div><div class="line">x=<span class="number">3</span></div></pre></td></tr></table></figure>
+<p><img src="/img/java基本数据类型参数传递.png" alt=""></p>
+<blockquote>
+<p>解析：</p>
+<ol>
+<li>main函数进入栈内存；</li>
+<li>x为局部变量，所以在栈内存中main函数初始化x=3;</li>
+<li>show函数进入栈内存；</li>
+<li>x为局部变量，所以在栈内存中show函数初始化x=4;</li>
+<li>show函数执行完毕，show函数将出栈，此时show函数中局部变量x=4也会跟着出栈；</li>
+<li>此时栈内存中留下main函数，以及man函数初始化的局部变量x=3，所以此时打印出来的x为3。</li>
+</ol>
+</blockquote>
+</li>
+<li><h4 id="引用数据类型参数传递">引用数据类型参数传递</h4><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 引用数据类型参数传递demo</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo2</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">int</span> x=<span class="number">3</span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">		Demo2 d = <span class="keyword">new</span> Demo2();</div><div class="line">		d.x = <span class="number">9</span>;</div><div class="line">		show(d);</div><div class="line">		System.out.println(<span class="string">"x="</span>+d.x);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(Demo2 d)</span></span>&#123;</div><div class="line">		d.x = <span class="number">4</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 结果</span></div><div class="line">x=<span class="number">4</span></div></pre></td></tr></table></figure>
+<p><img src="/img/java引用数据类型参数传递.png" alt=""></p>
+<blockquote>
+<p>解析：</p>
+<ol>
+<li>成员变量(属性)x=3，进入堆内存；</li>
+<li>main函数进入栈内存，存在一个局部变量d;</li>
+<li>d指向堆内存中的Demo2对象;</li>
+<li>堆内存中Demo2存在属性d.x=9,此时将堆内存中原有的x成员变量替换为9；</li>
+<li>show函数进入栈内存；</li>
+<li>main函数将d局部变量指向show函数的d局部变量；</li>
+<li>此时show函数的d局部变量和main函数的d局部变量一样，指向堆内存的Demo2对象；</li>
+<li>show函数的d.x=4，将堆内存的Demo2属性x=9替换为x=4;</li>
+<li>此时show函数执行完毕，show函数以及d局部变量出栈；</li>
+<li>此时堆内存中的x=4，所以打印出此时的x值为4。</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Java中的基本数据类型参数传递和引用数据类型传递大有不同，下面让我们一起见证下吧～&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="https://wing324.github.io/categories/Java/"/>
+    
+    
+  </entry>
+  
+</feed>

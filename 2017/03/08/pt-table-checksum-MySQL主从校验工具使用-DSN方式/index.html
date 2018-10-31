@@ -1,0 +1,1197 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="pt,pt-table-checksum," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wing's Tech Space" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="pt-table-checksum是校验主从是否一致的校验工具。
+本文为什么使用的是DSN方式呢，因为喜欢自由，DSN方式可以按照自己指定的方式发现从库，并且查阅网上教程很难发现完整的DSN使用方式，导致我研究了好久，所以总结下自己的研究成果。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pt-table-checksum-MySQL主从校验工具使用(DSN方式)">
+<meta property="og:url" content="https://wing324.github.io/2017/03/08/pt-table-checksum-MySQL主从校验工具使用-DSN方式/index.html">
+<meta property="og:site_name" content="Wing's Tech Space">
+<meta property="og:description" content="pt-table-checksum是校验主从是否一致的校验工具。
+本文为什么使用的是DSN方式呢，因为喜欢自由，DSN方式可以按照自己指定的方式发现从库，并且查阅网上教程很难发现完整的DSN使用方式，导致我研究了好久，所以总结下自己的研究成果。">
+<meta property="og:updated_time" content="2017-03-20T12:56:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pt-table-checksum-MySQL主从校验工具使用(DSN方式)">
+<meta name="twitter:description" content="pt-table-checksum是校验主从是否一致的校验工具。
+本文为什么使用的是DSN方式呢，因为喜欢自由，DSN方式可以按照自己指定的方式发现从库，并且查阅网上教程很难发现完整的DSN使用方式，导致我研究了好久，所以总结下自己的研究成果。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 11154520,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://wing324.github.io/2017/03/08/pt-table-checksum-MySQL主从校验工具使用-DSN方式/"/>
+
+  <title> pt-table-checksum-MySQL主从校验工具使用(DSN方式) | Wing's Tech Space </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?49b16c9d482511603ad262b1dcf7bb45";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Wing's Tech Space</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+
+      <!-- 自定义High一下的功能 -->
+      <li class="menu-item"> <a title="把这个链接拖到你的工具栏中,任何网页都可以High" href='javascript:(
+    function go() {
+
+
+    var songs = [
+    	"http://p2.music.126.net/B0HhRLh0h2NBdlcGTcTrEA==/2076977464881622.mp3",
+	"http://p2.music.126.net/RMJR7wDullRqppBk8dhLow==/3435973841155597.mp3",
+	"http://p2.music.126.net/sLKP3na0M4mdXocWFcVHlA==/3236962235602026.mp3",
+	"http://p2.music.126.net/JHuQLKSs47g-jTAASut-2g==/7714173581565477.mp3",
+	"http://p2.music.126.net/dGpxzld-XaokuOdbMKzGrA==/2533274792968816.mp3",
+	"http://p2.music.126.net/O1-e4JylX2IhqQTV6ZLZkg==/3235862723975492.mp3"
+	];
+
+    
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+ 
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+ 
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+ 
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+ 
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+ 
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+ 
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+ 
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+ 
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.getElementById("audio_element_id");
+        if(e != null){
+            var index = parseInt(e.getAttribute("curSongIndex"));
+            if(index > songs.length - 2) {
+                index = 0;
+            } else {
+                index++;
+            }
+            e.setAttribute("curSongIndex", index);
+            N();
+        }
+
+        e.src = i;
+        e.play()
+    }
+ 
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+ 
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+ 
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    function initAudioEle() {
+        var e = document.getElementById("audio_element_id");
+        if(e === null){
+            e = document.createElement("audio");
+            e.setAttribute("class", l);
+            e.setAttribute("curSongIndex", 0);
+            e.id = "audio_element_id";
+            e.loop = false;
+            e.bgcolor = 0;
+            e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h();
+            go();
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        }
+    }
+    
+    initAudioEle();
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+
+    var curSongIndex = parseInt(document.getElementById("audio_element_id").getAttribute("curSongIndex"));
+    var i = songs[curSongIndex];
+    
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+
+    /* harlem-shake-style.css，替换成你的位置，也可以直接使用：//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css */
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()'><i class="menu-item-icon fa fa-music fa-fw"></i>High一下</a> </li>
+          <!-- end High一下 -->
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search fa-lg"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                pt-table-checksum-MySQL主从校验工具使用(DSN方式)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-08T21:06:35-08:00" content="2017-03-08">
+              2017-03-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/08/pt-table-checksum-MySQL主从校验工具使用-DSN方式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/08/pt-table-checksum-MySQL主从校验工具使用-DSN方式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">热度
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>℃
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>pt-table-checksum是校验主从是否一致的校验工具。</p>
+<p>本文为什么使用的是DSN方式呢，因为喜欢自由，DSN方式可以按照自己指定的方式发现从库，并且查阅网上教程很难发现完整的DSN使用方式，导致我研究了好久，所以总结下自己的研究成果。<br><a id="more"></a></p>
+<h5 id="一、原理">一、原理</h5><p>pt-table-checksum在基于binlog_format=row的模式下分别主库和从库上执行checksum的SQL语句，分别计算主库和从库表数据块的checksum值。而后比较主从的checksum值是否一致来判断主从数据是否一致。数据块来自于根据主键／唯一索引将表的记录(row)切分成单个数据库(chunck)，同时也降低了数据库的负载。</p>
+<h5 id="二、安全性">二、安全性</h5><ol>
+<li>pt-table-checksum一次检查一个表，并且将每个表的数据切分成多个单个的数据块，从而降低数据库的压力，并且在pt-table-checksum的执行过程中，它会自动检测数据库的负载、主从复制延迟，如果负载过大或者主从延迟过大，此时pt-table-checksum会自动暂停，进而降低数据库的负载或者主从复制延迟；</li>
+<li>pt-table-checksum自动设置session级别的 <code>innodb_lock_wait_timeout</code> 为1s，避免影响业务SQL的lock wait timeout；</li>
+<li>pt-table-checksum使用<code>--max-load</code>参数控制数据库负载，当数据库负载超过设置的阀值时，pt-table-checksum将会暂停自己，降低数据库压力。默认情况下，<code>--max-load</code>的主从复制延迟阀值为1s，并发线程(Threads_running)为25；</li>
+<li>当用 Ctrl+C 停止任务后，工具会正常的完成当前 chunk 检测，下次使用 <code>--resume</code> 选项启动可以恢复继续下一个 chunk。</li>
+</ol>
+<h5 id="三、工作原理">三、工作原理</h5><ol>
+<li><p>pt-table-checksum连接到主库，并执行一系列变更参数语句，如</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">SET</span> <span class="keyword">SESSION</span> innodb_lock_wait_timeout=<span class="number">1</span>;</div><div class="line"><span class="keyword">SET</span> @@SQL_QUOTE_SHOW_CREATE = <span class="number">1</span><span class="comment">/*!40101, @@SQL_MODE='NO_AUTO_VALUE_ON_ZERO,NO_ENGINE_SUBSTITUTION'*/</span>;</div><div class="line"><span class="keyword">SET</span> SQL_MODE=<span class="string">'NO_AUTO_VALUE_ON_ZERO,NO_ENGINE_SUBSTITUTION'</span><span class="comment">/*!50108 SET @@binlog_format := 'STATEMENT'*/</span>;</div><div class="line"><span class="keyword">SET</span> <span class="keyword">SESSION</span> <span class="keyword">TRANSACTION</span> <span class="keyword">ISOLATION</span> <span class="keyword">LEVEL</span> REPEATABLE <span class="keyword">READ</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>从主库上查找它的从库，默认通过show full processlist方式，还可以通过show slave hosts以及DSN方式发现从库；</p>
+</li>
+<li><p>查找从库是否有复制过滤规则，可以通过<code>--nocheck-replication-filters</code>跳过该项检查；</p>
+</li>
+<li><p>检查／创建checksums数据表，在确认数据表已经创建的前提下，可以通过<code>--[no]create-replicate-table</code>跳过该项检查；</p>
+</li>
+<li><p>获取一个个数据表，并依次检查；</p>
+</li>
+<li><p>如果是表的第一个chunk，那么chunk-size一般为1000；如果不是表的第一个chunk，那么采用19步中分析出的结果；</p>
+</li>
+<li><p>检查表结构，进行数据类型转换等，生成checksum的sql语句；</p>
+</li>
+<li><p>根据表上的索引和数据的分布，选择最合适的split表的方法；</p>
+</li>
+<li><p>开始对表做checksum操作；</p>
+</li>
+<li><p>删除该表的上一次checksum值，除非使用<code>--resume</code>参数；</p>
+</li>
+<li><p>进入需要做checksum的数据库中，USE database;</p>
+</li>
+<li><p>获取下一个chunk的数据记录；</p>
+</li>
+<li><p>explain该chunk的checksum语句；</p>
+</li>
+<li><p>根据explain的结果判断该chunk的大小是否超过自定义的<code>--chunk-size</code>的大小，如果超过，将会忽略计算出来的chunk-size，使用自定义的<code>--chunk-size</code>；</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">EXPLAIN</span> <span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*) <span class="keyword">AS</span> cnt, <span class="keyword">COALESCE</span>(<span class="keyword">LOWER</span>(<span class="keyword">CONV</span>(<span class="keyword">BIT_XOR</span>(<span class="keyword">CAST</span>(<span class="keyword">CRC32</span>(<span class="keyword">CONCAT_WS</span>(<span class="string">'#'</span>, <span class="string">`id`</span>, <span class="keyword">CONCAT</span>(<span class="keyword">ISNULL</span>(<span class="string">`id`</span>)))) <span class="keyword">AS</span> <span class="keyword">UNSIGNED</span>)), <span class="number">10</span>, <span class="number">16</span>)), <span class="number">0</span>) <span class="keyword">AS</span> crc <span class="keyword">FROM</span> <span class="string">`xxxx`</span>.<span class="string">`xxxx`</span> <span class="comment">/*explain checksum table*/</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>执行该chunk的checksum语句，该过程中会把该chunk上的记录加上for update锁；</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">REPLACE</span> <span class="keyword">INTO</span> <span class="string">`percona`</span>.<span class="string">`checksums`</span> (db, tbl, <span class="keyword">chunk</span>, chunk_index, lower_boundary, upper_boundary, this_cnt, this_crc) <span class="keyword">SELECT</span> <span class="string">'wing'</span>, <span class="string">'t'</span>, <span class="string">'1'</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="keyword">COUNT</span>(*) <span class="keyword">AS</span> cnt, <span class="keyword">COALESCE</span>(<span class="keyword">LOWER</span>(<span class="keyword">CONV</span>(<span class="keyword">BIT_XOR</span>(<span class="keyword">CAST</span>(<span class="keyword">CRC32</span>(<span class="keyword">CONCAT_WS</span>(<span class="string">'#'</span>, <span class="string">`id`</span>, <span class="keyword">CONCAT</span>(<span class="keyword">ISNULL</span>(<span class="string">`id`</span>)))) <span class="keyword">AS</span> <span class="keyword">UNSIGNED</span>)), <span class="number">10</span>, <span class="number">16</span>)), <span class="number">0</span>) <span class="keyword">AS</span> crc <span class="keyword">FROM</span> <span class="string">`xxxx`</span>.<span class="string">`xxxx`</span> <span class="comment">/*checksum table*/</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>show warnings查看是否有警告信息等；</p>
+</li>
+<li><p>获取chunk的checksum值</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> this_crc, this_cnt <span class="keyword">FROM</span> <span class="string">`percona`</span>.<span class="string">`checksums`</span> <span class="keyword">WHERE</span> db = <span class="string">'xxx'</span> <span class="keyword">AND</span> tbl = <span class="string">'xxx'</span> <span class="keyword">AND</span> <span class="keyword">chunk</span> = <span class="string">'1'</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>更新主库chunk的checksum值</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">UPDATE</span> <span class="string">`percona`</span>.<span class="string">`checksums`</span> <span class="keyword">SET</span> chunk_time = <span class="string">'xxx'</span>, master_crc = <span class="string">'xxxx'</span>, master_cnt = <span class="string">'xxx'</span> <span class="keyword">WHERE</span> db = <span class="string">'xxx'</span> <span class="keyword">AND</span> tbl = <span class="string">'xxx'</span> <span class="keyword">AND</span> <span class="keyword">chunk</span> = <span class="string">'1'</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>调整下一个chunk的大小；</p>
+</li>
+<li><p>等待从库追上主库，此时如果主从延迟时间超过<code>--max-load</code>的设置值，pt工具将会暂停自己；</p>
+</li>
+<li><p>如果发现主库的max-load超过某个阈值，pt工具在这里将暂停；</p>
+</li>
+<li><p>继续下一个chunk，直到这个table被chunk完毕；</p>
+</li>
+<li><p>等待从库执行完checksum，便于生成汇总的统计结果；</p>
+</li>
+<li><p>发现并输出该表的主从是否存在差异；</p>
+</li>
+<li><p>循环每张表，直到所有表被检查完毕；</p>
+</li>
+<li><p>如果有warn/err/diff，则退出代码为1，正常退出为0。</p>
+</li>
+</ol>
+<h5 id="四、使用示例">四、使用示例</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 本示例为DSN方式检查</div><div class="line"># 主库上创建percona数据库</div><div class="line">CREATE DATABASE percona;</div><div class="line"></div><div class="line"># 主库上创建checksums和dsns表</div><div class="line">CREATE TABLE checksums (</div><div class="line">   db             CHAR(64)     NOT NULL,</div><div class="line">   tbl            CHAR(64)     NOT NULL,</div><div class="line">   chunk          INT          NOT NULL,</div><div class="line">   chunk_time     FLOAT            NULL,</div><div class="line">   chunk_index    VARCHAR(200)     NULL,</div><div class="line">   lower_boundary TEXT             NULL,</div><div class="line">   upper_boundary TEXT             NULL,</div><div class="line">   this_crc       CHAR(40)     NOT NULL,</div><div class="line">   this_cnt       INT          NOT NULL,</div><div class="line">   master_crc     CHAR(40)         NULL,</div><div class="line">   master_cnt     INT              NULL,</div><div class="line">   ts             TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,</div><div class="line">   PRIMARY KEY (db, tbl, chunk),</div><div class="line">   INDEX ts_db_tbl (ts, db, tbl)</div><div class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8;</div><div class="line">CREATE TABLE `dsns` (</div><div class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</div><div class="line">  `parent_id` int(11) DEFAULT NULL,</div><div class="line">  `dsn` varchar(255) NOT NULL,</div><div class="line">  PRIMARY KEY (`id`)</div><div class="line">);</div><div class="line"></div><div class="line"># 主库上创建一个用户，从pt测试的服务器上既可以通过该用户连接主库，也可以通过该用户连接从库</div><div class="line">GRANT ALL PRIVILEGEES on percona.* to &apos;percona_user&apos;@&apos;%&apos; IDENTIFIED BY &apos;percona_pass&apos;;</div><div class="line">GRANT SELECT,LOCK TABLES,PROCESS,SUPER on *.* to &apos;percona_user&apos;@&apos;%&apos;;</div><div class="line"></div><div class="line"># 主库上dsns表插入从库信息</div><div class="line">INSERT INTO dsns(dsn) VALUES(&apos;h=repl_host,P=repl_port&apos;)</div><div class="line"></div><div class="line"># 连接主库执行pt工具</div><div class="line">pt-table-checksum h=&apos;master_host&apos;,u=&apos;percona_user&apos;,p=&apos;percona_pass&apos;,P=master_port --databases=xxx --tables=xx,xxx --nocheck-replication-filters --nocreate-replicate-table --no-check-binlog-format --recursion-method dsn=h=repl_host,P=repl_port,D=&apos;percona&apos;,t=&apos;dsns&apos;</div><div class="line"># 返回结果</div><div class="line">            TS ERRORS  DIFFS     ROWS  CHUNKS SKIPPED    TIME TABLE</div><div class="line">03-08T20:31:22      0      1       xx       xx       0   1.058 xxx.xx</div><div class="line">03-08T20:32:22      0      0       xx       xx       0   1.058 xxx.xxx</div></pre></td></tr></table></figure>
+<h5 id="五、结果解析">五、结果解析</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#  pt-table-checksum工具检测返回结果</div><div class="line">            TS ERRORS  DIFFS     ROWS  CHUNKS SKIPPED    TIME TABLE</div><div class="line">03-08T20:31:22      0      1       xx       xx       0   1.058 xxx.xx</div><div class="line">03-08T20:32:22      0      0       xx       xx       0   1.058 xxx.xxx</div></pre></td></tr></table></figure>
+<p>TS：pt工具结束执行的时间；</p>
+<p>ERRORS：checksum表的时候出现的error和warn的次数；</p>
+<p>DIFFS：当为0时，该表主从不存在差异，当为1时，该表主从存在差异；</p>
+<p>ROWS：进行checksum的表的记录数；</p>
+<p>CHUNKS：表被split为N个chunk，N为chunk的数量；</p>
+<p>SKIPPED：由于以下原因，pt跳过的chunk数；</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&gt;* MySQL not using the --chunk-index</div><div class="line">&gt;* MySQL not using the full chunk index (--[no]check-plan)</div><div class="line">&gt;* Chunk size is greater than --chunk-size * --chunk-size-limit</div><div class="line">&gt;* Lock wait timeout exceeded (--retries)</div><div class="line">&gt;* Checksum query killed (--retries)</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>TIME：checksum表的时间长度；</p>
+<p>TABLE：checksum相应的表名。</p>
+<h5 id="六、发现差异">六、发现差异</h5><p>那么如何通过checksums表发现差异呢，在每一个从库上执行如下SQL，即可选出有差异的表：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> db, tbl, <span class="keyword">SUM</span>(this_cnt) <span class="keyword">AS</span> total_rows, <span class="keyword">COUNT</span>(*) <span class="keyword">AS</span> chunks</div><div class="line"><span class="keyword">FROM</span> percona.checksums</div><div class="line"><span class="keyword">WHERE</span> (</div><div class="line"> master_cnt &lt;&gt; this_cnt</div><div class="line"> <span class="keyword">OR</span> master_crc &lt;&gt; this_crc</div><div class="line"> <span class="keyword">OR</span> <span class="keyword">ISNULL</span>(master_crc) &lt;&gt; <span class="keyword">ISNULL</span>(this_crc))</div><div class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> db, tbl;</div></pre></td></tr></table></figure>
+<h5 id="七、常用参数">七、常用参数</h5><p><strong>–nocheck-binlog-format</strong></p>
+<p>不检查所有数据库的binlog_format是否一致，请在确认所有数据库的binlog_format一致的情况下，使用该参数。</p>
+<p><strong>–chunk-index=s</strong></p>
+<p>使用该索引将表split到多个chunk中。</p>
+<p><strong>–chunk-size=z</strong></p>
+<p>指定chunk的大小，默认为1000，即一个chunk容纳1000条数据记录。</p>
+<p><strong>–chunk-time=f</strong></p>
+<p>动态调整–chunk-size，当一个chunk的checksum时间超过该–chunk-time的时间。</p>
+<p><strong>–nocreate-replicate-table</strong></p>
+<p>不创建<code>--replicate</code>指定的database和table。</p>
+<p><strong>–function=s</strong></p>
+<p>指定checksum的hash函数，选择项：FNV1A_64,MURMUR_HASH, SHA1, MD5, CRC32等。</p>
+<p><strong>–recursion-method=a</strong></p>
+<p>指定发现slave的方式，选择项：</p>
+<p><strong>–replicate=s</strong></p>
+<p>将checksum的指定结果写入到该表中，默认为percona.checksums。</p>
+<p><strong>–resume</strong></p>
+<p>从上一次中断的已完成的chunk开始继续执行下一个chunk，最终完成整个表的checksum。</p>
+<p><strong>–where=s</strong></p>
+<p>仅仅校验该where条件匹配的行数。</p>
+<p><strong>–ask-pass</strong></p>
+<p>交互式输入数据库验证码，命令行推荐使用。</p>
+<p><strong>–host</strong></p>
+<p>数据库host。</p>
+<p><strong>–port</strong></p>
+<p>数据库port。</p>
+<p><strong>–password</strong></p>
+<p>数据库密码。</p>
+<p><strong>–user</strong></p>
+<p>数据库用户。</p>
+<p><strong>–socket</strong></p>
+<p>数据库的socket文件。</p>
+<p><strong>–columns=a</strong></p>
+<p>仅仅校验指定的列。</p>
+<p><strong>–databases=h</strong></p>
+<p>仅仅校验指定的数据库。</p>
+<p><strong>–databases-regex=s</strong></p>
+<p>仅仅校验与该参数匹配的数据库。</p>
+<p><strong>–engines=h</strong></p>
+<p>仅仅校验指定engine的表。</p>
+<p><strong>–tables=h</strong></p>
+<p>仅仅校验指定的表。</p>
+<p><strong>–tables-regex=s</strong></p>
+<p>仅仅校验与该参数匹配的表。</p>
+<p>参考文档：<a href="http://www.nettedfish.com/blog/2013/06/04/check-replication-consistency-by-pt-table-checksum/" target="_blank" rel="external">用pt-table-checksum校验数据一致性</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/pt/" rel="tag">#pt</a>
+          
+            <a href="/tags/pt-table-checksum/" rel="tag">#pt-table-checksum</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/01/SELECT-…-FOR-UPDATE如何影响INNODB的锁级别/" rel="next" title="SELECT … FOR UPDATE如何影响INNODB的锁级别">
+                <i class="fa fa-chevron-left"></i> SELECT … FOR UPDATE如何影响INNODB的锁级别
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/20/MariaDB性能调优工具mytop/" rel="prev" title="MariaDB性能调优工具mytop">
+                MariaDB性能调优工具mytop <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/03/08/pt-table-checksum-MySQL主从校验工具使用-DSN方式/"
+     data-title="pt-table-checksum-MySQL主从校验工具使用(DSN方式)"
+     data-content=""
+     data-url="https://wing324.github.io/2017/03/08/pt-table-checksum-MySQL主从校验工具使用-DSN方式/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><span class="ds-more">分享到：</span></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      <li><a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+      <li><a class="ds-google" href="javascript:void(0);" data-service="google">Google</a></li>
+    </ul>
+    <!--
+      <div class="ds-share-icons-more">
+      </div>
+    -->
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/08/pt-table-checksum-MySQL主从校验工具使用-DSN方式/"
+           data-title="pt-table-checksum-MySQL主从校验工具使用(DSN方式)" data-url="https://wing324.github.io/2017/03/08/pt-table-checksum-MySQL主从校验工具使用-DSN方式/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wing.jpg"
+               alt="Wing" />
+          <p class="site-author-name" itemprop="name">Wing</p>
+          <p class="site-description motion-element" itemprop="description">热在分享，衷在开源。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">131</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/">
+                <span class="site-state-item-count">113</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wing324" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#一、原理"><span class="nav-number">1.</span> <span class="nav-text">一、原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二、安全性"><span class="nav-number">2.</span> <span class="nav-text">二、安全性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#三、工作原理"><span class="nav-number">3.</span> <span class="nav-text">三、工作原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#四、使用示例"><span class="nav-number">4.</span> <span class="nav-text">四、使用示例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#五、结果解析"><span class="nav-number">5.</span> <span class="nav-text">五、结果解析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#六、发现差异"><span class="nav-number">6.</span> <span class="nav-text">六、发现差异</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#七、常用参数"><span class="nav-number">7.</span> <span class="nav-text">七、常用参数</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">您是第<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>个小伙伴</span>
+  
+
+  
+    <span class="site-pv">本站总浏览<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wing</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"Wing"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementById('footer')
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+  <!-- 背景动画 -->
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+  <!-- 页面点击小红心 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>

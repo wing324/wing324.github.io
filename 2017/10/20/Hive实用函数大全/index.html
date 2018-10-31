@@ -1,0 +1,1279 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hive," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wing's Tech Space" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="为什么叫实用函数，因为有些不实用的函数没有写进文档中，哈哈。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hive实用函数大全">
+<meta property="og:url" content="https://wing324.github.io/2017/10/20/Hive实用函数大全/index.html">
+<meta property="og:site_name" content="Wing's Tech Space">
+<meta property="og:description" content="为什么叫实用函数，因为有些不实用的函数没有写进文档中，哈哈。">
+<meta property="og:updated_time" content="2017-10-20T12:26:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hive实用函数大全">
+<meta name="twitter:description" content="为什么叫实用函数，因为有些不实用的函数没有写进文档中，哈哈。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 11154520,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://wing324.github.io/2017/10/20/Hive实用函数大全/"/>
+
+  <title> Hive实用函数大全 | Wing's Tech Space </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?49b16c9d482511603ad262b1dcf7bb45";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Wing's Tech Space</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+
+      <!-- 自定义High一下的功能 -->
+      <li class="menu-item"> <a title="把这个链接拖到你的工具栏中,任何网页都可以High" href='javascript:(
+    function go() {
+
+
+    var songs = [
+    	"http://p2.music.126.net/B0HhRLh0h2NBdlcGTcTrEA==/2076977464881622.mp3",
+	"http://p2.music.126.net/RMJR7wDullRqppBk8dhLow==/3435973841155597.mp3",
+	"http://p2.music.126.net/sLKP3na0M4mdXocWFcVHlA==/3236962235602026.mp3",
+	"http://p2.music.126.net/JHuQLKSs47g-jTAASut-2g==/7714173581565477.mp3",
+	"http://p2.music.126.net/dGpxzld-XaokuOdbMKzGrA==/2533274792968816.mp3",
+	"http://p2.music.126.net/O1-e4JylX2IhqQTV6ZLZkg==/3235862723975492.mp3"
+	];
+
+    
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+ 
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+ 
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+ 
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+ 
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+ 
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+ 
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+ 
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+ 
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.getElementById("audio_element_id");
+        if(e != null){
+            var index = parseInt(e.getAttribute("curSongIndex"));
+            if(index > songs.length - 2) {
+                index = 0;
+            } else {
+                index++;
+            }
+            e.setAttribute("curSongIndex", index);
+            N();
+        }
+
+        e.src = i;
+        e.play()
+    }
+ 
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+ 
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+ 
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    function initAudioEle() {
+        var e = document.getElementById("audio_element_id");
+        if(e === null){
+            e = document.createElement("audio");
+            e.setAttribute("class", l);
+            e.setAttribute("curSongIndex", 0);
+            e.id = "audio_element_id";
+            e.loop = false;
+            e.bgcolor = 0;
+            e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h();
+            go();
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        }
+    }
+    
+    initAudioEle();
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+
+    var curSongIndex = parseInt(document.getElementById("audio_element_id").getAttribute("curSongIndex"));
+    var i = songs[curSongIndex];
+    
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+
+    /* harlem-shake-style.css，替换成你的位置，也可以直接使用：//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css */
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()'><i class="menu-item-icon fa fa-music fa-fw"></i>High一下</a> </li>
+          <!-- end High一下 -->
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search fa-lg"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Hive实用函数大全
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-20T20:24:41-07:00" content="2017-10-20">
+              2017-10-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Bigdata/" itemprop="url" rel="index">
+                    <span itemprop="name">Bigdata</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/10/20/Hive实用函数大全/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/10/20/Hive实用函数大全/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">热度
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>℃
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>为什么叫实用函数，因为有些不实用的函数没有写进文档中，哈哈。<br><a id="more"></a></p>
+<p>参考文档：</p>
+<p>《Apache Hive Cookbook》</p>
+<p><a href="http://lxw1234.com/archives/2015/04/176.htm" target="_blank" rel="external">Hive分析窗口函数(一) SUM,AVG,MIN,MAX</a></p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line"># 示例表结构sales</div><div class="line">CREATE TABLE `sales`(</div><div class="line">  `id` int,</div><div class="line">  `fname` string,</div><div class="line">  `state` string,</div><div class="line">  `zip` int,</div><div class="line">  `ip` string,</div><div class="line">  `pid` string)</div><div class="line"></div><div class="line"># 示例数据sales</div><div class="line">0	Zena	Tennessee	21550	192.168.56.101	PI_09</div><div class="line">1	Elaine	Alaska	6429	192.168.56.101	PI_03</div><div class="line">2	Sage	Nevada	8899	192.168.56.102	PI_03</div><div class="line">3	Cade	Missouri	11233	192.168.56.103	PI_06</div><div class="line">4	Abra	New Jersry	21500	192.168.56.101	PI_09</div><div class="line">5	Stone	Nebraska	3560	192.168.56.104	PI_08</div><div class="line">6	Regina	Tennessee	21550	192.168.56.105	PI_10</div><div class="line">7	Donova	New York	95234	192.168.56.106	PI_05</div><div class="line">8	Aileen	Illinois	68284	192.168.56.106	PI_02</div><div class="line">9	Maraam	Hawaii	95234	192.168.56.107	PI_07</div><div class="line"></div><div class="line"># 示例表结构po</div><div class="line">CREATE TABLE `po`(</div><div class="line">  `cookieid` string,</div><div class="line">  `createtime` string,</div><div class="line">  `pv` int)</div><div class="line"></div><div class="line"># 示例数据po</div><div class="line">cookie1	2015-04-10	1</div><div class="line">cookie1	2015-04-11	5</div><div class="line">cookie1	2015-04-12	7</div><div class="line">cookie1	2015-04-13	3</div><div class="line">cookie1	2015-04-14	2</div><div class="line">cookie1	2015-04-15	4</div><div class="line">cookie1	2015-04-16	5</div></pre></td></tr></table></figure>
+<h5 id="一、分析型函数">一、分析型函数</h5><ol>
+<li><p>ROW_NUMBER<br>语法：</p>
+<ul>
+<li>ROW_NUMBER() OVER (ORDER BY col)<br>为每个分组记录返回一个排序的数字。</li>
+<li>ROW_NUMBER() OVER (PARTITION BY col1 ORDER BY col2)<br>按照col1分组，在分组内对col2进行排序并返回顺序数字。</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select fname,pid,ip  from sales;</div><div class="line">OK</div><div class="line">Zena	PI_09	192.168.56.101</div><div class="line">Elaine	PI_03	192.168.56.101</div><div class="line">Sage	PI_03	192.168.56.102</div><div class="line">Cade	PI_06	192.168.56.103</div><div class="line">Abra	PI_09	192.168.56.101</div><div class="line">Stone	PI_08	192.168.56.104</div><div class="line">Regina	PI_10	192.168.56.105</div><div class="line">Donova	PI_05	192.168.56.106</div><div class="line">Aileen	PI_02	192.168.56.106</div><div class="line">Maraam	PI_07	192.168.56.107</div><div class="line"></div><div class="line">hive&gt; select fname,pid,ip,row_number() over (order by ip) from sales;</div><div class="line">Abra	PI_09	192.168.56.101	1</div><div class="line">Elaine	PI_03	192.168.56.101	2</div><div class="line">Zena	PI_09	192.168.56.101	3</div><div class="line">Sage	PI_03	192.168.56.102	4</div><div class="line">Cade	PI_06	192.168.56.103	5</div><div class="line">Stone	PI_08	192.168.56.104	6</div><div class="line">Regina	PI_10	192.168.56.105	7</div><div class="line">Aileen	PI_02	192.168.56.106	8</div><div class="line">Donova	PI_05	192.168.56.106	9</div><div class="line">Maraam	PI_07	192.168.56.107	10</div><div class="line"></div><div class="line">hive&gt; select fname,pid,ip,row_number() over (partition by pid order by ip) from sales;</div><div class="line">Aileen	PI_02	192.168.56.106	1</div><div class="line">Elaine	PI_03	192.168.56.101	1</div><div class="line">Sage	PI_03	192.168.56.102	2</div><div class="line">Donova	PI_05	192.168.56.106	1</div><div class="line">Cade	PI_06	192.168.56.103	1</div><div class="line">Maraam	PI_07	192.168.56.107	1</div><div class="line">Stone	PI_08	192.168.56.104	1</div><div class="line">Abra	PI_09	192.168.56.101	1</div><div class="line">Zena	PI_09	192.168.56.101	2</div><div class="line">Regina	PI_10	192.168.56.105	1</div></pre></td></tr></table></figure>
+</li>
+<li><p>RANK</p>
+<ul>
+<li>RANK() OVER (ORDER BY col)<br>和ROW_NUMBER()差不多，但是排序时候相同的字段会返回相同的数字。</li>
+<li>RANK() OVER (PARTITION by col1 ORDER BY col2)<br>和ROW_NUMBER()差不多，但是排序时候同等级的字段会返回相同的数字。</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select fname,ip,rank() over (order by ip) from sales;</div><div class="line">Abra	192.168.56.101	1</div><div class="line">Elaine	192.168.56.101	1</div><div class="line">Zena	192.168.56.101	1</div><div class="line">Sage	192.168.56.102	4</div><div class="line">Cade	192.168.56.103	5</div><div class="line">Stone	192.168.56.104	6</div><div class="line">Regina	192.168.56.105	7</div><div class="line">Aileen	192.168.56.106	8</div><div class="line">Donova	192.168.56.106	8</div><div class="line">Maraam	192.168.56.107	10</div><div class="line"></div><div class="line">hive&gt; select fname,pid,ip,rank() over (partition by pid order by ip) from sales;</div><div class="line">Aileen	PI_02	192.168.56.106	1</div><div class="line">Elaine	PI_03	192.168.56.101	1</div><div class="line">Sage	PI_03	192.168.56.102	2</div><div class="line">Donova	PI_05	192.168.56.106	1</div><div class="line">Cade	PI_06	192.168.56.103	1</div><div class="line">Maraam	PI_07	192.168.56.107	1</div><div class="line">Stone	PI_08	192.168.56.104	1</div><div class="line">Abra	PI_09	192.168.56.101	1</div><div class="line">Zena	PI_09	192.168.56.101	1</div><div class="line">Regina	PI_10	192.168.56.105	1</div></pre></td></tr></table></figure>
+</li>
+<li><p>DENSE_RANK<br>和RANK()差不多，但是RANK()的排序数字存在空洞，见一-2-第一个示例。而DENSE_RANK()则不会存在排序数字空洞。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select fname,ip,dense_rank() over (order by ip) from sales;</div><div class="line">Abra	192.168.56.101	1</div><div class="line">Elaine	192.168.56.101	1</div><div class="line">Zena	192.168.56.101	1</div><div class="line">Sage	192.168.56.102	2</div><div class="line">Cade	192.168.56.103	3</div><div class="line">Stone	192.168.56.104	4</div><div class="line">Regina	192.168.56.105	5</div><div class="line">Aileen	192.168.56.106	6</div><div class="line">Donova	192.168.56.106	6</div><div class="line">Maraam	192.168.56.107	7</div></pre></td></tr></table></figure>
+</li>
+<li><p>PERCENT_RANK</p>
+<ul>
+<li>PERCENT_RANK() OVER (ORDER BY col)  当前行的rank-1/总行数-1</li>
+<li>PERCENT_RAANK() OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，分组内当前行的rank-1/分组内的总行数-1</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select id,ip,percent_rank() over (order by id)from sales;</div><div class="line">0	192.168.56.101	0.0</div><div class="line">1	192.168.56.101	0.1111111111111111</div><div class="line">2	192.168.56.102	0.2222222222222222</div><div class="line">3	192.168.56.103	0.3333333333333333</div><div class="line">4	192.168.56.101	0.4444444444444444</div><div class="line">5	192.168.56.104	0.5555555555555556</div><div class="line">6	192.168.56.105	0.6666666666666666</div><div class="line">7	192.168.56.106	0.7777777777777778</div><div class="line">8	192.168.56.106	0.8888888888888888</div><div class="line">9	192.168.56.107	1.0</div><div class="line"></div><div class="line">hive&gt; select id,ip,percent_rank() over (partition by ip order by id)from sales;</div><div class="line">0	192.168.56.101	0.0</div><div class="line">1	192.168.56.101	0.5</div><div class="line">4	192.168.56.101	1.0</div><div class="line">2	192.168.56.102	0.0</div><div class="line">3	192.168.56.103	0.0</div><div class="line">5	192.168.56.104	0.0</div><div class="line">6	192.168.56.105	0.0</div><div class="line">7	192.168.56.106	0.0</div><div class="line">8	192.168.56.106	1.0</div><div class="line">9	192.168.56.107	0.0</div></pre></td></tr></table></figure>
+</li>
+<li><p>CUME_DIST</p>
+<ul>
+<li>CUME_DIST() OVER (ORDER BY col) 小于等于col当前值的行数/总行数。</li>
+<li>CUME_DIST() OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，分组内部小于等于col2当前值的行数/总行数。</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select id,ip from sales;</div><div class="line">OK</div><div class="line">0	192.168.56.101</div><div class="line">1	192.168.56.101</div><div class="line">2	192.168.56.102</div><div class="line">3	192.168.56.103</div><div class="line">4	192.168.56.101</div><div class="line">5	192.168.56.104</div><div class="line">6	192.168.56.105</div><div class="line">7	192.168.56.106</div><div class="line">8	192.168.56.106</div><div class="line">9	192.168.56.107</div><div class="line"></div><div class="line">hive&gt; select id,ip,cume_dist() over (order by id)from sales;</div><div class="line">0	192.168.56.101	0.1</div><div class="line">1	192.168.56.101	0.2</div><div class="line">2	192.168.56.102	0.3</div><div class="line">3	192.168.56.103	0.4</div><div class="line">4	192.168.56.101	0.5</div><div class="line">5	192.168.56.104	0.6</div><div class="line">6	192.168.56.105	0.7</div><div class="line">7	192.168.56.106	0.8</div><div class="line">8	192.168.56.106	0.9</div><div class="line">9	192.168.56.107	1.0</div><div class="line"></div><div class="line">hive&gt; select id,ip,cume_dist() over (partition by ip order by id)from sales;</div><div class="line">0	192.168.56.101	0.3333333333333333</div><div class="line">1	192.168.56.101	0.6666666666666666</div><div class="line">4	192.168.56.101	1.0</div><div class="line">2	192.168.56.102	1.0</div><div class="line">3	192.168.56.103	1.0</div><div class="line">5	192.168.56.104	1.0</div><div class="line">6	192.168.56.105	1.0</div><div class="line">7	192.168.56.106	0.5</div><div class="line">8	192.168.56.106	1.0</div><div class="line">9	192.168.56.107	1.0</div></pre></td></tr></table></figure>
+</li>
+<li><p>NTILE<br>用于将分组数据按照顺序切分成n片，并返回当前切片值。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select id,ip, ntile(2) over (partition by ip order by id)from sales;</div><div class="line">0	192.168.56.101	1</div><div class="line">1	192.168.56.101	1</div><div class="line">4	192.168.56.101	2</div><div class="line">2	192.168.56.102	1</div><div class="line">3	192.168.56.103	1</div><div class="line">5	192.168.56.104	1</div><div class="line">6	192.168.56.105	1</div><div class="line">7	192.168.56.106	1</div><div class="line">8	192.168.56.106	2</div><div class="line">9	192.168.56.107	1</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="二、窗口型函数">二、窗口型函数</h5><ol>
+<li>LEAD<ul>
+<li>LEAD() OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，返回结果集中的下一个col2</li>
+</ul>
+</li>
+<li>LAG<ul>
+<li>OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，返回结果集中的上一个col2</li>
+</ul>
+</li>
+<li>FIRST_VALUE<ul>
+<li>OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，返回结果集中的第一个col2</li>
+</ul>
+</li>
+<li>LAST_VALUE<ul>
+<li>OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，返回结果集中的最后一个col2</li>
+</ul>
+</li>
+<li>OVER<ul>
+<li>聚集OVER</li>
+<li>COUNT</li>
+<li>MIN</li>
+<li>MAX</li>
+<li>AVG</li>
+<li>OVER WITH PARTITION BY</li>
+<li>OVER WITH PARTITION BY and ORDER BY</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line"># 首先需要了解函数OVER(PARTITION BY col1 ORDER BY col2)</div><div class="line">SELECT cookieid,</div><div class="line">createtime,</div><div class="line">pv,</div><div class="line">SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime) AS pv1, -- 默认为从起点到当前行</div><div class="line">SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS pv2, --从起点到当前行，结果同pv1</div><div class="line">SUM(pv) OVER(PARTITION BY cookieid) AS pv3,								--分组内所有行</div><div class="line">SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS pv4,   --当前行+往前3行</div><div class="line">SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN 3 PRECEDING AND 1 FOLLOWING) AS pv5,    --当前行+往前3行+往后1行</div><div class="line">SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING) AS pv6   ---当前行+往后所有行  </div><div class="line">FROM po;</div><div class="line">cookie1	2015-04-16	5	27	27	27	14	14	5</div><div class="line">cookie1	2015-04-15	4	22	22	27	16	21	9</div><div class="line">cookie1	2015-04-14	2	18	18	27	17	21	11</div><div class="line">cookie1	2015-04-13	3	16	16	27	16	18	14</div><div class="line">cookie1	2015-04-12	7	13	13	27	13	16	21</div><div class="line">cookie1	2015-04-11	5	6	6	27	6	13	26</div><div class="line">cookie1	2015-04-10	1	1	1	27	1	6	27</div><div class="line"># 其他聚集函数方式相同。</div><div class="line"></div><div class="line"># LEAD</div><div class="line">hive&gt; select fname,ip,pid,lead(pid) over (partition by ip order by ip) from sales;</div><div class="line">Abra	192.168.56.101	PI_09	PI_03 -- ip的分组中下一个pid的值为PI_03</div><div class="line">Elaine	192.168.56.101	PI_03	PI_09</div><div class="line">Zena	192.168.56.101	PI_09	NULL</div><div class="line">Sage	192.168.56.102	PI_03	NULL</div><div class="line">Cade	192.168.56.103	PI_06	NULL</div><div class="line">Stone	192.168.56.104	PI_08	NULL</div><div class="line">Regina	192.168.56.105	PI_10	NULL</div><div class="line">Aileen	192.168.56.106	PI_02	PI_05</div><div class="line">Donova	192.168.56.106	PI_05	NULL</div><div class="line">Maraam	192.168.56.107	PI_07	NULL</div><div class="line"></div><div class="line"># LAG</div><div class="line">hive&gt; select fname,ip,pid,lag(pid) over (partition by ip order by ip) from sales;</div><div class="line">Abra	192.168.56.101	PI_09	NULL  </div><div class="line">Elaine	192.168.56.101	PI_03	PI_09  -- ip的分组中上一个pid的值为PI_09</div><div class="line">Zena	192.168.56.101	PI_09	PI_03</div><div class="line">Sage	192.168.56.102	PI_03	NULL</div><div class="line">Cade	192.168.56.103	PI_06	NULL</div><div class="line">Stone	192.168.56.104	PI_08	NULL</div><div class="line">Regina	192.168.56.105	PI_10	NULL</div><div class="line">Aileen	192.168.56.106	PI_02	NULL</div><div class="line">Donova	192.168.56.106	PI_05	PI_02</div><div class="line">Maraam	192.168.56.107	PI_07	NULL</div><div class="line"></div><div class="line"># FIRST_VALUE</div><div class="line">hive&gt; select fname,ip,pid,first_value(pid) over (partition by ip order by ip) from sales;</div><div class="line">Abra	192.168.56.101	PI_09	PI_09  -- ip的分组中第一个pid的值为PI_09</div><div class="line">Elaine	192.168.56.101	PI_03	PI_09</div><div class="line">Zena	192.168.56.101	PI_09	PI_09</div><div class="line">Sage	192.168.56.102	PI_03	PI_03</div><div class="line">Cade	192.168.56.103	PI_06	PI_06</div><div class="line">Stone	192.168.56.104	PI_08	PI_08</div><div class="line">Regina	192.168.56.105	PI_10	PI_10</div><div class="line">Aileen	192.168.56.106	PI_02	PI_02  -- ip的分组中第一个pid的值为PI_02</div><div class="line">Donova	192.168.56.106	PI_05	PI_02</div><div class="line">Maraam	192.168.56.107	PI_07	PI_07</div><div class="line"></div><div class="line"># LAST_VALUE</div><div class="line">hive&gt; select fname,ip,pid,last_value(pid) over (order by ip) from sales;</div><div class="line">Abra	192.168.56.101	PI_09	PI_09 -- ip的分组中最后一个pid的值为PI_09</div><div class="line">Elaine	192.168.56.101	PI_03	PI_09</div><div class="line">Zena	192.168.56.101	PI_09	PI_09</div><div class="line">Sage	192.168.56.102	PI_03	PI_03</div><div class="line">Cade	192.168.56.103	PI_06	PI_06</div><div class="line">Stone	192.168.56.104	PI_08	PI_08</div><div class="line">Regina	192.168.56.105	PI_10	PI_10</div><div class="line">Aileen	192.168.56.106	PI_02	PI_05</div><div class="line">Donova	192.168.56.106	PI_05	PI_05 -- ip的分组中最后一个pid的值为PI_05</div><div class="line">Maraam	192.168.56.107	PI_07	PI_07</div></pre></td></tr></table></figure>
+<h5 id="二、数值型函数">二、数值型函数</h5><ol>
+<li><p>abs(x)<br>返回x的绝对值。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select abs(-1);</div><div class="line">1</div><div class="line"></div><div class="line">hive&gt; select abs(1);</div><div class="line">1</div><div class="line"></div><div class="line">hive&gt; select abs(0);</div><div class="line">0</div></pre></td></tr></table></figure>
+</li>
+<li><p>bin(x)<br>返回x的二进制格式。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select bin(123);</div><div class="line">1111011</div><div class="line"></div><div class="line">hive&gt; select bin(2);</div><div class="line">10</div><div class="line"></div><div class="line">hive&gt; select bin(3);</div><div class="line">11</div></pre></td></tr></table></figure>
+</li>
+<li><p>ceil(x),ceiling(x)<br>返回x向上取整整数。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select ceil(10.01);</div><div class="line">11</div><div class="line"></div><div class="line">hive&gt; select ceil(0.01);</div><div class="line">1</div><div class="line"></div><div class="line">hive&gt; select ceil(-10.01);</div><div class="line">-10</div></pre></td></tr></table></figure>
+</li>
+<li><p>conv(x,y,z)<br>进制转换，将x从y进制转换为z进制。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line"># 将10从十进制转换为二进制</div><div class="line">hive&gt; select conv(10,10,2);</div><div class="line">1010</div></pre></td></tr></table></figure>
+</li>
+<li><p>floor(x)<br>返回x向下取整整数。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select floor(10.01);</div><div class="line">10</div><div class="line"></div><div class="line">hive&gt; select floor(11.01);</div><div class="line">11</div><div class="line"></div><div class="line">hive&gt; select floor(11.77);</div><div class="line">11</div></pre></td></tr></table></figure>
+</li>
+<li><p>greatest(x,y,z…)<br>返回x,y,z….中数值最大的值。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select greatest(1,8,2,3,-10,-12);</div><div class="line">8</div></pre></td></tr></table></figure>
+</li>
+<li><p>least(x,y,z,…)<br>返回x,y,z…中数值最小的值。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select least(1,8,2,3,-10,-12);</div><div class="line">-12</div></pre></td></tr></table></figure>
+</li>
+<li><p>negative(x)<br>返回x的负值。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select negative(1);</div><div class="line">-1</div><div class="line">hive&gt; select negative(-1);</div><div class="line">1</div></pre></td></tr></table></figure>
+</li>
+<li><p>round(x)<br>x取整。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select round(10.12);</div><div class="line">10</div><div class="line"></div><div class="line">hive&gt; select round(10.92);</div><div class="line">11</div><div class="line"></div><div class="line">hive&gt; select round(10);</div><div class="line">10</div><div class="line"></div><div class="line">hive&gt; select round(10.5);</div><div class="line">11</div></pre></td></tr></table></figure>
+</li>
+<li><p>sign(x)<br>当x是正数时返回1，当x是负数时返回-1，当x是0时返回0。</p>
+</li>
+</ol>
+<h5 id="三、类型转换型函数">三、类型转换型函数</h5><ol>
+<li><p>binary(x)<br>将x以二进制的方式存储。</p>
+</li>
+<li><p>cast(x as T)<br>将x转换为T类型。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select cast(10 as STRING);</div><div class="line">10</div><div class="line"></div><div class="line">hive&gt; select cast(10 as INT);</div><div class="line">10</div><div class="line"></div><div class="line">hive&gt; select cast('A' as INT);</div><div class="line">NULL</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="四、日期函数">四、日期函数</h5><ol>
+<li><p>add_month(x,y)<br>在日期x的基础上加上y月。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select add_months('2017-10-09',1);</div><div class="line">2017-11-09</div><div class="line"></div><div class="line">hive&gt; select add_months('2017-10-09',4);</div><div class="line">2018-02-09</div></pre></td></tr></table></figure>
+</li>
+<li><p>current_date()<br>获取当前日期。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select current_date();</div><div class="line">OK</div><div class="line">2017-10-20</div></pre></td></tr></table></figure>
+</li>
+<li><p>current_timestamp()<br>获取当前时间。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select current_timestamp();</div><div class="line">2017-10-20 18:59:52.19</div></pre></td></tr></table></figure>
+</li>
+<li><p>date_add(x,y)<br>在日期x的基础上加上y天。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select date_add('2017-10-09',4);</div><div class="line">2017-10-13</div><div class="line"></div><div class="line">hive&gt; select date_add('2017-12-30',4);</div><div class="line">2018-01-03</div></pre></td></tr></table></figure>
+</li>
+<li><p>date_format(x,y)<br>将日期x的格式化为y形式的时间。<br>y的格式<a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html" target="_blank" rel="external">请点击参考</a>。</p>
+</li>
+<li><p>date_sub(x,y)<br>在日期x的基础上减去y天。</p>
+</li>
+<li><p>datediff(x,y)<br>返回日期x,y之间的时间差(天数)。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select datediff('2017-10-09','2017-10-01');</div><div class="line">8</div></pre></td></tr></table></figure>
+</li>
+<li><p>unix_timestamp()<br>获取当前时区的UNIX时间戳</p>
+</li>
+<li><p>from_unixtime(x)<br>返回时间戳x的直观日期。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select from_unixtime(unix_timestamp());</div><div class="line">2017-10-20 19:13:11</div></pre></td></tr></table></figure>
+</li>
+<li><p>last_day(x)<br>返回日期x的月份的最后一天的日期。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select last_day('2017-02-02');</div><div class="line">2017-02-28</div></pre></td></tr></table></figure>
+</li>
+<li><p>months_between(x,y)<br>返回x,y之间的月份差。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select months_between('2017-10-01','2017-02-02');</div><div class="line">OK</div><div class="line">7.96774194</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="四、字符型函数">四、字符型函数</h5><ol>
+<li><p>concat(x,y,….)<br>连接x,y….字符串合并为一个字符串。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select concat('ABC','abc','zzz');</div><div class="line">ABCabczzz</div></pre></td></tr></table></figure>
+</li>
+<li><p>concat_ws(z,x,y,….)<br>实用分隔符z连接x,y….字符串。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select concat_ws('/','ABC','abc','zzz');</div><div class="line">ABC/abc/zzz</div></pre></td></tr></table></figure>
+</li>
+<li><p>find_in_set(‘x’,’y,z,…’)<br>检查x是否存在与y,z…中，存在则返回位置值，否则返回0。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select find_in_set('abc','a,b,c,ab,abc,bc');</div><div class="line">5</div><div class="line"></div><div class="line">hive&gt; select find_in_set('abc','a,b,c,ab,bc');</div><div class="line">0</div></pre></td></tr></table></figure>
+</li>
+<li><p>in_file(x,y)<br>检查字符串x是否为文件y的一行。</p>
+</li>
+<li><p>initcap(x)<br>将字符串x的首字母大写，然后将其他字母小写。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select initcap('hello');</div><div class="line">Hello</div><div class="line"></div><div class="line">hive&gt; select initcap('hellO');</div><div class="line">Hello</div><div class="line"></div><div class="line">hive&gt; select initcap('hELLO');</div><div class="line">Hello</div><div class="line"></div><div class="line">hive&gt; select initcap('HeLLO');</div><div class="line">Hello</div><div class="line"></div><div class="line">hive&gt; select initcap('HELLO');</div><div class="line">Hello</div></pre></td></tr></table></figure>
+</li>
+<li><p>instr(x,y)<br>返回y在x中的第一个位置值。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select instr('abc','c');</div><div class="line">3</div><div class="line"></div><div class="line">hive&gt; select instr('abc','d');</div><div class="line">0</div></pre></td></tr></table></figure>
+</li>
+<li><p>length(x)<br>返回x的字符个数</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select length('abc');</div><div class="line">3</div><div class="line">hive&gt; select length('中国');</div><div class="line">2</div></pre></td></tr></table></figure>
+</li>
+<li><p>lower(x),lcase(x)<br>返回x的小写字符串。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select lower('ABC');</div><div class="line">abc</div></pre></td></tr></table></figure>
+</li>
+<li><p>locate(x,y,z)<br>返回x在y的位置z之后第一次出现的位置。</p>
+</li>
+<li><p>lpad(x,y,z)<br>将x左侧用字符串z填充，xz组合的总长度为z</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select lpad('a',2,'b');</div><div class="line">ba</div><div class="line"></div><div class="line">hive&gt; select lpad('a',3,'b');</div><div class="line">bba</div><div class="line"></div><div class="line">hive&gt; select lpad('aaaa',3,'b');</div><div class="line">aaa</div></pre></td></tr></table></figure>
+</li>
+<li><p>ltrim(x)<br>去除x左侧的空格。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select ltrim('  AA');</div><div class="line">AA</div></pre></td></tr></table></figure>
+</li>
+<li><p>repeat(x,y)<br>将x重复y次。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select repeat('a',5);</div><div class="line">aaaaa</div></pre></td></tr></table></figure>
+</li>
+<li><p>reverse(x)<br>将x逆向输出。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select reverse('SUV');</div><div class="line">VUS</div></pre></td></tr></table></figure>
+</li>
+<li><p>rpad(x,y,z)<br>将x左侧用字符串z填充，xz组合的总长度为z。</p>
+</li>
+<li><p>rtrim(x)<br>去除x右侧的空格。</p>
+</li>
+<li><p>split(x,y)<br>用y分割字符串x,y为正则表达式。</p>
+</li>
+<li><p>substr(x,y),substring(x,y)<br>返回x从位置y直到结尾的字符串。</p>
+</li>
+<li><p>substr(x,y,z),substring(x,y,z)<br>返回x从位置y开始的字符串，长度为z的子串。</p>
+</li>
+<li><p>trim(x)<br>去掉x两端的空格。</p>
+</li>
+</ol>
+<h5 id="五、条件函数">五、条件函数</h5><ol>
+<li><p>case when</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line"># 方式1</div><div class="line">case when a=b then b1 when a=c then c1 else a end as col</div><div class="line"></div><div class="line"># 方式2</div><div class="line">case a when b then b1 when c then c1 else a end as col</div></pre></td></tr></table></figure>
+</li>
+<li><p>coalsce(x,y,z)<br>当x is null时返回y，当x is not null 返回z。</p>
+</li>
+<li><p>if(x,y,z)<br>当条件x成立时返回y，当条件x不成立时返回z。</p>
+</li>
+<li><p>isnotnull(x)<br>当x is not null时返回true，当x i null 返回false。</p>
+</li>
+<li><p>isnull(x)<br>当x is null时返回true，当x is not null 返回false。</p>
+</li>
+<li><p>nvl(x,y)<br>当x is null时返回y，当x is not null 返回x。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select nvl(1,100);</div><div class="line">1</div><div class="line"></div><div class="line">hive&gt; select nvl(null,100);</div><div class="line">100</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="六、UDAF函数">六、UDAF函数</h5><ol>
+<li>avg()<br>返回平均值</li>
+<li>count()<br>返回总数</li>
+<li>max()<br>返回最大值</li>
+<li>min()<br>返回最小值</li>
+<li>sum()<br>返回总和</li>
+<li>variance()<br>返回方差</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hive/" rel="tag">#Hive</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/12/Hive常见的数据导入方式/" rel="next" title="Hive常见的数据导入方式">
+                <i class="fa fa-chevron-left"></i> Hive常见的数据导入方式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/31/Java之多态方法中的调用问题/" rel="prev" title="Java之多态方法中的调用问题">
+                Java之多态方法中的调用问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/10/20/Hive实用函数大全/"
+     data-title="Hive实用函数大全"
+     data-content=""
+     data-url="https://wing324.github.io/2017/10/20/Hive实用函数大全/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><span class="ds-more">分享到：</span></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      <li><a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+      <li><a class="ds-google" href="javascript:void(0);" data-service="google">Google</a></li>
+    </ul>
+    <!--
+      <div class="ds-share-icons-more">
+      </div>
+    -->
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/10/20/Hive实用函数大全/"
+           data-title="Hive实用函数大全" data-url="https://wing324.github.io/2017/10/20/Hive实用函数大全/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wing.jpg"
+               alt="Wing" />
+          <p class="site-author-name" itemprop="name">Wing</p>
+          <p class="site-description motion-element" itemprop="description">热在分享，衷在开源。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">131</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/">
+                <span class="site-state-item-count">113</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wing324" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#一、分析型函数"><span class="nav-number">1.</span> <span class="nav-text">一、分析型函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二、窗口型函数"><span class="nav-number">2.</span> <span class="nav-text">二、窗口型函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二、数值型函数"><span class="nav-number">3.</span> <span class="nav-text">二、数值型函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#三、类型转换型函数"><span class="nav-number">4.</span> <span class="nav-text">三、类型转换型函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#四、日期函数"><span class="nav-number">5.</span> <span class="nav-text">四、日期函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#四、字符型函数"><span class="nav-number">6.</span> <span class="nav-text">四、字符型函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#五、条件函数"><span class="nav-number">7.</span> <span class="nav-text">五、条件函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#六、UDAF函数"><span class="nav-number">8.</span> <span class="nav-text">六、UDAF函数</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">您是第<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>个小伙伴</span>
+  
+
+  
+    <span class="site-pv">本站总浏览<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wing</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"Wing"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementById('footer')
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+  <!-- 背景动画 -->
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+  <!-- 页面点击小红心 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>
