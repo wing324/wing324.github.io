@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wing324.github.io/"/>
-  <updated>2018-10-31T00:00:09.082Z</updated>
+  <updated>2018-11-09T00:53:02.347Z</updated>
   <id>https://wing324.github.io/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="https://wing324.github.io/2018/10/30/CSS%E5%B8%B8%E7%94%A8%E9%80%89%E6%8B%A9%E5%99%A8/"/>
     <id>https://wing324.github.io/2018/10/30/CSS常用选择器/</id>
     <published>2018-10-30T23:54:32.000Z</published>
-    <updated>2018-10-31T00:00:09.082Z</updated>
+    <updated>2018-11-09T00:53:02.347Z</updated>
     
-    <content type="html"><![CDATA[<p>CSS的几种选择器总是让我非常的迷糊，所以自己来总结下吧。</p>
+    <content type="html"><![CDATA[<p>CSS的几种选择器总是让我非常的迷糊，所以我把别人总结的拿来保存一下。</p>
 <a id="more"></a>
 <p>文章来源：<a href="https://developer.mozilla.org/zh-CN/docs/Learn/Getting_started_with_the_web/CSS_basics" target="_blank" rel="external">https://developer.mozilla.org/zh-CN/docs/Learn/Getting_started_with_the_web/CSS_basics</a></p>
 <table>
@@ -65,7 +65,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;CSS的几种选择器总是让我非常的迷糊，所以自己来总结下吧。&lt;/p&gt;
+      &lt;p&gt;CSS的几种选择器总是让我非常的迷糊，所以我把别人总结的拿来保存一下。&lt;/p&gt;
     
     </summary>
     
