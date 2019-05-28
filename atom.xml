@@ -57,6 +57,67 @@
   </entry>
   
   <entry>
+    <title>CSS组合器</title>
+    <link href="https://wing324.github.io/2018/11/08/CSS%E7%BB%84%E5%90%88%E5%99%A8/"/>
+    <id>https://wing324.github.io/2018/11/08/CSS组合器/</id>
+    <published>2018-11-09T00:49:22.000Z</published>
+    <updated>2019-05-28T05:19:54.277Z</updated>
+    
+    <content type="html"><![CDATA[<p>CSS的几种组合选择器总是让我非常的迷糊，所以自己把别人总结的保存一下。</p>
+<a id="more"></a>
+<p>文章来源：<a href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Introduction_to_CSS/Combinators_and_multiple_selectors" target="_blank" rel="external">https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Introduction_to_CSS/Combinators_and_multiple_selectors</a></p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>组合器</th>
+<th>选择</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>A,B</td>
+<td>匹配满足A（和/或）B的任意元素（参见下方 <a href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Introduction_to_CSS/Combinators_and_multiple_selectors#%E5%90%8C%E4%B8%80%E8%A7%84%E5%88%99%E9%9B%86%E4%B8%8A%E7%9A%84%E5%A4%9A%E4%B8%AA%E9%80%89%E6%8B%A9%E5%99%A8" target="_blank" rel="external">同一规则集上的多个选择器</a>）.</td>
+</tr>
+<tr>
+<td>后代选择器</td>
+<td>A B</td>
+<td>匹配B元素，满足条件：B是A的后代结点（B是A的子节点，或者A的子节点的子节点）</td>
+</tr>
+<tr>
+<td>子选择器</td>
+<td>A &gt; B</td>
+<td>匹配B元素，满足条件：B是A的直接子节点</td>
+</tr>
+<tr>
+<td>相邻兄弟选择器</td>
+<td>A + B</td>
+<td>匹配B元素，满足条件：B是A的下一个兄弟节点（AB有相同的父结点，并且B紧跟在A的后面）</td>
+</tr>
+<tr>
+<td>通用兄弟选择器</td>
+<td>A ~ B</td>
+<td>匹配B元素，满足条件：B是A之后的兄弟节点中的任意一个（AB有相同的父节点，B在A之后，但不一定是紧挨着A）</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;CSS的几种组合选择器总是让我非常的迷糊，所以自己把别人总结的保存一下。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Front End" scheme="https://wing324.github.io/categories/Front-End/"/>
+    
+    
+      <category term="CSS" scheme="https://wing324.github.io/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>CSS常用选择器</title>
     <link href="https://wing324.github.io/2018/10/30/CSS%E5%B8%B8%E7%94%A8%E9%80%89%E6%8B%A9%E5%99%A8/"/>
     <id>https://wing324.github.io/2018/10/30/CSS常用选择器/</id>
@@ -1364,42 +1425,6 @@ Waiting <span class="keyword">for</span> <span class="keyword">trigger</span> me
     <summary type="html">
     
       &lt;p&gt;Java的构造函数方便又很不同于其他语言（其实我也只学过python，==），这个构造函数需要好好的总结下，毕竟我觉得这是个奇怪的家伙，虽然它真的很方便==&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Java" scheme="https://wing324.github.io/categories/Java/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Java中成员变量和局部变量的区别</title>
-    <link href="https://wing324.github.io/2017/05/20/Java%E4%B8%AD%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
-    <id>https://wing324.github.io/2017/05/20/Java中成员变量和局部变量的区别/</id>
-    <published>2017-05-21T02:19:10.000Z</published>
-    <updated>2017-05-20T11:21:10.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Java中的成员变量是什么？局部变量又是什么？它们之间有什么不同呢？</p>
-<a id="more"></a>
-<ol>
-<li><p>成员变量定义在类中，整个类都可以访问;<br>局部变量定义在函数、语句、局部代码块中，只在所属的区域有效。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">int</span> num;<span class="comment">//成员变量</span></div><div class="line">	String color;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line">      	 <span class="keyword">int</span> numlocal = <span class="number">5</span>;<span class="comment">// 局部变量</span></div><div class="line">		System.out.println(num+<span class="string">","</span>+color);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>成员变量存在与堆内存的对象中;<br>局部变量存在与栈内存的方法中。<br>因为成员变量是对象的属性，对象是存储在堆内存中的，而局部变量是存储在栈中的。</p>
-</li>
-<li><p>成员变量随着对象的创建而存在，随着对象的消失而消失;<br>局部变量随着所属区域的执行而存在，随着所属区域的结束而释放。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">int</span> num=<span class="number">4</span>;<span class="comment">//轮胎数</span></div><div class="line">	String color;<span class="comment">//颜色</span></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> num=<span class="number">8</span>;</div><div class="line">		System.out.println(num);<span class="comment">//此时的num为8</span></div><div class="line">	&#125;</div><div class="line">	System.out.println(num);<span class="comment">// 此时的num为4</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>成员变量具有默认初始化值;<br>局部变量没有默认初始化值。</p>
-</li>
-<li><p>当成员变量和局部变量重名时，可以使用this关键字区分。（this代表对象）</p>
-</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Java中的成员变量是什么？局部变量又是什么？它们之间有什么不同呢？&lt;/p&gt;
     
     </summary>
     
