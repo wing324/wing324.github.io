@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wing324.github.io/"/>
-  <updated>2019-02-21T22:17:25.526Z</updated>
+  <updated>2019-06-17T04:18:20.976Z</updated>
   <id>https://wing324.github.io/</id>
   
   <author>
@@ -14,6 +14,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python3 Brief Note</title>
+    <link href="https://wing324.github.io/2019/06/16/Python3-Brief-Note/"/>
+    <id>https://wing324.github.io/2019/06/16/Python3-Brief-Note/</id>
+    <published>2019-06-17T03:29:06.000Z</published>
+    <updated>2019-06-17T04:18:20.976Z</updated>
+    
+    <content type="html"><![CDATA[<p>Some knowledge hard to understand in Python.<br><a id="more"></a></p>
+<h4 id="1-_List_Comprehension">1. List Comprehension</h4><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># if item in list is even, return item*item</span></div><div class="line">[ i*i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">11</span>) <span class="keyword">if</span>(i%<span class="number">2</span>==<span class="number">0</span>)]</div><div class="line"></div><div class="line"><span class="comment"># result</span></div><div class="line">[<span class="number">4</span>, <span class="number">16</span>, <span class="number">36</span>, <span class="number">64</span>, <span class="number">100</span>]</div></pre></td></tr></table></figure>
+<h4 id="2-_Dict_Comprehension">2. Dict Comprehension</h4><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># code without dict comprehension</span></div><div class="line">z_name = &#123;<span class="string">"A"</span>, <span class="string">"B"</span>,<span class="string">"C"</span>&#125;</div><div class="line">z_num = &#123;&#125;</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> z_name:</div><div class="line">    z_num[i]=<span class="number">0</span></div><div class="line">    </div><div class="line"><span class="comment"># code with dict comprehension</span></div><div class="line">z_name = &#123;<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>&#125;</div><div class="line">z_num = [ i:<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> z_name]</div></pre></td></tr></table></figure>
+<h4 id="3-_Exception">3. Exception</h4><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># concept</span></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    &lt;monitor code&gt;</div><div class="line"><span class="keyword">except</span> Exception:</div><div class="line">    &lt;exception code&gt;</div><div class="line"><span class="keyword">finally</span>:</div><div class="line">    &lt;excute code whether <span class="keyword">or</span> <span class="keyword">not</span> there <span class="keyword">is</span> an exception&gt;</div><div class="line">    </div><div class="line"><span class="comment"># example 1</span></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    year = int(input(<span class="string">"PLS enter a year"</span>))</div><div class="line"><span class="keyword">except</span> ValueError:</div><div class="line">    print(<span class="string">"Please enter an INT for the input box."</span>)</div><div class="line">    </div><div class="line"><span class="comment"># example 2</span></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    fo = open(<span class="string">"name.txt"</span>)</div><div class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">    print(e)</div><div class="line"><span class="keyword">finally</span>:</div><div class="line">    fo.close()</div></pre></td></tr></table></figure>
+<h4 id="4-_Variable_Parameters_for_Function">4. Variable Parameters for Function</h4><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># example</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">howlong</span><span class="params">(first, *others)</span>:</span></div><div class="line">    <span class="keyword">return</span> len(first) + len(others)</div><div class="line">print(howlong(<span class="string">"a"</span>, <span class="string">"def"</span>, <span class="string">"ghijklmn"</span>, <span class="string">"opq"</span>))</div><div class="line"></div><div class="line"><span class="comment"># result</span></div><div class="line"><span class="number">4</span></div></pre></td></tr></table></figure>
+<h4 id="5-_Variable_Scope">5. Variable Scope</h4><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># example without global</span></div><div class="line">x = <span class="number">123</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></div><div class="line">    x = <span class="number">456</span></div><div class="line">    print(<span class="string">"Inside X is: %d"</span> %x)</div><div class="line">func()</div><div class="line">print(<span class="string">"Outside X is: %d"</span> %x)</div><div class="line"></div><div class="line"><span class="comment"># result</span></div><div class="line">Inside X <span class="keyword">is</span>: <span class="number">456</span></div><div class="line">Outside X <span class="keyword">is</span>: <span class="number">123</span></div><div class="line">    </div><div class="line"><span class="comment"># example with global</span></div><div class="line">x = <span class="number">123</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">global</span> x</div><div class="line">    x = <span class="number">456</span></div><div class="line">    print(<span class="string">"Inside X is: %d"</span> %x)</div><div class="line">func()</div><div class="line">print(<span class="string">"Outside X is: %d"</span> %x)</div><div class="line"></div><div class="line"><span class="comment"># result</span></div><div class="line">Inside X <span class="keyword">is</span>: <span class="number">456</span></div><div class="line">Outside X <span class="keyword">is</span>: <span class="number">456</span></div></pre></td></tr></table></figure>
+<h4 id="6-_lambda_expression">6. lambda expression</h4><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># example</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>g = <span class="keyword">lambda</span> x:x+<span class="number">1</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>g(<span class="number">3</span>)</div><div class="line"><span class="number">4</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>g(<span class="number">5</span>)</div><div class="line"><span class="number">6</span></div><div class="line"></div><div class="line"><span class="comment"># filter example</span></div><div class="line">a = [<span class="number">1</span>,<span class="number">2</span> ,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]</div><div class="line">print(list(filter(<span class="keyword">lambda</span> x:x&gt;<span class="number">4</span>, a)))</div><div class="line"><span class="comment"># result</span></div><div class="line">[<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]</div><div class="line"></div><div class="line"><span class="comment"># map example 1</span></div><div class="line">a = [<span class="number">1</span>,<span class="number">2</span> ,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]</div><div class="line">print(list(map(<span class="keyword">lambda</span> x:x*x, a)))</div><div class="line"><span class="comment"># result</span></div><div class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25</span>, <span class="number">36</span>, <span class="number">49</span>]</div><div class="line"></div><div class="line"><span class="comment"># map example 2</span></div><div class="line">a = [<span class="number">1</span>,<span class="number">2</span> ,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]</div><div class="line">b = [<span class="number">11</span>,<span class="number">22</span>,<span class="number">33</span>,<span class="number">44</span>,<span class="number">55</span>,<span class="number">66</span>,<span class="number">77</span>]</div><div class="line">print(list(map(<span class="keyword">lambda</span> x,y:x*y, a, b)))</div><div class="line"><span class="comment"># result</span></div><div class="line">[<span class="number">11</span>, <span class="number">44</span>, <span class="number">99</span>, <span class="number">176</span>, <span class="number">275</span>, <span class="number">396</span>, <span class="number">539</span>]</div><div class="line"></div><div class="line"><span class="comment"># reduce example</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>reduce(<span class="keyword">lambda</span> x,y:x+y, [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>],<span class="number">1</span>)</div><div class="line"><span class="number">25</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span>+<span class="number">7</span>+<span class="number">8</span>+<span class="number">9</span></div><div class="line"><span class="number">25</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>reduce(<span class="keyword">lambda</span> x,y:x+y, [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>],<span class="number">2</span>)</div><div class="line"><span class="number">26</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">2</span>+<span class="number">7</span>+<span class="number">8</span>+<span class="number">9</span></div><div class="line"><span class="number">26</span></div><div class="line"></div><div class="line"><span class="comment"># zip example</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Some knowledge hard to understand in Python.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="https://wing324.github.io/categories/Python/"/>
+    
+    
+      <category term="Note" scheme="https://wing324.github.io/tags/Note/"/>
+    
+  </entry>
   
   <entry>
     <title>Yum install python3</title>
@@ -1391,40 +1420,6 @@ Waiting <span class="keyword">for</span> <span class="keyword">trigger</span> me
     <summary type="html">
     
       &lt;p&gt;接口和抽象类傻傻分不清的我==&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Java" scheme="https://wing324.github.io/categories/Java/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Java之构造函数</title>
-    <link href="https://wing324.github.io/2017/05/20/Java%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/"/>
-    <id>https://wing324.github.io/2017/05/20/Java之构造函数/</id>
-    <published>2017-05-21T02:21:42.000Z</published>
-    <updated>2017-05-20T11:23:25.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Java的构造函数方便又很不同于其他语言（其实我也只学过python，==），这个构造函数需要好好的总结下，毕竟我觉得这是个奇怪的家伙，虽然它真的很方便==</p>
-<a id="more"></a>
-<h5 id="一、特点">一、特点</h5><ol>
-<li>函数名与类名相同；  </li>
-<li>不用定义返回值类型；  </li>
-<li>没有具体的返回值；</li>
-<li>构造函数具有重载的特点。</li>
-</ol>
-<h5 id="二、作用">二、作用</h5><p>给对象进行初始化。  </p>
-<h5 id="三、注意事项">三、注意事项</h5><p>一个类中如果没有定义构造函数，则会默认一个空参数的构造函数；如果类中定义了构造函数，那么类中默认构造函数就没有了。</p>
-<h5 id="四、构造函数与一般函数的区别">四、构造函数与一般函数的区别</h5><ol>
-<li>构造函数：对象创建时，就会调用与之对应的构造函数，对对象进行初始化；<br>一般函数：对象创建后，需要函数功能的时候才会调用。</li>
-<li>构造函数：对象创建时，只会调用一次；<br>一般函数：对象创建后，可以被调用多次。</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Java的构造函数方便又很不同于其他语言（其实我也只学过python，==），这个构造函数需要好好的总结下，毕竟我觉得这是个奇怪的家伙，虽然它真的很方便==&lt;/p&gt;
     
     </summary>
     
