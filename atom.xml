@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wing324.github.io/"/>
-  <updated>2019-06-19T04:47:04.701Z</updated>
+  <updated>2019-06-28T04:11:52.985Z</updated>
   <id>https://wing324.github.io/</id>
   
   <author>
@@ -14,6 +14,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Five underscores in Python</title>
+    <link href="https://wing324.github.io/2019/06/27/Five-underscores-in-Python/"/>
+    <id>https://wing324.github.io/2019/06/27/Five-underscores-in-Python/</id>
+    <published>2019-06-28T04:08:45.000Z</published>
+    <updated>2019-06-28T04:11:52.985Z</updated>
+    
+    <content type="html"><![CDATA[<p>Do you know what does means about <code>_var</code>,<code>var_</code>,<code>__var</code>,<code>__var__</code> and <code>_</code>, if you don’t know, let\’s get in details.<br><a id="more"></a></p>
+<h4 id="1-__var(single_underscore)">1. _var(single underscore)</h4><p>This is a hint to programmer, it means the variable for internal use. It is just a hint, not enforce by Python.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span></div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            self.foo = <span class="number">11</span></div><div class="line"><span class="meta">... </span>            self._bar = <span class="number">23</span></div><div class="line">...</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>t = Test()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>t.foo</div><div class="line"><span class="number">11</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>t._bar</div><div class="line"><span class="number">23</span></div></pre></td></tr></table></figure>
+<p>From the example, we can see that although _bar for internal use, we can also get it from outside. Because it is just a hint, not enforce by Python.</p>
+<h4 id="2-_var_(single_underscore)">2. var_(single underscore)</h4><p>Sometimes, we already use a suitable name for others or some keyword we can not use as a variable name, so we can user <code>var_</code> instead of it.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(class_)</span>:</span></div><div class="line"><span class="meta">... </span>    print(<span class="string">"%s"</span>  %class_)</div><div class="line">...</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>test(<span class="string">"hello class_"</span>)</div><div class="line">hello class_</div></pre></td></tr></table></figure>
+<p>For the instance, we can not use <code>class</code> as a variable name, but we can use <code>class_</code> as a variable name.</p>
+<h4 id="3-___var(double_underscore)">3. __var(double underscore)</h4><p>A double underscore prefix cause Python rewrite the attribute name. This is also called <em>name mangling</em>, the Python interpreter change variable name in order to make it harder create collisions when the class is extended later, it also looks like private attribute.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span></div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            self.foo=<span class="number">11</span></div><div class="line"><span class="meta">... </span>            self._bar = <span class="number">23</span></div><div class="line"><span class="meta">... </span>            self.__baz = <span class="number">23</span></div><div class="line">...</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>t1 = Test()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>dir(t1)</div><div class="line">[<span class="string">'_Test__baz'</span>, <span class="string">'__class__'</span>, <span class="string">'__delattr__'</span>, <span class="string">'__dict__'</span>, <span class="string">'__dir__'</span>, <span class="string">'__doc__'</span>, <span class="string">'__eq__'</span>, <span class="string">'__format__'</span>, <span class="string">'__ge__'</span>, <span class="string">'__getattribute__'</span>, <span class="string">'__gt__'</span>, <span class="string">'__hash__'</span>, <span class="string">'__init__'</span>, <span class="string">'__init_subclass__'</span>, <span class="string">'__le__'</span>, <span class="string">'__lt__'</span>, <span class="string">'__module__'</span>, <span class="string">'__ne__'</span>, <span class="string">'__new__'</span>, <span class="string">'__reduce__'</span>, <span class="string">'__reduce_ex__'</span>, <span class="string">'__repr__'</span>, <span class="string">'__setattr__'</span>, <span class="string">'__sizeof__'</span>, <span class="string">'__str__'</span>, <span class="string">'__subclasshook__'</span>, <span class="string">'__weakref__'</span>, <span class="string">'_bar'</span>, <span class="string">'foo'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">ExtendedTest</span><span class="params">(Test)</span>:</span></div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            super().__init__()</div><div class="line"><span class="meta">... </span>            self.foo = <span class="string">"overrideden"</span></div><div class="line"><span class="meta">... </span>            self._bar = <span class="string">"overrideden"</span></div><div class="line"><span class="meta">... </span>            self.__baz = <span class="string">"overrideden"</span></div><div class="line">...</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>t2 = ExtendedTest()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>dir(t2)</div><div class="line">[<span class="string">'_ExtendedTest__baz'</span>, <span class="string">'_Test__baz'</span>, <span class="string">'__class__'</span>, <span class="string">'__delattr__'</span>, <span class="string">'__dict__'</span>, <span class="string">'__dir__'</span>, <span class="string">'__doc__'</span>, <span class="string">'__eq__'</span>, <span class="string">'__format__'</span>, <span class="string">'__ge__'</span>, <span class="string">'__getattribute__'</span>, <span class="string">'__gt__'</span>, <span class="string">'__hash__'</span>, <span class="string">'__init__'</span>, <span class="string">'__init_subclass__'</span>, <span class="string">'__le__'</span>, <span class="string">'__lt__'</span>, <span class="string">'__module__'</span>, <span class="string">'__ne__'</span>, <span class="string">'__new__'</span>, <span class="string">'__reduce__'</span>, <span class="string">'__reduce_ex__'</span>, <span class="string">'__repr__'</span>, <span class="string">'__setattr__'</span>, <span class="string">'__sizeof__'</span>, <span class="string">'__str__'</span>, <span class="string">'__subclasshook__'</span>, <span class="string">'__weakref__'</span>, <span class="string">'_bar'</span>, <span class="string">'foo'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>t2.foo</div><div class="line"><span class="string">'overrideden'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>t2._bar</div><div class="line"><span class="string">'overrideden'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>t2.__baz</div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">AttributeError: <span class="string">'ExtendedTest'</span> object has no attribute <span class="string">'__baz'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>t2._ExtendedTest__baz</div><div class="line"><span class="string">'overrideden'</span></div></pre></td></tr></table></figure>
+<p>From the example, we can see that variables name with double underscore prefix changed to another name inside, and we can not get the variable with the name we assigned to it, we should use the name which the Python interpreter assign to it. But, <strong>the amazing thing is our code can use the name we assigned inside of the class</strong>. Let\’s get another example:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">ManglingTest</span>:</span></div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            self.__mangled = <span class="string">"hello"</span></div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">get_mangled</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">return</span> self.__mangled</div><div class="line">...</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mtest = ManglingTest()</div><div class="line"><span class="comment"># we can not get __mangled outside of ManglingTest class</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mtest.__mangled</div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">AttributeError: <span class="string">'ManglingTest'</span> object has no attribute <span class="string">'__mangled'</span></div><div class="line"><span class="comment"># ManglingTest method can get __mangled inside of ManglingTest class</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mtest.get_mangled()</div><div class="line"><span class="string">'hello'</span></div></pre></td></tr></table></figure>
+<h4 id="4-___var__(double_underscore)">4. __var__(double underscore)</h4><p><em>Name Mangling</em> doesn\’t apply for variable name starts and ends with double underscore. Variables name start and end with double underscore means the variable is constructor(like __init__)  or can be call by outside(like public attribute). Normally, we don\’t use start and end double underscore to name our variables.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PrefixPostfixTest</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.__bam__ = <span class="number">42</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>PrefixPostfixTest().__bam__</div><div class="line"><span class="number">42</span></div></pre></td></tr></table></figure>
+<h4 id="5-___(just_a_single_underscore)">5. _ (just a single underscore)</h4><p>_ is just temporary variables, and we don’t actually use it. it looks like placeholder variables.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># temporary variables example </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">32</span>):</div><div class="line"><span class="meta">... </span>    print(<span class="string">'Hello, World.'</span>)</div><div class="line"></div><div class="line"><span class="comment"># placeholder variables example</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>car = (<span class="string">'red'</span>, <span class="string">'auto'</span>, <span class="number">12</span>, <span class="number">3812.4</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>color, _, _, mileage = car</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>color</div><div class="line"><span class="string">'red'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mileage</div><div class="line"><span class="number">3812.4</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>_</div><div class="line"><span class="number">12</span></div></pre></td></tr></table></figure>
+<p>Reference: <a href="https://dbader.org/blog/meaning-of-underscores-in-python" target="_blank" rel="external">The Meaning of Underscores in Python</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Do you know what does means about &lt;code&gt;_var&lt;/code&gt;,&lt;code&gt;var_&lt;/code&gt;,&lt;code&gt;__var&lt;/code&gt;,&lt;code&gt;__var__&lt;/code&gt; and &lt;code&gt;_&lt;/code&gt;, if you don’t know, let\’s get in details.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="https://wing324.github.io/categories/Python/"/>
+    
+    
+      <category term="underscores" scheme="https://wing324.github.io/tags/underscores/"/>
+    
+  </entry>
   
   <entry>
     <title>Time Complexity - Big O</title>
@@ -1393,67 +1431,6 @@ Waiting <span class="keyword">for</span> <span class="keyword">trigger</span> me
     
     
       <category term="Arrays" scheme="https://wing324.github.io/tags/Arrays/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java之static关键字</title>
-    <link href="https://wing324.github.io/2017/05/20/Java%E4%B9%8Bstatic%E5%85%B3%E9%94%AE%E5%AD%97/"/>
-    <id>https://wing324.github.io/2017/05/20/Java之static关键字/</id>
-    <published>2017-05-21T02:25:50.000Z</published>
-    <updated>2017-10-31T02:28:12.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>魔性的static参数，你想了解它吗？</p>
-<a id="more"></a>
-<h5 id="一、特点">一、特点</h5><ol>
-<li>static是一种修饰符，用于修饰成员（成员变量+成员函数）；</li>
-<li>数据共享：static修饰后的成员可以被每个对象所共享；</li>
-<li>static修饰的成员优于对象之前存在，因为static的成员随着类的加载就已经存在了；</li>
-<li>static修饰后的成员可以被类名直接调用，而不仅仅被对象调用；</li>
-<li>static修饰的是共享数据，对象中存储的是特有数据。</li>
-</ol>
-<h5 id="二、成员变量_PK_静态变量">二、成员变量 PK 静态变量</h5><ol>
-<li>两个变量的生命周期不同。<br>成员变量随着对象的创建而创建，随着对象的回收而释放；<br>静态变量随着类的加载而加载，随着类的消失而消失（类一般在虚拟机结束了，则消失了）。</li>
-<li>调用方式不同。<br>成员变量只能被对象调用；<br>静态变量可以被对象调用，也可以被类调用（推荐这种方式使用静态变量）。</li>
-<li>别名不同。<br>成员变量称为实例变量；<br>静态变量称为类变量。</li>
-<li>数据存储位置不同。<br>成员变量数据存储在堆内存的对象中，所以也叫对象的特有数据；<br>静态变量数据存储在共享区（方法区）中，所以也叫对象的共享数据。</li>
-</ol>
-<h5 id="三、注意事项">三、注意事项</h5><ol>
-<li><p>静态方法只能访问静态变量。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 错误代码</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">staticDemo</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">		Person.show();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</div><div class="line">	String name;</div><div class="line">	<span class="keyword">static</span> String country = <span class="string">"CN"</span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(country+<span class="string">":"</span>+name); <span class="comment">// 此处编译会报错，因为show是静态方法，但是name是非静态变量</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line"><span class="comment">// 正确代码</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">staticDemo</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">		Person.show();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</div><div class="line">	String name;</div><div class="line">	<span class="keyword">static</span> String country = <span class="string">"CN"</span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(country);</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>静态方法中不可以使用this/super关键字。（this是因为没有对象==）</p>
-</li>
-<li><p>主函数是静态的。</p>
-<blockquote>
-<p>主函数特殊之处：</p>
-<ul>
-<li><p>格式是固定的<code>public static void main(String[] args){}</code><br>public： 因为权限必须是最大的；<br>static： 不需要创建对象，直接用主函数所属类名调用即可，如java staticDemo.java时，直接用java staticDemo.main调用方法即可；</p>
-<p>void：主函数没有具体的返回值；<br>main:   函数名，不是关键字，只是一个被jvm识别的固定名字；<br>String[] args：主函数的参数列表，是一个数组类型的参数。而且元素都是字符串类型。</p>
-</li>
-<li><p>被jvm识别和调用</p>
-</li>
-</ul>
-</blockquote>
-</li>
-</ol>
-<p>四、静态代码块</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 代码</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">mainTest</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">		<span class="keyword">new</span> Demo().show();</div><div class="line">		<span class="keyword">new</span> Demo().show();</div><div class="line">		<span class="keyword">new</span> Demo().show();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"show run"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 静态代码块</span></div><div class="line">	<span class="keyword">static</span>&#123;</div><div class="line">		System.out.println(<span class="string">"hahahhahah"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 结果</span></div><div class="line">hahahhahah</div><div class="line">show run</div><div class="line">show run</div><div class="line">show run</div></pre></td></tr></table></figure>
-<p>特点：<br>随着类的加载而执行，并且只执行一次。</p>
-<p>作用：</p>
-<p>用于给类进行初始化。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;魔性的static参数，你想了解它吗？&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Java" scheme="https://wing324.github.io/categories/Java/"/>
-    
-    
-      <category term="static" scheme="https://wing324.github.io/tags/static/"/>
     
   </entry>
   
