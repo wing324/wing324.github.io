@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wing324.github.io/"/>
-  <updated>2019-06-28T04:11:52.985Z</updated>
+  <updated>2019-07-28T05:36:46.163Z</updated>
   <id>https://wing324.github.io/</id>
   
   <author>
@@ -14,6 +14,173 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>How to set up a React Project without create-react-app</title>
+    <link href="https://wing324.github.io/2019/07/27/How-to-set-up-a-React-Project-without-create-react-app/"/>
+    <id>https://wing324.github.io/2019/07/27/How-to-set-up-a-React-Project-without-create-react-app/</id>
+    <published>2019-07-28T05:35:09.000Z</published>
+    <updated>2019-07-28T05:36:46.163Z</updated>
+    
+    <content type="html"><![CDATA[<p>This is a blog for creating a new React project without create-react-app tools.</p>
+<a id="more"></a>
+<h3 id="1-_Set_up_project">1. Set up project</h3><h4 id="-_Setting_up_Node-js_or_Yarn">- Setting up Node.js or Yarn</h4><blockquote>
+<p>You can download Node.js or Yarn from their official website:<br>Node.js: <a href="https://nodejs.org/en/download/" target="_blank" rel="external">https://nodejs.org/en/download/</a><br>Yarn: <a href="https://yarnpkg.com/lang/en/docs/install/#windows-stable" target="_blank" rel="external">https://yarnpkg.com/lang/en/docs/install/#windows-stable</a></p>
+</blockquote>
+<p>Initializing the project</p>
+<blockquote>
+<ul>
+<li>Create a new and empty directory for the project, and get into the new directory.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&gt; mkdir newProject</div><div class="line">&gt; cd newProject</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<ul>
+<li>Initialize the project</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&gt; npm init</div><div class="line">&gt; // or</div><div class="line">&gt; yarn init</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<ul>
+<li>Create a <code>src</code> directory to store the project source code inside <code>newProject</code> directory</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&gt; mkdir src</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<ul>
+<li>Utill now, the project directory looks like:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&gt; newProject</div><div class="line">&gt; |--src</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="-_Setting_up_Webpack">- Setting up Webpack</h4><blockquote>
+<ul>
+<li>Install Webpack related package</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&gt; npm install --save-dev webpack webpack-dev-server webpack-cli</div><div class="line">&gt; //or</div><div class="line">&gt; yarn add webpack webpack-dev-server webpack-cli</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<ul>
+<li>Create a new file <code>webpack.config.js</code> under <code>newProject</code> folder, and put the below code into the <code>webpack.config.js</code> file.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&gt; const path = require(&apos;path&apos;);</div><div class="line">&gt; module.exports = &#123;</div><div class="line">&gt;    // define entry file and output</div><div class="line">&gt;    entry: &apos;./src/index.js&apos;,</div><div class="line">&gt;    output: &#123;</div><div class="line">&gt;        path: path.resolve(&apos;dist&apos;),</div><div class="line">&gt;        filename: &apos;main.js&apos;</div><div class="line">&gt;    &#125;,</div><div class="line">&gt;    // define babel loader</div><div class="line">&gt;    module: &#123;</div><div class="line">&gt;        rules: [</div><div class="line">&gt;            &#123; test: /\.jsx?$/, loader: &apos;babel-loader&apos;, exclude: /node_modules/ &#125;</div><div class="line">&gt;        ]</div><div class="line">&gt;    &#125;</div><div class="line">&gt; &#125;;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="-_Setting_up_Babel">- Setting up Babel</h4><blockquote>
+<ul>
+<li>Install Babel related package</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&gt; npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react @babel/core @babel/preset-env @babel/preset-react</div><div class="line">&gt; npm install --save-dev babel-plugin-transform-object-rest-spread </div><div class="line">&gt; // or</div><div class="line">&gt; yarn add  babel-core babel-loader babel-preset-es2015</div><div class="line">&gt; yarn add babel-plugin-transform-object-rest-spread</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<ul>
+<li>Create a new file <code>.babelrc</code> under <code>newProject</code> folder, and put the below code into the <code>.babelrc</code> file.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&gt; &#123;</div><div class="line">&gt;  &quot;presets&quot;:[</div><div class="line">&gt;    &quot;@babel/preset-env&quot;,</div><div class="line">&gt;    &quot;@babel/preset-react&quot;],</div><div class="line">&gt;  &quot;plugins&quot;: [ &quot;transform-object-rest-spread&quot; ]</div><div class="line">&gt; &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="-_Setting_up_the_entry_files">- Setting up the entry files</h4><blockquote>
+<ul>
+<li>Create <code>newProject/src/index.js</code> file, and put the below code into the file.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&gt; console.log(&apos;hello world!&apos;)</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<ul>
+<li>Create <code>newProject/index.html</code> file, and put the below code into the file.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&gt; &lt;!DOCTYPE html&gt;</div><div class="line">&gt; &lt;html&gt;</div><div class="line">&gt;  &lt;head&gt;</div><div class="line">&gt;    &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">&gt;    &lt;title&gt;React&lt;/title&gt;</div><div class="line">&gt;  &lt;/head&gt;</div><div class="line">&gt;  &lt;body&gt;</div><div class="line">&gt;    &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</div><div class="line">&gt;    &lt;script src=&quot;main.js&quot;&gt;&lt;/script&gt;</div><div class="line">&gt;  &lt;/body&gt;</div><div class="line">&gt; &lt;/html&gt;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="-_Running_Project">- Running Project</h4><blockquote>
+<ul>
+<li>Put below code into <code>package.json</code> file.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&gt; &quot;scripts&quot;: &#123;</div><div class="line">&gt;  &quot;start&quot;: &quot;webpack-dev-server&quot;,</div><div class="line">&gt;  &quot;build&quot;: &quot;webpack&quot;</div><div class="line">&gt; &#125;,</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<ul>
+<li>Run the project.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&gt; npm start</div><div class="line">&gt; // or</div><div class="line">&gt; yarn start</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="2-_Set_up_React">2. Set up React</h3><h4 id="Install_React">Install React</h4><blockquote>
+<p>Use the below command at the <code>newProject</code> folder.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&gt; npm install --save react react-dom</div><div class="line">&gt; // or</div><div class="line">&gt; yarn add react react-dom</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="3-_Set_up_redux">3. Set up redux</h3><h4 id="Install_Redux">Install Redux</h4><blockquote>
+<p>Use the below command at the <code>newProject</code> folder.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&gt; npm install --save redux react-redux</div><div class="line">&gt; // or</div><div class="line">&gt; yarn add redux react-redux</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="4-_Set_up_JSX">4. Set up JSX</h3><h3 id="Install_JSX">Install JSX</h3><blockquote>
+<p>Use the below command at the <code>newProject</code> folder.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&gt; npm install --save-dev babel-preset-react</div><div class="line">&gt; // or </div><div class="line">&gt; yarn add babel-preset-react</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Config_-babelrc_file">Config .babelrc file</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;This is a blog for creating a new React project without create-react-app tools.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="React" scheme="https://wing324.github.io/categories/React/"/>
+    
+    
+      <category term="react" scheme="https://wing324.github.io/tags/react/"/>
+    
+      <category term="redux" scheme="https://wing324.github.io/tags/redux/"/>
+    
+      <category term="babel" scheme="https://wing324.github.io/tags/babel/"/>
+    
+      <category term="webpack" scheme="https://wing324.github.io/tags/webpack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How to use create-react-app</title>
+    <link href="https://wing324.github.io/2019/07/27/How-to-use-create-react-app/"/>
+    <id>https://wing324.github.io/2019/07/27/How-to-use-create-react-app/</id>
+    <published>2019-07-28T05:31:19.000Z</published>
+    <updated>2019-07-28T05:34:12.428Z</updated>
+    
+    <content type="html"><![CDATA[<p>This is a blog for creating a new React project by using create-react-app tools.</p>
+<a id="more"></a>
+<ol>
+<li><p>Install Node.js</p>
+<p><a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a></p>
+</li>
+<li><p>Install create-react-app</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># -g means gloal</div><div class="line">npm install -g create-react-app</div></pre></td></tr></table></figure>
+</li>
+<li><p>Navigate to the folder where you want to create your new project, and create a project by using create-react-app, for example the new project name is “helloworld”</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">create-react-app helloworld</div></pre></td></tr></table></figure>
+</li>
+<li><p>Preview your project in your browser</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd helloworld</div><div class="line">npm start / yarn start</div></pre></td></tr></table></figure>
+</li>
+<li><p>Create a production build and you will get a “build” folder</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">npm run build</div></pre></td></tr></table></figure>
+<p>When this has completed, you can follow the onscreen prompts to deploy it to your server or just test it locally using the popular <code>serve</code> node package</p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;This is a blog for creating a new React project by using create-react-app tools.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="React" scheme="https://wing324.github.io/categories/React/"/>
+    
+    
+      <category term="create-react-app" scheme="https://wing324.github.io/tags/create-react-app/"/>
+    
+  </entry>
   
   <entry>
     <title>Five underscores in Python</title>
@@ -1329,108 +1496,6 @@ Waiting <span class="keyword">for</span> <span class="keyword">trigger</span> me
       <category term="timestamp" scheme="https://wing324.github.io/tags/timestamp/"/>
     
       <category term="NOT NULL" scheme="https://wing324.github.io/tags/NOT-NULL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java之抽象类</title>
-    <link href="https://wing324.github.io/2017/05/20/Java%E4%B9%8B%E6%8A%BD%E8%B1%A1%E7%B1%BB/"/>
-    <id>https://wing324.github.io/2017/05/20/Java之抽象类/</id>
-    <published>2017-05-21T02:30:09.000Z</published>
-    <updated>2017-05-20T11:31:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>抽象类居然和我理解的类不大一样，它居然是一种规范哎。。。</p>
-<a id="more"></a>
-<h5 id="一、特点">一、特点</h5><ol>
-<li>方法只有申明没有实现时，必须定义为抽象方法，被abstract修饰；抽象方法必须定义在抽象类中，该类必须备abstract修饰。</li>
-<li>抽象类不可以被实例化（即new）。why?因为调用抽象方法没意义。</li>
-<li>抽象类被继承后，其子类必须覆盖所有的抽象方法，该子类才可以实例化，否则，这个字类还是抽象类。</li>
-</ol>
-<h5 id="二、疑问">二、疑问</h5><ol>
-<li><p>抽象类有构造函数吗？<br>有，用于给子类对象进行初始化。</p>
-</li>
-<li><p>抽象类可以定义非抽象方法吗？<br>可以。但是毫无意义，因为抽象类不可以被实例化。</p>
-</li>
-<li><p>抽象关键字不可以和哪些关键字共存？<br>private 不可以，抽象类的所有抽象方法是一种规范。<br>static 不可以。static不需要对象，但是抽象类需要对象。<br>final不可以。final不可以覆盖，而抽象类需要被覆盖。</p>
-</li>
-<li><p>抽象类和一般类的异同点？<br>相同点：</p>
-<blockquote>
-<p>抽象类和一般类都是描述事物的，都在内部定义了成员。</p>
-</blockquote>
-<p>不同点：</p>
-<blockquote>
-<ul>
-<li>一般类有足够的信息描述事物，抽象类描述事物的信息可能不足；</li>
-<li>一般类中不能定义抽象方法，而抽象类中是可以的。</li>
-<li>一般类可以被实例化，抽象类不可以被实例化。</li>
-</ul>
-</blockquote>
-</li>
-<li><p>抽象类一定是父类吗？<br>是的。</p>
-</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;抽象类居然和我理解的类不大一样，它居然是一种规范哎。。。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Java" scheme="https://wing324.github.io/categories/Java/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Java之数组</title>
-    <link href="https://wing324.github.io/2017/05/20/Java%E4%B9%8B%E6%95%B0%E7%BB%84/"/>
-    <id>https://wing324.github.io/2017/05/20/Java之数组/</id>
-    <published>2017-05-21T02:27:56.000Z</published>
-    <updated>2017-05-20T11:29:31.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>数组这个工具，存在于无数种语言中，让我们一起了解下java中的数组又是怎么玩的呢？</p>
-<a id="more"></a>
-<h5 id="数组的内存空间">数组的内存空间</h5><blockquote>
-<p>数组其实是对象的一种，所以它存在堆内存空间中。</p>
-</blockquote>
-<h5 id="数组的三种定义格式">数组的三种定义格式</h5><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 数组定义格式1</span></div><div class="line"><span class="keyword">int</span>[] arr1= <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</div><div class="line"></div><div class="line"><span class="comment">//数组定义格式2</span></div><div class="line"><span class="keyword">int</span>[] arr2= <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>&#125;;</div><div class="line"></div><div class="line"><span class="comment">//数组定义格式3</span></div><div class="line"><span class="keyword">int</span>[] arr3=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</div></pre></td></tr></table></figure>
-<h5 id="数组的操作方法">数组的操作方法</h5><ul>
-<li>数组遍历</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">int</span>[] arr3=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</div><div class="line">System.out.println(arr3[<span class="number">2</span>]);</div><div class="line">System.out.println(arr3.length);</div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>;x&lt;arr3.length;x++)&#123;</div><div class="line">	System.out.println(arr3[x]);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 结果</span></div><div class="line"><span class="number">0</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span></div></pre></td></tr></table></figure>
-<ul>
-<li>获取最值（最大值、最小值）</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 最大值</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span>[] arr1=&#123;-<span class="number">34</span>,-<span class="number">24</span>,-<span class="number">98</span>,-<span class="number">10</span>,-<span class="number">100</span>,-<span class="number">55</span>&#125;;</div><div class="line">	<span class="keyword">int</span> maxvalues = GetMaxArr(arr1);</div><div class="line">	System.out.println(maxvalues);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">GetMaxArr</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> max=arr[<span class="number">0</span>];</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">1</span>;x&lt;arr.length;x++)&#123;</div><div class="line">		<span class="keyword">if</span>(arr[x]&gt;max)&#123;</div><div class="line">			max=arr[x];</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> max;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 结果</span></div><div class="line"><span class="number">100</span></div></pre></td></tr></table></figure>
-<ul>
-<li>选择排序</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">SelectSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>;x&lt;arr.length-<span class="number">1</span>;x++)&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> y=x+<span class="number">1</span>;y&lt;arr.length;y++)&#123;</div><div class="line">			<span class="keyword">if</span>(arr[x]&gt;arr[y])&#123;</div><div class="line">				<span class="keyword">int</span> temp=arr[x];</div><div class="line">				arr[x]=arr[y];</div><div class="line">				arr[y]=temp;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>冒泡排序</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">BubbleSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>;x&lt;arr.length-<span class="number">1</span>;x++)&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> y=<span class="number">0</span>;y&lt;arr.length-<span class="number">1</span>-x;y++)&#123;</div><div class="line">			<span class="keyword">if</span>(arr[y]&gt;arr[y+<span class="number">1</span>])&#123;</div><div class="line">				<span class="keyword">int</span> temp=arr[y];</div><div class="line">				arr[y]=arr[y+<span class="number">1</span>];</div><div class="line">				arr[y+<span class="number">1</span>]=temp;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>Java内置数组排序功能</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.*;</div><div class="line">Arrays.sort(arr1)</div></pre></td></tr></table></figure>
-<ul>
-<li>折半查找</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">* 二分查找法（折半查找法）</div><div class="line">*/</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">halfSearch</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> value)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> minindex,midindex,maxindex;</div><div class="line">	minindex=<span class="number">0</span>;</div><div class="line">	maxindex=arr.length-<span class="number">1</span>;</div><div class="line">	midindex=(maxindex+minindex)/<span class="number">2</span>;</div><div class="line">	<span class="keyword">while</span>(arr[midindex]!=value)&#123;</div><div class="line">		<span class="keyword">if</span>(arr[midindex]&gt;value)&#123;</div><div class="line">			maxindex=midindex-<span class="number">1</span>;</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			minindex=midindex+<span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(maxindex&lt;minindex)&#123;</div><div class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		midindex=(maxindex+minindex)/<span class="number">2</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> midindex;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;数组这个工具，存在于无数种语言中，让我们一起了解下java中的数组又是怎么玩的呢？&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Java" scheme="https://wing324.github.io/categories/Java/"/>
-    
-    
-      <category term="Arrays" scheme="https://wing324.github.io/tags/Arrays/"/>
     
   </entry>
   
