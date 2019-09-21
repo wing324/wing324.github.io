@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wing324.github.io/"/>
-  <updated>2019-07-28T05:36:46.163Z</updated>
+  <updated>2019-09-21T06:43:11.453Z</updated>
   <id>https://wing324.github.io/</id>
   
   <author>
@@ -14,6 +14,91 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>React Uses SVG by svgr tool</title>
+    <link href="https://wing324.github.io/2019/09/20/React-Uses-SVG-by-svgr-tool/"/>
+    <id>https://wing324.github.io/2019/09/20/React-Uses-SVG-by-svgr-tool/</id>
+    <published>2019-09-21T06:37:42.000Z</published>
+    <updated>2019-09-21T06:43:11.453Z</updated>
+    
+    <content type="html"><![CDATA[<p>svgr tool helps us automatically change svg file to React component, which is easy for us use.</p>
+<a id="more"></a>
+<ol>
+<li><p>Create <code>assests</code> and <code>Icons</code> folder under <code>src</code> folder.</p>
+</li>
+<li><p>Put SVG source code into <code>assests</code> folder.</p>
+</li>
+<li><p>In <code>package.json</code> file, we add the following script:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">    &quot;svgr&quot;: &quot;svgr -d src/Icons/ src/assets/&quot;</div><div class="line">  &#125;,</div></pre></td></tr></table></figure>
+</li>
+<li><p>Then, let’s download <code>svgr</code> tool by Yarn.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">yarn add @svgr/cli</div></pre></td></tr></table></figure>
+</li>
+<li><p>The last step we will run command <code>yarn run svgr</code>.</p>
+<p>When the command finished, we can check <code>Icons</code> folder, we will find <code>svgr</code> tool helps us convert all svg files to react components(js files).</p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;svgr tool helps us automatically change svg file to React component, which is easy for us use.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="React" scheme="https://wing324.github.io/categories/React/"/>
+    
+    
+      <category term="SVG" scheme="https://wing324.github.io/tags/SVG/"/>
+    
+      <category term="React" scheme="https://wing324.github.io/tags/React/"/>
+    
+      <category term="svgr" scheme="https://wing324.github.io/tags/svgr/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Setup React app on AWS EC2 instance</title>
+    <link href="https://wing324.github.io/2019/09/20/Setup-React-app-on-AWS-EC2-instance/"/>
+    <id>https://wing324.github.io/2019/09/20/Setup-React-app-on-AWS-EC2-instance/</id>
+    <published>2019-09-21T06:37:15.000Z</published>
+    <updated>2019-09-21T06:40:48.770Z</updated>
+    
+    <content type="html"><![CDATA[<p>How to setup React app on AWS EC2 instance.</p>
+<a id="more"></a>
+<h4 id="1-_yarn_run_build">1. yarn run build</h4><p>First of all, we should build our project by running <code>yarn run build</code>, and we will get a director under our project root directory call <code>dist</code> or <code>build</code>, then we will upload the <code>dist</code> folder to our AWS EC2 instance.<br>With this article, I will put <code>dist</code> director to <code>/data</code> director on AWS.</p>
+<h4 id="2-_yum_install_Nginx">2. yum install Nginx</h4><h4 id="3-_Change_Nginx_config">3. Change Nginx config</h4><p><strong>Normally, we won’t use root user to do it, but at here I will use root user for convenience.</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim /etc/nginx/nginx.conf</div><div class="line"></div><div class="line">## updated config </div><div class="line">user root; ## updated</div><div class="line">worker_processes auto;</div><div class="line">error_log /var/log/nginx/error.log;</div><div class="line">pid /run/nginx.pid;</div><div class="line"></div><div class="line"># Load dynamic modules. See /usr/share/doc/nginx/README.dynamic.</div><div class="line">include /usr/share/nginx/modules/*.conf;</div><div class="line"></div><div class="line"></div><div class="line">events &#123;</div><div class="line">    worker_connections 1024;</div><div class="line">&#125;</div><div class="line"></div><div class="line">http &#123;</div><div class="line">    log_format  main  &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</div><div class="line">                      &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</div><div class="line">                      &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;</div><div class="line"></div><div class="line">    access_log  /var/log/nginx/access.log  main;</div><div class="line"></div><div class="line">    sendfile            on;</div><div class="line">    tcp_nopush          on;</div><div class="line">    tcp_nodelay         on;</div><div class="line">    keepalive_timeout   65;</div><div class="line">    types_hash_max_size 2048;</div><div class="line"></div><div class="line">    include             /etc/nginx/mime.types;</div><div class="line">    default_type        application/octet-stream;</div><div class="line">	include /etc/nginx/vhost/*.conf;  ### updated</div><div class="line"></div><div class="line">    server &#123;</div><div class="line">        listen       80 default_server;</div><div class="line">        listen       [::]:80 default_server;</div><div class="line">        server_name  _;</div><div class="line">        root         /usr/share/nginx/html;</div><div class="line"></div><div class="line">#        # Load configuration files for the default server block.</div><div class="line">        include /etc/nginx/default.d/*.conf;</div><div class="line"></div><div class="line">       location / &#123;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        error_page 404 /404.html;</div><div class="line">            location = /40x.html &#123;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        error_page 500 502 503 504 /50x.html;</div><div class="line">            location = /50x.html &#123;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h4 id="4-_Make_own_Nginx_config">4. Make own Nginx config</h4><ul>
+<li><p>Create <code>/etc/nginx/vhost</code> directory to save our own Nginx config</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">mkdir /etc/nginx/vhost</div></pre></td></tr></table></figure>
+</li>
+<li><p>Make own Nginx config</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim /etc/nginx/vhost/react.conf</div><div class="line"></div><div class="line">### updated</div><div class="line">server &#123;</div><div class="line">           listen      3000;</div><div class="line">           server_name  localhost;</div><div class="line">           root /data/dist;</div><div class="line">           location / &#123;</div><div class="line">                     try_files $uri $uri/ /index.html;</div><div class="line">                &#125;</div><div class="line">           error_page   500 502 503 504  /50x.html;</div><div class="line">           location = /50x.html &#123;</div><div class="line">                root   html;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="5-_Change_user_and_mode_for_build_folder">5. Change user and mode for build folder</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">chown -R root:root /data/dist</div><div class="line">chmod 755 /data/dist</div></pre></td></tr></table></figure>
+<h4 id="6-_Run_your_Nginx">6. Run your Nginx</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">systemctl start nginx</div></pre></td></tr></table></figure>
+<h4 id="7-_Disable_SELinux">7. Disable SELinux</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># Temporary</div><div class="line">setenforce 0</div><div class="line"># permanent</div><div class="line">vim /etc/selinux/config</div><div class="line"></div><div class="line"># change SELINUX=enforcing to SELINUX=disabled</div></pre></td></tr></table></figure>
+<h4 id="Now_you_can_use_IP_and_port_to_get_the_React_App-">Now you can use IP and port to get the React App.</h4>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;How to setup React app on AWS EC2 instance.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="React" scheme="https://wing324.github.io/categories/React/"/>
+    
+    
+      <category term="React" scheme="https://wing324.github.io/tags/React/"/>
+    
+      <category term="setup" scheme="https://wing324.github.io/tags/setup/"/>
+    
+      <category term="AWS" scheme="https://wing324.github.io/tags/AWS/"/>
+    
+  </entry>
   
   <entry>
     <title>How to set up a React Project without create-react-app</title>
@@ -1425,77 +1510,6 @@ Waiting <span class="keyword">for</span> <span class="keyword">trigger</span> me
     
     
       <category term="Hadoop" scheme="https://wing324.github.io/tags/Hadoop/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java中a++和++a的区别</title>
-    <link href="https://wing324.github.io/2017/08/01/Java%E4%B8%ADa-%E5%92%8C-a%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
-    <id>https://wing324.github.io/2017/08/01/Java中a-和-a的区别/</id>
-    <published>2017-08-02T03:01:29.000Z</published>
-    <updated>2017-08-01T12:02:50.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>第一次搞搞明白a++和++a的区别。</p>
-<a id="more"></a>
-<h5 id="首先、看个代码">首先、看个代码</h5><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">package</span> wing;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">justAtest</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> a=<span class="number">3</span>,b;</div><div class="line">		b = a++;</div><div class="line">		<span class="keyword">int</span> c=<span class="number">3</span>,d;</div><div class="line">		d = ++c;</div><div class="line">		System.out.println(<span class="string">"b="</span>+b+<span class="string">",a="</span>+a);</div><div class="line">		System.out.println(<span class="string">"c="</span>+c+<span class="string">",d="</span>+d);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h5 id="然后、瞅瞅结果">然后、瞅瞅结果</h5><figure class="highlight java"><table><tr><td class="code"><pre><div class="line">b=<span class="number">3</span>,a=<span class="number">4</span></div><div class="line">c=<span class="number">4</span>,d=<span class="number">4</span></div></pre></td></tr></table></figure>
-<h5 id="再然后、、、">再然后、、、</h5><p>这个结果咋和我们想象的不一样呢？为什么b和d的结果不一样呢？为什么a和c的结果也不一样呢？为什么为什么为什么呢？？？</p>
-<h5 id="最后、给个解释">最后、给个解释</h5><ul>
-<li>为什么a=4,b=3呢？<br>因为a++的时候，a将自己初始化的值3放入临时内存空间中，然后自身加1，再将临时内存空间内存的值赋值给b，所以此时a=4,b=3</li>
-<li>为什么c=4,d=4呢？<br>因为++c的时候，c会自加1，然后再将加1后的c赋值给d，所以c=4,d=4。</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;第一次搞搞明白a++和++a的区别。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Java" scheme="https://wing324.github.io/categories/Java/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>不听话的timestamp类型</title>
-    <link href="https://wing324.github.io/2017/07/11/%E4%B8%8D%E5%90%AC%E8%AF%9D%E7%9A%84timestamp%E7%B1%BB%E5%9E%8B/"/>
-    <id>https://wing324.github.io/2017/07/11/不听话的timestamp类型/</id>
-    <published>2017-07-12T03:00:05.000Z</published>
-    <updated>2017-07-11T12:03:23.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天开发提交了一个这样的表结构给我….<br><a id="more"></a></p>
-<h5 id="一、前因后果">一、前因后果</h5><p>今天开发提交了一个这样的表结构(做了无用信息的清理)给我：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> t(c1 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">               c2 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>)</div></pre></td></tr></table></figure>
-<p>但是发现，操作完毕之后，数据库中的表结构变成了这样：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> t(c1 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">               c2 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">DEFAULT</span> <span class="string">'0000-00-00 00:00:00'</span>)</div></pre></td></tr></table></figure>
-<p>于是我百思不得其解，这是为什么为什么为什么呢？。。</p>
-<h5 id="二、动手实验">二、动手实验</h5><p>创建如下表结构：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> t1(c1 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c2 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c3 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c4 <span class="keyword">timestamp</span> <span class="literal">null</span>);</div><div class="line"></div><div class="line"> <span class="keyword">create</span> <span class="keyword">table</span> t2(c1 datetime <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                 c2 datetime <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                 c3 datetime <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                 c4 datetime <span class="literal">null</span>);</div><div class="line"></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> t3(c1 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">                c2 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c3 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c4 <span class="keyword">timestamp</span> <span class="literal">null</span>);</div><div class="line"></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> t4(c1 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c2 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c3 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">                c4 <span class="keyword">timestamp</span> <span class="literal">null</span>);</div><div class="line"></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> t5(c1 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">                c2 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c3 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c4 <span class="keyword">timestamp</span> <span class="literal">null</span>);</div><div class="line"></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> t6(c1 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c2 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">                c3 <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">                c4 <span class="keyword">timestamp</span> <span class="literal">null</span>);</div></pre></td></tr></table></figure>
-<p>操作完毕后，数据库实际存在的表结构：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="comment">-- 参数explicit_defaults_for_timestamp=off</span></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`t1`</span> (</div><div class="line">  <span class="string">`c1`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">  <span class="string">`c2`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0000-00-00 00:00:00'</span>,</div><div class="line">  <span class="string">`c3`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0000-00-00 00:00:00'</span>,</div><div class="line">  <span class="string">`c4`</span> <span class="keyword">timestamp</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8</div><div class="line"></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`t2`</span> (</div><div class="line">  <span class="string">`c1`</span> datetime <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`c2`</span> datetime <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`c3`</span> datetime <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`c4`</span> datetime <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8</div><div class="line"></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`t3`</span> (</div><div class="line">  <span class="string">`c1`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">  <span class="string">`c2`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0000-00-00 00:00:00'</span>,</div><div class="line">  <span class="string">`c3`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0000-00-00 00:00:00'</span>,</div><div class="line">  <span class="string">`c4`</span> <span class="keyword">timestamp</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8</div><div class="line"></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`t4`</span> (</div><div class="line">  <span class="string">`c1`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">  <span class="string">`c2`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0000-00-00 00:00:00'</span>,</div><div class="line">  <span class="string">`c3`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">  <span class="string">`c4`</span> <span class="keyword">timestamp</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8</div><div class="line"></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`t5`</span> (</div><div class="line">  <span class="string">`c1`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">  <span class="string">`c2`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0000-00-00 00:00:00'</span>,</div><div class="line">  <span class="string">`c3`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0000-00-00 00:00:00'</span>,</div><div class="line">  <span class="string">`c4`</span> <span class="keyword">timestamp</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8</div><div class="line"></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`t6`</span> (</div><div class="line">  <span class="string">`c1`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">  <span class="string">`c2`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0000-00-00 00:00:00'</span>,</div><div class="line">  <span class="string">`c3`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">  <span class="string">`c4`</span> <span class="keyword">timestamp</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8</div></pre></td></tr></table></figure>
-<h5 id="三、得出结论">三、得出结论</h5><ul>
-<li>timestamp类型的not null 必须和default值共存，datetime类型的not null不需要default值共存；(t1 VS t2)</li>
-<li>如果timestamp类型的not null没有和default值共存的情况下，MySQL/MariaDB处理方式如下：<br>第一个timestamp not null类型自动变更为：timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP，<br>第一个timestamp not null类型之后的所有该类型，自动变更为：timestamp NOT NULL DEFAULT ‘0000-00-00 00:00:00’；(t1)</li>
-<li>如果timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP类型位于第一个timestamp not null类型字段，那么其他的timestamp not null类型字段自动处理为timestamp NOT NULL DEFAULT ‘0000-00-00 00:00:00’，否则第一个timestamp not null类型字段依旧会自动处理为timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP类型；（t3 VS t4）</li>
-<li>如果timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP 类型位于第一个timestamp not null类型字段，那么其他的timestamp not null类型字段自动处理为timestamp NOT NULL DEFAULT ‘0000-00-00 00:00:00’，否则第一个timestamp not null类型字段依旧会自动处理为timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP类型；(t5 VS t6)</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;今天开发提交了一个这样的表结构给我….&lt;br&gt;
-    
-    </summary>
-    
-      <category term="MySQL" scheme="https://wing324.github.io/categories/MySQL/"/>
-    
-    
-      <category term="DATETIME" scheme="https://wing324.github.io/tags/DATETIME/"/>
-    
-      <category term="timestamp" scheme="https://wing324.github.io/tags/timestamp/"/>
-    
-      <category term="NOT NULL" scheme="https://wing324.github.io/tags/NOT-NULL/"/>
     
   </entry>
   
