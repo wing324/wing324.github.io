@@ -230,7 +230,7 @@
     <link href="https://wing324.github.io/2019/07/27/How-to-use-create-react-app/"/>
     <id>https://wing324.github.io/2019/07/27/How-to-use-create-react-app/</id>
     <published>2019-07-28T05:31:19.000Z</published>
-    <updated>2019-07-28T05:34:12.428Z</updated>
+    <updated>2019-12-06T18:19:31.956Z</updated>
     
     <content type="html"><![CDATA[<p>This is a blog for creating a new React project by using create-react-app tools.</p>
 <a id="more"></a>
@@ -238,12 +238,20 @@
 <li><p>Install Node.js</p>
 <p><a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a></p>
 </li>
-<li><p>Install create-react-app</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># -g means gloal</div><div class="line">npm install -g create-react-app</div></pre></td></tr></table></figure>
-</li>
 <li><p>Navigate to the folder where you want to create your new project, and create a project by using create-react-app, for example the new project name is “helloworld”</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">create-react-app helloworld</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">npx create-react-app helloworld</div></pre></td></tr></table></figure>
 </li>
+</ol>
+<ol>
+<li><p>When you finished the above steps, you maybe have a error as below:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">A template was not provided. This is likely because you&apos;re using an outdated version of create-react-app.</div><div class="line">Please note that global installs of create-react-app are no longer supported.</div></pre></td></tr></table></figure>
+<p>The reason is:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">If you&apos;ve previously installed create-react-app globally via npm install -g create-react-app, we recommend you uninstall the package using npm uninstall -g create-react-app to ensure that npx always uses the latest version.</div><div class="line"></div><div class="line">https://create-react-app.dev/docs/getting-started</div><div class="line">(According to create-react-app official site)</div></pre></td></tr></table></figure>
+<p>So, make sure you use command below to  create your react app by create-react-app, :</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># either of them</div><div class="line">npx create-react-app my-app</div><div class="line">npm init react-app my-app</div><div class="line">yarn create react-app my-app</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
 <li><p>Preview your project in your browser</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd helloworld</div><div class="line">npm start / yarn start</div></pre></td></tr></table></figure>
 </li>
