@@ -230,7 +230,7 @@
     <link href="https://wing324.github.io/2019/07/27/How-to-use-create-react-app/"/>
     <id>https://wing324.github.io/2019/07/27/How-to-use-create-react-app/</id>
     <published>2019-07-28T05:31:19.000Z</published>
-    <updated>2019-12-06T18:19:31.956Z</updated>
+    <updated>2019-12-06T18:46:58.413Z</updated>
     
     <content type="html"><![CDATA[<p>This is a blog for creating a new React project by using create-react-app tools.</p>
 <a id="more"></a>
@@ -239,7 +239,7 @@
 <p><a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a></p>
 </li>
 <li><p>Navigate to the folder where you want to create your new project, and create a project by using create-react-app, for example the new project name is “helloworld”</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">npx create-react-app helloworld</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">yarn create react-app my-app</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <ol>
