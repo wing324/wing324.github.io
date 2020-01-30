@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wing324.github.io/"/>
-  <updated>2019-09-21T06:43:11.453Z</updated>
+  <updated>2020-01-30T07:27:26.403Z</updated>
   <id>https://wing324.github.io/</id>
   
   <author>
@@ -14,6 +14,68 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>How to deploy an app on Heroku</title>
+    <link href="https://wing324.github.io/2020/01/29/How-to-deploy-an-app-on-Heroku/"/>
+    <id>https://wing324.github.io/2020/01/29/How-to-deploy-an-app-on-Heroku/</id>
+    <published>2020-01-30T07:24:38.000Z</published>
+    <updated>2020-01-30T07:27:26.403Z</updated>
+    
+    <content type="html"><![CDATA[<p>This is a blog for deploying an app on Heroku</p>
+<a id="more"></a>
+<ul>
+<li><p>First of all, you should have a Heroku account, if you don’t have it, just sign up for free.</p>
+</li>
+<li><p>Then, you should have an app, if you don’t have, you can just use the sample. Assume our source code in <code>src</code> folder</p>
+<p><strong>We have to put our code at root folder, because Heroku will find code at root folder, the root folder in the post is <code>src</code> folder</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">// src/index.js</span></div><div class="line"></div><div class="line"><span class="comment">// import express by using require, since node.js doesn't support import express</span></div><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.send(&#123;<span class="string">'hi'</span>: <span class="string">'there'</span>&#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// process.env.PORT in order to user Heroku port for our app</span></div><div class="line"><span class="keyword">const</span> PORT = process.env.PORT || <span class="number">5000</span></div><div class="line">app.listen(PORT);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// src/package.json</span></div><div class="line"><span class="comment">// we have to add "engines" field to tell HeroKu what version of node+npm you used</span></div><div class="line"><span class="comment">// we have to add "scripts" field to tell HeroKu how to run our app</span></div><div class="line"></div><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span>: <span class="string">"src"</span>,</div><div class="line">  <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line">  <span class="string">"description"</span>: <span class="string">""</span>,</div><div class="line">  <span class="string">"main"</span>: <span class="string">"index.js"</span>,</div><div class="line">  <span class="string">"engines"</span>: &#123;</div><div class="line">    <span class="string">"node"</span>: <span class="string">"10.16.0"</span>,</div><div class="line">    <span class="string">"npm"</span>: <span class="string">"6.9.0"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"scripts"</span>: &#123;</div><div class="line">    <span class="string">"start"</span>: <span class="string">"node index.js"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"author"</span>: <span class="string">"Wing Yu"</span>,</div><div class="line">  <span class="string">"license"</span>: <span class="string">"ISC"</span>,</div><div class="line">  <span class="string">"dependencies"</span>: &#123;</div><div class="line">    <span class="string">"express"</span>: <span class="string">"^4.17.1"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Install Heroku CLI</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ npm install -g heroku</div></pre></td></tr></table></figure>
+</li>
+<li><p>Check Heroku installation</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ heroku --version</div><div class="line">heroku/7.37.0 win32-x64 node-v10.16.0</div></pre></td></tr></table></figure>
+</li>
+<li><p>Login your Heroku by Heroku CLI</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ heroku login</div><div class="line">heroku: Press any key to open up the browser to login or q to exit:</div></pre></td></tr></table></figure>
+</li>
+<li><p>Go to your app root folder(the post is <code>src</code> folder), and create Heroku app</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd src/</div><div class="line">heroku create</div><div class="line"># After you finish run the command, you will get 2 link</div><div class="line"># link1 | link2</div><div class="line"># link1 is your app website</div><div class="line"># link2 is your app git repo site on Heroku</div></pre></td></tr></table></figure>
+</li>
+<li><p>Push your code into GitHub, you should have a git repo for your app.</p>
+</li>
+<li><p>Add your git repo into your Heroku git repo</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">git remote add heroku link2</div></pre></td></tr></table></figure>
+</li>
+<li><p>Push your GitHub code to your Heroku git repo</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">git push heroku master</div></pre></td></tr></table></figure>
+</li>
+<li><p>Open your app on Heroku </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">heroku open</div><div class="line"># or open link1</div></pre></td></tr></table></figure>
+</li>
+<li><p>If you have any issue, you can also look the Heroku log</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">heroku logs</div></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;This is a blog for deploying an app on Heroku&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Heroku" scheme="https://wing324.github.io/categories/Heroku/"/>
+    
+    
+      <category term="react" scheme="https://wing324.github.io/tags/react/"/>
+    
+      <category term="express" scheme="https://wing324.github.io/tags/express/"/>
+    
+      <category term="heroku" scheme="https://wing324.github.io/tags/heroku/"/>
+    
+  </entry>
   
   <entry>
     <title>React Uses SVG by svgr tool</title>
@@ -1422,102 +1484,6 @@ Waiting <span class="keyword">for</span> <span class="keyword">trigger</span> me
     
       <category term="Bigdata" scheme="https://wing324.github.io/categories/Bigdata/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>Hadoop的三种模式部署-上篇</title>
-    <link href="https://wing324.github.io/2017/09/13/Hadoop%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2-%E4%B8%8A%E7%AF%87/"/>
-    <id>https://wing324.github.io/2017/09/13/Hadoop的三种模式部署-上篇/</id>
-    <published>2017-09-13T17:31:00.000Z</published>
-    <updated>2017-09-13T02:39:49.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>该篇将分别讲解Hadoop的本地模式和伪分布模式的部署，并且以root用户启动。<br><a id="more"></a></p>
-<p>Linux: Debian8.2</p>
-<p>Java: 1.8.0_144</p>
-<p>Hadoop: Hadoop 3.0.0-alpha4</p>
-<p>Hadoop安装包下载地址：<a href="http://hadoop.apache.org/releases.html" target="_blank" rel="external">http://hadoop.apache.org/releases.html</a></p>
-<p>Java部署请参考<a href="https://github.com/wing324/helloworld_zh/blob/master/Bigdata/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E9%83%A8%E7%BD%B2--Debian%E7%89%88.md" target="_blank" rel="external">《常用软件部署—Debian版》</a></p>
-<h4 id="一、基本配置（三种部署模式都需要的基本步骤）">一、基本配置（三种部署模式都需要的基本步骤）</h4><ol>
-<li><p>安装依赖包</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">apt-get install ssh pdsh</div></pre></td></tr></table></figure>
-</li>
-<li><p>解压Hadoop安装包至指定的目录下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">tar -zxvf hadoop-3.0.0-alpha4.tar.gz -C /usr/local/</div><div class="line">cd /usr/local</div><div class="line">mv hadoop-3.0.0-alpha4/ hadoop</div><div class="line">cd hadoop/</div></pre></td></tr></table></figure>
-</li>
-<li><p>配置环境变量</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">编辑etc/hadoop/hadoop-env.sh文件</div><div class="line">vim etc/hadoop/hadoop-env.sh</div><div class="line">配置以下选项</div><div class="line"># set to the root of your Java installation</div><div class="line">  export JAVA_HOME=/usr/local/jdk</div></pre></td></tr></table></figure>
-</li>
-<li><p>尝试hadoop命令，验证环境变量是否正确</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">bin/hadoop</div><div class="line">#此时如果显示一系列的hadoop命令说明，则环境变量正确。否则，请检查之前的步骤是否正确。</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h4 id="二、本地模式(Local/Standalone_Mode)">二、本地模式(Local/Standalone Mode)</h4><ol>
-<li><p>Hadoop默认配置下，是个local mode，即可以立即使用local operation。</p>
-</li>
-<li><p>操作示例</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">mkdir input</div><div class="line">cp etc/hadoop/*.xml input</div><div class="line">bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.0.0-alpha4.jar grep input output &apos;dfs[a-z.]+&apos;</div><div class="line">cat output/*</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h4 id="三、伪分布模式(Pesudo-Distributed_Mode)">三、伪分布模式(Pesudo-Distributed Mode)</h4><ol>
-<li><p>配置</p>
-<ul>
-<li><p>配置/etc/hosts文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">添加：</div><div class="line">192.18.16.220 hadoop-master</div></pre></td></tr></table></figure>
-</li>
-<li><p>配置pdsh的默认使用ssh</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim ~/.bashrc</div><div class="line">添加：</div><div class="line">export PDSH_RCMD_TYPE=ssh</div><div class="line"></div><div class="line">source ~/.bashrc</div><div class="line"># 使其在当前会话中立即生效</div></pre></td></tr></table></figure>
-</li>
-<li><p>配置本机ssh root@localhost免密登录</p>
-<p>具体配置方式见<a href="https://github.com/wing324/helloworld_zh/blob/master/Linux/SSH%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4.md" target="_blank" rel="external">《SSH免密码登录操作步骤 》</a></p>
-</li>
-<li><p>配置etc/hadoop/hadoop-env.sh文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">添加如下变量：(目前我使用的是root用户，所以配置root,如果使用别的用户，请将root用户替换成你使用的用户)</div><div class="line">export HDFS_NAMENODE_USER=root</div><div class="line">export HDFS_DATANODE_USER=root</div><div class="line">export HDFS_SECONDARYNAMENODE_USER=root</div></pre></td></tr></table></figure>
-</li>
-<li><p>配置etc/hadoop/core-site.xml文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;fs.defaultFS&lt;/name&gt;</div><div class="line">        &lt;value&gt;hdfs://192.18.16.220:9000&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>配置etc/hadoop/hdfs-site.xml文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;dfs.replication&lt;/name&gt;</div><div class="line">        &lt;value&gt;1&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>操作示例</p>
-<ul>
-<li><p>初始化文件系统</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">bin/hdfs namenode -format</div></pre></td></tr></table></figure>
-</li>
-<li><p>启动NameNode和DataNode节点</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sbin/start-dfs.sh</div></pre></td></tr></table></figure>
-<p>此时可以登录NameNode的web端：<a href="http://192.18.16.220:9870" target="_blank" rel="external">http://192.18.16.220:9870</a></p>
-</li>
-<li><p>创建hdfs的目录</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">bin/hdfs dfs -mkdir /user</div><div class="line">bin/hdfs dfs -mkdir /user/&lt;username&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>复制input文件的内容到分布式文件系统上</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">bin/hdfs dfs -mkdir input</div><div class="line">bin/hdfs dfs -put etc/hadoop/*.xml input</div></pre></td></tr></table></figure>
-</li>
-<li><p>执行一个示例操作</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.0.0-alpha4.jar grep input output &apos;dfs[a-z.]+&apos;</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看输出文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">bin/hdfs dfs -get output output</div><div class="line">cat output/*</div><div class="line">或者</div><div class="line">bin/hdfs dfs -cat output/*</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;该篇将分别讲解Hadoop的本地模式和伪分布模式的部署，并且以root用户启动。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Bigdata" scheme="https://wing324.github.io/categories/Bigdata/"/>
-    
-    
-      <category term="Hadoop" scheme="https://wing324.github.io/tags/Hadoop/"/>
     
   </entry>
   
