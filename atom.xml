@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wing324.github.io/"/>
-  <updated>2020-03-23T23:12:27.588Z</updated>
+  <updated>2020-03-23T23:47:52.002Z</updated>
   <id>https://wing324.github.io/</id>
   
   <author>
@@ -14,6 +14,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python Private Methods And Variables</title>
+    <link href="https://wing324.github.io/2020/03/23/Python-Private-Methods-And-Variables/"/>
+    <id>https://wing324.github.io/2020/03/23/Python-Private-Methods-And-Variables/</id>
+    <published>2020-03-23T23:36:33.000Z</published>
+    <updated>2020-03-23T23:47:52.002Z</updated>
+    
+    <content type="html"><![CDATA[<p>Python doesn’t have <code>private</code> method and variable like the OOD programming language. But, we do have other way to do it.</p>
+<a id="more"></a>
+<p>In Python, we can use <code>__</code> (double underscore) to make a method or variable private. </p>
+<h3 id="Private_Variable">Private Variable</h3><p>Code as below:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">class Person:</div><div class="line">    def __init__(self, name, age):</div><div class="line">        self.name = name</div><div class="line">        # age is a private variable</div><div class="line">        self.__age = age  </div><div class="line"></div><div class="line">Bob = Person(&quot;Bob&quot;, 17)</div><div class="line">print(&quot;name:&quot;, Bob.name)</div><div class="line"># this will cause an error: no `__age` variable</div><div class="line">print(&quot;Age:&quot;, Bob.__age)</div></pre></td></tr></table></figure>
+<h3 id="Private_Method">Private Method</h3><p>Code as below:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">class Person:</div><div class="line">    def __init__(self, name, age):</div><div class="line">        self.name = name</div><div class="line">        # age is a private variable</div><div class="line">        self.age = age </div><div class="line">     </div><div class="line">     def __agePlus(self):</div><div class="line">     	self.age = self.age+1</div><div class="line"></div><div class="line">Bob = Person(&quot;Bob&quot;, 17)</div><div class="line"># this method will cause an error: no &apos;__agePlus&apos; method</div><div class="line">Bob.__agePlus()</div></pre></td></tr></table></figure>
+<h3 id="Access_Private_Stuff">Access Private Stuff</h3><p>Code as below:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age)</span>:</span></div><div class="line">        self.name = name</div><div class="line">        <span class="comment"># age is a private variable</span></div><div class="line">        self.__age = age  </div><div class="line"></div><div class="line">Bob = Person(<span class="string">"Bob"</span>, <span class="number">17</span>)</div><div class="line">print(<span class="string">"name:"</span>, Bob.name)</div><div class="line"><span class="comment"># this will cause an error: no `__age` variable</span></div><div class="line">print(<span class="string">"Age:"</span>, Bob.__age) </div><div class="line"><span class="comment"># we can access __age like this:</span></div><div class="line">print(Bob._Person__age)</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Python doesn’t have &lt;code&gt;private&lt;/code&gt; method and variable like the OOD programming language. But, we do have other way to do it.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="https://wing324.github.io/categories/Python/"/>
+    
+    
+      <category term="private method" scheme="https://wing324.github.io/tags/private-method/"/>
+    
+      <category term="private variable" scheme="https://wing324.github.io/tags/private-variable/"/>
+    
+  </entry>
   
   <entry>
     <title>Instance method, Class method, and Static method in Python Class</title>
@@ -1383,121 +1416,6 @@ Waiting <span class="keyword">for</span> <span class="keyword">trigger</span> me
     
     
       <category term="Hive" scheme="https://wing324.github.io/tags/Hive/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hadoop的三种模式部署-下篇</title>
-    <link href="https://wing324.github.io/2017/09/13/Hadoop%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2-%E4%B8%8B%E7%AF%87/"/>
-    <id>https://wing324.github.io/2017/09/13/Hadoop的三种模式部署-下篇/</id>
-    <published>2017-09-13T19:26:07.000Z</published>
-    <updated>2017-10-10T02:45:32.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>该篇将演示Hadoop完全分布式的部署，并且以hadoop用户启动。<br><a id="more"></a></p>
-<p>Linux: Debian8.2</p>
-<p>Java: 1.8.0_144</p>
-<p>Hadoop: Hadoop 2.8.1</p>
-<p>Hadoop安装包下载地址：<a href="http://hadoop.apache.org/releases.html" target="_blank" rel="external">http://hadoop.apache.org/releases.html</a></p>
-<p>Java部署请参考<a href="https://github.com/wing324/helloworld_zh/blob/master/Bigdata/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E9%83%A8%E7%BD%B2--Debian%E7%89%88.md" target="_blank" rel="external">《常用软件部署—Debian版》</a></p>
-<p><strong>该篇将演示Hadoop的完全分布式部署，并且以hadoop用户启动。</strong></p>
-<p>参考文档链接：<a href="https://chu888chu888.gitbooks.io/hadoopstudy/content/Content/4/chapter0404.html" target="_blank" rel="external">https://chu888chu888.gitbooks.io/hadoopstudy/content/Content/4/chapter0404.html</a></p>
-<h4 id="一、基础环境准备">一、基础环境准备</h4><ul>
-<li><p>主机信息</p>
-<p>hadoopmaster    192.168.1.1</p>
-<p>hadoopslave1    192.168.1.2</p>
-<p>hadoopslave2    192.168.1.3</p>
-</li>
-<li><p>软件信息</p>
-<ul>
-<li>Debian8.2</li>
-<li>JAVA1.8.0_144</li>
-<li>Hadoop 2.8.1</li>
-</ul>
-</li>
-<li><p>目录信息</p>
-<p>Java安装目录: <code>/usr/local/jdk</code></p>
-<p>Hadoop安装目录: <code>/usr/local/hadoop</code></p>
-<p>Hadoop数据目录: <code>/data/hadoop</code></p>
-</li>
-<li><p>安装依赖包，三台主机分别执行如下命令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">apt-get install ssh pdsh</div></pre></td></tr></table></figure>
-</li>
-<li><p>三台机器配置hadoop:hadoop组合用户，三台主机分别执行如下命令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">addgroup hadoop</div><div class="line">adduser -ingroup hadoop hadoop</div></pre></td></tr></table></figure>
-</li>
-<li><p>三台主机分别配置/etc/hosts文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim /etc/hosts</div><div class="line">添加如下主机名</div><div class="line">192.168.1.1	hadoopmaster</div><div class="line">192.168.1.2 hadoopslave1</div><div class="line">192.168.1.3 hadoopslave2</div></pre></td></tr></table></figure>
-</li>
-<li><p>三台主机使用hadoop用户登录，并添加如下环境变量：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim /home/hadoop/.bashrc</div><div class="line">添加如下变量：</div><div class="line">export JAVA_HOME=/usr/local/jdk</div><div class="line">export JRE_HOME=/usr/local/jdk/jre</div><div class="line">export CLASSPATH=$CLASSPATH:$JAVA_HOME/lib:$JRE_HOME/lib</div><div class="line">export HADOOP_HOME=/usr/local/hadoop</div><div class="line">export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin:$HADOOP_HOME/bin</div><div class="line">export PDSH_RCMD_TYPE=ssh</div><div class="line">if [[ $- == *i* ]]</div><div class="line">then</div><div class="line">    PS1=&quot;\[$(tput bold)\]\[$(tput setaf 3)\]\u\[$(tput setaf 7)\]@\[$(tput setaf 5)\]\h:\[$(tput setaf 2)\]\w\[$(tput setaf 4)\] \\$\[$(tput sgr0)\] &quot;</div><div class="line">fi</div><div class="line"></div><div class="line"># 立即生效环境变量</div><div class="line">source /home/hadoop/.bashrc</div></pre></td></tr></table></figure>
-</li>
-<li><p>三台主机相互之前SSH免密码登录（主机和主机本身也需要SSH免密码登录），详细信息请参考<a href="https://github.com/wing324/helloworld_zh/blob/master/Linux/SSH%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4.md" target="_blank" rel="external">《SSH免密码登录操作步骤》</a></p>
-<p>​</p>
-</li>
-</ul>
-<h4 id="二、Hadoop完全分布式配置">二、Hadoop完全分布式配置</h4><p><strong>以下所有操作没有特殊说明的前提下，使用的是hadoop用户进行操作。</strong></p>
-<ul>
-<li><p>hadoopmaster机器上解压文件包(以root用户操作)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">tar -zxvf hadoop-2.8.1.tar.gz -C /usr/local</div><div class="line">mv hadoop-2.8.1 hadoop</div><div class="line">chown -R hadoop:hadoop /usr/local/hadoop</div></pre></td></tr></table></figure>
-</li>
-<li><p>hadoopmaster机器上新增/data/hadoop/tmp数据目录(以root用户操作)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">mkdir /data/hadoop/tmp</div><div class="line">chown -R hadoop:hadoop /data/hadoop/tmp</div></pre></td></tr></table></figure>
-</li>
-<li><p>hadoopmaster机器上配置hadoop-env.sh文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd /usr/local/hadoop</div><div class="line">vim etc/hadoop/hadoop-env.sh</div><div class="line">更新如下变量：</div><div class="line">export JAVA_HOME=/usr/local/jdk</div></pre></td></tr></table></figure>
-</li>
-<li><p>hadoopmaster机器上配置集群环境，正常启动最小配置文件： slaves、core-site.xml、hdfs-site.xml、mapred-site.xml、yarn-site.xml</p>
-<ul>
-<li><p>配置etc/hadoop/slaves文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim etc/hadoop/slaves</div><div class="line">添加如下文件：</div><div class="line">192.168.1.2</div><div class="line">192.168.1.3</div></pre></td></tr></table></figure>
-</li>
-<li><p>配置core-site.xml文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;fs.defaultFS&lt;/name&gt;</div><div class="line">        &lt;value&gt;hdfs://192.168.1.1:9000&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</div><div class="line">        &lt;value&gt;file:/data/hadoop/tmp&lt;/value&gt;</div><div class="line">        &lt;description&gt;Abase for other temporary directories.&lt;/description&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>配置hfs-site.xml文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;</div><div class="line">        &lt;value&gt;192.168.1.1:50090&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;dfs.replication&lt;/name&gt;</div><div class="line">        &lt;value&gt;2&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;</div><div class="line">        &lt;value&gt;file:/data/hadoop/tmp/dfs/name&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;</div><div class="line">        &lt;value&gt;file:/data/hadoop/tmp/dfs/data&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>配置mapred-site.xml文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;mapreduce.framework.name&lt;/name&gt;</div><div class="line">        &lt;value&gt;yarn&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;mapreduce.jobhistory.address&lt;/name&gt;</div><div class="line">        &lt;value&gt;172.168.1.1:10020&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;mapreduce.jobhistory.webapp.address&lt;/name&gt;</div><div class="line">        &lt;value&gt;192.168.1.1:19888&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>配置yarn-site.xml文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line"></div><div class="line">&lt;!-- Site specific YARN configuration properties --&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;</div><div class="line">        &lt;value&gt;192.168.1.1&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property&gt;</div><div class="line">        &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</div><div class="line">        &lt;value&gt;mapreduce_shuffle&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>hadoopslave1和hadoopslave2可以将hadoopmaster的/usr/local/hadoop完全copy一份至本机的/usr/local/hadoop目录下。其中/usr/local/hadoop/etc/hadoop/slaves文件在两台slave机器上是无用的，但是该文件存在并无其他影响。</p>
-<p>​</p>
-<h4 id="三、Hadoop完全分布式启动">三、Hadoop完全分布式启动</h4><ul>
-<li><p>hadoopmaster上执行初始化，执行一次即可</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">hdfs namenode -format</div><div class="line"># 初始化的作用是：一个全新的HDFS安装需要被初始化，初始化的过程会在存储目录下创建一个空的文件系统，以及创建namenode持久化数据结构的初始版本。</div></pre></td></tr></table></figure>
-</li>
-<li><p>hadoopmaster上执行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sbin/start-dfs.sh</div><div class="line">sbin/start-yarn.sh</div><div class="line">sbin/mr-jobhistory-daemon.sh start historyserver</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="四、Hadoop完全分布式部署完成验证">四、Hadoop完全分布式部署完成验证</h4><ul>
-<li><p>三台主机上分别执行jps查看java进程</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">hadoopmaster:/usr/local/hadoop $ jps</div><div class="line">19360 JobHistoryServer</div><div class="line">19012 ResourceManager</div><div class="line">18806 SecondaryNameNode</div><div class="line">18620 NameNode</div><div class="line">20190 Jps</div><div class="line"></div><div class="line">hadoopslave1:/usr/local/hadoop $ jps</div><div class="line">17393 NodeManager</div><div class="line">17282 DataNode</div><div class="line">17907 Jps</div><div class="line"></div><div class="line">hadoopslave2:/usr/local/hadoop $ jps</div><div class="line">21720 NodeManager</div><div class="line">21609 DataNode</div><div class="line">21837 Jps</div></pre></td></tr></table></figure>
-</li>
-<li><p>hadoopmaster执行<code>hdfs dfsadmin -report</code>查看各个数据节点是否正常</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">hadoopmaster:/usr/local/hadoop $ hdfs dfsadmin -report</div><div class="line">Configured Capacity: 42398629888 (39.49 GB)</div><div class="line">Present Capacity: 11841167360 (11.03 GB)</div><div class="line">DFS Remaining: 11841110016 (11.03 GB)</div><div class="line">DFS Used: 57344 (56 KB)</div><div class="line">DFS Used%: 0.00%</div><div class="line">Under replicated blocks: 0</div><div class="line">Blocks with corrupt replicas: 0</div><div class="line">Missing blocks: 0</div><div class="line">Missing blocks (with replication factor 1): 0</div><div class="line">Pending deletion blocks: 0</div><div class="line"></div><div class="line">-------------------------------------------------</div><div class="line">Live datanodes (2):</div><div class="line"></div><div class="line">Name: 192.168.1.2:50010 (hadoopslave1)</div><div class="line">Hostname: hadoopslave1</div><div class="line">Decommission Status : Normal</div><div class="line">Configured Capacity: 21199314944 (19.74 GB)</div><div class="line">DFS Used: 28672 (28 KB)</div><div class="line">Non DFS Used: 14452621312 (13.46 GB)</div><div class="line">DFS Remaining: 5654732800 (5.27 GB)</div><div class="line">DFS Used%: 0.00%</div><div class="line">DFS Remaining%: 26.67%</div><div class="line">Configured Cache Capacity: 0 (0 B)</div><div class="line">Cache Used: 0 (0 B)</div><div class="line">Cache Remaining: 0 (0 B)</div><div class="line">Cache Used%: 100.00%</div><div class="line">Cache Remaining%: 0.00%</div><div class="line">Xceivers: 1</div><div class="line">Last contact: Wed Sep 13 12:00:35 CST 2017</div></pre></td></tr></table></figure>
-<p>Name: 192.168.1.2:50010 (hadoopslave2)<br>Hostname: hadoopslave2<br>Decommission Status : Normal<br>Configured Capacity: 21199314944 (19.74 GB)<br>DFS Used: 28672 (28 KB)<br>Non DFS Used: 13920976896 (12.96 GB)<br>DFS Remaining: 6186377216 (5.76 GB)<br>DFS Used%: 0.00%<br>DFS Remaining%: 29.18%<br>Configured Cache Capacity: 0 (0 B)<br>Cache Used: 0 (0 B)<br>Cache Remaining: 0 (0 B)<br>Cache Used%: 100.00%<br>Cache Remaining%: 0.00%<br>Xceivers: 1<br>Last contact: Wed Sep 13 12:00:35 CST 2017</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">- 打开浏览器，验证是否能打开如下四个网址：</div><div class="line"></div><div class="line">  MapReduce JobHistory Server		http://192.168.1.1:19888</div><div class="line"></div><div class="line">  ResourceManager				http://192.168.1.1:8088/</div><div class="line"></div><div class="line">  NameNode						http://192.168.1.1:50070</div><div class="line"></div><div class="line">  DataNode						http://192.168.1.2:50075 http://192.168.1.3:50075</div><div class="line"></div><div class="line"></div><div class="line">#### 五、Hadoop集群关闭</div><div class="line"></div><div class="line">  ```shell</div><div class="line">  stop-yarn.sh</div><div class="line">  stop-dfs.sh</div><div class="line">  mr-jobhistory-daemon.sh stop historyserver</div></pre></td></tr></table></figure>
-</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;该篇将演示Hadoop完全分布式的部署，并且以hadoop用户启动。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Bigdata" scheme="https://wing324.github.io/categories/Bigdata/"/>
-    
-    
-      <category term="Hadoop" scheme="https://wing324.github.io/tags/Hadoop/"/>
     
   </entry>
   
