@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wing324.github.io/"/>
-  <updated>2020-01-30T07:27:26.403Z</updated>
+  <updated>2020-03-23T23:12:27.588Z</updated>
   <id>https://wing324.github.io/</id>
   
   <author>
@@ -14,6 +14,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Instance method, Class method, and Static method in Python Class</title>
+    <link href="https://wing324.github.io/2020/03/23/Instance-method-Class-method-and-Static-method-in-Python/"/>
+    <id>https://wing324.github.io/2020/03/23/Instance-method-Class-method-and-Static-method-in-Python/</id>
+    <published>2020-03-23T22:43:10.000Z</published>
+    <updated>2020-03-23T23:12:27.588Z</updated>
+    
+    <content type="html"><![CDATA[<p>This article is going to talk about the difference between instance method, class method, and static method in Python class.<br><a id="more"></a></p>
+<h3 id="Instance_Method">Instance Method</h3><p>Instance method is the most used method in python class. The instance method can be accessed by each instance. Each instance has its own instance variables. So, instance methods are used to access and modify instance variables. </p>
+<p>Instance Method must have <code>self</code> argument as the first argument of the instance method. <code>self</code> just a name, it can be a different name.  <code>self</code> refers to the instance.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span>:</span></div><div class="line">  <span class="comment">#  constructor</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, ID=None, name=None, department=None)</span>:</span></div><div class="line">    self.ID = ID</div><div class="line">    self.name = name</div><div class="line">    self.department = department</div><div class="line">  </div><div class="line">  <span class="comment"># instance method</span></div><div class="line">  <span class="comment"># a,b,c,d is instance variables</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">demo</span><span class="params">(self, a, b, c=<span class="number">4</span>, d=None)</span>:</span></div><div class="line">    print(a)</div><div class="line">    print(b)</div><div class="line">    print(c)</div><div class="line">    print(d)</div></pre></td></tr></table></figure>
+<h3 id="Class_Method">Class Method</h3><p>Class method works with class variables and access by class name. It also can access by instance, but we would like to access it by class name.  All the class instances share the class variables and class method. So, class methods are used to access and modify class variables.</p>
+<p>Class method must have <code>@classmethod</code> before the class method. And class method must have <code>cls</code> as the first argument. <code>cls</code> just a name, it can be a different name, <code>cls</code> refers to the class.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span>:</span></div><div class="line">  <span class="comment"># class variable</span></div><div class="line">  <span class="comment"># Access/Update by all instances</span></div><div class="line">  team = <span class="string">"IT"</span></div><div class="line">  </div><div class="line">  <span class="comment"># class method</span></div><div class="line"><span class="meta">  @classmethod</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">getTeamName</span><span class="params">(cls)</span>:</span></div><div class="line">    <span class="keyword">return</span> cls.team</div><div class="line"></div><div class="line">Steve = Employee()</div><div class="line"></div><div class="line"><span class="comment"># use class method</span></div><div class="line">print(Steve.getTeamName())</div><div class="line"><span class="comment"># Prefer to use this way to use class method</span></div><div class="line">print(Employee.getTeamName())</div></pre></td></tr></table></figure>
+<h3 id="Static_Method">Static Method</h3><p>Static method is not related to class variables or instance variables. It contains some fixed information and can not be modified. </p>
+<p>Static method must have <code>@staticmethod</code> before the static method. And static method don’t have to use <code>self</code> or <code>cls</code> as first argument. It doesn’t have any mandatory argument.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span>:</span></div><div class="line">  <span class="comment"># static method</span></div><div class="line">  <span class="comment"># static method don't need to use self/cls</span></div><div class="line"><span class="meta">  @staticmethod</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">sMethod</span><span class="params">()</span>:</span></div><div class="line">    print(<span class="string">"I am a static method"</span>)</div><div class="line"></div><div class="line"><span class="comment"># use static method</span></div><div class="line">Steve.sMethod()</div><div class="line"><span class="comment"># Prefer to use this way to use static method</span></div><div class="line">Employee.sMethod()</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;This article is going to talk about the difference between instance method, class method, and static method in Python class.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="https://wing324.github.io/categories/Python/"/>
+    
+    
+      <category term="instance method" scheme="https://wing324.github.io/tags/instance-method/"/>
+    
+      <category term="class method" scheme="https://wing324.github.io/tags/class-method/"/>
+    
+      <category term="static method" scheme="https://wing324.github.io/tags/static-method/"/>
+    
+      <category term="class" scheme="https://wing324.github.io/tags/class/"/>
+    
+  </entry>
   
   <entry>
     <title>How to deploy an app on Heroku</title>
@@ -1460,30 +1498,6 @@ Waiting <span class="keyword">for</span> <span class="keyword">trigger</span> me
     
     
       <category term="Hadoop" scheme="https://wing324.github.io/tags/Hadoop/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>常用软件部署-Debian版</title>
-    <link href="https://wing324.github.io/2017/09/13/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E9%83%A8%E7%BD%B2-Debian%E7%89%88/"/>
-    <id>https://wing324.github.io/2017/09/13/常用软件部署-Debian版/</id>
-    <published>2017-09-13T17:37:39.000Z</published>
-    <updated>2017-09-13T02:39:50.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>工作中常用软件部署集合，有如下的软件部署：Java、Tomcat、ZooKeeper….<br>未来会越来越多。<br><a id="more"></a></p>
-<h5 id="一、jdk安装">一、jdk安装</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd ~</div><div class="line"># 解压jdk压缩包</div><div class="line">tar -zxvf ~/jdk-7u45-linux-x64.tar.gz -C /usr/local/</div><div class="line">cd /usr/local</div><div class="line">mv jdk1.7.0_45/ jdk</div><div class="line"># 配置jdk环境变量</div><div class="line">vim ~/.bashrc</div><div class="line"># 添加环境变量</div><div class="line">export JAVA_HOME=/usr/local/jdk</div><div class="line">export PATH=$PATH:$JAVA_HOME/bin</div><div class="line"># 使环境变量立即生效</div><div class="line">source ~/.bashrc</div><div class="line"></div><div class="line"># 验证jdk安装成功方式</div><div class="line">java -version</div></pre></td></tr></table></figure>
-<h5 id="二、tomcat安装">二、tomcat安装</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd ~</div><div class="line"># 解压tomcat压缩包</div><div class="line">tar -zxvf apache-tomcat-7.0.68.tar.gz -C /usr/local/</div><div class="line">cd /usr/local</div><div class="line">mv apache-tomcat-7.0.68/ tomcat</div><div class="line"># 启动tomcat</div><div class="line">./tomcat/bin/start.sh</div><div class="line"># 启动成功输出信息</div><div class="line">Using CATALINA_BASE:   /usr/local/tomcat</div><div class="line">Using CATALINA_HOME:   /usr/local/tomcat</div><div class="line">Using CATALINA_TMPDIR: /usr/local/tomcat/temp</div><div class="line">Using JRE_HOME:        /usr/local/jdk</div><div class="line">Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar</div><div class="line">Tomcat started.</div><div class="line"></div><div class="line"># 验证tomcat启动成功方式</div><div class="line">netstat -npl | grep &apos;java&apos;</div><div class="line"># 输出信息</div><div class="line">tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      13916/java      </div><div class="line">tcp        0      0 127.0.0.1:8005          0.0.0.0:*               LISTEN      13916/java      </div><div class="line">tcp        0      0 0.0.0.0:8009            0.0.0.0:*               LISTEN      13916/java</div></pre></td></tr></table></figure>
-<h5 id="三、zookeeper安装">三、zookeeper安装</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">tar -zxvf zookeeper-3.4.10.tar.gz -C /usr/local/</div><div class="line">cd /usr/local/</div><div class="line">mv zookeeper-3.4.10 zookeeper</div><div class="line">cd zookeeper</div><div class="line">cp conf/zoo_sample.cfg conf/zoo.cfg</div><div class="line">vim conf/zoo.cfg</div><div class="line"># 修改dataDir=/data/zk</div><div class="line"># 增加节点：server.1=ip:2888:3888</div><div class="line"># 增加节点：server.2=ip:2888:3888</div><div class="line"># 创建zk的数据目录</div><div class="line">mkdir /data/zk</div><div class="line">cd /data/zk</div><div class="line">echo $id &gt; myid</div><div class="line"># 如server1，此处需要做的神操作是：echi &apos;1&apos; &gt; myid</div><div class="line"></div><div class="line"># 启动zookeeper</div><div class="line">bin/zkServer.sh start</div><div class="line"># 启动成功输出信息</div><div class="line"># ZooKeeper JMX enabled by default</div><div class="line"># Using config: /usr/local/zookeeper/bin/../conf/zoo.cfg</div><div class="line"># Starting zookeeper ... STARTED</div><div class="line"></div><div class="line"># 查看zookeeper当前的状态</div><div class="line">bin/zkServer.sh status</div><div class="line"># 输出信息</div><div class="line"># ZooKeeper JMX enabled by default</div><div class="line"># Using config: /usr/local/zookeeper/bin/../conf/zoo.cfg</div><div class="line"># Mode: follower</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;工作中常用软件部署集合，有如下的软件部署：Java、Tomcat、ZooKeeper….&lt;br&gt;未来会越来越多。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Bigdata" scheme="https://wing324.github.io/categories/Bigdata/"/>
-    
     
   </entry>
   
