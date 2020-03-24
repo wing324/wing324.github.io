@@ -86,13 +86,13 @@
 
 <meta name="description" content="I always forget how to write inheritance in Python. Today, I saw a good example in Educative.io which is easy for me to understand and remember.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Inheritance Example in Python">
+<meta property="og:title" content="Inheritance and super Example in Python">
 <meta property="og:url" content="https://wing324.github.io/2020/03/23/Inheritance-in-Python/index.html">
 <meta property="og:site_name" content="Wing's Tech Space">
 <meta property="og:description" content="I always forget how to write inheritance in Python. Today, I saw a good example in Educative.io which is easy for me to understand and remember.">
-<meta property="og:updated_time" content="2020-03-24T00:28:00.178Z">
+<meta property="og:updated_time" content="2020-03-24T00:41:00.051Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Inheritance Example in Python">
+<meta name="twitter:title" content="Inheritance and super Example in Python">
 <meta name="twitter:description" content="I always forget how to write inheritance in Python. Today, I saw a good example in Educative.io which is easy for me to understand and remember.">
 
 
@@ -116,7 +116,7 @@
 
   <link rel="canonical" href="https://wing324.github.io/2020/03/23/Inheritance-in-Python/"/>
 
-  <title> Inheritance Example in Python | Wing's Tech Space </title>
+  <title> Inheritance and super Example in Python | Wing's Tech Space </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -289,7 +289,7 @@
             
             
               
-                Inheritance Example in Python
+                Inheritance and super Example in Python
               
             
           </h1>
@@ -356,7 +356,7 @@
 
       
         <p>I always forget how to write inheritance in Python. Today, I saw a good example in <a href="https://www.educative.io/courses/learn-object-oriented-programming-in-python/qAXDNK8QB6y" target="_blank" rel="external">Educative.io</a> which is easy for me to understand and remember.<br><a id="more"></a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># Parent class</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vehicle</span>:</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, color, model)</span>:</span></div><div class="line">    self.color = color</div><div class="line">    self.model = model</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">printDetails</span><span class="params">(self)</span>:</span></div><div class="line">    print(self.color)</div><div class="line">    print(self.model)</div><div class="line"></div><div class="line"><span class="comment"># Sub class</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span><span class="params">(Vehicle)</span>:</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, color, model, doors)</span>:</span></div><div class="line">    <span class="comment"># inheritant constrator from parent class</span></div><div class="line">    Vehicle.__init__(self, color, model)</div><div class="line">    self.doors = doors</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">printCarDetails</span><span class="params">(self)</span>:</span></div><div class="line">    <span class="comment"># inheritant method from parent class</span></div><div class="line">    self.printDetails()</div><div class="line">    print(self.doors)</div><div class="line"></div><div class="line">car1 = Car(<span class="string">"Red"</span>, <span class="string">"BMW"</span>, <span class="number">4</span>)</div><div class="line">car1.printCarDetails()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># Parent class</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vehicle</span>:</span></div><div class="line">  fuelCap = <span class="number">90</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, color, model)</span>:</span></div><div class="line">    self.color = color</div><div class="line">    self.model = model</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">printDetails</span><span class="params">(self)</span>:</span></div><div class="line">    print(self.color)</div><div class="line">    print(self.model)</div><div class="line"></div><div class="line"><span class="comment"># Sub class</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span><span class="params">(Vehicle)</span>:</span></div><div class="line">  fuelCap = <span class="number">50</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, color, model, doors)</span>:</span></div><div class="line">    <span class="comment"># inheritant constrator from parent class</span></div><div class="line">    Vehicle.__init__(self, color, model)</div><div class="line">    self.doors = doors</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">printCarDetails</span><span class="params">(self)</span>:</span></div><div class="line">    <span class="comment"># inheritant method from parent class</span></div><div class="line">    self.printDetails()</div><div class="line">    print(self.doors)</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">printFuel</span><span class="params">(self)</span>:</span></div><div class="line">    <span class="comment"># super instead of Parent class name</span></div><div class="line">    print(<span class="string">"Parent fuelCap: "</span>,super().fuelCap)</div><div class="line">    print(<span class="string">"Vehical fuelCap:"</span>, Vehicle.fuelCap)</div><div class="line">    print(<span class="string">"Self fuelCap:"</span>, self.fuelCap)</div><div class="line"></div><div class="line">car1 = Car(<span class="string">"Red"</span>, <span class="string">"BMW"</span>, <span class="number">4</span>)</div><div class="line">car1.printCarDetails()</div><div class="line"></div><div class="line"><span class="comment">### output</span></div><div class="line">Red</div><div class="line">BMW</div><div class="line"><span class="number">4</span></div><div class="line">Parent fuelCap:  <span class="number">90</span></div><div class="line">Vehical fuelCap: <span class="number">90</span></div><div class="line">Self fuelCap: <span class="number">50</span></div></pre></td></tr></table></figure>
 
       
     </div>
@@ -410,7 +410,7 @@
     <div class="post-spread">
       
         <div class="ds-share flat" data-thread-key="2020/03/23/Inheritance-in-Python/"
-     data-title="Inheritance Example in Python"
+     data-title="Inheritance and super Example in Python"
      data-content=""
      data-url="https://wing324.github.io/2020/03/23/Inheritance-in-Python/">
   <div class="ds-share-inline">
@@ -443,7 +443,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2020/03/23/Inheritance-in-Python/"
-           data-title="Inheritance Example in Python" data-url="https://wing324.github.io/2020/03/23/Inheritance-in-Python/">
+           data-title="Inheritance and super Example in Python" data-url="https://wing324.github.io/2020/03/23/Inheritance-in-Python/">
       </div>
     
   </div>
