@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wing324.github.io/"/>
-  <updated>2020-03-24T00:41:00.051Z</updated>
+  <updated>2020-04-19T00:17:45.155Z</updated>
   <id>https://wing324.github.io/</id>
   
   <author>
@@ -14,6 +14,210 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Difference Between the Overloading and Overriding of Methods</title>
+    <link href="https://wing324.github.io/2020/04/18/Difference-Between-the-Overloading-and-Overriding-of-Methods/"/>
+    <id>https://wing324.github.io/2020/04/18/Difference-Between-the-Overloading-and-Overriding-of-Methods/</id>
+    <published>2020-04-19T00:10:00.000Z</published>
+    <updated>2020-04-19T00:17:45.155Z</updated>
+    
+    <content type="html"><![CDATA[<p>Overloading and Overriding, they are totally different staff. I am always confusing about it.</p>
+<p>It is study note from <a href="https://www.educative.io/courses/learn-object-oriented-programming-in-java" target="_blank" rel="external">Educative.io</a></p>
+<a id="more"></a>
+<p><img src="../img/difference-between-overrinding-and-overloading.png" alt="difference-between-overrinding-and-overloading"></p>
+<h3 id="Overloading">Overloading</h3><ul>
+<li><p><strong>Illustration</strong></p>
+<p><img src="../img/overloading-method.png" alt="overloading-method"></p>
+</li>
+<li><p><strong>Example</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">//Calculator Class</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Calculator</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// Add funtions with two parameters</span></div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> num1 + num2;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// Add funtions with three parameters</span></div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2, <span class="keyword">int</span> num3 )</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> num1 + num2 + num3;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// Add funtions with four parameters</span></div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2, <span class="keyword">int</span> num3, <span class="keyword">int</span> num4 )</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> num1 + num2 + num3 + num4;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</div><div class="line">    Calculator cal = <span class="keyword">new</span> Calculator();</div><div class="line"></div><div class="line">    System.out.println(<span class="string">"10 + 20 =  "</span> + cal.add(<span class="number">10</span>, <span class="number">20</span>));</div><div class="line">    System.out.println(<span class="string">"10 + 20 + 30 =  "</span> + cal.add(<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>));</div><div class="line">    System.out.println(<span class="string">"10 + 20 + 30 + 40 =  "</span> + cal.add(<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>));</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Overriding">Overriding</h3><ul>
+<li><p><strong>Illustration</strong></p>
+<p><img src="../img/overriding-method.png" alt="overriding-method"></p>
+</li>
+<li><p><strong>Example</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">// base class</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getArea</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// subclass 1</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">double</span> width;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">double</span> heigh;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Rectangle</span><span class="params">(<span class="keyword">double</span> width, <span class="keyword">double</span> heigh)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.width = width;</div><div class="line">        <span class="keyword">this</span>.heigh = heigh;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getArea</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> width * heigh;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// subclass 2</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">  </div><div class="line">  <span class="comment">// Private data member</span></div><div class="line">  <span class="keyword">private</span> <span class="keyword">double</span> radius;</div><div class="line"></div><div class="line">  <span class="comment">// Constructor</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Circle</span><span class="params">(<span class="keyword">double</span> radius)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.radius = radius; </div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="comment">// Public method to calculate Area</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getArea</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">3.14</span> * radius * radius; </div><div class="line">  &#125;</div><div class="line">  </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Shape rect = <span class="keyword">new</span> Rectangle(<span class="number">3</span>, <span class="number">4</span>);</div><div class="line">        Shape circle = <span class="keyword">new</span> Circle(<span class="number">4</span>);</div><div class="line"></div><div class="line">        System.out.println(rect.getArea()); <span class="comment">// 12.0</span></div><div class="line">        System.out.println(circle.getArea()); <span class="comment">// 50.24</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Overloading and Overriding, they are totally different staff. I am always confusing about it.&lt;/p&gt;
+&lt;p&gt;It is study note from &lt;a href=&quot;https://www.educative.io/courses/learn-object-oriented-programming-in-java&quot;&gt;Educative.io&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="OOP" scheme="https://wing324.github.io/categories/OOP/"/>
+    
+    
+      <category term="oop" scheme="https://wing324.github.io/tags/oop/"/>
+    
+      <category term="object-orientated programming" scheme="https://wing324.github.io/tags/object-orientated-programming/"/>
+    
+      <category term="overloading" scheme="https://wing324.github.io/tags/overloading/"/>
+    
+      <category term="overriding" scheme="https://wing324.github.io/tags/overriding/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Four Principles In Object-orientated Programming</title>
+    <link href="https://wing324.github.io/2020/04/18/Four-Principles-In-Object-orientated-Programming/"/>
+    <id>https://wing324.github.io/2020/04/18/Four-Principles-In-Object-orientated-Programming/</id>
+    <published>2020-04-18T18:28:13.000Z</published>
+    <updated>2020-04-19T00:50:58.431Z</updated>
+    
+    <content type="html"><![CDATA[<p>The four principles of OOP are: Encapsulation, Inheritance, Polymorphism, and Abstract. Let’s introduce each principle in the following paragraphs. </p>
+<p>It is study note from <a href="https://www.educative.io/courses/learn-object-oriented-programming-in-java" target="_blank" rel="external">Educative.io</a></p>
+<a id="more"></a>
+<ul>
+<li><h2 id="Encapsulation">Encapsulation</h2><ul>
+<li><h4 id="Definition">Definition</h4><p>It refers to binding the data and the methods to control that data together in a single class. It hides the data and the method of the object from the outside.</p>
+</li>
+<li><h4 id="Illustration">Illustration</h4><p>All variables in a class should be <code>private</code>. And we define <code>public</code> methods that are called as <em>getter</em> and <em>setter</em> to access or modify the variables.</p>
+<p><img src="../img/encapsulation-principle.png" alt="encapsulation-principle"></p>
+</li>
+<li><h4 id="Advantages">Advantages</h4><ul>
+<li>It is easy to manage the class.</li>
+<li>We can specify which data member we want to hidden or accessible.</li>
+<li>We can decide which variables have read/write privileges(Increase flexibility).</li>
+<li>It is security because other classes can not modify data without permission.</li>
+</ul>
+</li>
+<li><h4 id="Example">Example</h4><p>A <code>user</code> class is modeled as:</p>
+<p>Having  <code>userName</code> field;</p>
+<p>Having <code>password</code> field;</p>
+<p>A method named <code>login()</code>  to grant access.</p>
+<ul>
+<li><p><strong>Java OOP</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</div><div class="line">    <span class="comment">// private variables/data</span></div><div class="line">    <span class="keyword">private</span> String userName;</div><div class="line">    <span class="keyword">private</span> String password;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String userName, String password)</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.userName = userName;</div><div class="line">        <span class="keyword">this</span>.password = password;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">login</span><span class="params">(String userName, String password)</span></span>&#123;</div><div class="line">        <span class="comment">// check if the userName and password match</span></div><div class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.userName.toLowerCase().equals(userName.toLowerCase()) &amp;&amp; <span class="keyword">this</span>.password.equals(password))&#123;</div><div class="line">            System.out.println(<span class="string">"You are granted access!"</span>);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            System.out.println(<span class="string">"Invalid userName or Password"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        User user = <span class="keyword">new</span> User(<span class="string">"wing"</span>, <span class="string">"123"</span>);</div><div class="line">        user.login(<span class="string">"wing"</span>, <span class="string">"124"</span>); <span class="comment">// Invalid userName or Password</span></div><div class="line">        user.login(<span class="string">"wing"</span>, <span class="string">"123"</span>); <span class="comment">// You are granted access!</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Python OOP</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h2 id="Inheritance">Inheritance</h2><ul>
+<li><h4 id="Definition-1">Definition</h4><p>It provides a way to create a new class(subClass) from a existing class(superClass). And the new class <strong>inherits</strong> all the non-private fields and methods of the existing class.</p>
+<p>It uses <strong>extends</strong> and <strong>overriding</strong> keyword.</p>
+</li>
+<li><h4 id="Illustration-1">Illustration</h4><p>This <strong>is A</strong> relationship.</p>
+<p><img src="../img/inheritance-principle.png" alt="inheritance-principle"></p>
+</li>
+<li><h4 id="Advantages-1">Advantages</h4><ul>
+<li>Inheritance makes the code reusable(Re-usability).</li>
+<li>Avoiding duplicate of  code.</li>
+<li>SubClass can extend SuperClass logic(Extensibility).</li>
+<li>SuperClass can keep some data private, it also named data hiding.</li>
+</ul>
+</li>
+<li><h4 id="Example-1">Example</h4><ul>
+<li><p><strong>Java OOP</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">// Super Class</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vehicle</span> </span>&#123;</div><div class="line">    <span class="comment">// private fields</span></div><div class="line">    <span class="keyword">private</span> String make;</div><div class="line">    <span class="keyword">private</span> String color;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> year;</div><div class="line">    <span class="keyword">private</span> String model;</div><div class="line"></div><div class="line">    <span class="comment">// Constructor</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Vehicle</span><span class="params">(String make, String color, <span class="keyword">int</span> year, String model)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.make = make;</div><div class="line">        <span class="keyword">this</span>.color = color;</div><div class="line">        <span class="keyword">this</span>.year = year;</div><div class="line">        <span class="keyword">this</span>.model = model;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// method</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printDetails</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="keyword">this</span>.make +<span class="string">"  "</span>+<span class="keyword">this</span>.color +<span class="string">"  "</span>+ <span class="keyword">this</span>.year+<span class="string">"  "</span>+<span class="keyword">this</span>.model);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// Sub Class</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span> <span class="keyword">extends</span> <span class="title">Vehicle</span> </span>&#123;</div><div class="line">    <span class="comment">// private fields</span></div><div class="line">    <span class="keyword">private</span> String bodyStyle;</div><div class="line"></div><div class="line">    <span class="comment">// Constructor</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Car</span><span class="params">(String make, String color, <span class="keyword">int</span> year, String model, String bodyStyle)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(make, color, year, model);</div><div class="line">        <span class="keyword">this</span>.bodyStyle = bodyStyle;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">carDetails</span><span class="params">()</span> </span>&#123;</div><div class="line">        printDetails();</div><div class="line">        System.out.println(bodyStyle);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Car car = <span class="keyword">new</span> Car(<span class="string">"Weilai"</span>, <span class="string">"Blue"</span>, <span class="number">2020</span>, <span class="string">"SUV"</span>, <span class="string">"Cool Style"</span>);</div><div class="line">        <span class="comment">// Weilai  Blue  2020  SUV</span></div><div class="line">        <span class="comment">// Cool Style</span></div><div class="line">        car.carDetails();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Python OOP</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h2 id="Polymorphism">Polymorphism</h2><ul>
+<li><h4 id="Definition-2">Definition</h4><p>A same object shows different forms and behaviors.</p>
+<p>It can be presented by <code>extends</code> keyword.</p>
+</li>
+<li><h4 id="Illustration-2">Illustration</h4><p><img src="../img/polymorphism-principle.png" alt="polymorphism-principle"></p>
+</li>
+<li><h4 id="Types">Types</h4><p><strong>Dynamic Polymorphism</strong> VS <strong>Static Polymorphism</strong> is also known as <code>overloading</code> vs <code>overriding</code>.</p>
+<ul>
+<li><p><strong>Dynamic Polymorphism</strong></p>
+<p>It allows method can be defined with the <strong>same</strong> name, return type, and parameters in the parent class and child class.</p>
+<p>It is also known as runtime polymorphism by using <code>overriding</code>.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">// Java Example</span></div><div class="line"><span class="comment">// See Java OOP Example</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Static Polymorphism</strong></p>
+<p>It is also known as compile time polymorphism by <code>overloading</code> method.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Calculator</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> num1 + num2;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2, <span class="keyword">int</span> num3)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> num1 + num2 + num3;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</div><div class="line">  </div><div class="line">    Calculator obj = <span class="keyword">new</span> Calculator();</div><div class="line">    System.out.println(<span class="string">"10 + 20 = "</span> + obj.add(<span class="number">10</span>, <span class="number">20</span>));</div><div class="line">    System.out.println(<span class="string">"10 + 20 + 30 = "</span> + obj.add(<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>));</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><h4 id="Advantages-2">Advantages</h4><ul>
+<li>Method overloading allows methods that perform similar or closely related functions to be accessed through a common name.</li>
+<li>Method overloading can be implemented on constructors allowing different ways to initialize objects of a class</li>
+<li>Method overriding allows that the child classes can give their own specific implementations to inherited methods without modifying the parent class methods.</li>
+<li>Method overriding allows that a child class can use the implementation in the parent class or make its own implementation</li>
+</ul>
+</li>
+<li><h4 id="Example-2">Example</h4><ul>
+<li><p><strong>Java OOP</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">// base class</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getArea</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// subclass 1</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">double</span> width;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">double</span> heigh;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Rectangle</span><span class="params">(<span class="keyword">double</span> width, <span class="keyword">double</span> heigh)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.width = width;</div><div class="line">        <span class="keyword">this</span>.heigh = heigh;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getArea</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> width * heigh;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// subclass 2</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">  </div><div class="line">  <span class="comment">// Private data member</span></div><div class="line">  <span class="keyword">private</span> <span class="keyword">double</span> radius;</div><div class="line"></div><div class="line">  <span class="comment">// Constructor</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Circle</span><span class="params">(<span class="keyword">double</span> radius)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.radius = radius; </div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="comment">// Public method to calculate Area</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getArea</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">3.14</span> * radius * radius; </div><div class="line">  &#125;</div><div class="line">  </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Shape rect = <span class="keyword">new</span> Rectangle(<span class="number">3</span>, <span class="number">4</span>);</div><div class="line">        Shape circle = <span class="keyword">new</span> Circle(<span class="number">4</span>);</div><div class="line"></div><div class="line">        System.out.println(rect.getArea()); <span class="comment">// 12.0</span></div><div class="line">        System.out.println(circle.getArea()); <span class="comment">// 50.24</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Python OOP</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h2 id="Abstract">Abstract</h2><ul>
+<li><h4 id="Definition-3">Definition</h4><p>It shows only the essential features of an object to the user and hides the inner details to reduce complexity.</p>
+</li>
+<li><h4 id="Illustration-3">Illustration</h4><p><img src="../img/abstract-principle.png" alt="abstract-principle"></p>
+</li>
+<li><h4 id="How">How</h4><p>How to achieve abstraction?</p>
+<p><code>Anstract</code> class and <code>Interface</code>.</p>
+</li>
+<li><h4 id="Advantages-3">Advantages</h4><p>It can reduce code complexity.</p>
+</li>
+<li><h4 id="Example-3">Example</h4><ul>
+<li><p><strong>Java OOP</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">// Abstract class</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">makeSound</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(getClass().getSimpleName()+<span class="string">" is moving"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeSound</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Woof Woof...."</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeSound</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Meow Meow...."</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        Animal dog = <span class="keyword">new</span> Dog();</div><div class="line">        Animal cat = <span class="keyword">new</span> Cat();</div><div class="line">        <span class="comment">// Dog is moving</span></div><div class="line">        dog.move();</div><div class="line">        <span class="comment">// Cat is moving</span></div><div class="line">        cat.move();</div><div class="line">        <span class="comment">// Woof Woof....</span></div><div class="line">        dog.makeSound();</div><div class="line">        <span class="comment">// Meow Meow....</span></div><div class="line">        cat.makeSound();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// Interface</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Python OOP</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;The four principles of OOP are: Encapsulation, Inheritance, Polymorphism, and Abstract. Let’s introduce each principle in the following paragraphs. &lt;/p&gt;
+&lt;p&gt;It is study note from &lt;a href=&quot;https://www.educative.io/courses/learn-object-oriented-programming-in-java&quot;&gt;Educative.io&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="OOP" scheme="https://wing324.github.io/categories/OOP/"/>
+    
+    
+      <category term="oop" scheme="https://wing324.github.io/tags/oop/"/>
+    
+      <category term="object-orientated programming" scheme="https://wing324.github.io/tags/object-orientated-programming/"/>
+    
+      <category term="polymorphism" scheme="https://wing324.github.io/tags/polymorphism/"/>
+    
+      <category term="encapsulation" scheme="https://wing324.github.io/tags/encapsulation/"/>
+    
+      <category term="inheritance" scheme="https://wing324.github.io/tags/inheritance/"/>
+    
+      <category term="abstract" scheme="https://wing324.github.io/tags/abstract/"/>
+    
+  </entry>
   
   <entry>
     <title>Inheritance and super Example in Python</title>
@@ -1065,286 +1269,6 @@ Waiting <span class="keyword">for</span> <span class="keyword">trigger</span> me
     
     
       <category term="polymorphism" scheme="https://wing324.github.io/tags/polymorphism/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hive实用函数大全</title>
-    <link href="https://wing324.github.io/2017/10/20/Hive%E5%AE%9E%E7%94%A8%E5%87%BD%E6%95%B0%E5%A4%A7%E5%85%A8/"/>
-    <id>https://wing324.github.io/2017/10/20/Hive实用函数大全/</id>
-    <published>2017-10-21T03:24:41.000Z</published>
-    <updated>2017-10-20T12:26:33.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>为什么叫实用函数，因为有些不实用的函数没有写进文档中，哈哈。<br><a id="more"></a></p>
-<p>参考文档：</p>
-<p>《Apache Hive Cookbook》</p>
-<p><a href="http://lxw1234.com/archives/2015/04/176.htm" target="_blank" rel="external">Hive分析窗口函数(一) SUM,AVG,MIN,MAX</a></p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line"># 示例表结构sales</div><div class="line">CREATE TABLE `sales`(</div><div class="line">  `id` int,</div><div class="line">  `fname` string,</div><div class="line">  `state` string,</div><div class="line">  `zip` int,</div><div class="line">  `ip` string,</div><div class="line">  `pid` string)</div><div class="line"></div><div class="line"># 示例数据sales</div><div class="line">0	Zena	Tennessee	21550	192.168.56.101	PI_09</div><div class="line">1	Elaine	Alaska	6429	192.168.56.101	PI_03</div><div class="line">2	Sage	Nevada	8899	192.168.56.102	PI_03</div><div class="line">3	Cade	Missouri	11233	192.168.56.103	PI_06</div><div class="line">4	Abra	New Jersry	21500	192.168.56.101	PI_09</div><div class="line">5	Stone	Nebraska	3560	192.168.56.104	PI_08</div><div class="line">6	Regina	Tennessee	21550	192.168.56.105	PI_10</div><div class="line">7	Donova	New York	95234	192.168.56.106	PI_05</div><div class="line">8	Aileen	Illinois	68284	192.168.56.106	PI_02</div><div class="line">9	Maraam	Hawaii	95234	192.168.56.107	PI_07</div><div class="line"></div><div class="line"># 示例表结构po</div><div class="line">CREATE TABLE `po`(</div><div class="line">  `cookieid` string,</div><div class="line">  `createtime` string,</div><div class="line">  `pv` int)</div><div class="line"></div><div class="line"># 示例数据po</div><div class="line">cookie1	2015-04-10	1</div><div class="line">cookie1	2015-04-11	5</div><div class="line">cookie1	2015-04-12	7</div><div class="line">cookie1	2015-04-13	3</div><div class="line">cookie1	2015-04-14	2</div><div class="line">cookie1	2015-04-15	4</div><div class="line">cookie1	2015-04-16	5</div></pre></td></tr></table></figure>
-<h5 id="一、分析型函数">一、分析型函数</h5><ol>
-<li><p>ROW_NUMBER<br>语法：</p>
-<ul>
-<li>ROW_NUMBER() OVER (ORDER BY col)<br>为每个分组记录返回一个排序的数字。</li>
-<li>ROW_NUMBER() OVER (PARTITION BY col1 ORDER BY col2)<br>按照col1分组，在分组内对col2进行排序并返回顺序数字。</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select fname,pid,ip  from sales;</div><div class="line">OK</div><div class="line">Zena	PI_09	192.168.56.101</div><div class="line">Elaine	PI_03	192.168.56.101</div><div class="line">Sage	PI_03	192.168.56.102</div><div class="line">Cade	PI_06	192.168.56.103</div><div class="line">Abra	PI_09	192.168.56.101</div><div class="line">Stone	PI_08	192.168.56.104</div><div class="line">Regina	PI_10	192.168.56.105</div><div class="line">Donova	PI_05	192.168.56.106</div><div class="line">Aileen	PI_02	192.168.56.106</div><div class="line">Maraam	PI_07	192.168.56.107</div><div class="line"></div><div class="line">hive&gt; select fname,pid,ip,row_number() over (order by ip) from sales;</div><div class="line">Abra	PI_09	192.168.56.101	1</div><div class="line">Elaine	PI_03	192.168.56.101	2</div><div class="line">Zena	PI_09	192.168.56.101	3</div><div class="line">Sage	PI_03	192.168.56.102	4</div><div class="line">Cade	PI_06	192.168.56.103	5</div><div class="line">Stone	PI_08	192.168.56.104	6</div><div class="line">Regina	PI_10	192.168.56.105	7</div><div class="line">Aileen	PI_02	192.168.56.106	8</div><div class="line">Donova	PI_05	192.168.56.106	9</div><div class="line">Maraam	PI_07	192.168.56.107	10</div><div class="line"></div><div class="line">hive&gt; select fname,pid,ip,row_number() over (partition by pid order by ip) from sales;</div><div class="line">Aileen	PI_02	192.168.56.106	1</div><div class="line">Elaine	PI_03	192.168.56.101	1</div><div class="line">Sage	PI_03	192.168.56.102	2</div><div class="line">Donova	PI_05	192.168.56.106	1</div><div class="line">Cade	PI_06	192.168.56.103	1</div><div class="line">Maraam	PI_07	192.168.56.107	1</div><div class="line">Stone	PI_08	192.168.56.104	1</div><div class="line">Abra	PI_09	192.168.56.101	1</div><div class="line">Zena	PI_09	192.168.56.101	2</div><div class="line">Regina	PI_10	192.168.56.105	1</div></pre></td></tr></table></figure>
-</li>
-<li><p>RANK</p>
-<ul>
-<li>RANK() OVER (ORDER BY col)<br>和ROW_NUMBER()差不多，但是排序时候相同的字段会返回相同的数字。</li>
-<li>RANK() OVER (PARTITION by col1 ORDER BY col2)<br>和ROW_NUMBER()差不多，但是排序时候同等级的字段会返回相同的数字。</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select fname,ip,rank() over (order by ip) from sales;</div><div class="line">Abra	192.168.56.101	1</div><div class="line">Elaine	192.168.56.101	1</div><div class="line">Zena	192.168.56.101	1</div><div class="line">Sage	192.168.56.102	4</div><div class="line">Cade	192.168.56.103	5</div><div class="line">Stone	192.168.56.104	6</div><div class="line">Regina	192.168.56.105	7</div><div class="line">Aileen	192.168.56.106	8</div><div class="line">Donova	192.168.56.106	8</div><div class="line">Maraam	192.168.56.107	10</div><div class="line"></div><div class="line">hive&gt; select fname,pid,ip,rank() over (partition by pid order by ip) from sales;</div><div class="line">Aileen	PI_02	192.168.56.106	1</div><div class="line">Elaine	PI_03	192.168.56.101	1</div><div class="line">Sage	PI_03	192.168.56.102	2</div><div class="line">Donova	PI_05	192.168.56.106	1</div><div class="line">Cade	PI_06	192.168.56.103	1</div><div class="line">Maraam	PI_07	192.168.56.107	1</div><div class="line">Stone	PI_08	192.168.56.104	1</div><div class="line">Abra	PI_09	192.168.56.101	1</div><div class="line">Zena	PI_09	192.168.56.101	1</div><div class="line">Regina	PI_10	192.168.56.105	1</div></pre></td></tr></table></figure>
-</li>
-<li><p>DENSE_RANK<br>和RANK()差不多，但是RANK()的排序数字存在空洞，见一-2-第一个示例。而DENSE_RANK()则不会存在排序数字空洞。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select fname,ip,dense_rank() over (order by ip) from sales;</div><div class="line">Abra	192.168.56.101	1</div><div class="line">Elaine	192.168.56.101	1</div><div class="line">Zena	192.168.56.101	1</div><div class="line">Sage	192.168.56.102	2</div><div class="line">Cade	192.168.56.103	3</div><div class="line">Stone	192.168.56.104	4</div><div class="line">Regina	192.168.56.105	5</div><div class="line">Aileen	192.168.56.106	6</div><div class="line">Donova	192.168.56.106	6</div><div class="line">Maraam	192.168.56.107	7</div></pre></td></tr></table></figure>
-</li>
-<li><p>PERCENT_RANK</p>
-<ul>
-<li>PERCENT_RANK() OVER (ORDER BY col)  当前行的rank-1/总行数-1</li>
-<li>PERCENT_RAANK() OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，分组内当前行的rank-1/分组内的总行数-1</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select id,ip,percent_rank() over (order by id)from sales;</div><div class="line">0	192.168.56.101	0.0</div><div class="line">1	192.168.56.101	0.1111111111111111</div><div class="line">2	192.168.56.102	0.2222222222222222</div><div class="line">3	192.168.56.103	0.3333333333333333</div><div class="line">4	192.168.56.101	0.4444444444444444</div><div class="line">5	192.168.56.104	0.5555555555555556</div><div class="line">6	192.168.56.105	0.6666666666666666</div><div class="line">7	192.168.56.106	0.7777777777777778</div><div class="line">8	192.168.56.106	0.8888888888888888</div><div class="line">9	192.168.56.107	1.0</div><div class="line"></div><div class="line">hive&gt; select id,ip,percent_rank() over (partition by ip order by id)from sales;</div><div class="line">0	192.168.56.101	0.0</div><div class="line">1	192.168.56.101	0.5</div><div class="line">4	192.168.56.101	1.0</div><div class="line">2	192.168.56.102	0.0</div><div class="line">3	192.168.56.103	0.0</div><div class="line">5	192.168.56.104	0.0</div><div class="line">6	192.168.56.105	0.0</div><div class="line">7	192.168.56.106	0.0</div><div class="line">8	192.168.56.106	1.0</div><div class="line">9	192.168.56.107	0.0</div></pre></td></tr></table></figure>
-</li>
-<li><p>CUME_DIST</p>
-<ul>
-<li>CUME_DIST() OVER (ORDER BY col) 小于等于col当前值的行数/总行数。</li>
-<li>CUME_DIST() OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，分组内部小于等于col2当前值的行数/总行数。</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select id,ip from sales;</div><div class="line">OK</div><div class="line">0	192.168.56.101</div><div class="line">1	192.168.56.101</div><div class="line">2	192.168.56.102</div><div class="line">3	192.168.56.103</div><div class="line">4	192.168.56.101</div><div class="line">5	192.168.56.104</div><div class="line">6	192.168.56.105</div><div class="line">7	192.168.56.106</div><div class="line">8	192.168.56.106</div><div class="line">9	192.168.56.107</div><div class="line"></div><div class="line">hive&gt; select id,ip,cume_dist() over (order by id)from sales;</div><div class="line">0	192.168.56.101	0.1</div><div class="line">1	192.168.56.101	0.2</div><div class="line">2	192.168.56.102	0.3</div><div class="line">3	192.168.56.103	0.4</div><div class="line">4	192.168.56.101	0.5</div><div class="line">5	192.168.56.104	0.6</div><div class="line">6	192.168.56.105	0.7</div><div class="line">7	192.168.56.106	0.8</div><div class="line">8	192.168.56.106	0.9</div><div class="line">9	192.168.56.107	1.0</div><div class="line"></div><div class="line">hive&gt; select id,ip,cume_dist() over (partition by ip order by id)from sales;</div><div class="line">0	192.168.56.101	0.3333333333333333</div><div class="line">1	192.168.56.101	0.6666666666666666</div><div class="line">4	192.168.56.101	1.0</div><div class="line">2	192.168.56.102	1.0</div><div class="line">3	192.168.56.103	1.0</div><div class="line">5	192.168.56.104	1.0</div><div class="line">6	192.168.56.105	1.0</div><div class="line">7	192.168.56.106	0.5</div><div class="line">8	192.168.56.106	1.0</div><div class="line">9	192.168.56.107	1.0</div></pre></td></tr></table></figure>
-</li>
-<li><p>NTILE<br>用于将分组数据按照顺序切分成n片，并返回当前切片值。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select id,ip, ntile(2) over (partition by ip order by id)from sales;</div><div class="line">0	192.168.56.101	1</div><div class="line">1	192.168.56.101	1</div><div class="line">4	192.168.56.101	2</div><div class="line">2	192.168.56.102	1</div><div class="line">3	192.168.56.103	1</div><div class="line">5	192.168.56.104	1</div><div class="line">6	192.168.56.105	1</div><div class="line">7	192.168.56.106	1</div><div class="line">8	192.168.56.106	2</div><div class="line">9	192.168.56.107	1</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h5 id="二、窗口型函数">二、窗口型函数</h5><ol>
-<li>LEAD<ul>
-<li>LEAD() OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，返回结果集中的下一个col2</li>
-</ul>
-</li>
-<li>LAG<ul>
-<li>OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，返回结果集中的上一个col2</li>
-</ul>
-</li>
-<li>FIRST_VALUE<ul>
-<li>OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，返回结果集中的第一个col2</li>
-</ul>
-</li>
-<li>LAST_VALUE<ul>
-<li>OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，返回结果集中的最后一个col2</li>
-</ul>
-</li>
-<li>OVER<ul>
-<li>聚集OVER</li>
-<li>COUNT</li>
-<li>MIN</li>
-<li>MAX</li>
-<li>AVG</li>
-<li>OVER WITH PARTITION BY</li>
-<li>OVER WITH PARTITION BY and ORDER BY</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line"># 首先需要了解函数OVER(PARTITION BY col1 ORDER BY col2)</div><div class="line">SELECT cookieid,</div><div class="line">createtime,</div><div class="line">pv,</div><div class="line">SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime) AS pv1, -- 默认为从起点到当前行</div><div class="line">SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS pv2, --从起点到当前行，结果同pv1</div><div class="line">SUM(pv) OVER(PARTITION BY cookieid) AS pv3,								--分组内所有行</div><div class="line">SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS pv4,   --当前行+往前3行</div><div class="line">SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN 3 PRECEDING AND 1 FOLLOWING) AS pv5,    --当前行+往前3行+往后1行</div><div class="line">SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING) AS pv6   ---当前行+往后所有行  </div><div class="line">FROM po;</div><div class="line">cookie1	2015-04-16	5	27	27	27	14	14	5</div><div class="line">cookie1	2015-04-15	4	22	22	27	16	21	9</div><div class="line">cookie1	2015-04-14	2	18	18	27	17	21	11</div><div class="line">cookie1	2015-04-13	3	16	16	27	16	18	14</div><div class="line">cookie1	2015-04-12	7	13	13	27	13	16	21</div><div class="line">cookie1	2015-04-11	5	6	6	27	6	13	26</div><div class="line">cookie1	2015-04-10	1	1	1	27	1	6	27</div><div class="line"># 其他聚集函数方式相同。</div><div class="line"></div><div class="line"># LEAD</div><div class="line">hive&gt; select fname,ip,pid,lead(pid) over (partition by ip order by ip) from sales;</div><div class="line">Abra	192.168.56.101	PI_09	PI_03 -- ip的分组中下一个pid的值为PI_03</div><div class="line">Elaine	192.168.56.101	PI_03	PI_09</div><div class="line">Zena	192.168.56.101	PI_09	NULL</div><div class="line">Sage	192.168.56.102	PI_03	NULL</div><div class="line">Cade	192.168.56.103	PI_06	NULL</div><div class="line">Stone	192.168.56.104	PI_08	NULL</div><div class="line">Regina	192.168.56.105	PI_10	NULL</div><div class="line">Aileen	192.168.56.106	PI_02	PI_05</div><div class="line">Donova	192.168.56.106	PI_05	NULL</div><div class="line">Maraam	192.168.56.107	PI_07	NULL</div><div class="line"></div><div class="line"># LAG</div><div class="line">hive&gt; select fname,ip,pid,lag(pid) over (partition by ip order by ip) from sales;</div><div class="line">Abra	192.168.56.101	PI_09	NULL  </div><div class="line">Elaine	192.168.56.101	PI_03	PI_09  -- ip的分组中上一个pid的值为PI_09</div><div class="line">Zena	192.168.56.101	PI_09	PI_03</div><div class="line">Sage	192.168.56.102	PI_03	NULL</div><div class="line">Cade	192.168.56.103	PI_06	NULL</div><div class="line">Stone	192.168.56.104	PI_08	NULL</div><div class="line">Regina	192.168.56.105	PI_10	NULL</div><div class="line">Aileen	192.168.56.106	PI_02	NULL</div><div class="line">Donova	192.168.56.106	PI_05	PI_02</div><div class="line">Maraam	192.168.56.107	PI_07	NULL</div><div class="line"></div><div class="line"># FIRST_VALUE</div><div class="line">hive&gt; select fname,ip,pid,first_value(pid) over (partition by ip order by ip) from sales;</div><div class="line">Abra	192.168.56.101	PI_09	PI_09  -- ip的分组中第一个pid的值为PI_09</div><div class="line">Elaine	192.168.56.101	PI_03	PI_09</div><div class="line">Zena	192.168.56.101	PI_09	PI_09</div><div class="line">Sage	192.168.56.102	PI_03	PI_03</div><div class="line">Cade	192.168.56.103	PI_06	PI_06</div><div class="line">Stone	192.168.56.104	PI_08	PI_08</div><div class="line">Regina	192.168.56.105	PI_10	PI_10</div><div class="line">Aileen	192.168.56.106	PI_02	PI_02  -- ip的分组中第一个pid的值为PI_02</div><div class="line">Donova	192.168.56.106	PI_05	PI_02</div><div class="line">Maraam	192.168.56.107	PI_07	PI_07</div><div class="line"></div><div class="line"># LAST_VALUE</div><div class="line">hive&gt; select fname,ip,pid,last_value(pid) over (order by ip) from sales;</div><div class="line">Abra	192.168.56.101	PI_09	PI_09 -- ip的分组中最后一个pid的值为PI_09</div><div class="line">Elaine	192.168.56.101	PI_03	PI_09</div><div class="line">Zena	192.168.56.101	PI_09	PI_09</div><div class="line">Sage	192.168.56.102	PI_03	PI_03</div><div class="line">Cade	192.168.56.103	PI_06	PI_06</div><div class="line">Stone	192.168.56.104	PI_08	PI_08</div><div class="line">Regina	192.168.56.105	PI_10	PI_10</div><div class="line">Aileen	192.168.56.106	PI_02	PI_05</div><div class="line">Donova	192.168.56.106	PI_05	PI_05 -- ip的分组中最后一个pid的值为PI_05</div><div class="line">Maraam	192.168.56.107	PI_07	PI_07</div></pre></td></tr></table></figure>
-<h5 id="二、数值型函数">二、数值型函数</h5><ol>
-<li><p>abs(x)<br>返回x的绝对值。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select abs(-1);</div><div class="line">1</div><div class="line"></div><div class="line">hive&gt; select abs(1);</div><div class="line">1</div><div class="line"></div><div class="line">hive&gt; select abs(0);</div><div class="line">0</div></pre></td></tr></table></figure>
-</li>
-<li><p>bin(x)<br>返回x的二进制格式。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select bin(123);</div><div class="line">1111011</div><div class="line"></div><div class="line">hive&gt; select bin(2);</div><div class="line">10</div><div class="line"></div><div class="line">hive&gt; select bin(3);</div><div class="line">11</div></pre></td></tr></table></figure>
-</li>
-<li><p>ceil(x),ceiling(x)<br>返回x向上取整整数。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select ceil(10.01);</div><div class="line">11</div><div class="line"></div><div class="line">hive&gt; select ceil(0.01);</div><div class="line">1</div><div class="line"></div><div class="line">hive&gt; select ceil(-10.01);</div><div class="line">-10</div></pre></td></tr></table></figure>
-</li>
-<li><p>conv(x,y,z)<br>进制转换，将x从y进制转换为z进制。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line"># 将10从十进制转换为二进制</div><div class="line">hive&gt; select conv(10,10,2);</div><div class="line">1010</div></pre></td></tr></table></figure>
-</li>
-<li><p>floor(x)<br>返回x向下取整整数。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select floor(10.01);</div><div class="line">10</div><div class="line"></div><div class="line">hive&gt; select floor(11.01);</div><div class="line">11</div><div class="line"></div><div class="line">hive&gt; select floor(11.77);</div><div class="line">11</div></pre></td></tr></table></figure>
-</li>
-<li><p>greatest(x,y,z…)<br>返回x,y,z….中数值最大的值。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select greatest(1,8,2,3,-10,-12);</div><div class="line">8</div></pre></td></tr></table></figure>
-</li>
-<li><p>least(x,y,z,…)<br>返回x,y,z…中数值最小的值。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select least(1,8,2,3,-10,-12);</div><div class="line">-12</div></pre></td></tr></table></figure>
-</li>
-<li><p>negative(x)<br>返回x的负值。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select negative(1);</div><div class="line">-1</div><div class="line">hive&gt; select negative(-1);</div><div class="line">1</div></pre></td></tr></table></figure>
-</li>
-<li><p>round(x)<br>x取整。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select round(10.12);</div><div class="line">10</div><div class="line"></div><div class="line">hive&gt; select round(10.92);</div><div class="line">11</div><div class="line"></div><div class="line">hive&gt; select round(10);</div><div class="line">10</div><div class="line"></div><div class="line">hive&gt; select round(10.5);</div><div class="line">11</div></pre></td></tr></table></figure>
-</li>
-<li><p>sign(x)<br>当x是正数时返回1，当x是负数时返回-1，当x是0时返回0。</p>
-</li>
-</ol>
-<h5 id="三、类型转换型函数">三、类型转换型函数</h5><ol>
-<li><p>binary(x)<br>将x以二进制的方式存储。</p>
-</li>
-<li><p>cast(x as T)<br>将x转换为T类型。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select cast(10 as STRING);</div><div class="line">10</div><div class="line"></div><div class="line">hive&gt; select cast(10 as INT);</div><div class="line">10</div><div class="line"></div><div class="line">hive&gt; select cast('A' as INT);</div><div class="line">NULL</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h5 id="四、日期函数">四、日期函数</h5><ol>
-<li><p>add_month(x,y)<br>在日期x的基础上加上y月。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select add_months('2017-10-09',1);</div><div class="line">2017-11-09</div><div class="line"></div><div class="line">hive&gt; select add_months('2017-10-09',4);</div><div class="line">2018-02-09</div></pre></td></tr></table></figure>
-</li>
-<li><p>current_date()<br>获取当前日期。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select current_date();</div><div class="line">OK</div><div class="line">2017-10-20</div></pre></td></tr></table></figure>
-</li>
-<li><p>current_timestamp()<br>获取当前时间。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select current_timestamp();</div><div class="line">2017-10-20 18:59:52.19</div></pre></td></tr></table></figure>
-</li>
-<li><p>date_add(x,y)<br>在日期x的基础上加上y天。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select date_add('2017-10-09',4);</div><div class="line">2017-10-13</div><div class="line"></div><div class="line">hive&gt; select date_add('2017-12-30',4);</div><div class="line">2018-01-03</div></pre></td></tr></table></figure>
-</li>
-<li><p>date_format(x,y)<br>将日期x的格式化为y形式的时间。<br>y的格式<a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html" target="_blank" rel="external">请点击参考</a>。</p>
-</li>
-<li><p>date_sub(x,y)<br>在日期x的基础上减去y天。</p>
-</li>
-<li><p>datediff(x,y)<br>返回日期x,y之间的时间差(天数)。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select datediff('2017-10-09','2017-10-01');</div><div class="line">8</div></pre></td></tr></table></figure>
-</li>
-<li><p>unix_timestamp()<br>获取当前时区的UNIX时间戳</p>
-</li>
-<li><p>from_unixtime(x)<br>返回时间戳x的直观日期。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select from_unixtime(unix_timestamp());</div><div class="line">2017-10-20 19:13:11</div></pre></td></tr></table></figure>
-</li>
-<li><p>last_day(x)<br>返回日期x的月份的最后一天的日期。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select last_day('2017-02-02');</div><div class="line">2017-02-28</div></pre></td></tr></table></figure>
-</li>
-<li><p>months_between(x,y)<br>返回x,y之间的月份差。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select months_between('2017-10-01','2017-02-02');</div><div class="line">OK</div><div class="line">7.96774194</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h5 id="四、字符型函数">四、字符型函数</h5><ol>
-<li><p>concat(x,y,….)<br>连接x,y….字符串合并为一个字符串。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select concat('ABC','abc','zzz');</div><div class="line">ABCabczzz</div></pre></td></tr></table></figure>
-</li>
-<li><p>concat_ws(z,x,y,….)<br>实用分隔符z连接x,y….字符串。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select concat_ws('/','ABC','abc','zzz');</div><div class="line">ABC/abc/zzz</div></pre></td></tr></table></figure>
-</li>
-<li><p>find_in_set(‘x’,’y,z,…’)<br>检查x是否存在与y,z…中，存在则返回位置值，否则返回0。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select find_in_set('abc','a,b,c,ab,abc,bc');</div><div class="line">5</div><div class="line"></div><div class="line">hive&gt; select find_in_set('abc','a,b,c,ab,bc');</div><div class="line">0</div></pre></td></tr></table></figure>
-</li>
-<li><p>in_file(x,y)<br>检查字符串x是否为文件y的一行。</p>
-</li>
-<li><p>initcap(x)<br>将字符串x的首字母大写，然后将其他字母小写。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select initcap('hello');</div><div class="line">Hello</div><div class="line"></div><div class="line">hive&gt; select initcap('hellO');</div><div class="line">Hello</div><div class="line"></div><div class="line">hive&gt; select initcap('hELLO');</div><div class="line">Hello</div><div class="line"></div><div class="line">hive&gt; select initcap('HeLLO');</div><div class="line">Hello</div><div class="line"></div><div class="line">hive&gt; select initcap('HELLO');</div><div class="line">Hello</div></pre></td></tr></table></figure>
-</li>
-<li><p>instr(x,y)<br>返回y在x中的第一个位置值。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select instr('abc','c');</div><div class="line">3</div><div class="line"></div><div class="line">hive&gt; select instr('abc','d');</div><div class="line">0</div></pre></td></tr></table></figure>
-</li>
-<li><p>length(x)<br>返回x的字符个数</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select length('abc');</div><div class="line">3</div><div class="line">hive&gt; select length('中国');</div><div class="line">2</div></pre></td></tr></table></figure>
-</li>
-<li><p>lower(x),lcase(x)<br>返回x的小写字符串。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select lower('ABC');</div><div class="line">abc</div></pre></td></tr></table></figure>
-</li>
-<li><p>locate(x,y,z)<br>返回x在y的位置z之后第一次出现的位置。</p>
-</li>
-<li><p>lpad(x,y,z)<br>将x左侧用字符串z填充，xz组合的总长度为z</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select lpad('a',2,'b');</div><div class="line">ba</div><div class="line"></div><div class="line">hive&gt; select lpad('a',3,'b');</div><div class="line">bba</div><div class="line"></div><div class="line">hive&gt; select lpad('aaaa',3,'b');</div><div class="line">aaa</div></pre></td></tr></table></figure>
-</li>
-<li><p>ltrim(x)<br>去除x左侧的空格。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select ltrim('  AA');</div><div class="line">AA</div></pre></td></tr></table></figure>
-</li>
-<li><p>repeat(x,y)<br>将x重复y次。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select repeat('a',5);</div><div class="line">aaaaa</div></pre></td></tr></table></figure>
-</li>
-<li><p>reverse(x)<br>将x逆向输出。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select reverse('SUV');</div><div class="line">VUS</div></pre></td></tr></table></figure>
-</li>
-<li><p>rpad(x,y,z)<br>将x左侧用字符串z填充，xz组合的总长度为z。</p>
-</li>
-<li><p>rtrim(x)<br>去除x右侧的空格。</p>
-</li>
-<li><p>split(x,y)<br>用y分割字符串x,y为正则表达式。</p>
-</li>
-<li><p>substr(x,y),substring(x,y)<br>返回x从位置y直到结尾的字符串。</p>
-</li>
-<li><p>substr(x,y,z),substring(x,y,z)<br>返回x从位置y开始的字符串，长度为z的子串。</p>
-</li>
-<li><p>trim(x)<br>去掉x两端的空格。</p>
-</li>
-</ol>
-<h5 id="五、条件函数">五、条件函数</h5><ol>
-<li><p>case when</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line"># 方式1</div><div class="line">case when a=b then b1 when a=c then c1 else a end as col</div><div class="line"></div><div class="line"># 方式2</div><div class="line">case a when b then b1 when c then c1 else a end as col</div></pre></td></tr></table></figure>
-</li>
-<li><p>coalsce(x,y,z)<br>当x is null时返回y，当x is not null 返回z。</p>
-</li>
-<li><p>if(x,y,z)<br>当条件x成立时返回y，当条件x不成立时返回z。</p>
-</li>
-<li><p>isnotnull(x)<br>当x is not null时返回true，当x i null 返回false。</p>
-</li>
-<li><p>isnull(x)<br>当x is null时返回true，当x is not null 返回false。</p>
-</li>
-<li><p>nvl(x,y)<br>当x is null时返回y，当x is not null 返回x。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">hive&gt; select nvl(1,100);</div><div class="line">1</div><div class="line"></div><div class="line">hive&gt; select nvl(null,100);</div><div class="line">100</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h5 id="六、UDAF函数">六、UDAF函数</h5><ol>
-<li>avg()<br>返回平均值</li>
-<li>count()<br>返回总数</li>
-<li>max()<br>返回最大值</li>
-<li>min()<br>返回最小值</li>
-<li>sum()<br>返回总和</li>
-<li>variance()<br>返回方差</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;为什么叫实用函数，因为有些不实用的函数没有写进文档中，哈哈。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Bigdata" scheme="https://wing324.github.io/categories/Bigdata/"/>
-    
-    
-      <category term="Hive" scheme="https://wing324.github.io/tags/Hive/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hive常见的数据导入方式</title>
-    <link href="https://wing324.github.io/2017/10/12/Hive%E5%B8%B8%E8%A7%81%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E6%96%B9%E5%BC%8F/"/>
-    <id>https://wing324.github.io/2017/10/12/Hive常见的数据导入方式/</id>
-    <published>2017-10-13T00:29:09.000Z</published>
-    <updated>2017-10-12T09:33:39.000Z</updated>
-    
-    <content type="html"><![CDATA[<ol>
-<li>从本地文件导入到Hive表中；</li>
-<li>从HDFS上导入到Hive表中；</li>
-<li>从别的表中查询出相应的数据并导入到表中；</li>
-<li>Hive多表插入；</li>
-<li>创建表的时候通过从别的表中查询出相应的记录并插入到表中，即表和数据是在一条SQL语句中完成的。<a id="more"></a>
-</li>
-</ol>
-<p>参考文档：<a href="https://yq.aliyun.com/articles/100910?spm=5176.10017275.843861.53.9aaSS4" target="_blank" rel="external">HIVE的四种数据导入方式</a></p>
-<h5 id="一、从本地文件导入到Hive表中">一、从本地文件导入到Hive表中</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 建表语句</div><div class="line">hive&gt; create table t1 (id int,name string,age int) row format delimited fields terminated by &apos;,&apos; lines terminated by &apos;\n&apos; STORED AS TEXTFILE;</div><div class="line"></div><div class="line"># /tmp/sample.txt文件内容</div><div class="line">linux&gt;  cat /tmp/sample.txt</div><div class="line">1,Technical manager,10</div><div class="line">2,Proof reader,20</div><div class="line">3,Wing,30</div><div class="line"></div><div class="line"># 导入本地文件/tmp/sample.txt至t1表中</div><div class="line">hive&gt; load data local inpath &apos;/tmp/sample.txt&apos; into table t1;</div><div class="line">No rows affected (0.325 seconds)</div><div class="line">hive&gt; select * from t1;</div><div class="line">+--------+--------------------+---------+</div><div class="line">| t1.id  |      t1.name       | t1.age  |</div><div class="line">+--------+--------------------+---------+</div><div class="line">| 1      | Technical manager  | 10      |</div><div class="line">| 2      | Proof reader       | 20      |</div><div class="line">| 3      | Wing               | 30      |</div><div class="line">+--------+--------------------+---------+</div><div class="line">3 rows selected (0.119 seconds)</div><div class="line"></div><div class="line"># 注意</div><div class="line"># 此时只是将本地文件的数据插入到hive表中，本地文件sample.txt仍然在本地目录/tmp上，并不是被移动到HDFS上。</div><div class="line"># 此时可以再进行一次相同的load，会发现数据依然可以被加载到t1去</div><div class="line">hive&gt; load data local inpath &apos;/tmp/sample.txt&apos; into table t1;</div><div class="line">hive&gt; select * from t1;</div><div class="line">+--------+--------------------+---------+</div><div class="line">| t1.id  |      t1.name       | t1.age  |</div><div class="line">+--------+--------------------+---------+</div><div class="line">| 1      | Technical manager  | 10      |</div><div class="line">| 2      | Proof reader       | 20      |</div><div class="line">| 3      | Wing               | 30      |</div><div class="line">| 1      | Technical manager  | 10      |</div><div class="line">| 2      | Proof reader       | 20      |</div><div class="line">| 3      | Wing               | 30      |</div><div class="line">+--------+--------------------+---------+</div><div class="line">6 rows selected (0.119 seconds)</div></pre></td></tr></table></figure>
-<h5 id="二、从HDFS上导入到Hive表中">二、从HDFS上导入到Hive表中</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 查看Linux上的本地文件</div><div class="line">linux&gt;  cat /tmp/sample.txt</div><div class="line">1,Technical manager,10</div><div class="line">2,Proof reader,20</div><div class="line">3,Wing,30</div><div class="line"></div><div class="line"># 将Linux上的本地文件上传到HDFS上</div><div class="line">linux&gt;  hdfs dfs -put /tmp/sample.txt /tmp</div><div class="line"></div><div class="line"># 建表语句</div><div class="line">hive&gt; create table t2 (id int,name string,age int) row format delimited fields terminated by &apos;,&apos; lines terminated by &apos;\n&apos; STORED AS TEXTFILE;</div><div class="line"></div><div class="line"># 导入HDFS文件至t2表中</div><div class="line">hive&gt; load data  inpath &apos;/tmp/sample.txt&apos; into table t2;</div><div class="line">hive&gt; select * from t2;</div><div class="line">+--------+--------------------+---------+</div><div class="line">| t2.id  |      t2.name       | t2.age  |</div><div class="line">+--------+--------------------+---------+</div><div class="line">| 1      | Technical manager  | 10      |</div><div class="line">| 2      | Proof reader       | 20      |</div><div class="line">| 3      | Wing               | 30      |</div><div class="line">+--------+--------------------+---------+</div><div class="line">3 rows selected (0.117 seconds)</div><div class="line"></div><div class="line"># 注意</div><div class="line"># 此时查看HDFS目录可以发现，原本在HDFS的/tmp目录上的sample.txt文件没有了，反而在e/warehouse/test1.db/t2目录下面多出来了一个sample.txt文件，因为此时的操作是将HDFS上的sample.txt文件移动到了表目录下面。</div><div class="line"># 此时可以再进行一次相同的load，会发现报错&quot;件不存在&quot;</div><div class="line">hive&gt; load data  inpath &apos;/tmp/sample.txt&apos; into table t2;</div><div class="line">Error: Error while compiling statement: FAILED: SemanticException Line 1:18 Invalid path &apos;&apos;/tmp/sample.txt&apos;&apos;: No files matching path hdfs://172.16.0.220:9000/tmp/sample.txt (state=42000,code=40000)</div></pre></td></tr></table></figure>
-<h5 id="三、从别的表中查询出相应的数据并导入到表中">三、从别的表中查询出相应的数据并导入到表中</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 建表语句</div><div class="line">hive&gt; create table t3(id int,name string) partitioned by (age int) row format DELIMITED FIELDS TERMINATED BY &apos;,&apos; lines terminated by &apos;\n&apos; STORED AS TEXTFILE;</div><div class="line"></div><div class="line"># 指定分区插入数据</div><div class="line">hive&gt; insert into table t3 partition (age=20) select id,name from t2;</div><div class="line">hive&gt; select * from t3;</div><div class="line">OK</div><div class="line">1	Technical manager	20</div><div class="line">2	Proof reader	20</div><div class="line">3	Wing	20</div><div class="line">Time taken: 0.137 seconds, Fetched: 3 row(s)</div><div class="line"># 注意</div><div class="line"># 在t2表里面，其实3条记录的age并不全是20，为什么在t3里面3条记录的age全是20呢？hive修改了我的数据吗？？</div><div class="line"># 解答：其实，下载t3的数据文件之后，可以发现，在t3的数据文件中并没有age这一栏，只是这个文件记录的所有age都为20而已。</div><div class="line"></div><div class="line"># 动态插入分区</div><div class="line">hive&gt; set hive.exec.dynamic.partition.mode=nonstrict;</div><div class="line">hive&gt; insert overwrite table t3 partition (age) select id,name,age from t2;</div><div class="line">hive&gt; select * from t3;</div><div class="line">OK</div><div class="line">1	Technical manager	10</div><div class="line">2	Proof reader	20</div><div class="line">3	Wing	30</div><div class="line">Time taken: 0.168 seconds, Fetched: 3 row(s)</div><div class="line"># 注意</div><div class="line"># 此时可以看到t3和t2长的一模一样了。进入t3的HDFS目录下可以看到3个文件，分别为age=10,age=20,age=30三个文件。这是hive在导入数据的时候已经将数据分区好了。hive是不是很棒棒～</div></pre></td></tr></table></figure>
-<h5 id="四、Hive多表插入">四、Hive多表插入</h5><p>HIve支持扫描一次源表，通过一条SQL将数据插入到多个表中。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 创建t4,t5表</div><div class="line">hive&gt; create table t4 (id int,name string,age int) row format delimited fields terminated by &apos;,&apos; lines terminated by &apos;\n&apos; STORED AS TEXTFILE;</div><div class="line">OK</div><div class="line">Time taken: 0.073 seconds</div><div class="line">hive&gt; create table t5 (id int,name string,age int) row format delimited fields terminated by &apos;,&apos; lines terminated by &apos;\n&apos; STORED AS TEXTFILE;</div><div class="line">OK</div><div class="line">Time taken: 0.043 seconds</div><div class="line"></div><div class="line"># 通过一条SQL，同时向t4,t5表插入数据。</div><div class="line">hive&gt; from t2</div><div class="line">    &gt; insert into table t4 select id,name,age</div><div class="line">    &gt; insert into table t5 select id,name,age where age=30;</div><div class="line">hive&gt; select * from t4;</div><div class="line">OK</div><div class="line">1	Technical manager	10</div><div class="line">2	Proof reader	20</div><div class="line">3	Wing	30</div><div class="line">Time taken: 0.068 seconds, Fetched: 3 row(s)</div><div class="line">hive&gt; select * from t5;</div><div class="line">OK</div><div class="line">3	Wing	30</div><div class="line">Time taken: 0.128 seconds, Fetched: 1 row(s)</div></pre></td></tr></table></figure>
-<h5 id="五、创建表的时候通过从别的表中查询出相应的记录并插入到表中">五、创建表的时候通过从别的表中查询出相应的记录并插入到表中</h5><p>即建表和导入数据在一条SQL中完成。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 建表+导入数据+不带t3分区字段age</div><div class="line">hive&gt; create table t6 as select id,name from t3;</div><div class="line">hive&gt; show create table t6;</div><div class="line">OK</div><div class="line">CREATE TABLE `t6`(</div><div class="line">  `id` int,</div><div class="line">  `name` string)</div><div class="line">ROW FORMAT SERDE</div><div class="line">  &apos;org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe&apos;</div><div class="line">STORED AS INPUTFORMAT</div><div class="line">  &apos;org.apache.hadoop.mapred.TextInputFormat&apos;</div><div class="line">OUTPUTFORMAT</div><div class="line">  &apos;org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat&apos;</div><div class="line">LOCATION</div><div class="line">  &apos;hdfs://172.16.0.220:9000/user/hive/warehouse/test1.db/t6&apos;</div><div class="line">TBLPROPERTIES (</div><div class="line">  &apos;transient_lastDdlTime&apos;=&apos;1505904374&apos;)</div><div class="line">Time taken: 0.027 seconds, Fetched: 13 row(s)</div><div class="line">hive&gt; select * from t6;</div><div class="line">OK</div><div class="line">1	Technical manager</div><div class="line">2	Proof reader</div><div class="line">3	Wing</div><div class="line">Time taken: 0.109 seconds, Fetched: 3 row(s)</div><div class="line"></div><div class="line"># 建表+导入数据+带t3分区字段age</div><div class="line">hive&gt; create table t7 as select id,name,age from t3;</div><div class="line">hive&gt; show create table t7;</div><div class="line">OK</div><div class="line">CREATE TABLE `t7`(</div><div class="line">  `id` int,</div><div class="line">  `name` string,</div><div class="line">  `age` int)</div><div class="line">ROW FORMAT SERDE</div><div class="line">  &apos;org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe&apos;</div><div class="line">STORED AS INPUTFORMAT</div><div class="line">  &apos;org.apache.hadoop.mapred.TextInputFormat&apos;</div><div class="line">OUTPUTFORMAT</div><div class="line">  &apos;org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat&apos;</div><div class="line">LOCATION</div><div class="line">  &apos;hdfs://172.16.0.220:9000/user/hive/warehouse/test1.db/t7&apos;</div><div class="line">TBLPROPERTIES (</div><div class="line">  &apos;transient_lastDdlTime&apos;=&apos;1505904594&apos;)</div><div class="line">Time taken: 0.026 seconds, Fetched: 14 row(s)</div><div class="line">hive&gt; select * from t7;</div><div class="line">OK</div><div class="line">1	Technical manager	10</div><div class="line">2	Proof reader	20</div><div class="line">3	Wing	30</div><div class="line">Time taken: 0.065 seconds, Fetched: 3 row(s)</div><div class="line"></div><div class="line"># 注意，t3是分区表，但是CTAS操作并没有把分区信息copy出来，容我思索下再来解释==</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;ol&gt;
-&lt;li&gt;从本地文件导入到Hive表中；&lt;/li&gt;
-&lt;li&gt;从HDFS上导入到Hive表中；&lt;/li&gt;
-&lt;li&gt;从别的表中查询出相应的数据并导入到表中；&lt;/li&gt;
-&lt;li&gt;Hive多表插入；&lt;/li&gt;
-&lt;li&gt;创建表的时候通过从别的表中查询出相应的记录并插入到表中，即表和数据是在一条SQL语句中完成的。
-    
-    </summary>
-    
-      <category term="Bigdata" scheme="https://wing324.github.io/categories/Bigdata/"/>
-    
-    
-      <category term="Hive" scheme="https://wing324.github.io/tags/Hive/"/>
     
   </entry>
   
