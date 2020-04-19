@@ -69,7 +69,7 @@
     <link href="https://wing324.github.io/2020/04/18/Four-Principles-In-Object-orientated-Programming/"/>
     <id>https://wing324.github.io/2020/04/18/Four-Principles-In-Object-orientated-Programming/</id>
     <published>2020-04-18T18:28:13.000Z</published>
-    <updated>2020-04-19T00:59:03.784Z</updated>
+    <updated>2020-04-19T01:02:50.380Z</updated>
     
     <content type="html"><![CDATA[<p>The four principles of OOP are: Encapsulation, Inheritance, Polymorphism, and Abstract. Let’s introduce each principle in the following paragraphs. </p>
 <p>It is study note from <a href="https://www.educative.io/courses/learn-object-oriented-programming-in-java" target="_blank" rel="external">Educative.io</a></p>
@@ -79,7 +79,7 @@
 <li><h4 id="Definition">Definition</h4><p>It refers to binding the data and the methods to control that data together in a single class. It hides the data and the method of the object from the outside.</p>
 </li>
 <li><h4 id="Illustration">Illustration</h4><p>All variables in a class should be <code>private</code>. And we define <code>public</code> methods that are called as <em>getter</em> and <em>setter</em> to access or modify the variables.</p>
-<p><img src="../../../img/encapsulation-principle.png" alt="encapsulation-principle"></p>
+<p><img src="/img/encapsulation-principle.png" alt="encapsulation-principle"></p>
 </li>
 <li><h4 id="Advantages">Advantages</h4><ul>
 <li>It is easy to manage the class.</li>
@@ -110,7 +110,7 @@
 <p>It uses <strong>extends</strong> and <strong>overriding</strong> keyword.</p>
 </li>
 <li><h4 id="Illustration-1">Illustration</h4><p>This <strong>is A</strong> relationship.</p>
-<p><img src="../../../img/inheritance-principle.png" alt="inheritance-principle"></p>
+<p><img src="/img/inheritance-principle.png" alt="inheritance-principle"></p>
 </li>
 <li><h4 id="Advantages-1">Advantages</h4><ul>
 <li>Inheritance makes the code reusable(Re-usability).</li>
@@ -136,7 +136,7 @@
 <li><h4 id="Definition-2">Definition</h4><p>A same object shows different forms and behaviors.</p>
 <p>It can be presented by <code>extends</code> keyword.</p>
 </li>
-<li><h4 id="Illustration-2">Illustration</h4><p><img src="../../../img/polymorphism-principle.png" alt="polymorphism-principle"></p>
+<li><h4 id="Illustration-2">Illustration</h4><p><img src="/img/polymorphism-principle.png" alt="polymorphism-principle"></p>
 </li>
 <li><h4 id="Types">Types</h4><p><strong>Dynamic Polymorphism</strong> VS <strong>Static Polymorphism</strong> is also known as <code>overloading</code> vs <code>overriding</code>.</p>
 <ul>
@@ -174,7 +174,7 @@
 <li><h2 id="Abstract">Abstract</h2><ul>
 <li><h4 id="Definition-3">Definition</h4><p>It shows only the essential features of an object to the user and hides the inner details to reduce complexity.</p>
 </li>
-<li><h4 id="Illustration-3">Illustration</h4><p><img src="../../../img/abstract-principle.png" alt="abstract-principle"></p>
+<li><h4 id="Illustration-3">Illustration</h4><p><img src="/img/abstract-principle.png" alt="abstract-principle"></p>
 </li>
 <li><h4 id="How">How</h4><p>How to achieve abstraction?</p>
 <p><code>Anstract</code> class and <code>Interface</code>.</p>
