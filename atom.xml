@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wing324.github.io/"/>
-  <updated>2020-04-19T01:06:20.560Z</updated>
+  <updated>2020-04-21T19:06:10.589Z</updated>
   <id>https://wing324.github.io/</id>
   
   <author>
@@ -14,6 +14,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>How to use Python virtual environment</title>
+    <link href="https://wing324.github.io/2020/04/21/How-to-use-Python-virtual-environment/"/>
+    <id>https://wing324.github.io/2020/04/21/How-to-use-Python-virtual-environment/</id>
+    <published>2020-04-21T18:59:47.000Z</published>
+    <updated>2020-04-21T19:06:10.589Z</updated>
+    
+    <content type="html"><![CDATA[<p>This is just a note for my personal VS Code Editor.<br><a id="more"></a></p>
+<ol>
+<li><p>Install Python3 Package in the computer</p>
+<p><a href="https://www.python.org/downloads/" target="_blank" rel="external">https://www.python.org/downloads/</a></p>
+</li>
+<li><p>Create a virtual environment</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># .venv is a director for my own virtual environment</span></div><div class="line">python -m venv .venv</div></pre></td></tr></table></figure>
+</li>
+<li><p>Activate a virtual environment</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line">source .venv/Scripts/activate</div></pre></td></tr></table></figure>
+</li>
+<li><p>Select a virtual environment in VS Code Editor</p>
+<p>Use <code>Ctrl+Shift+P</code> to go to VS Code Editor, and Select <code>Python: Select Interpreter</code>. Then, choose your own virtual environment name.</p>
+</li>
+<li><p>Deactivate a virtual environment</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line">source .venv/Scripts/deactivate</div></pre></td></tr></table></figure>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;This is just a note for my personal VS Code Editor.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="https://wing324.github.io/categories/Python/"/>
+    
+    
+      <category term="virtual environment" scheme="https://wing324.github.io/tags/virtual-environment/"/>
+    
+      <category term="venv" scheme="https://wing324.github.io/tags/venv/"/>
+    
+      <category term="virtualenv" scheme="https://wing324.github.io/tags/virtualenv/"/>
+    
+  </entry>
   
   <entry>
     <title>Difference Between the Overloading and Overriding of Methods</title>
@@ -1224,51 +1268,6 @@ Waiting <span class="keyword">for</span> <span class="keyword">trigger</span> me
     
     
       <category term="final" scheme="https://wing324.github.io/tags/final/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java之多态方法中的调用问题</title>
-    <link href="https://wing324.github.io/2017/10/31/Java%E4%B9%8B%E5%A4%9A%E6%80%81%E6%96%B9%E6%B3%95%E4%B8%AD%E7%9A%84%E8%B0%83%E7%94%A8%E9%97%AE%E9%A2%98/"/>
-    <id>https://wing324.github.io/2017/10/31/Java之多态方法中的调用问题/</id>
-    <published>2017-10-31T17:25:07.000Z</published>
-    <updated>2017-10-31T02:27:44.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Java的多态。嗯。是个很有意思的东西。</p>
-<a id="more"></a>
-<p>参考：<a href="https://ke.qq.com/webcourse/index.html#course_id=147646&amp;term_id=100167776&amp;taid=747414503964862&amp;vid=n1411d4d7v9" target="_blank" rel="external">腾讯课堂</a></p>
-<p>多态方法调用情况存在四类，以doWork()方法为例：</p>
-<ol>
-<li><p>doWork()存在子类中，不存在父类中，结果调用子类的doWork()；</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">package</span> com.wing.multidemo;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiDemo2</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        SuperClass s1 = <span class="keyword">new</span> SubClass();</div><div class="line">        s1.doWork();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 父类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperClass</span></span>&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 子类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubClass</span> <span class="keyword">extends</span> <span class="title">SuperClass</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"SubClass doWork"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//此时输出结果</span></div><div class="line">编译报错。</div><div class="line">因为编译时期需要去编译类型(Superclass)中找是否有doWork()方法，找到则编译通过，找不到则编译失败。</div></pre></td></tr></table></figure>
-</li>
-<li><p>dowork()不存在子类中，存在父类中，结果调用父类的doWork()；</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">package</span> com.wing.multidemo;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiDemo2</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        SuperClass s1 = <span class="keyword">new</span> SubClass();</div><div class="line">        s1.doWork();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 父类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperClass</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"SuperClass doWork"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 子类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubClass</span> <span class="keyword">extends</span> <span class="title">SuperClass</span></span>&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 此时输出结果</span></div><div class="line">SuperClass doWork</div></pre></td></tr></table></figure>
-</li>
-<li><p>doWork()存在子类中，存在父类中，结果调用子类的doWork()；[就近原则]</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">package</span> com.wing.multidemo;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiDemo2</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        SuperClass s1 = <span class="keyword">new</span> SubClass();</div><div class="line">        s1.doWork();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 父类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperClass</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"SuperClass doWork"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 子类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubClass</span> <span class="keyword">extends</span> <span class="title">SuperClass</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"SubClass doWork"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 此时输出结果</span></div><div class="line">SubClass doWork</div><div class="line">此时是先从SubClass中找是否存在doWork()方法，再去SuperClass中找是否存在doWork()方法。</div></pre></td></tr></table></figure>
-</li>
-<li><p>doWork()存在子类中(static方法)，存在父类中(方法)，结果调用子类的doWork()。[就近原则]<br>注意，这种方式称之为”隐藏”，而不是”方法覆盖”。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">package</span> com.wing.multidemo;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiDemo2</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        SuperClass s1 = <span class="keyword">new</span> SubClass();</div><div class="line">        s1.doWork();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 父类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperClass</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"SuperClass doWork"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 子类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubClass</span> <span class="keyword">extends</span> <span class="title">SuperClass</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"SubClass doWork"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 此时输出结果</span></div><div class="line">SuperClass doWork</div><div class="line">解释：静态方法的调用，只需要类即可。如果使用对象来调用方法，其实使用对象的类(该代码中为SuperClass)调用静态方法。</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><strong>总结:</strong></p>
-<ol>
-<li>多态调用方法时，首先方法会去子类中查找方法是否存在，再去父类中查找方法是否存在[方法必须存在父类中，否则多态编译将会失败。]</li>
-<li>多态中静态方法的”重写”不叫重写，应该叫”方法隐藏”，为什么呢？因为静态方法的调用，只需要类即可，如果使用对象来调用静态方法，其实使用的是对象的类来调用静态方法的。</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Java的多态。嗯。是个很有意思的东西。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Java" scheme="https://wing324.github.io/categories/Java/"/>
-    
-    
-      <category term="polymorphism" scheme="https://wing324.github.io/tags/polymorphism/"/>
     
   </entry>
   
